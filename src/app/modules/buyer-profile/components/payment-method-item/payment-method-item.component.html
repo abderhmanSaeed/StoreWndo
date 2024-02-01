@@ -1,0 +1,25 @@
+<div class="!flex items-start">
+    <ng-container *ngFor="let item of paymentMethods">
+        <label class="radio-btn cursor-pointer items-baseline justify-start ltr:mr-[5rem] rtl:ml-[5rem] my-0">
+            <input
+                type="radio" 
+                [id]="item?.id"
+                [name]="item?.name"
+                [value]="item?.value"
+                class="cursor-pointer"
+                (change)="onPaymentMethodChange(item)"
+                [checked]="item?.id == data?.paymentMethod"
+            />
+            <div class="flex flex-col flex-grow-1 label-content">
+                <div class="flex justify-between items-center">
+                    <div class="flex flex-col">
+                        <span class="text-blue pb-1 fw-500">{{ item.label | translate }}</span>
+                        <small *ngIf="item.sublabel">{{ item.sublabel | translate }}</small>
+                    </div>
+                    <img class="ltr:ms-4 rtl:ms-4" [width]="item?.width" [src]="item?.iconPath" alt="Icon">
+                    <img [width]="item?.width" class="active hidden ltr:ms-4 rtl:ms-4" [src]="item?.activeIconPath" alt="Icon">
+                </div>
+            </div>
+        </label>
+    </ng-container>
+</div>

@@ -1,0 +1,107 @@
+<div class="row justify-center">
+    <div class="col-12">
+
+        <div class="progress-wrapper relative flex justify-center items-center mx-auto">
+            <!-- progressbar -->
+            <ngb-progressbar
+                class="w-100"
+                height="3px"
+                type="dark"
+                [value]="progressbarValue"
+            ></ngb-progressbar>
+           
+            <!-- progress circles -->
+            <div 
+                class="progress-circles flex justify-start absolute right-0 left-0"
+            >
+                <div class="progress-circles__circle-wrapper flex justify-start relative items-center progress-circles__circle-wrapper--active"
+                    [ngClass]="{
+                        'progress-circles__circle-wrapper--completed' : progressbarValue >= 50
+                    }"
+                >
+                    <span class="circle w-[20px] h-[20px] rounded-full border-2 border-[#9ba2b7] flex justify-center items-center"></span>
+                </div>
+                <div class="progress-circles__circle-wrapper flex justify-start relative items-center"
+                    [ngClass]="{
+                        'progress-circles__circle-wrapper--active' : progressbarValue >= (100 / 3),
+                        'progress-circles__circle-wrapper--completed' : progressbarValue >= (100 / 3) + (100 / 3)
+                    }"
+                >
+                    <span class="circle w-[20px] h-[20px] rounded-full border-2 border-[#9ba2b7] flex justify-center items-center"></span>
+                </div>
+                <div 
+                    class="progress-circles__circle-wrapper flex justify-start relative items-center"
+                    [ngClass]="{
+                        'progress-circles__circle-wrapper--active' : progressbarValue >= (100 / 3) + (100 / 3),
+                        'progress-circles__circle-wrapper--completed' : progressbarValue >= 100
+                    }"
+                >
+                    <span class="circle w-[20px] h-[20px] rounded-full border-2 border-[#9ba2b7] flex justify-center items-center"></span>
+                </div>
+                <div 
+                    class="progress-circles__circle-wrapper flex justify-start relative items-center"
+                    [ngClass]="{
+                        'progress-circles__circle-wrapper--active' : progressbarValue >= 99,
+                        'progress-circles__circle-wrapper--completed' : progressbarValue >= 100
+                    }"
+                >
+                    <span class="circle w-[20px] h-[20px] rounded-full border-2 border-[#9ba2b7] flex justify-center items-center"></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- steps -->
+        <div class="steps flex justify-between mt-[30px] mx-auto">
+
+            <mat-card
+                class="steps__step steps__step--active shadow-sm d-flex items-center px-4 min-w-[200px] py-[.2rem] justify-center ltr:translate-x-[-95px] rtl:translate-x-[95px]"
+            >
+                <div class="steps__step-icon">
+                    <img class="ltr:me-2 rtl:me-2 active-icon" height="21" src="assets/media/modules/order/icons/placed.svg" alt="Icon">
+                </div>
+                <span class="text-[.9rem] fw-500">{{ 'my-orders.order-placed' | translate }}</span>
+            </mat-card>
+
+            <mat-card
+                class="steps__step shadow-sm d-flex items-center px-4 min-w-[200px] py-[.2rem] justify-center ltr:translate-x-[-10px] rtl:translate-x-[10px]"
+                [ngClass]="{
+                    'steps__step--active' : progressbarValue >= (100 / 3)
+                }"
+            >
+                <div class="steps__step-icon">
+                    <img class="ltr:me-2 rtl:me-2" height="21" src="assets/media/modules/order/icons/picked-up.svg" alt="Icon">
+                    <img class="ltr:me-2 rtl:me-2 active-icon" height="21" src="assets/media/modules/order/icons/picked-up-active.svg" alt="Icon">
+                </div>
+                <span class="text-[.9rem] fw-500">{{ 'my-orders.picked-up' | translate }}</span>
+            </mat-card>
+
+            <mat-card 
+                class="steps__step shadow-sm d-flex items-center px-4 min-w-[200px] py-[.2rem] justify-center ltr:translate-x-[40px] rtl:translate-x-[-40px]"
+                [ngClass]="{
+                    'steps__step--active' : progressbarValue >= (100 / 3) + (100 / 3)
+                }"
+            >
+                <div class="steps__step-icon">
+                    <img class="ltr:me-2 rtl:me-2" height="21" src="assets/media/modules/order/icons/out-of-delivery.svg" alt="Icon">
+                    <img class="ltr:me-2 rtl:me-2 active-icon" height="21" src="assets/media/modules/order/icons/out-of-delivery-active.svg" alt="Icon">
+                </div>
+                <span class="text-[.9rem] fw-500">{{ 'my-orders.out-for-delivery' | translate }}</span>
+            </mat-card>
+
+            <mat-card 
+                class="steps__step shadow-sm d-flex items-center px-4 min-w-[200px] py-[.2rem] justify-center ltr:translate-x-[95px] rtl:translate-x-[-95px]"
+                [ngClass]="{
+                    'steps__step--active' : progressbarValue == 100
+                }"
+            >
+                <div class="steps__step-icon">
+                    <img class="ltr:me-2 rtl:me-2" height="21" src="assets/media/modules/cart/icons/shipping.svg" alt="Icon">
+                    <img class="ltr:me-2 rtl:me-2 active-icon" height="21" src="assets/media/modules/cart/icons/shipping-active.svg" alt="Icon">
+                </div>
+                <span class="text-[.9rem] fw-500">{{ 'my-orders.delivered' | translate }}</span>
+            </mat-card>
+
+        </div>
+        
+    </div>
+</div>

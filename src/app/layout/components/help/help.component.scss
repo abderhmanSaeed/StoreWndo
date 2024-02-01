@@ -1,0 +1,39 @@
+.help {
+
+
+    // Modifire Block 
+    transform: translateX(calc(100% - 44px));
+
+
+    &:hover {
+        // Modifire Block 
+        transform: none;
+
+
+        .help__nav-list {
+
+            // Modifire Block 
+            opacity: 1;
+            visibility: visible;
+            transition-duration: .8s;
+
+        }
+    }
+
+
+    &__nav-list {
+
+        // Modifire Block 
+        opacity: 0;
+        visibility: hidden;
+        transition-duration: .3s;
+
+        &__item {
+            &:not(:last-of-type) {
+
+                // Structure Block 
+                margin-bottom: .8rem;
+            }
+        }
+    }
+}

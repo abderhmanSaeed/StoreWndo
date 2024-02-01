@@ -1,0 +1,27 @@
+<section class="help transition-all fixed top-[96px] right-0 z-10">
+
+
+    <header class="bg-[#001D7D] text-white ps-3 py-[.7rem] rounded-l-full pe-2 flex items-center cursor-pointer">
+        <div class="icon mr-[.8rem]">
+            <img src="assets/media/svg/help.svg" alt="Help icon">
+        </div>
+        <span class="fw-400">Need Help</span>
+    </header>
+
+
+    <ul class="help__nav-list bg-white ps-3 py-3 rounded-l-2xl mt-[1rem] transition-all">
+        <ng-container *ngFor="let item of helpNavList">
+            <li class="help__nav-list__item">
+                <a [href]="item?.route" target="_blank" mat-button class="w-100 d-flex items-center border rounded-md rounded-r-none px-[.8rem] py-[.5rem] text-[.9rem]">
+                    <span class="icon mr-[.5rem] inline-block">
+                        <img width="14" [src]="item.imgPath" [alt]="item.name">
+                    </span>
+                    <span class="text-blue text-[.85rem] fw-400"> {{ item.name }} </span>
+                </a>
+            </li>
+        </ng-container>
+    </ul>
+
+
+
+</section>

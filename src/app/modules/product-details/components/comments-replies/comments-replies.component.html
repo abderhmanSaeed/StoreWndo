@@ -1,0 +1,30 @@
+<ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-1">
+	<ngb-panel id="ngb-panel-1" [title]="'shared.comments' | translate">
+		<ng-template ngbPanelContent>			
+           <div class="row">
+                <div class="col-lg-8 col-xxl-7">
+                   
+                    <div *ngIf="comments?.length else noData" class="comments mb-4">
+                        <ng-container *ngFor="let comment of comments; let index = index">
+                            <comment [comment]="comment" [productId]="productId" (onCommentAction)="onAction($event, commentTypesEnum.Comment,  index)"></comment>
+                        </ng-container>
+                    </div>
+
+                    <app-add-comment (addComment)="addComment($event)" [initComment]="currentMessage" class="block py-2"></app-add-comment>
+                </div>
+           </div>
+		</ng-template>
+	</ngb-panel>
+</ngb-accordion>
+
+
+<!-- begin no data templete  -->
+<ng-template #noData>
+    <no-data
+        size="xl"
+        class="block py-5"
+        [message]="'shared.no-results-found' | translate"
+   ></no-data>
+   <span class="text-blue">{{ 'product-details.write-the-first-feedback'| translate }}</span>
+</ng-template>
+<!-- end no data templete  -->

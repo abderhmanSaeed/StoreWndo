@@ -1,0 +1,74 @@
+// :host {
+    ::ng-deep {
+
+        .grid-card-preview {
+            // Structure Block 
+            width: 750px;
+            margin: auto;
+
+            // Modifire Block 
+            // transition: all .3s ease-in-out;
+
+            &.show-sizes-colors-col {
+
+                // Structure Block 
+                width: 85%;
+                // max-width: 450px;
+                // margin-left: 0;
+
+                .info-col {
+
+                    // Structure Block 
+                    flex: 0 0 400px;
+                }
+
+                .video-col {
+                    // Structure Block 
+                    flex: 0 0 fit-content;
+                    max-width: 350px;
+                }
+
+                
+                .product-features-col {
+                    // Structure Block 
+                    max-width: 550px;
+                }
+            }
+        }
+
+        .grid-card-preview__content {
+
+            .mat-dialog-content {
+        
+                // Modifire Block 
+                overflow: visible;
+        
+            }
+        }
+        
+        
+        .cdk-overlay-dark-backdrop {
+            // Structure Block 
+            background: rgba(0, 0, 0, 0.91);
+        }
+        
+        .mat-dialog-container {
+            // Structure Block 
+            background: transparent !important;
+            padding: 5rem 0px 1rem 0;
+        
+            // Positioning Block 
+            position: relative;
+        
+            // Modifire Block 
+            overflow: visible;
+        
+        }
+        
+        .mat-dialog-actions {
+            // Structure Block 
+            margin-bottom: 0;
+        }
+                
+    }
+// }

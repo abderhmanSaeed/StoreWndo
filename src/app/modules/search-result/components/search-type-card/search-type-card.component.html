@@ -1,0 +1,22 @@
+<div
+    matRipple 
+    [matRippleColor]="mainRippleColor"
+    class="overflow-hidden block main-rounded shadow-sm h-[111px]"
+>
+    <mat-card
+        class="search-type-card !px-[1rem] w-[126px] h-100">
+        <mat-card-content class="text-center h-100">
+            <div class="icon mb-2">
+                <img 
+                    height="45"
+                    alt="Icon"
+                    [src]="type == searchTypes.Section ?  data?.image : data?.imagePath"
+                    class="mx-auto img-fluid icon"
+                >
+            </div>
+            <div class="label fw-500 text-truncate break-all">
+                <small>{{ data?.name }}</small>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>

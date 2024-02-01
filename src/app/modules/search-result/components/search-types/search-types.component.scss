@@ -1,0 +1,15 @@
+.search-types {
+    &__type {
+        a {
+            &.active-filter,
+            &.active {
+                // Structure Block 
+                background-color: #001D7D;
+
+                // Typography Block 
+                color: #fff;
+            }
+        }
+
+    }
+}

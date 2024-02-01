@@ -1,0 +1,57 @@
+<section class="auth p-4 text-white">
+
+    <!-- begin:: logo  -->
+    <div class="logo">
+        <img width="184" src="assets/media/logos/white-logo.svg" alt="Logo">
+    </div>
+    <!-- end:: logo  -->
+
+    
+    <ng-container [ngSwitch]="currentAuth">
+
+        <!-- begin:: sign up  -->
+        <app-sign-up
+            [countriesCodes]="countriesCode"
+            *ngSwitchCase="authComponents.SignUp"
+            class="animate__animated animate__fadeIn"
+            (chengeCurrentAuth)="currentAuth = $event"
+        ></app-sign-up>
+        <!-- end:: sign up  -->
+
+
+        <!-- begin:: login  -->
+        <app-login 
+            *ngSwitchDefault
+            [countriesCodes]="countriesCode"
+            class="animate__animated animate__fadeIn"
+            (chengeCurrentAuth)="currentAuth = $event"
+        ></app-login>
+        <!-- end:: login  -->
+
+
+        <!-- begin:: Verify Code  -->
+        <app-verify-code
+            [isForget]="isForget"
+            *ngSwitchCase="authComponents.VerifyCode"
+            (chengeCurrentAuth)="currentAuth = $event"
+        ></app-verify-code>
+        <!-- end:: Verify Code  -->
+
+        <!-- begin:: Forget password  -->
+        <app-forget-password
+           *ngSwitchCase="authComponents.ForgetPassword"
+           (chengeCurrentAuth)="onCurrentAuthChange($event)"
+        ></app-forget-password>
+        <!-- end:: Forget password  -->
+
+
+        <!-- begin:: new password  -->
+        <app-new-password
+           *ngSwitchCase="authComponents.NewPassword"
+           (chengeCurrentAuth)="currentAuth = $event"
+        ></app-new-password>
+        <!-- end:: new password  -->
+
+    </ng-container>
+
+</section>

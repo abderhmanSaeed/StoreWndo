@@ -1,0 +1,14 @@
+:host-context(html[dir=rtl]) {
+
+    .apps-list {
+        &__item {
+            &:not(:first-of-type) {
+                // Structure Block 
+                margin-left: 0;
+                margin-right: .3rem;
+            }
+    
+        }
+    }    
+
+}

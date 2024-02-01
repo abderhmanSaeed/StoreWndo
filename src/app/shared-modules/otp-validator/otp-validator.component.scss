@@ -1,0 +1,135 @@
+:host {
+    ::ng-deep {
+
+
+        .auth__content {
+    
+            .mat-dialog-content {
+        
+                // Modifire Block 
+                overflow: visible;
+        
+            }
+        }
+            
+        .mat-dialog-container {
+            // Structure Block 
+            background: transparent !important;
+            padding: 5rem 0px 1rem 0;
+        
+            // Positioning Block 
+            position: relative;
+        
+            // Modifire Block 
+            overflow: visible;
+        
+        }
+            
+        .mat-dialog-actions {
+            // Structure Block 
+            margin-bottom: 0;
+        }
+    
+            
+        .gradient-border {
+        
+            // Positioning Block 
+            position: relative;
+        
+            
+            &::after {
+        
+                // Structure Block 
+                content: '';
+                width: calc(100% + 10px * 2);
+                height: calc(100% + 10px * 2);
+                background: var(--main-gradient);
+                border-radius: 8px;
+                background-size: 300% 300%;
+        
+                // Positioning Block 
+                position: absolute;
+                top: calc(-1 * 10px);
+                left: calc(-1 * 10px);
+        
+                // Modifire Block 
+                animation: gradient 3s ease alternate infinite;
+                opacity: .7;
+            }
+        }
+    
+                
+    }
+    
+}
+
+.otp {
+    ::ng-deep {
+        .wrapper {
+
+            // Structure Block 
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+
+            .otp-input {
+
+                // Structure Block 
+                padding: 0;
+                margin: .5rem .5rem !important;
+                border-color: #CECECE;
+                border-radius: 8px;
+                -webkit-border-radius: 8px;
+                -moz-border-radius: 8px;
+                -ms-border-radius: 8px;
+                -o-border-radius: 8px;
+                background: transparent;
+
+                // Typography Block 
+                font-size: .9rem;
+                color: #CECECE;
+
+                &::selection {
+
+                    // Typography Block 
+                    color: #fff;
+
+                    // Structure Block 
+                    background-color: #d44842;
+                }
+
+                // Medium devices (tablets, less than 992px)
+                @media (max-width: 991.98px) {
+
+                    // Structure Block 
+                    width: 37px !important;
+                    height: 37px !important;
+                    margin: 0.3rem 0.3rem !important;
+                }
+
+                // X-Small devices (portrait phones, less than 576px)
+                @media (max-width: 575.98px) { 
+
+                    // Structure Block 
+                    width: 34px !important;
+                    height: 34px !important;
+
+                    // Typography Block 
+                    font-size: .8rem;
+
+                }
+
+            }
+        }
+        .invalid {
+            .otp-input {
+
+                // Structure Block 
+                border-color: #d44842;
+            }
+        }
+
+      
+    }
+
+}

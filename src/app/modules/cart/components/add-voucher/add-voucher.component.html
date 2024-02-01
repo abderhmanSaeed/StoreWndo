@@ -1,0 +1,27 @@
+<form [formGroup]="form" (ngSubmit)="submit()" class="voucher py-4">
+   
+    <header class="mb-2">
+        <span class="fw-500 text-[#4E4E78]">{{ 'checkout.do-you-have-voucher' | translate }}</span>
+    </header>
+
+    <div class="body mb-2">
+        <field
+            type="text"
+            ngDefaultControl
+            formControlName="code"
+            [showValidations]="formError"
+            panelclass="py-2 main-rounded"
+            [control]="form | getControl: 'code'"
+            [placeholder]="'checkout.enter-coupon-code' | translate"
+        ></field>
+    </div>
+
+    <footer class="ltr:text-right rtl:text-left pt-1">
+        <app-button
+            [stroked]="true"
+            [label]="'checkout.add-voucher' | translate"
+            panelclass="lh-normal py-2 text-[.77rem] main-rounded--force"
+        ></app-button>
+    </footer>
+
+</form>

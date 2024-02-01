@@ -1,0 +1,10 @@
+{
+  "seller": {
+    "suggested-sellers": "Suggested Sellers",
+    "items": "Items",
+    "following": "following",
+    "offers": "Offers",
+    "products": "Products",
+    "seller-didnt-publish-content-yet": "This seller didn't publish any content yet."
+  }
+}

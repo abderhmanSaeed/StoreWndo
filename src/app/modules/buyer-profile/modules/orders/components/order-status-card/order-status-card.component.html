@@ -1,0 +1,24 @@
+
+<mat-card class="!rounded-xl overflow-hidden p-0 mat-card">
+    <a
+        [routerLink]="['/buyer-profile/orders']"
+        routerLinkActive="active"
+        [queryParams]="{
+            'order-status': status?.key
+        }"
+        queryParamsHandling="merge"
+        [class]="status?.classes" class="transition-all duration-300 btn mat-card__btn px-3 py-[.9rem] items-center !flex justify-between w-100">
+            <div class="start flex justify-between flex-col items-center">
+                <div class="count min-w-[36px] min-h-[36px] rounded-full bg-[#f8f8f8] flex items-center justify-center fw-bold mb-2">
+                    <span [style.color]="status?.color" >{{ status?.prodCount }}</span>
+                </div>
+                <span class="label transition-all text-gray fw-500 text-[.85rem]">{{ status?.label | translate }}</span>
+            </div>
+            <div class="end">
+                <div class="icon">
+                    <img [height]="status?.iconHeight" [src]="status?.iconPath" class="img-fluid" alt="Icon">
+                    <img [height]="status?.iconHeight" [src]="status?.activeIconPath" class="img-fluid active hidden" alt="Icon">
+                </div>
+            </div>
+    </a>
+    </mat-card>

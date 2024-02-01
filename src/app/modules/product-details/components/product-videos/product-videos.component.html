@@ -1,0 +1,23 @@
+<section class="product-videos">
+   
+    <header>
+        <h4 class="fw-600">{{ 'product-details.product-videos' | translate }}</h4>
+    </header>
+
+    <div *ngIf="videos?.length else noData" class="product-videos__items flex gap-x-3">
+        <ng-container *ngFor="let video of videos | slice: 0: 4">
+            <product-video-card [video]="video" [seller]="seller"></product-video-card>
+        </ng-container>
+    </div>
+
+</section>
+
+
+<!-- begin:: if no data option  -->
+<ng-template #noData>
+    <no-data
+        class="block pt-3 pb-4"
+        [message]="'product-details.no-more-videos' | translate"
+    ></no-data>
+</ng-template>
+<!-- end:: if no data option  -->

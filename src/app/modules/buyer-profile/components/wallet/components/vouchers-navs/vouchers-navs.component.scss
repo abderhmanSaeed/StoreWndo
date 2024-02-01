@@ -1,0 +1,22 @@
+.nav-tabs {
+    .nav-link {
+
+        // Structure Block 
+        border-bottom: 2px solid #AAB2B7 !important;
+
+
+        &.active {
+
+
+            // Structure Block 
+            border-color: var(--third) !important;;
+
+            span {
+                // Typography Block 
+                color: var(--third);
+            }
+          
+
+        }   
+    }
+}

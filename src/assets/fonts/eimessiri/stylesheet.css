@@ -1,0 +1,52 @@
+@font-face {
+    font-family: 'El Messiri';
+    src: url('ElMessiri-Medium.eot');
+    src: url('ElMessiri-Medium.eot?#iefix') format('embedded-opentype'),
+        url('ElMessiri-Medium.woff2') format('woff2'),
+        url('ElMessiri-Medium.woff') format('woff'),
+        url('ElMessiri-Medium.ttf') format('truetype'),
+        url('ElMessiri-Medium.svg#ElMessiri-Medium') format('svg');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'El Messiri';
+    src: url('ElMessiri-Bold.eot');
+    src: url('ElMessiri-Bold.eot?#iefix') format('embedded-opentype'),
+        url('ElMessiri-Bold.woff2') format('woff2'),
+        url('ElMessiri-Bold.woff') format('woff'),
+        url('ElMessiri-Bold.ttf') format('truetype'),
+        url('ElMessiri-Bold.svg#ElMessiri-Bold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'El Messiri';
+    src: url('ElMessiri-SemiBold.eot');
+    src: url('ElMessiri-SemiBold.eot?#iefix') format('embedded-opentype'),
+        url('ElMessiri-SemiBold.woff2') format('woff2'),
+        url('ElMessiri-SemiBold.woff') format('woff'),
+        url('ElMessiri-SemiBold.ttf') format('truetype'),
+        url('ElMessiri-SemiBold.svg#ElMessiri-SemiBold') format('svg');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'El Messiri';
+    src: url('ElMessiri-Regular.eot');
+    src: url('ElMessiri-Regular.eot?#iefix') format('embedded-opentype'),
+        url('ElMessiri-Regular.woff2') format('woff2'),
+        url('ElMessiri-Regular.woff') format('woff'),
+        url('ElMessiri-Regular.ttf') format('truetype'),
+        url('ElMessiri-Regular.svg#ElMessiri-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+

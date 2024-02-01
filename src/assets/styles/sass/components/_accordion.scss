@@ -1,0 +1,10 @@
+.accordion-button {
+    &::after {
+        [dir=rtl] & {
+
+            // Structure Block 
+            margin-left: 0;
+            margin-right: auto;
+        }
+    }
+}

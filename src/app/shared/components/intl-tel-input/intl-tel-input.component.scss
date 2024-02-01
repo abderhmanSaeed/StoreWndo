@@ -1,0 +1,111 @@
+:host {
+    ::ng-deep {
+        .ng-select {
+
+            &--matrial {
+
+                .ng-select-container {
+                    // Structure Block 
+                    border: 0;
+                    border-bottom: 1px solid;
+                    border-bottom-color: inherit;
+                    min-height: 34px;
+                    height: 34px;
+                    border-top-left-radius: 0 !important;
+                    border-bottom-left-radius: 0 !important;
+
+                    // TYpography Block 
+                    font-size: .8rem;
+
+
+                    .ng-value-container {
+
+                        // Structure Block 
+                        padding: 0;
+
+
+                        .ng-placeholder {
+                            // Typography Block 
+                            color: #848081;
+                        }
+                    }
+
+
+                    .ng-input {
+
+                        // Structure Block 
+                        padding: 0 !important;
+                        
+                        input {
+
+                            // Structure Block 
+                            padding: 0;
+                            padding-inline-start: 0 !important;
+                        }
+                    }
+                }
+            }
+
+            .ng-select-container {
+
+
+
+                // Structure Block 
+                min-height: 43px;
+                border-radius: 0;
+                border-top-left-radius: var(--main-rounded);
+                border-bottom-left-radius: var(--main-rounded);
+
+                .ng-value-container {
+
+                    .ng-value {
+                        // Typograhy Block 
+                        font-size: .8rem;
+                        color: #858d93;
+                        line-height: normal;
+
+                    }
+
+                    
+
+                    .ng-input {
+
+                        // Positioning Block 
+                        top: auto;
+
+                    }
+                }
+           
+            }
+        }
+
+
+        .ng-dropdown-panel {
+            .ng-dropdown-panel-items {
+
+
+
+                &::-webkit-scrollbar {
+                    width: 5px;               /* width of the entire scrollbar */
+                }
+
+                &::-webkit-scrollbar-track {
+                    background: #fff;        /* color of the tracking area */
+                }
+
+                &::-webkit-scrollbar-thumb {
+                    background-color: #ddd;    /* color of the scroll thumb */
+                    border-radius: 20px;       /* roundness of the scroll thumb */
+                }
+                
+                .ng-option {
+
+                    // Typograhy Block 
+                    font-size: .8rem;
+                    color: #858d93;
+
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,113 @@
+<section class="seller-products pb-4 flex flex-col h-100">
+    
+
+    <!-- begin filters  -->
+    <header class="mb-2 flex justify-center items-center mb-4 py-2">
+        <ul class="list-unstyled mb-0 inline-flex items-center w-fit main-rounded overflow-hidden seller-products__filters">
+            <li>
+                <!-- [queryParams]="{
+                    'is-offers': 'true'
+                }" -->
+                <a
+                    mat-raised-button
+                    [routerLink]="[]"          
+                    [routerLinkActiveOptions]="{exact: true}"         
+                    routerLinkActive="seller-products__filter--active"
+                    class="!bg-[#E9E7F8] !text-[#966005] py-2 rounded-0 active seller-products__filter" 
+                    (click)="productsCount = sellerProfile?.offers"
+                >
+                    <div class="flex items-center">
+                        <div class="icon w-[35px] h-[35px] bg-white rounded-full ltr:me-2 rtl:me-2 flex items-center justify-center">
+                            <img src="assets/media/svg/svgexport-6.svg" alt="Icon">
+                            <img class="active" src="assets/media/svg/svgexport-6-green.svg" alt="Icon">
+                        </div>
+                        <span>{{ 'seller.offers' | translate }} ({{ sellerProfile?.offers }})</span>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a
+                    mat-raised-button
+                    [routerLink]="[]"
+                    [queryParams]="{
+                        'is-offers': 'false'
+                    }"
+                    queryParamsHandling="merge"
+                    routerLinkActive="seller-products__filter--active"
+                    class="!bg-[#E9E7F8] !text-[#966005] py-2 rounded-0 seller-products__filter"
+                    (click)="productsCount = sellerProfile?.products"
+                >
+                    <div class="flex items-center">
+                        <div class="icon w-[35px] h-[35px] bg-white rounded-full ltr:me-2 rtl:me-2 flex items-center justify-center">
+                            <img src="assets/media/svg/svgexport-7.svg" alt="Icon">
+                            <img class="active" src="assets/media/svg/svgexport-7-green.svg" alt="Icon">
+                        </div>
+                        <span>{{ 'seller.products' | translate }} ({{ sellerProfile?.products }})</span>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </header>
+    <!-- end filters  -->
+
+    
+    
+
+    <!-- begin:: products  -->
+    <ng-container *ngIf="sellerProfile.offers || sellerProfile.products else noContent">
+        <ng-container *ngIf="products.length else noData">
+            <div class="product-list grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4">
+                <ng-container *ngFor="let item of products">
+                    <div>
+                        <auk-card-c [data]="item"></auk-card-c>
+                    </div>
+                </ng-container>
+            </div>
+        </ng-container>
+    </ng-container>
+    <!-- end:: products  -->
+
+
+
+    <!-- begin:: paginator  -->
+    <ng-container *ngIf="productsCount > perPage && products.length">
+        <div class="flex justify-center mt-4">
+            <ngb-pagination
+                [(page)]="page"
+                [pageSize]="perPage"
+                (pageChange)="onPageChange($event)"
+                [collectionSize]="productsCount"
+                aria-label="Default pagination"
+            >
+                <ng-template ngbPaginationPrevious>
+                    <mat-icon>keyboard_backspace</mat-icon>
+                </ng-template>
+                <ng-template ngbPaginationNext>
+                    <mat-icon class="rotate-180">keyboard_backspace</mat-icon>
+                </ng-template>
+            </ngb-pagination>
+        </div>
+    </ng-container>
+    <!-- end:: paginator  -->
+
+</section>
+
+
+
+<!-- begin no data templete  -->
+<ng-template #noData>
+    <no-data
+        size="xl"
+        [message]="'shared.no-results-found' | translate"
+        class="flex justify-center items-center flex-grow-1"
+    ></no-data>
+</ng-template>
+<ng-template #noContent>
+    <no-data
+        size="xl"
+        [isSorry]="true"
+        [message]="'seller.seller-didnt-publish-content-yet' | translate"
+        class="flex justify-center items-center flex-grow-1"
+    ></no-data>
+</ng-template>
+<!-- end no data templete  -->

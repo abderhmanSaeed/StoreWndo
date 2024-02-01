@@ -1,0 +1,32 @@
+add-to-fav {
+    // Positioning Block 
+    right: 0.65rem;
+    top: 0.65rem;
+}
+
+mat-card-title {
+    // Typography Block 
+    font-size: .85rem;
+}
+
+
+.auk-card-b {
+    &__discount {
+        // Structure Block 
+        right: 0;
+        top: 0;
+    }
+
+    &__img-box {
+        // Structure Block 
+        width: 100px;
+
+        
+        .card-img {
+            // Structure Block 
+            max-width: 100%;
+            width: auto;
+            max-height: 100px;
+        }
+    }
+}

@@ -1,0 +1,9 @@
+<button 
+    class="fav-btn lh-normal rounded-circle p-0 d-inline-flex flex-center"
+    mat-stroked-button
+    [ngStyle]="panelStyle"
+    [class]="panelClass"
+    (click)="$event.stopPropagation(); copy()"
+>
+    <mat-icon>share</mat-icon>
+</button>

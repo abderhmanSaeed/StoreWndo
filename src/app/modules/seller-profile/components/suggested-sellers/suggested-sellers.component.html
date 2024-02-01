@@ -1,0 +1,15 @@
+<section class="suggested-seller">
+    
+    <header class="mb-3 px-2">
+        <h4 class="fw-600 !text-[.9rem]">{{ 'seller.suggested-sellers' | translate }}</h4>
+    </header>
+    
+
+    <div class="sellers custom-scroll--auk px-2">
+        <ng-container *ngFor="let seller of suggestedSeller">
+            <suggested-seller-card [data]="seller" class="block mb-2"></suggested-seller-card>
+        </ng-container>
+    </div>
+    
+
+</section>

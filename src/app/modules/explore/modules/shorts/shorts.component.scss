@@ -1,0 +1,16 @@
+// @import "~@videogular/ngx-videogular/fonts/videogular.css";
+
+
+
+
+.shorts {
+
+    &__slider  {
+
+        // Structure Block 
+        min-height: calc(100vh - 200px);
+        display: flex;
+        align-items: center;
+
+    }
+}

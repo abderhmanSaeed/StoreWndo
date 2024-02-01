@@ -1,0 +1,22 @@
+.track-order {
+    &__items {
+        track-order-item {
+            &:not(:last-of-type) {
+
+                // Structure Block 
+                margin-bottom: 7rem;
+            }
+        }
+    }
+}
+
+
+:host {
+
+    // Modifire block 
+  overflow-x: clip;
+
+
+  // Structure Block 
+  display: block;
+}

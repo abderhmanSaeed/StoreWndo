@@ -1,0 +1,30 @@
+.rating {
+    // Typography block 
+    color: #626ABB;
+
+    fa-icon {
+
+        // Typography block 
+        color: #FFBF53;
+    }
+
+    &--2 {
+
+
+        
+        .icon {
+
+            // Structure Block 
+            margin-right: 0.25rem !important;
+
+            // Typography block 
+            font-size: .8rem;
+        }
+
+        .bracket {
+
+            // Structure Block 
+            display: none;
+        }
+    }
+}

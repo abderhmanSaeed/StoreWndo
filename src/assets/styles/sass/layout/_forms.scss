@@ -1,0 +1,141 @@
+.form-control,
+.btn {
+  // Structure Block 
+  box-shadow: none;
+
+  &:focus {
+    // Structure Block 
+    box-shadow: none;
+  }
+}
+
+.form-control {
+  // Typography Block 
+  font-size: .8rem;
+}
+
+
+// begin:: custom radio buttons 
+.radio-checkbox-btn,
+.radio-btn {
+  line-height: normal;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  color: #96A1AB;
+}
+
+.radio-btn + .radio-btn {
+  margin-top: 1em;
+}
+
+.radio-checkbox-btn input[type="checkbox"],
+input[type="radio"] {
+  /* Add if not using autoprefixer */
+  -webkit-appearance: none;
+  /* Remove most all native input styles */
+  appearance: none;
+  /* For iOS < 15 */
+  // background-color: var(--form-background);
+  /* Not removed via appearance */
+  margin: 0;
+
+  font: inherit;
+  color: currentColor;
+  width: 15px;
+  height: 15px;
+  border: 0.12em solid #96A1AB;
+  border-radius: 50%;
+  transform: translateY(-0.075em);
+
+  display: grid;
+  place-content: center;
+
+
+  &:checked {
+
+      // Structure Block 
+      border-color: var(--bs-primary);
+
+
+      & ~ span {
+          
+          // Typography Block 
+          color: var(--bs-primary);
+      }
+  }
+}
+
+.radio-checkbox-btn input[type="checkbox"]::before,
+input[type="radio"]::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  transform: scale(0);
+  transition: 120ms transform ease-in-out;
+  // box-shadow: inset 1em 1em var(--radio-btn-color);
+  /* Windows High Contrast Mode */
+  background-color: transparent;
+}
+
+.radio-checkbox-btn input[type="checkbox"]:checked::before,
+input[type="radio"]:checked::before {
+  transform: scale(1);
+  background-color: var(--bs-primary);
+}
+// end:: custom radio buttons 
+
+.radio-checkbox-btn input[type="checkbox"],
+input::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+}
+
+.radio-checkbox-btn input[type="checkbox"],
+input {
+  &::placeholder {
+    // Typography Block 
+    font-size: .8rem;
+  }
+}
+
+
+
+.input-group > :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {
+  // Structure Block 
+  margin-inline-end: -1px;
+
+
+  [dir=rtl] & {
+
+    // Structure Block 
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+
+    border-top-left-radius: 9px;
+    border-bottom-left-radius: 9px;
+    
+  }
+}
+
+
+[dir=rtl] .mat-slide-toggle-bar {
+  margin-left: 0 !important;
+}
+
+[dir=rtl] .mat-slide-toggle.mat-checked .mat-slide-toggle-thumb-container {
+  transform: translate3d(-23px, 0, 0) !important;
+}
+
+
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  
+  // Typography Block 
+  font-size: 1.2rem;
+
+  // Positiong Block 
+  position: absolute;
+  right: 0;
+}

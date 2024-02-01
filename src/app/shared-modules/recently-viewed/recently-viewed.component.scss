@@ -1,0 +1,31 @@
+.mySwiper {
+    // Structure Block 
+    padding-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+
+    ::ng-deep {
+
+
+
+        .swiper-pagination {
+
+
+            // Structure Block 
+            order: 2;
+            margin-top: 1rem;
+            display: flex;
+            justify-content: flex-end;
+
+            // Positioning Block 
+            position: static;
+
+            .swiper-pagination-bullet {
+
+                // Structure Block 
+                width: 10px;
+                height: 10px;
+            }
+        }
+    }
+}

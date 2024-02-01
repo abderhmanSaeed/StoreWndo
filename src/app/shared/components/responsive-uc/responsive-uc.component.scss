@@ -1,0 +1,62 @@
+:host {
+
+    // Modifire Block 
+    overflow: auto;
+
+    // Structure Block 
+    max-height: calc(100vh - 5rem);
+    min-height: calc(100vh - 5rem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+
+
+
+    /* width */
+    &::-webkit-scrollbar {
+        width: 6px;
+        border-radius: 50%;
+    }
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+        background: 0 0;
+    }
+      
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+        background-image: linear-gradient(transparent, #aeaeae);
+        border-radius: 50%;
+    }
+
+    .dialog__content {
+
+        // Structure Block 
+        width: 500px;
+        margin: auto;
+        max-width: 100%;
+    }
+
+    .mat-dialog-container {
+
+        // Structure Block 
+        padding: 1rem 0px 1rem 0;
+    }
+
+}
+
+::ng-deep {
+        
+    .gradient-dialog {
+        .logo {
+
+            // Modifire Block 
+            transform: none;
+
+            // Positioning Block 
+            top: 37px;
+        }
+    }
+}
+

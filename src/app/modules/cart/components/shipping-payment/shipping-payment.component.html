@@ -1,0 +1,153 @@
+<div class="py-5 animate__animated animate__fadeIn">
+
+    <div class="row w-100">
+
+        <div class="col-lg-9 mb-4">
+
+           <div class="col-box ltr:mr-[8rem] rtl:ml-[8rem]">
+
+
+                <!-- begin:: base info card  -->
+                <mat-card class="p-4">
+
+                    <mat-card-content class="mb-0">
+
+                        <!-- Shipping Address -->
+                        <div class="row">
+                          
+                            <div class="col-lg-6">
+                                <div class="col-box relative">
+                                    <h4 class="fw-500 text-[.9rem] mb-2">{{ 'checkout.your-name' | translate }}: *</h4>
+                                    <div class="flex items-center text-[#4E4E78] border-b pb-2 d-block">
+                                        <span class="fw-400 text-[.82rem] lh-normal">
+                                            {{ userNamePhone?.name }}
+                                        </span>   
+                                    </div>
+                                    <mat-card-actions class="d-flex justify-between absolute ltr:right-0 rtl:left-0 top-[50%] translate-y-[-50%] ltr:translate-x-[50%] rtl:translate-x-[-50%] m-0 pt-0">
+                                        <button (click)="openEditNameDialog()" class="shadow bg-white w-[35px] h-[35px]" mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+                                            <fa-icon class="d-flex justify-center items-center" [icon]="faPen"></fa-icon>
+                                        </button>
+                                    </mat-card-actions>  
+                                </div>
+                            </div>
+
+                            <!-- Payment -->
+                            <div class="col-lg-6">
+                                <div class="col-box ps-3 relative">
+                                    <h4 class="fw-500 text-[.9rem] mb-2">{{ 'checkout.phone-number' | translate }}: *</h4>
+                                    <div class="flex items-center text-[#4E4E78] border-b pb-2 d-block">
+                                        <span class="fw-400 text-[.82rem] lh-normal">
+                                            {{ userNamePhone?.phone ? userNamePhone?.phone : ('checkout.please-enter-phone-number' | translate) }}
+                                        </span>   
+                                    </div>
+                                    <mat-card-actions class="d-flex justify-between absolute ltr:right-0 rtl:left-0 top-[50%] translate-y-[-50%] ltr:translate-x-[50%] rtl:translate-x-[-50%] m-0 pt-0">
+                                        <button (click)="openEditPhoneDialog()" class="shadow bg-white w-[35px] h-[35px]" mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+                                            <fa-icon class="d-flex justify-center items-center" [icon]="faPen"></fa-icon>
+                                        </button>
+                                    </mat-card-actions>  
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </mat-card-content>     
+                </mat-card>
+                <!-- end:: base info card  -->
+
+
+                <!-- brgin:: hint  -->
+                <div class="hint flex items-center p-3 text-blue mb-3">
+                    <img class="ltr:me-2 rtl:me-2" width="18" src="assets/media/svg/info.svg" alt="Info Icon">
+                    <span
+                    >{{ 'checkout.your-name-and-phone-are-mandatory' | translate }}</span>
+                </div>
+                <!-- end:: hint  -->
+
+
+                <!-- begin:: addresses card  -->
+                <mat-card class="p-4 relative mb-4">
+                    <mat-card-content class="mb-0">
+
+                       <!-- begin:: sipping address -->
+                       <div class="mb-4">
+                            <mat-card-title class="text-[.9rem] fw-500 mb-2">{{ 'checkout.shipping-address' | translate }}</mat-card-title>
+                            <div class="row align-items-end">
+                                <div class="col-lg-8">
+                                    <auk-select 
+                                        bindValue=""
+                                        [items]="addresses"
+                                        [control]="address"
+                                        panelclass="main-rounded"
+                                        [formControl]="address"
+                                        [showValidations]="saveError"
+                                        (onChange)="onAddressChange($event)"
+                                        [placeholder]="'checkout.select-shipping-address' | translate"
+                                    ></auk-select>
+                                </div>
+                                <div class="col-lg-4">
+                                    <button (click)="openAddressFormDialog()" class="btn p-0 underline text-blue text-[.8rem] fw-500">
+                                        {{ 'checkout.add-new-address' | translate }}
+                                    </button>
+                                </div>
+                            </div>
+                       </div>
+                       <!-- end:: sipping address -->
+
+                       <!-- begin:: sipping time -->
+                       <div>
+                            <h4 class="text-[.9rem] fw-500 text-dark mb-2">{{ 'checkout.shipping-time' | translate }}</h4>
+                            <div class="times flex items-center">
+                                <ng-container *ngFor="let item of shippingTimes; let first = first; let i = index">
+                                    <radio-btn
+                                        [checked]="pickUpTime ? shippingTimes[i].id == pickUpTime : first"
+                                        class="ltr:me-5 rtl:me-5"
+                                        [id]="item?.id"
+                                        name="pickUpTime"
+                                        (onChange)="pickUpTime = $event"
+                                        [label]="item.label"
+                                        [value]="item?.id"
+                                    ></radio-btn>
+                                </ng-container>
+                            </div>
+                       </div>
+                       <!-- begin:: sipping time -->
+
+                    </mat-card-content>                             
+                </mat-card>
+                <!-- end:: base info card  -->
+
+
+                <!-- begin:: cart actions -->
+                <div class="cart-actions flex items-center justify-center pt-[1.5rem]">
+                    
+                    <app-button
+                        routerLink="/cart"
+                        [stroked]="true"
+                        [label]="'checkout.back-to-cart' | translate"
+                        panelclass="max-w-100 w-[250px] mx-3 !rounded-full lh-normal !py-[.65rem]"
+                    ></app-button>  
+                    <!-- routerLink="../confirmation" -->
+                    <app-button
+                        (click)="onSaveClick()"
+                        [label]="'checkout.save-continue' | translate"
+                        panelclass="max-w-100 w-[250px] mx-3 !rounded-full lh-normal !py-[.65rem]"
+                    ></app-button>
+
+                </div>
+                <!-- end:: cart actions -->
+           </div>
+
+        </div>
+
+
+        <div class="col-lg-3">
+            <!-- begin:: payment-methods -->
+            <payment-methods #paymentMethodsComponent [initValue]="order?.paymentMethod" (onChange)="onPaymentMethodChange($event);"></payment-methods>
+            <!-- end:: payment-methods -->
+        </div>
+
+
+    </div>
+
+
+</div>

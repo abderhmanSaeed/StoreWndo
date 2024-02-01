@@ -1,0 +1,10 @@
+<div class="lookups fw-500 main-rounded overflow-hidden text-[.83rem]">
+    <ng-container *ngFor="let item of lookups">
+        <div class="lookups__lookup flex items-center py-[.6rem] px-[1rem]">
+            <div class="key w-[100px] text-[#545454]">{{ item?.displayName }}</div>
+            <ng-container *ngFor="let val of item?.lookupValues">
+                <div class="val text-[#1C1C1C]" *ngIf="val?.isSelected">{{ val?.displayName }}</div>
+            </ng-container>
+        </div>
+    </ng-container>
+</div>

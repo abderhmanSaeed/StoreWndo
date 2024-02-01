@@ -1,0 +1,30 @@
+:host-context(html[dir=rtl]) {
+    .breadcrumb-item + .breadcrumb-item {
+        &::before {
+
+            // Positioing Block 
+            position: relative;
+            float: right;
+            top: -2px;
+    
+            // Structure Block 
+            padding-left: 0;
+            padding-right: 0.5rem;
+    
+            // Modifire Block 
+            transform: rotate(180deg);
+            
+    
+    
+        }
+    }
+
+    .breadcrumb-item {
+
+        &:not(:first-of-type) {
+            // Structure Block 
+            padding-left: 0;
+            padding-right: 0.5rem;
+        }  
+    }
+}

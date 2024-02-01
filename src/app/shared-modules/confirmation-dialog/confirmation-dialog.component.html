@@ -1,0 +1,54 @@
+<section class="confirm text-white text-center">
+    <div class="confirm__content main-rounded gradient-border">
+        <div class="position-relative z-[1] p-4">
+       
+            <!-- begin:: closer  -->
+            <div class="dialog__closer absolute top-[13px] right-[13px]">
+                <button color="bg-gray-700" class="bg-gray-700 text-white shadow-xl w-[35px] h-[35px] d-flex items-center justify-center lh-normal" mat-dialog-close mat-mini-fab aria-label="Example icon button with a home icon">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </div>
+            <!-- end:: closer  -->
+
+       
+            <!-- begin:: header  -->
+            <div class="confirm__header text-center mb-4 py-2">
+                <div class="logo-wrapper w-[240px] h-[200px] max-w-100 flex items-center justify-center rounded-full mx-auto">
+                    <img src="assets/media/logos/sad.png" alt="Confirmed Logo">
+                </div>
+            </div>
+            <!-- end:: header  -->
+
+
+            <!-- begin:: content  -->
+            <div mat-dialog-content class="mx-0">
+                <h2 mat-dialog-title class="d-flex items-center justify-center h1 fw-bold ps-1">
+                    <span class="ps-2 ltr:gothic-font" [innerHTML]="title | translate"></span>
+                </h2>
+
+                <div class="order-no text-[#CBCACA] fw-400 text-[.99rem]">
+                    <span [innerHTML]="message | translate"></span>
+                </div>
+            </div>
+            <!-- begin:: content  -->
+
+    
+        </div>
+    </div>
+    
+    
+    <div mat-dialog-actions>
+        <div class="confirm-footer d-flex justify-center w-100 pt-2">
+            <button
+                type="button"
+                mat-raised-button
+                (click)="confirm()"
+                [color]="'primary'"
+                class="max-w-100 w-[250px] mx-3 !rounded-full lh-normal !py-[.8rem] fw-bold"
+            >
+            {{ buttonTxt | translate }}
+            </button>
+        </div>
+    </div> 
+
+</section> 

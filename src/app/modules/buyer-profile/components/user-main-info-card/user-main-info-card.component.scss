@@ -1,0 +1,53 @@
+
+:host {
+    ::ng-deep {
+        .br-unit-inner {
+            // Typography Block 
+            font-size: 1.3rem;
+        }
+    }
+}
+
+
+.user-img {
+
+    // Positioning block 
+    position: relative;
+
+
+    img {
+
+        // Structure Block 
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 11px;
+
+        // Positioning block 
+        position: relative;
+
+        // Modifire Block 
+        z-index: 2;
+
+
+    }
+
+    &::after {
+
+        // Positioning block 
+        position: absolute;
+        inset: 0;
+
+        // Structure Block 
+        content: '';
+        width: 100%;
+        height: 100%;
+        background-color: var(--bs-primary);
+        border-radius: 10px;
+
+        // Modifire Block 
+        transform: translate(-2px, -2px);
+        z-index: 1;
+
+    }
+}

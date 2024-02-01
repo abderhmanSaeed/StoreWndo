@@ -1,0 +1,194 @@
+$prgMainColor: #000f47;
+
+:host-context(.theme-light) {
+
+    ::ng-deep {
+        .progress-bar {
+
+            // Structure Block
+            background-color: $prgMainColor
+        }
+    }
+
+
+    
+    
+    .progress-circles {
+
+        &__circle-wrapper {
+          
+
+            .circle {
+                &::after {
+                    // Structure Block 
+                    background-color: $prgMainColor
+                }
+            }
+        }
+
+    }
+
+    mat-card {
+        // Typography Block 
+        color: $prgMainColor
+    }
+}
+
+.steps,
+.progress-wrapper {
+
+    // Structure Block 
+    width: calc(100% - 200px);
+}
+
+
+.progress-circles {
+
+    &__circle-wrapper {
+
+        // Structure Block 
+        // background-color: #fff;
+        flex: 0 0 calc(100% / 3);
+
+
+        .circle {
+            &::after {
+
+                // Structure Block 
+                content: '';
+                display: inline-block;
+                width: 72%;
+                height: 72%;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+    
+                // Typography Block 
+                color: #fff;
+                font-size: 1.1rem;
+
+              
+                
+            }
+        }
+
+
+    
+
+        .circle::after,
+        &::before {
+            // Modifire Block 
+            opacity: .5;
+        }
+
+     
+
+
+        &::before {
+
+            // Structure Block 
+            content: '';
+            display: block;
+            width: 1px;
+            height: 21px;
+            border-left: 3px dashed $prgMainColor;
+
+            // Positioning Block 
+            position: absolute;
+            top: 100%;
+            left: 9px;
+
+          
+        }
+        
+
+        &--completed,
+        &--active {
+
+            .circle::after,
+            &::before {
+                // Modifire Block 
+                opacity: 1;
+            }
+
+        }
+        
+        &--completed {
+
+           .circle {
+                // Structure Block 
+                background-color: $prgMainColor;
+                border-color: $prgMainColor;
+
+                // Modifire Block 
+                -webkit-animation-fill-mode: both;
+                animation-fill-mode: both;
+                -webkit-animation-duration: calc(1s * 0.75);
+                animation-duration: calc(1s * 0.75);
+                -webkit-animation-name: bounceIn;
+                animation-name: bounceIn;
+           }
+
+            &::before {
+
+                // Structure Block 
+                border-style: solid;
+            }
+
+            .circle {
+                &::after {
+
+                    // Structure Block 
+                    content: '\2713';
+                }
+            }
+        }
+
+    }
+
+}
+
+.steps {
+
+
+    // Positioning Block 
+    position: relative;
+    z-index: 1;
+
+    &__step {
+
+        // Modifire Block 
+        opacity: .5;
+
+        &--active {
+
+            // Modifire Block 
+            opacity: 1;
+
+            .steps__step-icon {
+
+                img {
+
+                    // Structure Block  
+                    display: none;
+                }
+
+                .active-icon {
+
+                    // Structure Block 
+                    display: inline-block;
+                }
+            }
+
+        }
+    }
+
+    &__step-icon {
+
+        .active-icon {
+            // Structure Block 
+            display: none;
+        }
+    }
+}

@@ -1,0 +1,137 @@
+<section class="auth__sign-up">
+    <div class="auth__content main-rounded gradient-border">
+        <div class="position-relative z-[1] p-4 bg-[#353434e3]">
+
+            <!-- begin:: closer  -->
+            <div class="dialog__closer absolute top-[13px] right-[13px]">
+                <button color="bg-gray-700" class="bg-gray-700 text-white shadow-xl w-[35px] h-[35px] d-flex items-center justify-center lh-normal" mat-dialog-close mat-mini-fab aria-label="Example icon button with a home icon">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </div>
+            <!-- end:: closer  -->
+
+            <!-- begin:: header  -->
+            <div class="auth__header text-center mb-4 py-2">
+                <h1 class="text-primary mb-2 text-lg" mat-dialog-title>
+                    {{ 'auth.hello' | translate }}
+                </h1>
+                <span class="text-[1rem] gothic-font">
+                    {{ 'auth.welcome-back-create-account' | translate }}
+                </span>
+            </div>
+            <!-- end:: header  -->
+
+            
+            <div mat-dialog-content class="mx-0">
+                
+
+                <!-- begin:: login form  -->
+                <form [formGroup]="form" (ngSubmit)="submit()" class="auth__form">
+
+                    <div class="mb-4">
+                        <field
+                            type="text"
+                            ngDefaultControl
+                            [placeholder]="'auth.user-name' | translate"
+                            formControlName="userName"
+                            [showValidations]="formError"
+                            [panelclass]="'py-[.7rem] main-rounded'"
+                            [control]="form | getControl: 'userName'"
+                        ></field>
+                    </div>
+
+                    <div class="mb-4">
+                        <intl-tel-input
+                            type="text"
+                            onlyNumber
+                            ngDefaultControl
+                            formControlName="phone"
+                            [showValidations]="formError"
+                            [countriesCodes]="countriesCodes"
+                            (onChange)="onPhoneChange($event)"
+                            [control]="form | getControl: 'phone'"
+                            [placeholder]="'auth.phone-number' | translate"
+                            [panelclass]="'py-[.7rem] main-rounded'"
+                        ></intl-tel-input>
+                    </div>
+
+                    <div class="mb-4">
+                        <field
+                            type="email"
+                            ngDefaultControl
+                            formControlName="email"
+                            [showValidations]="formError"
+                            [control]="form | getControl: 'email'"
+                            [panelclass]="'py-[.7rem] main-rounded'"
+                            [placeholder]="'auth.email' | translate"
+                        ></field>
+                    </div>
+
+                    <div class="mb-4">
+                        <field
+                            type="password"
+                            ngDefaultControl
+                            formControlName="password"
+                            [showValidations]="formError"
+                            [control]="form | getControl: 'password'"
+                            [placeholder]="'auth.password' | translate"
+                            [panelclass]="'py-[.7rem] main-rounded ltr:pr-[3rem] rtl:pl-[3rem]'"
+                        ></field>
+                    </div>
+
+                    <div class="mb-4">
+                        <field
+                            type="password"
+                            ngDefaultControl
+                            [showValidations]="formError"
+                            formControlName="confirmPassword"
+                            [control]="form | getControl: 'confirmPassword'"
+                            [placeholder]="'auth.confirm-password' | translate"
+                            [panelclass]="'py-[.7rem] main-rounded ltr:pr-[3rem] rtl:pl-[3rem]'"
+                        ></field>
+                    </div>
+
+
+                    <div class="form__actions pt-2">
+                        <app-button
+                        [label]="'auth.register' | translate"
+                        [panelclass]="'w-100 py-1 rounded-pill'"
+                        ></app-button>
+                    </div>
+
+                </form>
+                <!-- end:: login form  -->
+
+
+                <!-- begin:: social login  -->
+                <div class="or text-center my-4 flex items-center justify-center">
+                    <span class="or__text text-[#C5F2FF] text-[.8rem]">
+                        {{ 'auth.or-continue-with' | translate }}
+                    </span>
+                </div>
+
+                <div class="flex justify-center items-center py-2">
+                    <social-login class="d-flex h-[inherit]"></social-login>
+                </div>
+                <!-- end:: social login  -->
+
+
+            </div>
+
+
+        </div>
+    </div>
+        
+    <div mat-dialog-actions>
+        <div class="auth-footer d-flex justify-center items-center w-100 pt-4">
+            <span class="me-1 text-[.9rem] lh-normal">
+                {{ 'auth.do-have-account' | translate }}
+            </span>
+            <button (click)="chengeCurrentAuth.emit(authComponents.Login)"
+                class="btn p-0 lh-normal text-primary fw-500 relative text-[.9rem]"
+                >
+                {{ 'auth.log-in-now' | translate }}
+            </button>
+        </div>
+    </div> 
+</section>  

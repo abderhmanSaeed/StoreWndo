@@ -1,0 +1,24 @@
+.auk-card-b__price {
+    font-size: 1.05rem;
+
+    &__old {
+
+        // Typography Block  
+        font-size: .9rem;
+        text-decoration-color: #000 !important;
+    }
+}
+
+
+
+.currency {
+    // Typography Block  
+    font-size: 1.2rem;
+}
+
+.price {
+    &::first-letter {
+        // Typography Block  
+        font-size: 1.17rem;
+    }
+}

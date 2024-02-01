@@ -1,0 +1,21 @@
+.tooltip{
+
+    // Typography Block 
+    font-size: .75rem;
+    font-family: inherit !important;
+    line-height: normal;
+
+    &-inner {
+        // Structure Block 
+        background-color: $infoColor; 
+
+    }
+
+    .tooltip-arrow {
+        &::before {
+            // Structure Block 
+            border-bottom-color: $infoColor !important;
+        }
+    }
+
+}

@@ -1,0 +1,259 @@
+<section class="orders animate__animated animate__fadeIn">
+    
+    <header class="mb-3">
+        <span class="fw-600 text-[1rem]">
+            {{ 'my-orders.your-orders' | translate }} ({{ totalOedersCount }})
+        </span>
+    </header>
+
+
+    <!-- begin:: orders filter  -->
+    <div class="orders__filter mb-3">
+        <div class="row">
+           <ng-container *ngFor="let item of orderStatuses">
+                <div class="col">
+                    <order-status-card [status]="item"></order-status-card>
+                </div>
+            </ng-container>
+       </div>
+
+       <div class="fields mt-3 flex justify-end">
+            <auk-select
+                bindLabel="name"
+                [items]="sellers"
+                bindValue="userId"
+                [wndoStyle]="true"
+                [clearable]="true"
+                panelclass="rounded w-[250px]"
+                (onChange)="onSellerChange($event)"
+                [placeholder]="'my-orders.seller-name' | translate"
+                [selectedValue]="fetchCriteria?.sellerId"
+            ></auk-select>
+       </div>
+    </div>
+    <!-- end:: orders filter  -->
+
+
+    <!-- begin:: orders list  -->
+    <div *ngIf="orders?.length else noData" class="ordes-list">        
+       <ng-container *ngFor="let order of orders">
+            <mat-card class="main-rounded--force !flex justify-between border-l-4 mb-3"
+                [ngClass]="{
+                    'border-[#4EA3F8]': order.orderState == orderStatsObject.ordered.key,
+                    'border-[#FA0029]': order.orderState == orderStatsObject.cancelled.key,
+                    'border-[#fca908]': order.orderState == orderStatsObject.shipping.key,
+                    'border-[#F4D014]': order.orderState == orderStatsObject.returned.key || order.orderState == orderStatsObject.refund.key,
+                    'border-[#02A207]': order.orderState == orderStatsObject.delivered.key
+                }"                                                  
+            >
+                    
+                    
+                <div class="start flex-grow-1">
+
+                    <div class="row">
+                        <div class="col-lg-4 prod-info flex">
+                    
+                            <div class="order-imgs ltr:me-3 rtl:me-3 w-[80px] h-100 min-w-[80px] min-h-[90px]">
+                                <div class="row g-1" [ngSwitch]="order?.images.length">
+                                    
+                                    <ng-container *ngSwitchCase="1">
+                                        <div class="col-12">
+                                            <img
+                                                *ngIf="order?.images[0] else imgPlaceholder"
+                                                (error)="onImgError($event)"
+                                                class="w-100 h-100 img-fluid fit-img main-rounded"
+                                                [src]="order?.images[0]"
+                                                alt="Product Image"
+                                            >
+                                        </div>
+                                    </ng-container>
+
+                                    <ng-container *ngSwitchCase="2">
+                                        <div class="col-6">
+                                            <img
+                                                *ngIf="order?.images[0] else imgPlaceholder"
+                                                (error)="onImgError($event)"
+                                                class="w-100 h-100 img-fluid fit-img main-rounded"
+                                                [src]="order?.images[0]"
+                                                alt="Product Image"
+                                            >
+                                        </div>
+                                        <div class="col-6">
+                                            <img
+                                                *ngIf="order?.images[1] else imgPlaceholder"
+                                                (error)="onImgError($event)"
+                                                class="w-100 h-100 img-fluid fit-img main-rounded"
+                                                [src]="order?.images[1]"
+                                                alt="Product Image"
+                                            >
+                                        </div>
+                                    </ng-container>
+                                    
+                                    <ng-container *ngSwitchCase="3">
+                                        <div class="col-6">
+                                            <img
+                                                *ngIf="order?.images[0] else imgPlaceholder"
+                                                (error)="onImgError($event)"
+                                                class="w-100 h-100 img-fluid fit-img main-rounded"
+                                                [src]="order?.images[0]"
+                                                alt="Product Image"
+                                            >
+                                        </div>
+                                        <div class="col-6">
+                                            <img
+                                                *ngIf="order?.images[1] else imgPlaceholder"
+                                                (error)="onImgError($event)"
+                                                class="w-100 h-100 img-fluid fit-img main-rounded"
+                                                [src]="order?.images[1]"
+                                                alt="Product Image"
+                                            >
+                                        </div>
+                                        <div class="col-12">
+                                            <img
+                                                *ngIf="order?.images[2] else imgPlaceholder"
+                                                (error)="onImgError($event)"
+                                                class="w-100 h-100 img-fluid fit-img main-rounded"
+                                                [src]="order?.images[2]"
+                                                alt="Product Image"
+                                            >
+                                        </div>
+                                    </ng-container>
+                                    
+
+                                </div>
+                            </div>
+        
+                            <div class="text-blue order-info__txt flex flex-col text-truncate">
+                                <span class="fw-600 text-[.9rem] mb-2">
+                                    {{ 'my-orders.order-no' | translate }} : {{ order?.orderNumber }}
+                                </span>
+                                
+                                <div class="text-[.8rem]">
+                                    <span>{{ 'my-orders.price' | translate }} </span>
+                                    <span> {{ order?.price }} {{ 'shared.EGP' | translate }}</span>
+                                </div>
+        
+                                <div class="text-[.8rem]">
+                                    <span>{{'my-orders.order-statues' | translate}} </span>
+                                    <span
+                                        [ngClass]="{
+                                            'text-[#4EA3F8]': order.orderState == orderStatsObject.ordered.key,
+                                            'text-[#FA0029]': order.orderState == orderStatsObject.cancelled.key,
+                                            'text-[#fca908]': order.orderState == orderStatsObject.shipping.key,
+                                            'text-[#F4D014]': order.orderState == orderStatsObject.returned.key || order.orderState == orderStatsObject.refund.key,
+                                            'text-[#02A207]': order.orderState == orderStatsObject.delivered.key
+                                        }"                                    
+                                    >
+                                        {{ order.orderState == orderStatsObject.cancelled.key ? (orderStatsObject.cancelled.label | translate) : null }}
+                                        {{ order.orderState == orderStatsObject.shipping.key ? (orderStatsObject.shipping.label | translate) : null }}
+                                        {{ order.orderState == orderStatsObject.returned.key || order.orderState == orderStatsObject.refund.key ? (orderStatsObject.returned.label | translate) : null }}
+                                        {{ order.orderState == orderStatsObject.delivered.key ? (orderStatsObject.delivered.label | translate) : null }}
+                                        {{ order.orderState == orderStatsObject.ordered.key ? (orderStatsObject.ordered.label | translate) : null }}
+                                    </span>
+                                </div>
+                            </div>
+        
+                        </div>
+        
+                        <div class="col-lg-8">
+                            <div class="text-blue order-items flex flex-col text-truncate">
+                                <span class="fw-600 text-[.9rem] mb-2">
+                                    {{ 'my-orders.items' | translate }}:{{ order?.items?.length }}
+                                </span>
+                                
+                                <div class="items bg-[#eeeff4] p-2 w-max rounded">
+                                    <ul>
+                                        <ng-container *ngFor="let item of order?.items; let index = index">
+                                            <li class="flex items-center" *ngIf="index <= 2">
+                                                <span 
+                                                    class="ltr:me-2 rtl:me-2"
+                                                    [ngClass]="{
+                                                        'text-[#4EA3F8]': order.orderState == orderStatsObject.ordered.key,
+                                                        'text-[#FA0029]': order.orderState == orderStatsObject.cancelled.key,
+                                                        'text-[#fca908]': order.orderState == orderStatsObject.shipping.key,
+                                                        'text-[#F4D014]': order.orderState == orderStatsObject.returned.key || order.orderState == orderStatsObject.refund.key,
+                                                        'text-[#02A207]': order.orderState == orderStatsObject.delivered.key
+                                                    }"
+                                                >&diams;</span> 
+                                                <span>
+                                                    {{ item?.name }}    
+                                                </span> 
+                                                <small 
+                                                    *ngIf="order?.items?.length > 3 && index == 2"
+                                                    class="is-more ms-1 fw-bold"
+                                                    [ngClass]="{
+                                                        'text-[#4EA3F8]': order.orderState == orderStatsObject.ordered.key,
+                                                        'text-[#FA0029]': order.orderState == orderStatsObject.cancelled.key,
+                                                        'text-[#fca908]': order.orderState == orderStatsObject.shipping.key,
+                                                        'text-[#F4D014]': order.orderState == orderStatsObject.returned.key || order.orderState == orderStatsObject.refund.key,
+                                                        'text-[#02A207]': order.orderState == orderStatsObject.delivered.key
+                                                    }"   
+                                                >
+                                                    +{{ order?.items?.length - 3 }}
+                                                </small>
+                                            </li>
+                                        </ng-container>
+                                    </ul> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            
+            
+            
+                <!-- begin:: end content  -->
+                <div class="end flex flex-col items-end justify-between w-[150px]">
+                
+                    <!-- begin:: order actions  -->
+                    <div class="order-actions">
+                        <div class="user-menu" ngbDropdown display="dynamic" class="d-inline-block">
+                            <button mat-stroked-button type="button" class="btn text-[.9rem] d-flex align-items-center justify-content-center text-start text-blue arrow-none px-2 !py-[.5rem] min-w-auto border-0" id="dropdownBasic1" ngbDropdownToggle>
+                                <div class="icon">
+                                    <fa-icon class="d-flex text-[1rem] text-[#4E4E78]" [icon]="faEllipsisVertical"></fa-icon>
+                                </div>
+                            </button>
+                            <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="border-0 shadow mt-2 dropdown--arrow p-2 min-w-[200px]">
+                                <ng-container *ngFor="let item of orderActions">
+                                    
+                                    <button *ngIf="item?.canShowIn?.includes(order.orderState) || !item?.canShowIn.length" (click)="onOrderAction(item, order?.orderNumber)" mat-raised-button class="dropdown-item !flex !items-center text-blue--force !bg-[#fff7f8] !rounded-md !px-[.9rem] !text-[.8rem]" ngbDropdownItem>
+                                        <span> {{ item.name | translate }} </span>
+                                    </button>
+                                
+                                </ng-container>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end:: order actions  -->
+
+                    <span class="date text-[#4E4E78] text-end">{{ order?.createdAt }}</span>
+                </div>
+                <!-- end:: end content  -->
+
+
+            </mat-card>
+       </ng-container>
+    </div>
+    <!-- end:: orders list  -->
+
+</section>
+
+
+
+
+<!-- begin no data  -->
+<ng-template #noData>
+    <no-data
+        size="xl"
+        class="block mt-5"
+        message="No result in orders"
+    ></no-data>
+</ng-template>
+<!-- end no data  -->
+
+
+
+<ng-template #imgPlaceholder>
+    <img-placeholder></img-placeholder>
+</ng-template>

@@ -1,0 +1,20 @@
+<nav>
+    <ul class="list-unstyled">
+        <ng-container *ngFor="let item of navItems">
+            <li class="nav-item mb-2">
+                <a
+                    matRipple 
+                    [matRippleColor]="'#fafafa36'"
+                    routerLinkActive="active"
+                    [routerLink]="[item?.route]"
+                    class="nav-link flex items-center text-blue hover:text-white hover:!bg-primary rounded">
+                    <div class="icon">
+                        <img [width]="item?.iconWidth" class="img-fluid ltr:me-2 rtl:me-2 block" [src]="item?.iconPath" alt="Nav Icon">
+                        <img [width]="item?.iconWidth" class="img-fluid ltr:me-2 rtl:me-2 active hidden" [src]="item?.activeIconPath" alt="Nav Icon">
+                    </div>
+                    <span> {{ item?.name | translate }} </span>
+                </a>
+            </li>
+        </ng-container>
+    </ul>
+</nav>

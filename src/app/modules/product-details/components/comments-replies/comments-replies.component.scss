@@ -1,0 +1,68 @@
+:host {
+    ::ng-deep {
+
+
+        .accordion-item {
+
+            // Structure Block 
+            border: 0;
+            border-radius: var(--main-rounded);
+
+
+            .accordion-button {
+
+                // Structure Block 
+                background: none;
+
+                // Typography Block 
+                color: #04043F;
+                font-weight: 600;
+
+            }
+        }
+
+
+
+        .comments {
+            comment {
+
+
+                .content {
+                    .start {
+                        // Structure Block 
+                        width: calc(50%);
+                    }
+                }
+                
+                &:not(:last-of-type) {
+
+                    // Positioning Block 
+                    position: relative;
+
+                    &::after {
+
+                        // Structure Block 
+                        content: "";
+                        display: block;
+                        margin-bottom: 1rem;
+                        border-bottom: 1px solid #E6E6E6;
+
+
+                        @media (min-width: 1024px) {
+
+                            // Structure Block 
+                            width: calc(50% + 20px);
+                        }
+
+                    }
+
+                
+                
+                }
+
+            }
+        }
+
+
+    }
+}

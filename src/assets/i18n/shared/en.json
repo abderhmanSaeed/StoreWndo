@@ -1,0 +1,230 @@
+{
+  "header": {
+    "search": "Search",
+    "sell": "Sell",
+    "cart": "Cart",
+    "wallet": "Wallet",
+    "favorites": "Favorites",
+    "notification": "Notification",
+    "arabic": "عربي",
+    "english": "English",
+    "as-buyer": "As a Buyer",
+    "as-guest": "As a Guest",
+    "my-profile": "My Profile",
+    "my-orders": "My Orders",
+    "my-wish-list": "My WishList",
+    "setting": "Setting",
+    "logout": "Logout"
+  },
+
+  "sidebar": {
+    "explore": "Explore",
+    "knowledge-gate": "Knowledge Gate",
+    "sections": "Sections",
+    "watch": "Watch",
+    "demo": "Demo"
+  },
+
+  "footer": {
+    "copyright": "Wndo Business Solutions  All Rights Reserved.",
+    "download-now": "Download Now",
+    "about-us": "About us",
+    "help-support": "Help & Support",
+    "careers": "Careers",
+    "refund-cancellation": "Refund & Cancellation",
+    "terms-conditions": "Terms & Conditions",
+    "privacy-policy": "Privacy Policy",
+    "cookie-policy": "Cookie Policy",
+    "offer-terms": "Offer Terms",
+    "sell-with-us": "Sell with us",
+    "infringement": "Infringement",
+    "security": "Security"
+  },
+
+  "validations": {
+    "icon": "Please choose an icon",
+    "required": "This field is required",
+    "email": "Please enter an valid email",
+    "mustMatch": "Confirm Password does not match",
+    "complexPassword": "Please add strong password",
+    "invalidOldPassword": "The old Password is incorrect"
+  },
+
+  "actions": {
+    "delete": "Delete",
+    "edit": "Edit",
+    "ok": "OK",
+    "save": "SAVE",
+    "try-again": "TRY AGAIN",
+    "follow": "Follow",
+    "unfollow": "Unfollow",
+    "add-to-cart": "Add to Cart",
+    "check-out": "Check out",
+    "discard": "DISCARD",
+    "reply": "Reply",
+    "report": "Report",
+    "cancel": "Cancel",
+    "dislike": "Dislike",
+    "like": "Like",
+    "buy-now": "BUY NOW",
+    "cancel-all": "CANCEL ALL",
+    "refund-all": "REFUND ALL",
+    "track-the-order": "TRACK THE ORDER",
+    "refund": "Refund",
+    "submit": "Submit",
+    "confirm": "Confirm",
+    "back": "Back",
+    "yes": "yes",
+    "no": "No",
+    "following": "following",
+    "block": "block",
+    "mute": "mute",
+    "un-mute": "un-mute",
+    "clear-all": "Clear All",
+    "add-rate": "Add Rate",
+    "review": "REVIEW",
+    "later": "LATER",
+    "continue": "Continue",
+    "join-live": "JOIN LIVE",
+    "add-review": "ADD REVIEW"
+  },
+
+  "payment-methods": {
+    "cash-on-delievery": "Cash on Delievery",
+    "extra-fee-will-be-applied": "Extra fee will be applied",
+    "credit-card": "Credit Card",
+    "e-wallet": "E-Wallet",
+    "wallet-balance": "Wallet Balance"
+  },
+
+  "confirmations": {
+    "logout-confirmation": "Logout Confirmation",
+    "delete-item": "Delete Item",
+    "delete-address": "Delete Address",
+    "delete-comment": "Delete Comment",
+    "order-not-confirmed": "Order Not Confirmed",
+    "are-you-sure-logout": "Are you sure, you want to logout?",
+    "you-want-delete-order": "You want to delete this item from <br> your order?",
+    "you-want-delete-comment": "You want to delete this comment from <br> product's comments?",
+    "you-want-to-delete-address": "You want to delete this address from <br> your addresses?",
+    "credit-card-payment-failed": "Credit card payment failed: Refer to Card Issuer"
+  },
+
+  "seller-dialog": {
+    "seller-mode": "Seller Mode",
+    "coming-soon": "Coming Soon",
+    "available-in-mobile-app-only": "This Feature Currently Available In Mobile App Only."
+  },
+
+  "shared": {
+    "add-rate-title": "We Wish You Liked Our Product",
+    "comments": "Comments",
+    "items": "Items",
+    "edit-your-order": "Edit Your Order",
+    "determine-your-preference": "Determine your preference",
+    "choose-color": "Choose Color",
+    "choose-size": "Choose Size",
+    "quantity": "Quantity",
+    "followers": "Followers",
+    "following": "Following",
+    "likes-received": "Likes Received",
+    "LE": "LE",
+    "EGP": "EGP",
+    "no-results-found": "No results Found",
+    "copied": "Copied",
+    "follwers": "Followers",
+    "follwing": "Following",
+    "responsive-uc-hi": "Hi , Get Full Access To Wndo",
+    "responsive-uc-note": "Use The Mobile App",
+    "likes-recieved": "Likes Received",
+    "liked-your-comments": "Liked your comment",
+    "reasons-of-report": "Reasons of Report",
+    "why-report": "Why are you reporting this?",
+    "report-reasons": {
+      "suspicious": "Suspicious, spam, or fake",
+      "harassment": "Harassment or hateful speech",
+      "violence": "Violence or physical harm",
+      "adult-content": "Adult content",
+      "intellectual-property": "Intellectual property infringement or defamation"
+    },
+    "see-all": "See All",
+    "enter-your-search-term": "Please enter a search term in the search box",
+    "recent-search": "Recent Search",
+    "no-recent-searches": "No Recent Searches",
+    "sections": "Sections",
+    "category": "Category",
+    "categories": "Categories",
+    "subcategory": "Subcategory",
+    "store": "Store",
+    "products": "Products",
+    "recently-viewed": "Recently Viewed",
+    "sorted-by": "Sorted by:",
+    "recently-added": "Recently Added",
+    "low-to-high": "Price: Low to high",
+    "high-to-low": "Price: High to low",
+    "offers": "Offers",
+    "live": "Live",
+    "out-of-stock": "Out of Stock",
+    "share-your-request-seller": "Share your request with the seller"
+  },
+
+  "breadcrumb": {
+    "home": "Home",
+    "cart": "Cart",
+    "shipping-payment": "Shipping & Payment",
+    "confirmation": "Confirmation",
+    "profile": "Profile",
+    "my-profile": "My Profile",
+    "my-orders": "My Orders",
+    "track-the-order": "Track the order",
+    "my-wallet": "My Wallet",
+    "my-addresses": "My Addresses",
+    "my-wishList": "My WishList",
+    "payment-methods": "Payment Methods",
+    "settings": "Settings",
+    "notifications": "Notifications",
+    "reviews": "Reviews",
+    "all-products": "All Products"
+  },
+
+  "address-form": {
+    "edit-the-address": "Edit the Address",
+    "add-new-address": "Add New Address",
+    "address-name": "Address Name",
+    "enter-your-address": "Enter Your Address",
+    "address-icon": "Address Icon",
+    "street-address": "Street Address",
+    "enter-your-street-address": "Enter your street address",
+    "city": "City",
+    "enter-your-city": "Enter your city",
+    "zone": "Zone",
+    "enter-your-zone-name": "Enter your zone name",
+    "district": "District",
+    "enter-your-district-name": "Enter your district name",
+    "building-no": "Building No.",
+    "enter-your-building-number": "Enter Your Building Number",
+    "landMark": "LandMark.",
+    "if-you-have-landmark": "If You Have Landmark"
+  },
+
+  "meassges": {
+    "loged-out": "User logged out successfully",
+    "loged-in": "User logged in successfully",
+    "submission-sent": "Sent succesfully",
+    "kindly-add-feedback": "Kindly add your feedback",
+    "share-request-with-seller": "your request has sent to the seller successfully"
+  },
+
+  "notifications": {
+    "notifications-didnt-publish-content-yet": "Your notifications list is empty",
+    "notification-deleted-message": "Notification deleted successfully",
+    "notification-clearAll-message": "All Notifications were deleted successfully"
+  },
+
+  "reviews": {
+    "product-reviews": "Product Reviews",
+    "verified-ratings": "Verified Ratings",
+    "verified-customer-reviews": "Verified Customer Reviews",
+    "no-reviews": "No reviews for this product"
+  }
+}

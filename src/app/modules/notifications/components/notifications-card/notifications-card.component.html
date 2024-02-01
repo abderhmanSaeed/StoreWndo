@@ -1,0 +1,132 @@
+<mat-card
+  class="!flex px-2 py-3 justify-between items-center main-rounded--force"
+>
+  <div class="start flex-grow flex justify-start">
+    <div
+      mat-card-avatar
+      class="example-header-image relative rounded-circle ltr:me-2 rtl:me-2 !w-[47px] !h-[47px] border-2 p-0.5"
+      [ngClass]="data?.isSeller ? 'border-[#001D7D]' : 'border-[#FF002A]'"
+    >
+      <img
+        (error)="onImgError($event)"
+        class="img-fluid fit-img w-100 h-100 rounded-full"
+        [src]="data?.sender.imagePath ? data?.sender.imagePath : imgPlaceholder"
+        alt="Profile Image"
+      />
+      <div [ngSwitch]="data?.notificationType">
+        <span
+          *ngSwitchCase="NotificationType.LikeComment"
+          class="icon absolute ltr:-right-1 -bottom-1 rtl:-left-1"
+        >
+          <img class="h-[18px]" src="assets/media/svg/likes.svg" alt="Likes" />
+        </span>
+        <span
+          *ngSwitchCase="
+            NotificationType.ProductComment ||
+            NotificationType.LiveComment ||
+            NotificationType.NewComment
+          "
+          class="icon absolute ltr:-right-1 -bottom-1 rtl:-left-1"
+        >
+          <img
+            class="h-[18px]"
+            src="assets/media/svg/comment_2.svg"
+            alt="Comment"
+          />
+        </span>
+        <span
+          *ngSwitchCase="
+            NotificationType.NewProduct || NotificationType.PostProduct
+          "
+          class="icon absolute ltr:-right-1 -bottom-1 rtl:-left-1"
+        >
+          <img
+            class="h-[18px]"
+            src="assets/media/svg/product.svg"
+            alt="product"
+          />
+        </span>
+        <span
+          *ngSwitchCase="
+            NotificationType.ApproveProduct ||
+            NotificationType.RejectProduct ||
+            NotificationType.ApproveMarketer ||
+            NotificationType.RejectMarketer ||
+            NotificationType.AcceptMarketerRequest ||
+            NotificationType.RejectMarketerRequest
+          "
+          class="icon absolute ltr:-right-1 -bottom-1 rtl:-left-1"
+        >
+          <img
+            class="h-[18px]"
+            src="assets/media/svg/admin.svg"
+            alt="product"
+          />
+        </span>
+        <span
+          *ngSwitchCase="NotificationType.Live"
+          class="absolute w-full left-0 -bottom-3"
+        >
+          <span
+            class="bg-[#FF002A] text-white text-xs inline-block px-1.5 w-full text-center rounded-[50px] leading-normal"
+          >
+            {{ "shared.live" | translate }}
+          </span>
+        </span>
+        <span
+          *ngSwitchDefault
+          class="icon absolute ltr:-right-1 -bottom-1 rtl:-left-1"
+        >
+          <img
+            class="h-[18px]"
+            src="assets/media/svg/commercial.svg"
+            alt="product"
+          />
+        </span>
+      </div>
+    </div>
+
+    <div
+      class="d-flex ltr:pr-[3rem] rtl:pl-[3rem] flex-grow-1 flex-column justify-content-between ltr:ps-1 rtl:ps-1 text-[.8rem]"
+    >
+      <div class="top">
+        <mat-card-title
+          class="mb-0 d-inline text-[.88rem] ltr:me-1 rtl:me-1 fw-bloder lh-normal"
+        >
+          {{ data?.sender.name }}
+        </mat-card-title>
+        <span class="text-[#212B36] lh-normal">{{ data?.title }}</span>
+      </div>
+      <mat-card-subtitle
+        class="mb-0 d-flex text-[#7A8D9C] align-items-center text-[.8rem] pt-1"
+      >
+        {{ data?.body }}
+      </mat-card-subtitle>
+
+      <small class="text-[#C8CACB]"> {{ data?.createdAt }} </small>
+    </div>
+  </div>
+  <div class="flex end mb-auto">
+    <app-button
+      [stroked]="true"
+      [label]="'actions.join-live' | translate"
+      class="ltr:mr-8 rtl:ml-8"
+      panelclass="!rounded-full lh-normal !py-[.4rem]"
+      *ngIf="data?.notificationType === NotificationType.Live"
+    ></app-button>
+    <!-- begin:: actions  -->
+    <button
+      class="text-[#AAB2B7] d-flex items-center justify-center lh-normal cursor-pointer"
+      (click)="deleteNotification.emit(data?.id)"
+    >
+      <div class="icon">
+        <img
+          width="17"
+          src="assets/media/svg/awesome-trash-alt.svg"
+          alt="Delete icon"
+        />
+      </div>
+    </button>
+    <!-- end:: actions  -->
+  </div>
+</mat-card>

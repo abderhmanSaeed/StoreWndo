@@ -1,0 +1,60 @@
+<section class="product-featurs">
+
+    <!-- begin:: color options  -->
+    <ng-container *ngIf="colorWithSizes?.length">
+        <div class="color-options mb-2 flex flex-col">
+            <label class="mb-1 text-black fw-500 text-[.9rem]">{{ 'shared.choose-color' | translate }}</label>
+            <div class="flex pt-1 items-center flex-wrap">
+                <ng-container *ngFor="let item of colorWithSizes; let first = first">
+                    <div class="radio-btn-wrapper relative mb-2" 
+                        [style.--product-color]="'#'+item?.color?.hexaCode"
+                    >
+                        <input (change)="onColorChange(item)" [(ngModel)]="cartRequestPayload.colorId" type="radio" class="btn-check" name="color" [value]="item?.color?.id" [id]="item?.color?.name" autocomplete="off">
+                        <label
+                            [ngStyle]="{
+                                'color': helperFunctionsService.isTooDark('#'+item?.color?.hexaCode) ? '#fff' : '#000'
+                            }"
+                            class="btn py-[.2rem] px-[.5rem] text-[.8rem] border-[#AAB2B7] ltr:me-2 rtl:me-2"
+                            [for]="item?.color?.name">{{ item?.color?.name }}</label>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+    </ng-container>
+    <!-- end:: color options  -->
+
+
+    <!-- begin:: size options  -->
+    <ng-container *ngIf="sizes?.length">
+        <div class="size-options mb-2 flex flex-col">
+            <label class="mb-1 text-black fw-500 text-[.9rem]">{{ 'shared.choose-size' | translate }}</label>
+            <div class="flex pt-1 items-center flex-wrap">
+                <ng-container *ngFor="let size of sizes">
+                    <div class="radio-btn-wrapper relative mb-2"
+                        [style.--product-color]="'#f00'"
+                    >
+                        <input (change)="onSizeChange()" type="radio" [(ngModel)]="cartRequestPayload.sizeId" class="btn-check" name="size" [id]="size?.name" autocomplete="off" [value]="size?.id">
+                        <label class="btn py-[.2rem] px-[.5rem] text-[.8rem] border-[#000000] text-[#000000] ltr:me-2 rtl:me-2" [for]="size?.name">{{ size?.name }}</label>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+    </ng-container>
+    <!-- end:: size options  -->
+
+
+    <!-- begin:: Quantity  -->
+    <div class="size-options mb-2 flex items-center">
+        <label class="text-black fw-500 text-[.9rem] ltr:me-5 rtl:me-5">{{ 'shared.quantity' | translate }}</label>
+        <div class="flex pt-1 items-center flex-wrap">
+            <quantity-controls [maxQuantity]="maxQuantity" (onChange)="onQuantityChange($event);" [initQuantity]="initQuantity"></quantity-controls>
+        </div>
+        <span *ngIf="!maxQuantity" class="text-[#FFA90A] fw-500 mx-3
+        ">{{ 'shared.out-of-stock' | translate }}</span>
+    </div>
+    <!-- end:: Quantity  -->
+
+
+    
+
+</section>

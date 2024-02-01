@@ -1,0 +1,41 @@
+.video-thumbnail {
+    &-img {
+
+        // Modifire Block 
+        transition: .9s ease-in-out;
+    
+    }
+
+    &-overlay {
+
+        // Structure Block 
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        
+        // Structure Block 
+        background: rgb(0,0,0);
+        background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(221,221,221,0) 50%, rgba(0,0,0,0.8883928571428571) 100%);
+        
+
+        // Modifire Block 
+        z-index: 9;
+
+
+        &:hover {
+
+            // Structure Block 
+            background: rgb(0,0,0);
+            background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(221,221,221,0) 50%, rgba(0,0,0,0.8883928571428571) 100%);
+        }
+
+        .show-if-expanded {
+
+            // Structure Block 
+            display: none;
+
+
+        }
+    }
+
+}

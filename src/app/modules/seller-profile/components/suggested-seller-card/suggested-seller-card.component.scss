@@ -1,0 +1,19 @@
+:host {
+    ::ng-deep {
+        .rating {
+            // Typography Block 
+            font-size: .7rem;
+
+        }
+
+        
+        fa-icon {
+
+            // Typography Block 
+            font-size: .67rem !important;
+
+            // Structure Block 
+            margin-top: -1px;
+        }
+    }
+}

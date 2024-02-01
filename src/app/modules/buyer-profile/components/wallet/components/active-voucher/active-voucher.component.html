@@ -1,0 +1,74 @@
+<div class="voucher shadow-sm text-[#BF7406] inline-flex main-rounded bg-white items-stretch">
+    <div class="voucher__info flex items-center ltr:me-1 rtl:me-1 p-3 relative">
+        <div class="end flex flex-col whitespace-nowrap">
+            <span class="text-[#AE550D] font-semibold">{{ 'my-orders.discount' | translate }}</span>
+            <small class="text-[#BF7406]">
+                {{ 'wallet.valid-until' | translate }} {{ voucher?.expiryDate }}
+            </small>
+            <span class="code uppercase">
+                <span class="key">{{ 'wallet.code' | translate }}:</span> {{ voucher?.code }}
+            </span>
+        </div>
+        <img width="30" class="absolute top-0 ltr:right-0 rtl:left-0 translate-y-[-50%]" src="assets/media/profile/icons/wallet/coin.svg" alt="Coin">
+    </div>
+    <div
+        class="
+            ltr:border-l
+            border-dashed
+            ltr:border-r
+            p-3
+            ltr:before:translate-x-[-5px]
+            rtl:before:translate-x-[5px]
+            ltr:ps-4
+            rtl:ps-4
+            relative
+            voucher__get
+            flex items-center
+            before:w-[10px]
+            before:h-[10px]
+            before:bg-[#fff]
+            before:block
+            before:shadow-inner
+            before:absolute
+            before:bottom-[-5px]
+            before:ltr:left-0
+            before:rtl:right-0
+            before:rounded-full
+            after:w-[10px]
+            after:h-[10px]
+            after:bg-[#fff]
+            after:block
+            after:absolute
+            after:top-[-5px]
+            after:ltr:left-0
+            after:rtl:right-0
+            after:rounded-full
+            
+        "
+    >
+    <img width="22" class="absolute bottom-0 ltr:left-0 rtl:right-0 ltr:translate-x-[-50%] rtl:translate-x-[50%]" src="assets/media/profile/icons/wallet/scissors.svg" alt="Coin">
+        <div class="start text-[1.3rem] flex flex-col h-full justify-between">
+            <span class="text-[#AE550D]"><span class="font-semibold">{{ voucher?.amount }}</span>
+                <sub class="text-[.7rem] ltr:ms-1 rtl:ms-1">
+                    {{ voucher?.isPercentage ? '%' : 'shared.EGP' | translate }}
+                </sub>
+            </span>
+            <button
+                (click)="copy(voucher?.code)"
+                class="max-w-100 lh-normal !py-[.3rem] !px-[.4rem] !text-primary text-[.65rem] uppercase min-w-auto !leading-[7px]"
+                mat-stroked-button
+            >
+                <div class="flex items-center">
+                    <small class="icon me-2">
+                        <img width="12" src="assets/media/profile/icons/wallet/copy.svg" alt="Coin">
+                    </small>
+                    <small>
+                        <small>{{ 'wallet.copy' | translate }}</small>
+                        <br>
+                        <small>{{ 'wallet.code' | translate }}</small> 
+                    </small>
+                </div>               
+            </button>
+        </div>
+    </div>
+</div>

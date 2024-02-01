@@ -1,0 +1,46 @@
+.social-list {
+    &__item {
+        // Structure Block 
+        width: 24px;
+        // height: 24px;
+
+        // Modifire Block 
+        transition: all .3s ease-in-out;
+
+        a {
+
+            // Structure Block 
+            display: inline-block;
+            width: 100%;
+            height: 100%;
+
+        }
+
+
+        
+        &:hover {
+
+
+            // Modifire Block 
+            transform: translateY(-2px);
+            transition: all .3s ease-in-out;
+
+            fa-icon {
+                // Typography Block 
+                color: var(--bs-primary);
+
+                // Modifire Block 
+                transition: all .3s ease-in-out;
+            }
+        }
+
+        fa-icon {
+            // Typography Block 
+            color: #969696;
+
+            // Modifire Block 
+            transition: all .3s ease-in-out;
+        }
+    }
+
+}

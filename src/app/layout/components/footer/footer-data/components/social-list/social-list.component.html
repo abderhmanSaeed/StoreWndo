@@ -1,0 +1,9 @@
+<ul class="list-unstyled d-flex social-list mb-0 flex-wrap">
+    <ng-container *ngFor="let item of socilLinks">
+        <li class="social-list__item mx-2">
+            <a class="d-flex flex-center" [href]="item?.url" target="_blank" rel="noopener">
+                <fa-icon class="d-flex" [icon]="item?.icon"></fa-icon>
+            </a>
+        </li>
+    </ng-container>
+</ul>

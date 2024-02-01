@@ -1,0 +1,45 @@
+:host {
+    width: 100%;
+}
+
+.seller-products {
+
+
+
+    
+    &__filter {
+
+        img {
+
+            &.active {
+                // Structure Block 
+                display: none;
+            }
+
+
+            // Structure Block 
+            width: 62%;
+
+        }
+
+        &--active {
+            // Structure Block 
+            background-color: #0D1863 !important;
+
+            // Typography Block 
+            color: #fff !important;
+
+            img {
+
+                // Structure Block 
+                display: none;
+
+                &.active {
+
+                    // Structure Block 
+                    display: block;
+                }
+            }
+        }
+    }
+}

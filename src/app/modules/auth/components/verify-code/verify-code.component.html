@@ -1,0 +1,68 @@
+<section class="auth__verify-code text-center">
+    <div class="auth__content main-rounded gradient-border">
+        <div class="position-relative z-[1] p-4 bg-[#353434e3]">
+       
+            <!-- begin:: closer  -->
+            <div class="dialog__closer absolute top-[13px] right-[13px]">
+                <button color="bg-gray-700" class="bg-gray-700 text-white shadow-xl w-[35px] h-[35px] d-flex items-center justify-center lh-normal" mat-dialog-close mat-mini-fab aria-label="Example icon button with a home icon">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </div>
+            <!-- end:: closer  -->
+
+       
+            <!-- begin:: header  -->
+            <div class="auth__header text-center mb-3 py-2">
+                <h1 class="text-primary mb-2 text-lg" mat-dialog-title>
+                    {{ 'auth.code-verification' | translate }}
+                </h1>
+                <span class="text-lg font-extralight">{{ 'auth.we-sent-your-code-to' | translate }} {{ sentTo?.[sentTo?.key] | slice: 0 : 7 }} **</span>
+            </div>
+            <!-- end:: header  -->
+
+
+            <div mat-dialog-content class="mx-0 mt-1">
+
+            <!-- begin:: otp  -->
+            <section class="otp mb-4">
+                <ng-otp-input dir="ltr" #ngOtpInput (onInputChange)="onOtpChange($event)" [config]="config"></ng-otp-input>
+                <span class="expired-in mt-2 block">{{ 'auth.this-code-will-expired-in' | translate }} <span class="text-primary"> <count-down #counter (end)="onOTPTimeRemainingEnd($event)"></count-down> </span></span>
+            </section>
+            <!-- end:: otp  -->
+
+
+            <!-- begin:: confirm button  -->
+            <app-button
+                [label]="'CONFIRM'"
+                [panelclass]="'w-100 py-1 rounded-pill mb-3 mt-2'"
+            ></app-button>
+            <!-- end:: confirm button  -->
+                
+
+            <!-- begin:: resend OTP button  -->
+            <button [disabled]="!timeRemainingHasEnded" (click)="resendOTP()" class="main-transition 
+            btn p-0 underline text-[#96A1AB] fw-500 text-[.93rem] hover:text-primary">
+            {{ 'auth.resend-OTP-code' | translate }}
+            </button>
+            <!-- end:: resend OTP button  -->
+
+
+            </div>
+        </div>
+    </div>
+    
+    
+    <div mat-dialog-actions>
+        <div class="auth-footer d-flex justify-center items-center w-100 pt-4">
+            <span class="me-1 text-[.9rem] lh-normal">
+                {{ 'auth.dont-have-an-account' | translate }}
+            </span>
+            <button 
+                (click)="chengeCurrentAuth.emit(authComponents.SignUp)"
+                class="btn p-0 lh-normal text-primary fw-500 relative text-[.9rem]"
+                >
+                {{ 'auth.register-now' | translate }}
+            </button>
+        </div>
+    </div> 
+</section> 

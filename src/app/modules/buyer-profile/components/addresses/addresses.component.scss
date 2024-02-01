@@ -1,0 +1,20 @@
+.btn-wrapper {
+
+    button {
+
+       &:hover {
+        
+            ~ .btn-wrapper__label {
+                // Modifire Block 
+                opacity: 1 !important
+            }
+       }
+    }
+
+}
+
+
+mat-card {
+    // Structure Block 
+    max-width: calc(100% - 77px);
+}

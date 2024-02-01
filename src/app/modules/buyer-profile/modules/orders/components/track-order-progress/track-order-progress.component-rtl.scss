@@ -1,0 +1,14 @@
+:host-context(html[dir=rtl]) {
+
+    .progress-circles__circle-wrapper {
+
+        &::before {
+
+            // Positioning Block 
+            left: auto;
+            right: 9px;
+
+        }
+    }
+
+}

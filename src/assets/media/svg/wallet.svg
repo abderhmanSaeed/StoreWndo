@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20.639" height="19.173" viewBox="0 0 20.639 19.173">
+  <defs>
+    <clipPath id="clip-path">
+      <path id="Clip_6" data-name="Clip 6" d="M0,0H20.639V19.173H0Z" transform="translate(2 3)" fill="#96a1ab"/>
+    </clipPath>
+  </defs>
+  <g id="Iconly_Light-Outline_Wallet" data-name="Iconly/Light-Outline/Wallet" transform="translate(-2 -3)">
+    <g id="Wallet">
+      <path id="Fill_1" data-name="Fill 1" d="M7.49,6.882H3.442A3.441,3.441,0,1,1,3.442,0H7.49a.75.75,0,0,1,0,1.5H3.442a1.941,1.941,0,1,0,0,3.882H7.49a.75.75,0,0,1,0,1.5Z" transform="translate(14.399 9.014)" fill="#96a1ab"/>
+      <path id="Fill_3" data-name="Fill 3" d="M1.062,1.5H.75A.75.75,0,0,1,.75,0h.312a.75.75,0,0,1,0,1.5Z" transform="translate(17.236 11.644)" fill="#96a1ab"/>
+      <g id="Group_7" data-name="Group 7">
+        <g id="Clip_6-2" data-name="Clip 6" clip-path="url(#clip-path)">
+          <path id="Fill_5" data-name="Fill 5" d="M16.642,22.173H8a6,6,0,0,1-6-6V9A6,6,0,0,1,8,3h8.645a6,6,0,0,1,6,6v7.177A6,6,0,0,1,16.642,22.173ZM8,4.5A4.5,4.5,0,0,0,3.5,9v7.177a4.5,4.5,0,0,0,4.5,4.5h8.645a4.5,4.5,0,0,0,4.5-4.5V9a4.5,4.5,0,0,0-4.5-4.5Z" fill="#96a1ab"/>
+        </g>
+      </g>
+      <path id="Fill_8" data-name="Fill 8" d="M6.149,1.5H.75A.75.75,0,0,1,.75,0h5.4a.75.75,0,0,1,0,1.5Z" transform="translate(6.536 7.538)" fill="#96a1ab"/>
+    </g>
+  </g>
+</svg>

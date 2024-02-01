@@ -1,0 +1,61 @@
+:host-context(html[dir=rtl]) {
+    :host {
+        ::ng-deep {
+
+            .mat-drawer-container {
+               &.drawer-opened {
+                    .mat-drawer-content {
+                        // Structure Block 
+                        margin-right: 240px !important;
+                    }
+               }
+            }
+
+            .mat-drawer  {
+
+                order: 1;
+                &.mat-drawer-end {
+
+                    // Positioing Block 
+                    left: auto;
+                    right: 0;
+                
+                }
+            }
+            
+
+
+
+            .mat-drawer-content {
+                
+                // Medium devices (tablets, 768px and up)
+                @media (min-width: 1200px) { 
+                    // Structure Block 
+                    margin-left: 0;
+                    margin-right: 85px;
+                }
+            }
+
+            
+            .mat-drawer-over,
+            .mat-drawer-side {
+
+                // Medium devices (tablets, 768px and up)
+                @media (min-width: 1200px) { 
+
+                    &.mat-drawer-opened {
+                        // Positioning Block 
+                        right: 0;
+                        left: auto;
+
+                        & ~ .mat-drawer-content {
+                            margin-right: 240px !important;
+                        }
+                    }
+
+                }
+                
+            }
+        }
+    }
+}

@@ -1,0 +1,15 @@
+.auk-card-b__price {
+    &--vertical {
+
+        // Structure Block 
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+
+
+        .auk-card-b__price__after-offer {
+            // Structure Block 
+            margin-inline-end: 0 !important;
+        }
+    }
+}

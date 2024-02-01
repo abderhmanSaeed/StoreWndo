@@ -1,0 +1,50 @@
+<div class="row g-lg-x-5 gy-3">
+    <div class="col-lg-6">
+        <field
+            type="text"
+            [readonly]="true"
+            [value]="companyData?.nameInBank"
+            labelPanelclass="text-[#96A1AB] !font-normal text-[.8rem]"
+            ngDefaultControl
+            [showValidations]="true"
+            [label]="'wallet.name-in-bank' | translate"
+            [panelclass]="'border-0 px-0 !border-b !border-solid rounded-0 !border-[#E5E6E8]'"
+        ></field>
+    </div>
+    <div class="col-lg-6">
+        <field
+            type="text"
+            [readonly]="true"
+            [value]="companyData?.bankAccountNumber"
+            labelPanelclass="text-[#96A1AB] !font-normal text-[.8rem]"
+            ngDefaultControl
+            [showValidations]="true"
+            [label]="'wallet.bank-account-number' | translate"
+            [panelclass]="'border-0 px-0 !border-b !border-solid rounded-0 !border-[#E5E6E8]'"
+        ></field>
+    </div>
+    <div class="col-lg-6">
+        <field
+            type="text"
+            [readonly]="true"
+            [value]="companyData?.bankName"
+            labelPanelclass="text-[#96A1AB] !font-normal text-[.8rem]"
+            ngDefaultControl
+            [showValidations]="true"
+            [label]="'wallet.bank-name' | translate"
+            [panelclass]="'border-0 px-0 !border-b !border-solid rounded-0 !border-[#E5E6E8]'"
+        ></field>
+    </div>
+    <div class="col-lg-6">
+        <field
+            type="text"
+            [readonly]="true"
+            [value]="companyData?.bankBranchName"
+            labelPanelclass="text-[#96A1AB] !font-normal text-[.8rem]"
+            ngDefaultControl
+            [showValidations]="true"
+            [label]="'wallet.bank-branch-name' | translate"
+            [panelclass]="'border-0 px-0 !border-b !border-solid rounded-0 !border-[#E5E6E8]'"
+        ></field>
+    </div>
+</div>

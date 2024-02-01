@@ -1,0 +1,20 @@
+<section class="payment-methods animate__animated animate__fadeIn">
+
+
+    <!-- begin:: vouchers section  -->
+    <vouchers [data]="data"></vouchers>
+    <!-- end:: vouchers section  -->
+
+
+    <!-- begin:: choose payment methods  -->
+    <mat-card class="main-rounded--force p-4">
+        <mat-card-title class="text-[#4E4E78] text-[1rem] mb-4">
+            {{ 'buyer-profile.choose-payment-method' | translate }}
+        </mat-card-title>
+        <mat-card-content>	
+            <payment-method-items [data]="data"></payment-method-items>
+        </mat-card-content>
+    </mat-card>
+    <!-- begin:: choose payment methods  -->
+
+</section>

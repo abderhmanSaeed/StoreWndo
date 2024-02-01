@@ -1,0 +1,15 @@
+:host {
+    ::ng-deep {
+        .br-unit-inner {
+
+            // Typography Block 
+            font-size: 2rem;
+        }
+    }
+}
+
+.img-preview {
+
+    // Structure Block 
+    box-shadow: 3px 2px 18px #00000029, -1px 1px 5px #00000029 !important;
+}

@@ -1,0 +1,83 @@
+.form-control {
+    // Structure Block 
+    width: 315px;
+    font-size: .8rem;
+    padding: 0.53rem 1.2rem;
+
+    &::placeholder {
+        // Typography Block 
+        color: #ADB8D4;
+    }
+
+}
+
+
+.search {
+
+
+
+    &--focused {
+
+        .search__dropdown {
+            // Modifire Block 
+            opacity: 1;
+            transform: none;
+            visibility: visible;
+            transition: all .3s ease-in-out;
+        }
+
+    }
+
+
+    &__dropdown {
+        // Modifire Block 
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-8px);
+        transition: all .3s ease-in-out;
+        overflow: auto;
+
+
+        // Structure Block 
+        max-height: 357px;
+
+        &::-webkit-scrollbar {
+            width: 5px;               /* width of the entire scrollbar */
+        }
+
+        &::-webkit-scrollbar-track {
+            background: transparent;        /* color of the tracking area */
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: #ddd;    /* color of the scroll thumb */
+            border-radius: 20px;       /* roundness of the scroll thumb */
+        }
+    }
+
+    &__result {
+
+    
+
+
+        &__item {
+
+            &:hover {
+
+                // Structure Block 
+                background-color: #fff;
+
+            }
+
+        }
+    }
+}
+
+:host {
+    ::ng-deep {
+        ngb-typeahead-window {
+            // Structure Block
+            display: none !important;
+        }
+    }
+}

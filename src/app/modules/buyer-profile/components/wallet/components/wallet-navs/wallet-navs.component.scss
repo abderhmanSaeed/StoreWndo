@@ -1,0 +1,33 @@
+:host {
+
+    // Structure Block 
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+
+    ::ng-deep {
+        .tab-pane {
+            // Structure Block 
+            height: 100%;
+        }
+    }
+}
+
+.nav-tabs {
+    .nav-link {
+        &.active {
+
+
+            // Structure Block 
+            background-color: var(--third);
+
+            span {
+                // Typography Block 
+                color: #fff;
+            }
+          
+
+        }   
+    }
+}

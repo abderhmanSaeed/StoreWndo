@@ -1,0 +1,28 @@
+<bar-rating [readOnly]="readOnly" [(rate)]="rate" [max]="max">
+    <ng-container *ngIf="customStars">
+        <ng-template ratingActive>
+            <img
+                class="mx-0.5"
+                [ngClass]="widthClass"
+                src="assets/media/svg/fill-star.svg"
+                alt="icon"
+            />
+        </ng-template>
+        <ng-template ratingInactive>
+            <img
+                class="mx-0.5"
+                [ngClass]="widthClass"
+                src="assets/media/svg/empty-star.svg"
+                alt="icon"
+            />
+        </ng-template>
+        <ng-template ratingFraction>
+            <img
+                class="mx-0.5"
+                [ngClass]="widthClass"
+                src="assets/media/svg/half-star.svg"
+                alt="icon"
+            />
+        </ng-template>
+    </ng-container>
+</bar-rating>

@@ -1,0 +1,37 @@
+::ng-deep {
+    .transparent-dialog {
+        .confirm__content {
+
+            .mat-dialog-content {
+        
+                // Modifire Block 
+                overflow: visible;
+        
+            }
+        }
+        
+        
+        .cdk-overlay-dark-backdrop {
+            // Structure Block 
+            background: rgba(0, 0, 0, 0.91);
+        }
+        
+        .mat-dialog-container {
+            // Structure Block 
+            background: transparent !important;
+            padding: 5rem 0px 1rem 0;
+        
+            // Positioning Block 
+            position: relative;
+        
+            // Modifire Block 
+            overflow: visible;
+        
+        }
+        
+        .mat-dialog-actions {
+            // Structure Block 
+            margin-bottom: 0;
+        }
+    }
+}

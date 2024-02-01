@@ -1,0 +1,112 @@
+// Begin mat snack bar ______________
+.mat-snack-bar-container {
+    // Structure Block 
+    background-color: #fff !important;
+    border-radius: 8px !important;
+    padding: 1.7rem !important;
+    box-shadow: 0px 3px 5px -1px rgb(0 0 0 / 4%), 0px 6px 10px 0px rgb(0 0 0 / 0%), 0px 1px 18px 0px rgb(0 0 0 / 10%) !important;
+  
+    // Typography Block
+    font-weight: bold;
+    color: $primaryColor !important;
+  
+    // Small devices (landscape phones, less than 768px)
+    @media (max-width: 767.98px) { 
+        // Structure Block 
+        padding: 1.5rem !important;
+    }
+  
+    .mat-simple-snackbar {
+        // Typography Block 
+        font-family: inherit;
+  
+  
+        & > span {
+  
+            // Structure Block 
+            display: inline-flex;
+            align-items: center;
+  
+            // Typography Block 
+            font-size: .85rem;
+            color: $infoColor;
+
+  
+            &::before {
+
+                // Structure Block 
+                content: "";  
+                display: inline-block !important;
+                margin-right: .5rem;
+                min-width: 20px;
+                min-height: 20px;
+                -webkit-mask-image: url(../../../media/svg/success.svg);
+                mask-image: url(../../../media/svg/success.svg);
+                -webkit-mask-repeat: no-repeat;
+                background-color: #52aa21;
+                margin-bottom: auto;
+  
+                [dir=rtl] & {
+                    // Structure Block 
+                    margin-right: 0;
+                    margin-left: .5rem;
+                }
+
+                
+  
+            }
+        }
+    }
+  
+    &.error {
+        .mat-simple-snackbar {
+            & > span {
+
+    
+
+                &::before {
+                    // Structure Block 
+                    content: "";
+                    display: inline-block !important;
+                    min-width: 20px;
+                    min-height: 20px;
+                    -webkit-mask-image: url(../../../media/svg/error.svg);
+                    mask-image: url(../../../media/svg/error.svg);
+                    -webkit-mask-repeat: no-repeat;
+                    background-color: #d34016;
+
+                    // Typography Block 
+                    color: #d34016;
+                }
+            }
+        }
+    }
+  }
+  
+  .mat-simple-snackbar-action {
+        button {
+  
+            // Structure Block 
+            width: 27px;
+            height: 27px;
+            background: #757575 !important;
+            border-radius: 50% !important;
+            padding: 0;
+
+            // Typography Block 
+            color: #fff !important;
+            font-weight: bold;
+  
+  
+            // Structure Block 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+  
+            .mat-button-wrapper {
+                // Typography Block 
+                line-height: normal;
+            }
+    }
+  }
+  // End mat snack bar ______________

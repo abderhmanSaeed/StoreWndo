@@ -1,0 +1,126 @@
+<nav
+  [class.aside-minimize]="!openedStart"
+  class="navbar navbar-expand-lg navbar-light sticky-top py-1 border shadow-sm ltr:ms-1 rtl:ms-1 px-lg-4"
+>
+  <div class="container-fluid main-transition px-lg-0">
+    <a class="ltr:me-4 rtl:me-4" routerLink="/"
+      ><img
+        [class.hide]="openedStart"
+        class="mx-auto logo animate__animated animate__fadeIn"
+        src="assets/media/logos/logo.svg"
+        alt="Logo"
+      />
+    </a>
+
+    <div class="end ms-auto order-lg-3 flex items-center me-2 me-lg-0">
+      <div class="lang me-2">
+        <change-language></change-language>
+      </div>
+      <div class="user-menu">
+        <user-menu [buyerProfile]="profileData" [lang]="lang"></user-menu>
+      </div>
+    </div>
+
+    <button
+      class="navbar-toggler menu-btn order-lg-2 border-0 shadow-none w-auto"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      (click)="collapse.toggle()"
+      [attr.aria-expanded]="!isCollapsed"
+      aria-label="Toggle navigation"
+    >
+      <span class="menu-toggle"></span>
+    </button>
+
+    <div
+      class="collapse navbar-collapse"
+      id="navbarNav"
+      #collapse="ngbCollapse"
+      [(ngbCollapse)]="isCollapsed"
+    >
+      <!-- begin:: search input  -->
+      <search-input></search-input>
+      <!-- end:: search input  -->
+
+      <ul class="navbar-nav mx-auto pt-3 pt-lg-0" [class.show]="isCollapsed">
+        <!-- begin:: dynamic links  -->
+        <ng-container *ngFor="let item of menue; let index = index">
+          <li
+            placement="bottom"
+            [ngbTooltip]="'header.' + item?.title | translate"
+            [class]="item?.className"
+            class="nav-item navbar-nav__item lh-normal mx-2 px-1 mb-3 mb-lg-0 rounded-circle d-inline-flex flex-center position-relative"
+          >
+            <!-- if link -->
+            <ng-container *ngIf="item?.actionType == actionTypes.Link">
+              <a
+                class="w-100 h-100 d-inline-flex flex-center"
+                [routerLink]="item?.page"
+                routerLinkActive="active-link"
+              >
+                <span class="svg-icon flex items-center justify-center">
+                  <img [src]="item?.imgPath" alt="Icon" />
+                </span>
+
+                <ng-container *ngIf="authService.isAuthenticated">
+                  <!-- begin:: cart items count -->
+                  <small
+                    *ngIf="item?.className == 'cart' && cartItemsCount > 0"
+                    class="cart-items-count bg-primary text-white rounded-circle position-absolute"
+                    >{{ cartItemsCount }}</small
+                  >
+                  <!-- end:: cart items count -->
+
+                  <!-- begin:: cart items count -->
+                  <small
+                    *ngIf="
+                      item?.className == 'notification' &&
+                      notificationsCount > 0
+                    "
+                    class="notification-dot bg-primary text-white rounded-circle position-absolute"
+                  ></small>
+                  <!-- end:: cart items count -->
+                </ng-container>
+              </a>
+            </ng-container>
+
+            <!-- if button -->
+            <ng-container *ngIf="item?.actionType == actionTypes?.Button">
+              <button
+                (click)="onNavItemClick(item?.className)"
+                class="btn p-0 w-100 h-100"
+              >
+                <span class="svg-icon flex items-center justify-center">
+                  <img
+                    *ngIf="lang == languagesEnum.EN"
+                    [src]="item?.imgPath"
+                    alt="Icon"
+                  />
+                  <img
+                    width="17"
+                    *ngIf="lang == languagesEnum.AR"
+                    [src]="item?.imgPathRTL"
+                    alt="Icon"
+                  />
+                </span>
+              </button>
+            </ng-container>
+          </li>
+        </ng-container>
+        <!-- end:: dynamic links  -->
+
+        <!-- begin theme toggler  -->
+        <!-- <li class="nav-item theme navbar-nav__item lh-normal mx-2 px-1 mb-3 mb-lg-0 rounded-circle d-inline-flex flex-center">
+            <button placement="bottom" [ngbTooltip]="'Change Theme'" (click)="toggleTheme()" class="btn p-0 w-100 h-100 d-inline-flex flex-center">
+              <span class="svg-icon flex items-center justify-center">
+                <img src="assets/media/svg/theme.svg" alt="Icon">
+              </span>
+            </button>
+          </li> -->
+        <!-- end theme toggler  -->
+      </ul>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,23 @@
+.reviewCards {
+    &:last-child {
+        .cardContent {
+            border-bottom: 0;
+        }
+    }
+}
+
+.barRating {
+    .br-units {
+        .br-unit {
+            margin: 0 2px;
+            img {
+                width: 20px;
+            }
+        }
+    }
+}
+
+.noContent-wrapper {
+    height: calc(100vh - 280px);
+    display: flex;
+  }

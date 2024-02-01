@@ -1,0 +1,29 @@
+:host {
+
+    // Modifire Block 
+    overflow: auto;
+
+    // Structure Block 
+    max-height: calc(100vh - 5rem);
+    display: block;
+    border-radius: 8px;
+
+
+
+    /* width */
+    &::-webkit-scrollbar {
+        width: 6px;
+        border-radius: 50%;
+    }
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+        background: 0 0;
+    }
+      
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+        background-image: linear-gradient(transparent, #aeaeae);
+        border-radius: 50%;
+    }
+}

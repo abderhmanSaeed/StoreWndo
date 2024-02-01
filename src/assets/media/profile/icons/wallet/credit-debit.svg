@@ -1,0 +1,21 @@
+<svg id="Group_18" data-name="Group 18" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="42" height="42" viewBox="0 0 42 42">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Background" width="23" height="25.584" fill="none"/>
+    </clipPath>
+  </defs>
+  <path id="Ellipse" d="M0,21A21,21,0,1,1,21,42,21,21,0,0,1,0,21Z" fill="#fff"/>
+  <g id="credit-card_3_" data-name="credit-card (3)" transform="translate(10 8.011)">
+    <rect id="Background-2" data-name="Background" width="23" height="25.584" fill="none"/>
+    <g id="credit-card_3_2" data-name="credit-card (3)" clip-path="url(#clip-path)">
+      <path id="Shape" d="M23,1.764V16.872a1.681,1.681,0,0,1-1.586,1.764H1.586A1.681,1.681,0,0,1,0,16.872V1.764A1.681,1.681,0,0,1,1.586,0H21.414A1.681,1.681,0,0,1,23,1.764Z" transform="translate(0 3.474)" fill="#fe4f60"/>
+      <path id="Shape-2" data-name="Shape" d="M23,1.764V3.132a.846.846,0,0,1-.753.882c-8.328.458-14.831,6-17.552,14.055a.8.8,0,0,1-.744.573H1.586A1.681,1.681,0,0,1,0,16.878V1.764A1.681,1.681,0,0,1,1.586,0H21.414A1.681,1.681,0,0,1,23,1.764Z" transform="translate(0 3.474)" fill="#ff6d7a"/>
+      <path id="Shape-3" data-name="Shape" d="M0,0H23V3.749H0Z" transform="translate(0 7.444)" fill="#42434d"/>
+      <path id="Shape-4" data-name="Shape" d="M22.455,0A19.149,19.149,0,0,0,11.981,3.738c-.02.017.54.011-11.981.011V0Z" transform="translate(0 7.444)" fill="#4d4e59"/>
+      <g id="Group" transform="translate(2.825 14.887)">
+        <path id="Shape-5" data-name="Shape" d="M3.718.882H.4A.422.422,0,0,1,0,.441.422.422,0,0,1,.4,0H3.718a.422.422,0,0,1,.4.441.422.422,0,0,1-.4.441Z" fill="#fff"/>
+        <path id="Shape-6" data-name="Shape" d="M3.718.882H.4A.422.422,0,0,1,0,.441.422.422,0,0,1,.4,0H3.718a.422.422,0,0,1,.4.441.422.422,0,0,1-.4.441Z" transform="translate(0 2.757)" fill="#fff"/>
+      </g>
+    </g>
+  </g>
+</svg>

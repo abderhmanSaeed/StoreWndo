@@ -1,0 +1,112 @@
+<mat-card 
+        matRipple 
+        [routerLink]="['/product', data?.id]"
+        [matRippleColor]="mainRippleColor"
+        class="auk-card-a main-rounded--force p-4 cursor-pointer" 
+        >
+
+    <!-- begin:: card header   -->
+    <div class="auk-card-a__header d-flex justify-content-between align-items-center mb-3">
+       
+        <div class="start">
+            <app-seller [followersCount]="data?.followersCount" [data]="data.seller"></app-seller>
+        </div>
+        <div class="end">
+            <follow 
+                [isMine]="data?.isMine"
+                [userId]="data.seller?.id"
+                [isFollowed]="data.isFollowed"
+                (onFollowingChange)="onFollowingChange.emit($event)"
+            ></follow>
+        </div>
+    </div>
+    <!-- end:: card header   -->
+
+
+    <!-- begin:: card info   -->
+    <div class="auk-card-a__info">
+        <div class="d-flex align-items-center mb-2 justify-content-between">
+            <mat-card-title class="fw-600 mb-0 ltr:me-2 rtl:me-2 text-truncate"> {{ data.name }} </mat-card-title>
+            <auk-rating [data]="data.rate"></auk-rating>
+        </div>
+        <mat-card-subtitle class="mb-2">
+            {{ data.section?.name }}/{{ data.category?.name }}
+        </mat-card-subtitle>
+    </div>
+    <!-- end:: card info   -->
+
+
+
+    <!-- begin:: card footer   -->
+    <div class="mat-card-footer d-flex m-0">
+        <mat-card-content class="mb-0 ltr:me-4 rtl:me-4">
+            <div class="auk-card-a__img-box main-rounded p-1 d-flex flex-center position-relative border border-white">
+                <ng-container *ngIf="data.discount">
+                    <small class="position-absolute badge bg-[#fe4b46] px-2 fw-400 auk-card-a__discount">{{ data.discount}} %</small>
+                </ng-container>
+                <img 
+                    (error)="onImgError($event)"
+                    *ngIf="data.image?.urlPreview else imgPlaceholder" class="img-fluid max-h-100 fit-img rounded" [src]="data.image?.urlPreview" alt="Product Photo"
+                >
+            </div>
+        </mat-card-content>
+
+        <div class="d-flex justify-content-between flex-column flex-grow-1">
+            <div class="auk-card-a__price pt-3">
+                <auk-card-a-price [price]="data.price" [priceAfterOffer]="data.priceAfterOffer"></auk-card-a-price>
+            </div>
+            <mat-card-actions class="m-0 pb-0">
+               <div class="d-flex justify-content-between align-items-center pb-1">
+                    <div class="start ltr:me-2 rtl:me-2">
+                        <add-to-cart
+                            [productId]="data.id"
+                            [isInCart]="data.isInCart"
+                            *ngIf="!data?.isOutOfStock"
+                            (addedToCart)="addedToCart.emit(true)"
+                        ></add-to-cart>
+                        <span *ngIf="data?.isOutOfStock" class="text-[#FFA90A] fw-500">{{ 'shared.out-of-stock' | translate }}</span>
+                    </div>
+                    <div class="end text-end flex items-center">
+                        <add-to-fav     
+                            class="ltr:ms-2 rtl:ms-2"
+                            [productId]="data.id"
+                            [isFavorite]="data.wishListData?.isInWishList"
+                            [wishListCount]="data?.wishListData?.wishListCount"
+                            (onProductWishChange)="onProductWishChange.emit($event)"
+                            (onProductWishCountChange)="onProductWishCountChange.emit($event)"
+                            [panelStyle]="{
+                                'width': '28px',
+                                'height': '28px',
+                                'font-size': '1.1rem'
+                            }"
+                        ></add-to-fav>
+                        <like 
+                            class="ltr:ms-2 rtl:ms-2"
+                            [productId]="data.id"
+                            [LikesCount]="data?.likes"
+                            (onProductLikeChange)="onProductLikeChange.emit($event)"
+                            (onProductLikesCountChange)="onProductLikesCountChange.emit($event)"
+                            [isliked]="data.isLiked"
+                            [panelStyle]="{
+                                'width': '28px',
+                                'height': '28px',
+                                'font-size': '1rem'
+                            }"
+                        ></like>
+                    </div>
+                </div>
+                <button *ngIf="!isRequestSent && data?.isOutOfStock" (click)="shareToSeller($event, data?.id)" class="text-primary fw-500 p-0 underline">{{ 'shared.share-your-request-seller' | translate }}</button>
+            </mat-card-actions>
+        </div>
+
+        
+    </div>
+    <!-- end:: card footer   -->
+
+</mat-card>
+
+
+
+<ng-template #imgPlaceholder>
+    <img-placeholder></img-placeholder>
+</ng-template>

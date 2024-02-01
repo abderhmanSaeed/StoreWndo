@@ -1,0 +1,137 @@
+.gap_2 {
+    margin-right: -10px;
+    margin-left: -10px;
+    .col_gap_2 {
+        padding-right: 10px;
+        padding-left: 10px;
+        margin-bottom: 20px !important;
+    }
+}
+
+.flex-center {
+    align-items: center;
+    justify-content: center;
+}
+
+.container-right {
+    padding-left: 15px;
+    padding-right: 15px;
+    // XX-Large devices (larger desktops, 1400px and up)
+    @media (min-width: 1400px) { 
+      margin-left: calc(50vw - 668px) !important;
+      padding-right: 0;   
+    }
+}
+
+.main-container {
+   // Structure Block 
+   width: 950px;
+}
+ 
+@media (min-width:576px){
+   .container-right {
+     margin-right: 0;
+     margin-left: calc(50vw - 270px);
+   }
+}
+ 
+@media (min-width:768px){
+   .container-right {
+     margin-right: 0;
+     margin-left: calc(50vw - 360px);
+   }
+}
+ 
+@media (min-width:992px){
+   .container-right {
+     margin-right: 0;
+     margin-left: calc(50vw - 480px);
+   }
+}
+ 
+ @media (min-width:1200px){
+   .container-right {
+     margin-right: 0;
+     margin-left: calc(50vw - 570px);
+   }
+}
+
+.min-w-auto {
+  min-width: auto !important;
+}
+
+.min-height-auto {
+  min-height: auto !important;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.fit-img {
+  object-fit: cover;
+}
+
+.main-transition {
+  transition: all .3s ease-in-out !important;
+}
+
+.max-h-100 {
+  max-height: 100%;
+}
+
+
+.custom-scroll {
+
+  /* width */
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+  
+  /* Track */
+  &::-webkit-scrollbar-track {
+    background: #707070;
+  }
+  
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: $primaryColor;
+  }
+
+
+  &--auk {
+
+    /* width */
+    &::-webkit-scrollbar {
+      width: 6px;
+      border-radius: 50%;
+    }
+    
+    /* Track */
+    &::-webkit-scrollbar-track {
+      background: 0 0;
+    }
+    
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+      background-image: linear-gradient(transparent, #aeaeae);
+      border-radius: 50%;
+    }
+
+  }
+
+}
+
+.inline-grid {
+  display: -ms-inline-grid;
+  display: -moz-inline-grid;
+}
+
+.overlay {
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: #ffe0e0a6;
+  }
+}

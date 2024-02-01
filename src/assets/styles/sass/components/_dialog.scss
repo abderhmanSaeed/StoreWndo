@@ -1,0 +1,237 @@
+
+.cdk-overlay-pane {
+    max-width: 92% !important;
+}
+
+
+.custom-dialog-container {
+
+    // Structure Block
+    max-width: 100% !important;
+    padding: 5rem 0px 1rem 0;
+
+    // Medium devices (tablets, 768px and up)
+    @media (min-width: 768px) { 
+
+        // Structure Block
+        max-width: 544px !important;
+    }  
+
+    .mat-dialog-container {
+
+        // Structure Block
+        padding: 0;
+        box-shadow: none;
+        border-radius: var(--main-rounded) !important;
+
+
+        // Modfire Block 
+        overflow: visible;
+        
+        .close-btn {
+
+            // Structure Block
+            padding: 12px 24px;
+            display: flex;
+            justify-content: flex-end;
+            margin: 0;
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 6px;
+
+            img {
+                // Structure Block
+                width: 1rem;
+            }
+        }
+
+        .mat-dialog-content  {
+
+            // Structure Block
+            margin: 0;
+            // max-height: 80vh;
+            max-height: 69vh;
+
+            /* width */
+            &::-webkit-scrollbar {
+                width: 6px;
+                border-radius: 50%;
+            }
+
+            /* Track */
+            &::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+            
+            /* Handle */
+            &::-webkit-scrollbar-thumb {
+                background-image: linear-gradient(transparent, #aeaeae);
+                border-radius: 50%;
+            }
+
+        }
+
+    }
+    &.bg-none {
+        .mat-dialog-container  {
+            // Structure Block
+            background: none !important;
+
+            // Positioning Block 
+            position: relative;
+
+
+            .dialog__content {
+                // Structure Block
+                background-color: #fff;
+                border-radius: $mainRounded;
+            }
+        }
+    }
+
+    // X-Small devices (portrait phones, less than 576px)
+    @include bp-max-ex-576 {
+        // Structure Block
+        width: 100% !important;
+    }
+
+    &.confirmation-dialog {
+
+        @include bp-max-1200  {
+            // Structure Block
+            width: 50% !important;
+        }
+        @include bp-max-ex-576 {
+            // Structure Block
+            width: 100% !important;
+        }
+
+        .mat-dialog-content {
+            // Modfire Block 
+            overflow: hidden;
+        }
+    
+    }
+}
+
+.mat-dialog-actions {
+    // Structure Block 
+    min-height: auto !important;
+    margin-bottom: 0 !important;
+}
+
+.cdk-overlay-dark-backdrop {
+    // Structure Block 
+    background: rgba(0, 0, 0, 0.91);
+}
+
+
+
+.light-dialog {
+
+    .mat-dialog-content {
+
+        // Modifire Block 
+        overflow: visible;
+
+    }
+    
+    
+    .cdk-overlay-dark-backdrop {
+        // Structure Block 
+        background: rgba(0, 0, 0, 0.91);
+    }
+    
+    .mat-dialog-container {
+        // Structure Block 
+        background: transparent !important;
+        padding: 1rem 0px 1rem 0;
+    
+        // Positioning Block 
+        position: relative;
+    
+        // Modifire Block 
+        overflow: visible;
+    
+    }
+    
+    .mat-dialog-actions {
+        // Structure Block 
+        margin-bottom: 0;
+    }
+}
+
+
+
+
+// begin:: gradient-dialog 
+.gradient-dialog {
+
+    .dialog__content {
+
+        .mat-dialog-content {
+    
+            // Modifire Block 
+            overflow: visible;
+
+            // Structure Block
+            max-height: 100% !important; 
+    
+        }
+    }
+    
+    .mat-dialog-container {
+        // Structure Block 
+        background: transparent !important;
+        padding: 5rem 0px 1rem 0;
+    
+        // Positioning Block 
+        position: relative;
+    
+        // Modifire Block 
+        overflow: visible;
+    
+    }
+    
+    .mat-dialog-actions {
+        // Structure Block 
+        margin-bottom: 0;
+    }
+    
+    .gradient-border {
+    
+        // Positioning Block 
+        position: relative;
+    
+        
+        &::after {
+    
+            // Structure Block 
+            content: '';
+            width: calc(100% + 10px * 2);
+            height: calc(100% + 10px * 2);
+            background: var(--main-gradient);
+            border-radius: 8px;
+            background-size: 300% 300%;
+    
+            // Positioning Block 
+            position: absolute;
+            top: calc(-1 * 10px);
+            left: calc(-1 * 10px);
+    
+            // Modifire Block 
+            animation: gradient 3s ease alternate infinite;
+            opacity: .7;
+        }
+    }
+    
+    .logo {
+        // Positioning Block 
+        position: absolute;
+        left: 0;
+    
+        // Modifire Block 
+        transform: translate(-150%, -116%);
+    }
+
+}

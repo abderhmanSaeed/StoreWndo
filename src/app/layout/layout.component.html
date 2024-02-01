@@ -1,0 +1,37 @@
+<mat-drawer-container
+    [class.drawer-opened]="isOpening"
+    class="example-container h-100 overflow-visible" autosize>
+    <!-- [mode]=" isBpMax1200px ? 'over': 'side'" -->
+    <mat-drawer 
+        [position]="lang == LanguagesEnum.AR ? 'end' : 'start'"
+        [opened]="(!routerService.hasRoute('buyer-profile') && (!routerService.hasRoute('seller')))"
+        #drawer class="example-sidenav border shadow-sm" [mode]="'side'"
+        (closedStart)="closedStart()" (openedStart)="openedStart()" (openedChange)="openedChange($event)"
+    >
+        <sidebar (toggleDrawer)="drawer.toggle();" [draweState]="draweState" [openedStart]="isOpening"></sidebar>
+    </mat-drawer>
+  
+    <div class="example-sidenav-content d-flex flex-column h-100">
+
+        <!-- begin:: header  -->
+        <app-header [openedStart]="isOpening" [draweState]="draweState"></app-header>
+        <!-- end:: header  -->
+
+        <!-- begin:: body  -->
+        <!-- <ng-container *ngIf="!isBpMax1200px"> -->
+            <router-outlet></router-outlet>
+        <!-- </ng-container> -->
+        <!-- end:: body  -->
+
+        <!-- *ngIf="!isBpMax1200px" -->
+        <!-- begin:: footer  -->
+        <app-footer class="d-block mt-auto shadow-sm__top d-block border-top ms-1 border-start z-10 sticky bottom-0"></app-footer>
+        <!-- end:: footer  -->
+
+    </div>
+    
+    <!-- begin:: help components  -->
+    <help></help>
+    <!-- end:: help components  -->
+
+</mat-drawer-container>

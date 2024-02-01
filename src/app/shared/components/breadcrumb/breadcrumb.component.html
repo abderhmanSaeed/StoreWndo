@@ -1,0 +1,24 @@
+<nav
+    class="breadcrumb-wrapper"
+    aria-label="breadcrumb"   
+    style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);"
+>
+    
+    <ol class="breadcrumb mb-0"
+        [ngClass]="{'breadcrumb--slash': type == 'slash'}" 
+    >
+        <ng-container *ngFor="let item of isolated ? data : items">
+            <li [routerLinkActiveOptions]="{exact: true}" [routerLinkActive]="'active'" class="breadcrumb-item fw-600 text-[.85rem]"
+            [ngClass]="{'active': item?.active}"
+            >
+                <a 
+                    *ngIf="!item?.active"
+                    [routerLink]="[item?.url]"
+                    [queryParams]="item?.queryParams"
+                    routerLinkActive="router-link-active"
+                >{{ item.name | translate }}</a>
+                <span *ngIf="item?.active" >{{ item.name | translate }}</span>
+            </li>
+        </ng-container>
+    </ol>
+</nav>

@@ -1,0 +1,77 @@
+<mat-card class="px-3 py-4 border-[#ffa803] border-b-[3px] border-l-8 rounded-0">
+
+    <mat-card-title class="text-center text-blue text-[.9rem] mb-4">
+        {{ 'my-orders.order-summary' | translate }}
+    </mat-card-title>
+
+
+    <mat-card-content>	
+
+        <!-- begin:: order items section  -->
+        <section class="order-items">
+            <mat-card-subtitle class="text-[.85rem] text-center fw-500">
+                {{ 'my-orders.order-items' | translate }} ({{order?.orderItems?.length}})
+            </mat-card-subtitle>
+
+            <ng-container *ngIf="order?.orderItems else noItems">
+                <ul class="mb-0">
+                    <ng-container *ngFor="let item of order?.orderItems">
+                        <li class="flex items-center justify-between capitalize mb-1">
+                            <small class="key ltr:me-2 rtl:me-2 d-inline-block text-truncate">{{ item?.name }}</small>
+                            <small class="val">({{ item?.quantity }})</small>
+                        </li>
+                    </ng-container>
+                </ul>
+            </ng-container>
+
+        </section>
+        <!-- end:: order items section  -->
+
+
+        <!-- begin:: separator  -->
+        <hr class="my-4 bg-[#ffa803]">
+        <!-- begin:: separator  -->
+
+
+        <!-- begin:: order price section  -->
+        <section class="order-price">
+            <mat-card-subtitle class="text-[.85rem] text-center fw-500">
+                {{ 'my-orders.order-price' | translate }}
+            </mat-card-subtitle>
+            <ul class="mb-0">
+                <li class="flex items-center justify-between capitalize mb-1">
+                    <small class="key ltr:me-2 rtl:me-2">{{ 'my-orders.price' | translate }}:</small>
+                    <small class="val">{{ order?.actualPrice }} {{ 'shared.EGP' | translate }}</small>
+                </li>
+                <!-- <li class="flex items-center justify-between capitalize mb-1">
+                    <small class="key ltr:me-2 rtl:me-2">Taxes:</small>
+                    <small class="val">{{  }} {{ 'shared.EGP' | translate }}</small>
+                </li> -->
+                <li class="flex items-center justify-between capitalize mb-1">
+                    <small class="key ltr:me-2 rtl:me-2">{{ 'my-orders.discount' | translate }}:</small>
+                    <small class="val">{{ order?.voucherAmount }} {{ 'shared.EGP' | translate }}</small>
+                </li>
+                <li class="flex items-center justify-between capitalize mb-2">
+                    <small class="key ltr:me-2 rtl:me-2">{{ 'my-orders.shipping-fee' | translate }}:</small>
+                    <small class="val">{{ order?.shippingFees }} {{ 'shared.EGP' | translate }}</small>
+                </li>
+                <li class="flex items-center justify-between capitalize fw-bold">
+                    <small class="key ltr:me-2 rtl:me-2">{{ 'my-orders.total-price' | translate }}:</small>
+                    <small class="val">{{ order?.totalOrderPrice }} {{ 'shared.EGP' | translate }}</small>
+                </li>
+            </ul>
+        </section>
+        <!-- end:: order price section  -->
+
+    </mat-card-content>
+</mat-card>
+
+
+
+
+<!-- if the order is empaty  -->
+<ng-template #noItems>
+    <div class="text-center">
+        <span class="text-[#7A8D9C99] fw-500">{{ 'my-orders.you-didnt-add-any-item-to-your-order' | translate }}</span>
+    </div>
+</ng-template>

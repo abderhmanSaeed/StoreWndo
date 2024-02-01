@@ -1,0 +1,50 @@
+<section>
+    <header class="mb-2 flex">
+        <h4 class="text-blue fw-600">{{ sectionTitle | translate }}</h4>
+    </header>
+
+    <!-- begin:: sections -->
+    <ng-container *ngIf="sections?.length && !categories.length">
+        <div class="flex gap-4 flex-wrap justify-content-center">
+            <ng-container *ngFor="let item of sections">
+                <button (click)="onSectionClick(item)" class="btn p-0">
+                    <search-type-card [data]="item"></search-type-card>
+                </button>
+            </ng-container>
+        </div>
+    </ng-container>
+    <!-- end:: sections -->
+
+
+    <!-- begin:: categories -->
+    <ng-container *ngIf="categories?.length && !sections?.length">
+        <div class="flex gap-4 flex-wrap justify-content-center">
+            <ng-container *ngFor="let item of categories">
+                <a 
+                    class="btn p-0"
+                    [routerLink]="['/search-results/products']"
+                    [queryParams]="{
+                        'text': item?.name,
+                        'section-name': sectionTitle,
+                        'category-name': item?.name,
+                        'type': searchTypes.Category
+                    }"
+                >
+                    <search-type-card [data]="item" [type]="searchTypes.Category"></search-type-card>
+                </a>
+            </ng-container>
+        </div>
+    </ng-container>
+    <!-- end:: categories -->
+
+    
+    <!-- begin no data  -->
+    <no-data
+        size="xl"
+        class="block"
+        *ngIf="!sections?.length && !categories.length"
+        [message]="'shared.no-results-found' | translate"
+    ></no-data>
+    <!-- end no data  -->
+
+</section>

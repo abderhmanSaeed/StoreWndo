@@ -1,0 +1,43 @@
+<section class="track-order animate__animated animate__fadeIn mt-3">
+
+    <header class="mb-3 text-[.95rem] text-[#011447] flex justify-between items-center">
+        <div class="start"><strong>{{ 'my-orders.order-no' | translate }} {{ order?.orderNumber }}</strong></div>
+        <div class="end">
+            <span class="key me-1">{{ 'my-orders.order-statues' | translate }}</span>
+            <span class="val"
+            [ngClass]="{
+                'text-[#4EA3F8]': order?.orderState == orderStatsObject.ordered.key,
+                'text-[#FA0029]': order?.orderState == orderStatsObject.cancelled.key,
+                'text-[#fca908]': order?.orderState == orderStatsObject.shipping.key,
+                'text-[#F4D014]': order?.orderState == orderStatsObject.returned.key,
+                'text-[#02A207]': order?.orderState == orderStatsObject.delivered.key
+            }"
+            >
+                {{ order?.orderState == orderStatsObject.cancelled.key ? ( orderStatsObject.cancelled.label | translate ) : null }}
+                {{ order?.orderState == orderStatsObject.shipping.key ? ( orderStatsObject.shipping.label | translate ) : null }}
+                {{ order?.orderState == orderStatsObject.returned.key ? ( orderStatsObject.returned.label | translate ) : null }}
+                {{ order?.orderState == orderStatsObject.delivered.key ? ( orderStatsObject.delivered.label | translate ) : null }}
+                {{ order?.orderState == orderStatsObject.ordered.key ? ( orderStatsObject.ordered.label | translate ) : null }}
+            </span>
+        </div>
+    </header>
+
+
+    <div class="track-order__items mt-5">
+        <ng-container *ngFor="let item of order?.sellers">
+            <track-order-item [data]="item" class="block"></track-order-item>
+        </ng-container>
+    </div>
+    
+
+    <!-- begin:: order actions -->
+    <div class="cart-actions flex items-center justify-center pt-[5rem] pb-[4rem]">
+        <app-button
+            [label]="'my-orders.order-details' | translate"
+            [routerLink]="['/buyer-profile/orders', order?.orderNumber]"
+            panelclass="max-w-100 w-[250px] mx-3 !rounded-full lh-normal !py-[.65rem] uppercase"  
+        ></app-button>
+    </div>
+    <!-- end:: order actions -->
+
+</section>

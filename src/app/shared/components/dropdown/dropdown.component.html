@@ -1,0 +1,59 @@
+<div
+    display="dynamic"
+    [placement]="lang == LanguagesEnum.AR ? 'bottom-start' : 'bottom-end'"
+    class="d-inline-block"
+    class="dropdown-wrapper"
+    ngbDropdown container="body"
+    [ngClass]="{'dropdown-wrapper--select': asSelect}"
+>
+    <button
+        mat-stroked-button
+        type="button"
+        class="btn text-[.9rem] d-flex align-items-center justify-content-center text-start text-blue px-2 !py-[.5rem] min-w-auto border-0"
+        id="dropdownBasic1"
+        ngbDropdownToggle
+        [ngClass]="{'arrow-none': dropdownToggleIcon != 'default'}"
+    >        
+
+        <ng-container *ngIf="dropdownToggleIcon != 'default'">
+            <div class="icon">
+                <fa-icon class="d-flex text-[1rem] text-[#4E4E78]" [icon]="faEllipsisVertical"></fa-icon>
+            </div>
+        </ng-container>
+
+        <ng-container *ngIf="label">
+            <small class="label text-[#969696] ltr:me-1 rtl:me-1">
+                {{ label }}
+            </small>
+        </ng-container>
+
+        <small *ngIf="selectedItem" class="val text-blue ltr:me-2 rtl:me-2">
+            {{ selectedItem }}
+        </small>
+
+        <button *ngIf="selectedItem" (click)="$event.stopPropagation(); clear()" class="clear-btn ms-auto me-2 text-primary">
+            <small>x</small>
+        </button>
+
+    </button>
+    <div
+        ngbDropdownMenu
+        aria-labelledby="dropdownBasic1"
+        class="border-0 shadow mt-2 dropdown--arrow p-2 min-w-[200px] main-rounded--force"
+        [ngClass]="{'dropdown-items--select': asSelect}"
+    >
+        <ng-container *ngFor="let item of dropdownItems">
+            <button (click)="onChabge(item)" mat-raised-button class="dropdown-item !flex !items-center text-blue--force !bg-[#fff7f8] !rounded-md !px-[.9rem] !text-[.8rem]" ngbDropdownItem>
+                <span class="w-100 flex items-center">
+                    <ng-container *ngIf="item?.imgPath">
+                        <span class="icon w-[23px]" [innerHTML]="item?.imgPath"></span>
+                    </ng-container>
+                    <ng-container *ngIf="item?.icon">
+                        <fa-icon [class]="item?.iconClass" class=" icon d-flex fw-bold items-center w-[23px] text-[.8rem]" [icon]="item?.icon"></fa-icon>
+                    </ng-container>
+                    <span> {{ item?.label | translate }} </span>
+                </span>
+            </button>
+        </ng-container>
+    </div>
+</div>

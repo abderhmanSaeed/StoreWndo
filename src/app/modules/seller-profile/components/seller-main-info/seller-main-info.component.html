@@ -1,0 +1,30 @@
+<section class="prof-base-info flex items-start px-2 relative">
+    <div class="start ltr:me-3 rtl:me-3">
+        <div class="user-img w-[110px] h-[110px]">
+            <img 
+                (error)="onImgError($event)"
+                [src]="data?.photo ? data?.photo : 'assets/media/profile/profile.png'"
+                alt="Profile image">
+        </div>
+    </div>
+    <div class="end flex-grow-1 flex flex-col">
+        <h4 class="user-title mb-0 fw-600 !text-[.93rem] text-truncate">{{ data?.name }}</h4>
+        <span class="text-gray mb-1 inline-block prof-base-info__bio">{{ data?.bio }}</span>
+        <ng-container *ngIf="data?.rate != null">
+            <bar-rating [readOnly]="true" [(rate)]="data.rate" [max]="5"></bar-rating>
+        </ng-container>
+        <div class="flex justify-end mt-4">
+            <follow [isFollowed]="data?.isFollowing" [userId]="data?.id"></follow>
+        </div>
+    </div>
+    <auk-sharing 
+        [content]="sellerRoute+data?.id"
+        class="absolute z-10 bottom-0 ltr:left-0 rtl:right-0"
+        panelClass="shadow bg-white !border-0"
+        [panelStyle]="{
+            'width': '28px',
+            'height': '28px',
+            'font-size': '1.1rem'
+        }"
+    ></auk-sharing>
+</section>

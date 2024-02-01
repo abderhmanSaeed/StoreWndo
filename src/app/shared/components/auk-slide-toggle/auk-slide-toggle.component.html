@@ -1,0 +1,21 @@
+<div 
+    [class]="panelClass + ' ' + 'auk-slide--'+size"
+    class="auk-slide d-flex flex-center rounded-pill border py-1 px-2 text-gray"
+    [ngClass]="{
+        'flex-col-reverse': vertical
+    }"
+>
+    <small 
+        [class]="labelPanelClass"
+        [class.text-primary]="value"
+        class="auk-slide__label ps-1 lh-normal fw-500 whitespace-nowrap"
+        [ngClass]="{
+            'me-2': !vertical
+        }"
+    >
+        {{ label }}
+    </small>
+    <div class="auk-slide__btn d-flex align-items-center">
+        <mat-slide-toggle [disabled]="disabled" [(ngModel)]="value" (change)="onChange.emit($event)" color="primary"></mat-slide-toggle>
+    </div>
+</div>

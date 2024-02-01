@@ -1,0 +1,15 @@
+:host {
+    ::ng-deep {
+        .mat-card-header-text {
+            // Structure Block 
+            margin: 0 !important;
+
+            // Typography Block 
+            text-overflow: ellipsis;
+            white-space: nowrap;
+
+            // Modifire Block 
+            overflow: hidden;
+        }
+    }
+}

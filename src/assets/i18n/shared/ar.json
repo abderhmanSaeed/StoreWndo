@@ -1,0 +1,230 @@
+{
+  "header": {
+    "search": "ابحث",
+    "sell": "بيع",
+    "cart": "سلة",
+    "wallet": "المحفظة",
+    "favorites": "قائمة المفضلات",
+    "notification": "الإشعارات",
+    "arabic": "عربي",
+    "english": "English",
+    "as-buyer": "كمشتري",
+    "as-guest": "كزائر",
+    "my-profile": "حسابي",
+    "my-orders": "طلباتي",
+    "my-wish-list": "قائمة مفضلاتي",
+    "setting": "الاعدادت",
+    "logout": "تسجيل خروج"
+  },
+
+  "sidebar": {
+    "explore": "إستكشف",
+    "knowledge-gate": "الموقع التعريفى",
+    "sections": "الأقسام",
+    "watch": "شاهد",
+    "demo": "النسخة تجريبية"
+  },
+
+  "footer": {
+    "copyright": "جميع الحقوق محفوظة لشركة وندو لحلول الأعمال.",
+    "download-now": "حمل الآن",
+    "about-us": "عن الشركة",
+    "help-support": "المساعدة - الدعم",
+    "careers": "الوظائف",
+    "refund-cancellation": "الإسترجاع والإلغاء",
+    "terms-conditions": "الشروط والأحكام",
+    "privacy-policy": "سياسة الخصوصية",
+    "cookie-policy": "اتفاقية ملفات التعريف",
+    "offer-terms": "بنود العروض",
+    "sell-with-us": "بيع معنا",
+    "infringement": "مخالفة",
+    "security": "الحماية"
+  },
+
+  "validations": {
+    "icon": "من فضلك اختر ايكون",
+    "required": "هذا الجزء مطلوب",
+    "email": "من فضلك أدخل بريد إلكتروني صحيح",
+    "mustMatch": "يجب تطابق كلمة السر",
+    "complexPassword": "استخدم كلمة سر قوية",
+    "invalidOldPassword": "لا يمكنك استخدام كلمة السر القديمة"
+  },
+
+  "actions": {
+    "delete": "حذف",
+    "edit": "تعديل",
+    "ok": "موافق",
+    "save": "حفظ",
+    "try-again": "حاول مرة أخرى",
+    "follow": "متابعة",
+    "unfollow": "إلغاء المتابعة",
+    "add-to-cart": "أضف للسلة",
+    "check-out": "الدفع",
+    "discard": "تجاهل",
+    "reply": "رد",
+    "report": "ابلاغ",
+    "cancel": "الغاء",
+    "dislike": "لم يعجبني",
+    "like": "اعجبني",
+    "buy-now": "اشتري الآن",
+    "cancel-all": "الغاء الكل",
+    "refund-all": "استرجاع الكل",
+    "track-the-order": "متابعة الطلب",
+    "refund": "استرجاع",
+    "submit": "إرسال",
+    "confirm": "تأكيد",
+    "back": "رجوع",
+    "yes": "اوافق",
+    "no": "لا اوافق",
+    "following": "متابعة",
+    "block": "حظر",
+    "mute": "صامت",
+    "un-mute": "إلغاء كتم الصوت",
+    "clear-all": "امسح الكل",
+    "add-rate": "فيم المنتج",
+    "review": "تقيم",
+    "later": "لاحقا",
+    "continue": "استمر",
+    "join-live": "إنضم للايف",
+    "add-review": "أضف تقييم"
+  },
+
+  "payment-methods": {
+    "cash-on-delievery": "الدفع عند الإستلام",
+    "extra-fee-will-be-applied": "سيتم تطبيق مصاريف إضافية",
+    "credit-card": "بطاقة الإئتمان",
+    "e-wallet": "محفظة إلكترونية",
+    "wallet-balance": "رصيد المحفظة"
+  },
+
+  "confirmations": {
+    "logout-confirmation": "تأكيد تسجيل الخروج",
+    "delete-item": "حذف عنصر",
+    "delete-address": "حذف عنوان",
+    "delete-comment": "حذف التعليق",
+    "order-not-confirmed": "الطلب غير مؤكد",
+    "are-you-sure-logout": "هل أنت متأكد من تسجيل الخروج",
+    "you-want-delete-order": "هل ترغب في حذف هذا العنصر من طلبك؟",
+    "you-want-delete-comment": "هل ترغب في حذف هذا التعليق من تعليقات المنتج؟",
+    "you-want-to-delete-address": "هل ترغب في حذف هذا العنوان من عناوينك؟",
+    "credit-card-payment-failed": "فشل الدفع ببطاقة الائتمان: برجاء الرجوع لمصدر طرح البطاقة وإدارتها"
+  },
+
+  "seller-dialog": {
+    "seller-mode": "وضع البائع",
+    "coming-soon": "قريبًا",
+    "available-in-mobile-app-only": "هذه الخاصية متاحة حالياً عن طريق نسخة تطبيق الهاتف فقط."
+  },
+
+  "shared": {
+    "add-rate-title": "نتمنى أن يعجبك منتجنا",
+    "items": "عناصر",
+    "comments": "التعليقات",
+    "edit-your-order": "تعديل طلبك",
+    "determine-your-preference": "حدد ما تفضله",
+    "choose-color": "إختر اللون",
+    "choose-size": "إختر الحجم",
+    "quantity": "الكمية",
+    "followers": "متابعون",
+    "following": "المتابعات",
+    "likes-received": "الاعجاب المتلقى",
+    "LE": "ج.م",
+    "EGP": "ج.م",
+    "no-results-found": "لم يتم العثور على نتائج",
+    "copied": "تم النسخ",
+    "follwers": "المتابعون",
+    "follwing": "المتابعين",
+    "responsive-uc-hi": "مرحبًا ، احصل على وصول كامل إلى وندو",
+    "responsive-uc-note": "استخدم تطبيق الهاتف المحمول",
+    "likes-recieved": "الاعجاب المتلقى",
+    "liked-your-comments": "أحبب تعليقك",
+    "reasons-of-report": "أسباب الأبلاغ",
+    "why-report": "لماذا تقوم بالتبليغ عن هذا؟",
+    "report-reasons": {
+      "suspicious": "مريبة أو غير مرغوب فيها أو مزيفة",
+      "harassment": "التحرش أو الكلام البغيض",
+      "violence": "عنف أو أذى جسدي",
+      "adult-content": "محتوى للبالغين",
+      "intellectual-property": "التعدي على الملكية الفكرية أو التشهير"
+    },
+    "see-all": "اظهار الكل",
+    "enter-your-search-term": "الرجاء إدخال مصطلح البحث في مربع البحث",
+    "recent-search": "البحث الأخير",
+    "no-recent-searches": "لا توجد عمليات بحث جديدة",
+    "sections": "الأقسام",
+    "category": "فئة",
+    "categories": "التصنيفات",
+    "subcategory": "أقسام فرعية",
+    "store": "متاجر",
+    "products": "منتجات",
+    "recently-viewed": "منتجات شاهدتها مؤخرًا",
+    "sorted-by": "مرتبة حسب:",
+    "recently-added": "أضيف مؤخرا",
+    "low-to-high": "السعر من الارخص للاعلى",
+    "high-to-low": "السعر الاعلى الى الادنى",
+    "offers": "عروض",
+    "live": "لايف",
+    "out-of-stock": "إنتهى من المخزن",
+    "share-your-request-seller": "شارك طلبك مع البائع"
+  },
+
+  "breadcrumb": {
+    "home": "الصفحة الرئيسية",
+    "cart": "السلة",
+    "shipping-payment": "الشحن والدفع",
+    "confirmation": "تأكيد",
+    "profile": "الملف الشخصي",
+    "my-profile": "My Profile",
+    "my-orders": "طلباتي",
+    "my-wallet": "محفظتي",
+    "my-addresses": "عناويني",
+    "my-wishList": "قائمتي المفضلة",
+    "payment-methods": "طرق الدفع",
+    "settings": "الإعدادات",
+    "notifications": "الإشعارات",
+    "reviews": "التقييمات",
+    "all-products": "جميع المنتجات"
+  },
+
+  "address-form": {
+    "edit-the-address": "تعديل العنوان",
+    "add-new-address": "أضف عنوان جديد",
+    "address-name": "اسم العنوان",
+    "enter-your-address": "أدخل عنوانك",
+    "address-icon": "رمز العنوان",
+    "street-address": "شارع العنوان",
+    "enter-your-street-address": "أدخل عنوان شارعك",
+    "city": "المدينة",
+    "enter-your-city": "أدخل مدينتك",
+    "zone": "المنطقة",
+    "enter-your-zone-name": "أدخل اسم منطقتك",
+    "district": "الحي",
+    "enter-your-district-name": "أدخل اسم حيك",
+    "building-no": "رقم المبنى.",
+    "enter-your-building-number": "أدخل رقم المبنى",
+    "landMark": "علامة مميزة",
+    "if-you-have-landmark": "هل هناك علامة مميزة"
+  },
+
+  "meassges": {
+    "loged-out": "تم تسجيل خروج المستخدم بنجاح",
+    "loged-in": "قام المستخدم بتسجيل الدخول بنجاح",
+    "submission-sent": "تم الارسال بنجاح",
+    "kindly-add-feedback": "يرجى إضافة ملاحظاتك"
+  },
+
+  "notifications": {
+    "notifications-didnt-publish-content-yet": "قائمة الإخطارات الخاصة بك فارغة",
+    "notification-deleted-message": "تم حذف الإشعار بنجاح",
+    "notification-clearAll-message": "تم حذف جميع الإشعارات بنجاح",
+    "kindly-add-feedback": "يرجى إضافة ملاحظاتك",
+    "share-request-with-seller": "تم إرسال طلبك للبائع بنجاح"
+  },
+
+  "reviews": {
+    "product-reviews": "تقييمات المنتج",
+    "verified-ratings": "التقييمات التي تم التحقق منها",
+    "verified-customer-reviews": "التحقق من آراء العملاء",
+    "no-reviews": "لا يوجد تقييمات لهذا المنتج"
+  }
+}

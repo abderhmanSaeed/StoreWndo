@@ -1,0 +1,56 @@
+<div (click)="openVideoPopup()" class="product-video w-[103px] h-[161px] max-w-[100%] position-relative main-rounded overflow-hidden cursor-pointer">
+
+    <!-- begin:: video thumbnail  -->
+    <img (error)="onImgError($event)" *ngIf="video.urlThumbnail else imgPlaceholder" class="video-thumbnail-img img-fluid fit-img w-100 h-100" [src]="video.urlThumbnail" alt="Ad Image">
+    <!-- end:: video thumbnail  -->
+
+
+         <!-- begin:: overlay -->
+         <div class="video-thumbnail-overlay position-absolute d-flex align-items-center justify-content-center">
+         <play-btn></play-btn>
+        
+
+         <div class="absolute left-0 top-[4px]">
+             <button class="btn py-0 px-1 w-[22px] h-[22px] flex justify-center text-blue rounded-full expand-btn text-[.87rem]">
+                 <fa-icon class="d-flex text-white" [icon]="faExpand"></fa-icon>
+             </button>
+         </div>
+
+
+         <small class="absolute right-0 top-[4px] px-1 text-white text-[.7rem]">03:20</small>
+         
+         <!-- begin:: owner info  -->
+         <button 
+             type="button"
+             class="btn d-flex px-1 py-0 align-items-center justify-content-start absolute left-0 bottom-[4px] text-white hover:text-white text-truncate max-w-[100%]"
+             >
+                <owner-small-card
+                    [ownerId]="seller?.id"
+                    [name]="seller?.name"
+                    class=" max-w-[100%] block"
+                    [imagePath]="seller?.imagePath"
+                    txtPanelClass="text-white text-[.7rem]"
+                    imgBoxPanelClass="w-[20px] h-[20px]"
+                ></owner-small-card>
+         </button>
+         <!-- end:: owner info  -->
+     </div>
+     <!-- end:: overlay -->
+
+</div>
+
+
+
+
+<ng-template #imgPlaceholder>
+    <img-placeholder
+    class="
+        w-full
+        h-full
+        flex
+        items-center
+        justify-center
+        bg-white
+    "
+    ></img-placeholder>
+</ng-template>

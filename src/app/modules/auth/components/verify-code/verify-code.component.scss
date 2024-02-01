@@ -1,0 +1,70 @@
+.otp {
+    ::ng-deep {
+        .wrapper {
+
+            // Structure Block 
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+
+            .otp-input {
+
+                // Structure Block 
+                padding: 0;
+                margin: .5rem .5rem !important;
+                border-color: #CECECE;
+                border-radius: 8px;
+                -webkit-border-radius: 8px;
+                -moz-border-radius: 8px;
+                -ms-border-radius: 8px;
+                -o-border-radius: 8px;
+                background: transparent;
+
+                // Typography Block 
+                font-size: .9rem;
+                color: #CECECE;
+
+                &::selection {
+
+                    // Typography Block 
+                    color: #fff;
+
+                    // Structure Block 
+                    background-color: #d44842;
+                }
+
+                // Medium devices (tablets, less than 992px)
+                @media (max-width: 991.98px) {
+
+                    // Structure Block 
+                    width: 37px !important;
+                    height: 37px !important;
+                    margin: 0.3rem 0.3rem !important;
+                }
+
+                // X-Small devices (portrait phones, less than 576px)
+                @media (max-width: 575.98px) { 
+
+                    // Structure Block 
+                    width: 34px !important;
+                    height: 34px !important;
+
+                    // Typography Block 
+                    font-size: .8rem;
+
+                }
+
+            }
+        }
+        .invalid {
+            .otp-input {
+
+                // Structure Block 
+                border-color: #d44842;
+            }
+        }
+
+      
+    }
+
+}

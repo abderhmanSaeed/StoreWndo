@@ -1,0 +1,12 @@
+<ng-container *ngFor="let item of brands">
+    <button (click)="signInWith(item)" class="main-rounded--force py-2 px-4 h-[inherit] mx-2 flex items-center justify-center" mat-raised-button>
+        <img width="18" *ngIf="item?.svg" [src]="item?.svg" [alt]="item?.name">
+        <fa-icon
+            class="d-flex fa-lg justify-center items-center" 
+            [style.color]="item?.color"
+            *ngIf="item?.icon"
+            [icon]="item?.icon"
+        ></fa-icon>
+    </button>
+</ng-container>
+

@@ -1,0 +1,30 @@
+<section class="item-quantity border flex main-rounded h-[32px] overflow-hidden">
+    <button 
+        [disabled]="loading"
+        (click)="decreaseQuantity()"
+        mat-button class="flex justify-center items-center min-w-auto p-2 mx-0 w-[35px] rounded-0">
+        <fa-icon
+            [icon]="faMinus"
+            [class.text-primary]="quantity > 1"
+            class="d-flex justify-center items-center text-[#d9d9e0]"
+        ></fa-icon>
+    </button>
+    <div class="input-wrapper relative flex items-center justify-center">
+        <input
+            min="1"
+            type="number"
+            disabled="true"
+            [(ngModel)]="quantity"
+            aria-describedby="item-quantity"
+            class="form-control w-[35px] text-center p-1 rounded-0 !border-t-[0px] !border-b-[0px] bg-transparent"
+        >
+        <spinner *ngIf="loading" class="absolute"></spinner>
+    </div>
+    <button
+        [disabled]="loading"
+        (click)="increaseQuantity()"
+        mat-button class="flex justify-center items-center min-w-auto p-2 mx-0 w-[35px] rounded-0"
+    >
+        <fa-icon class="d-flex justify-center items-center text-primary" [icon]="faPlus"></fa-icon>
+    </button>
+</section>

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="17" height="18" viewBox="0 0 17 18">
+  <defs>
+    <radialGradient id="radial-gradient" cx="0.5" cy="0.154" r="0.922" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#4ea3f8"/>
+      <stop offset="1" stop-color="#0073e4"/>
+    </radialGradient>
+  </defs>
+  <g id="Group-8" transform="translate(0.154 0.5)">
+    <ellipse id="Oval" cx="8" cy="8.5" rx="8" ry="8.5" transform="translate(0.346 0)" stroke="#fff" stroke-width="1" fill="url(#radial-gradient)"/>
+    <path id="_2742762_chat_bubble_comment_message_speech_icon" data-name="2742762_chat_bubble_comment_message_speech_icon" d="M18.105,9.5h-6.98A1.129,1.129,0,0,0,10,10.626v4.728a1.129,1.129,0,0,0,1.126,1.126h.9v1.914l2.814-1.914h3.265a1.129,1.129,0,0,0,1.126-1.126V10.626A1.129,1.129,0,0,0,18.105,9.5Zm-5.651,2.251h2.3a.338.338,0,0,1,0,.675h-2.3a.338.338,0,1,1,0-.675ZM16.552,14h-4.1a.338.338,0,1,1,0-.675h4.1a.338.338,0,0,1,0,.675Z" transform="translate(-5.997 -5.241)" fill="#fff"/>
+  </g>
+</svg>

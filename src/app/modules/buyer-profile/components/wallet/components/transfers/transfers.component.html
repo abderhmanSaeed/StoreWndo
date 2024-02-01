@@ -1,0 +1,93 @@
+<form [formGroup]="form" class="p-3 bg-white main-rounded w-100 h-100 flex flex-col justify-between">
+
+   <div class="top">
+       
+        <ng-container *ngIf="isCollapsed">
+            <field
+                type="text"
+                ngDefaultControl
+                formControlName="amount"
+                [showValidations]="formError"
+                [control]="form | getControl: 'amount'"        
+                [label]="'wallet.transfer-amount' | translate"
+                [placeholder]="'wallet.enter-your-transfer-amount' | translate"
+                [panelclass]="'border-0 px-0 !border-b !border-solid rounded-0 !border-[#E5E6E8] lg:w-[300px]'"
+            ></field>
+
+            <!-- *ngIf="requestTransferd" -->
+            <!-- brgin:: hint  -->
+            <div class="hint flex items-start text-blue mb-3 mt-4">
+                <img class="ltr:me-2 rtl:me-2" width="16" src="assets/media/svg/info.svg" alt="Info Icon">
+                <span class="text-[.8rem]">{{ requestTransferd ? ('wallet.transfer-hint' | translate) : ('wallet.will-transfer-hint' | translate) }}</span>
+            </div>
+            <!-- end:: hint  -->
+        </ng-container>
+        
+
+        <div class="transfer-to mt-10">
+            <button
+                type="button"
+                class="btn p-0 flex items-center"
+                (click)="collapse.toggle()"
+                [attr.aria-expanded]="!isCollapsed"
+                aria-controls="collapseExample"
+                >
+                <h3 class="text-blue !text-[.9rem] mb-0 ltr:me-5 rtl:me-5 !font-semibold">{{ 'wallet.transefer-to-saved-account' | translate }}</h3>
+                <fa-icon
+                    class="d-flex text-[.8rem] rtl:rotate-180 transition-all"
+                    [icon]="faChevronRight"
+                    [ngClass]="{
+                        'ltr:rotate-180': !isCollapsed,
+                        'rtl:rotate-0': !isCollapsed
+                    }"
+                ></fa-icon>
+            </button>
+
+            <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+                <div class="card border-0 p-0">
+                    <div class="card-body p-0 mt-2">
+                        <transfer-form></transfer-form>
+                        <!-- brgin:: hint  -->
+                        <div class="hint flex items-start text-blue my-3 mb-10">
+                            <img class="ltr:me-2 rtl:me-2" width="16" src="assets/media/svg/info.svg" alt="Info Icon">
+                            <div class="end flex flex-col">
+                                <span class="text-[.85rem]">{{ 'wallet.for-changing-this-account-details' | translate }}</span>
+                                <span class="text-[.8rem]">{{ 'wallet.changing-account-details' | translate }}</span>
+                            </div>
+                        </div>
+                        <!-- end:: hint  -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+   </div>
+
+
+   <div *ngIf="!isCollapsed" class="actions flex justify-end gap-3">
+        <app-button
+            mat-dialog-close
+            [stroked]="true"
+            (click)="collapse.toggle()"
+            [label]="'actions.back' | translate"
+            panelclass="max-w-100 !rounded-full !text-[#9599B3] py-0 !border-[transparent] border-0"
+        ></app-button>
+    </div>
+
+
+    <div *ngIf="isCollapsed" class="actions flex justify-end gap-3">
+        <app-button
+            (click)="submit()"
+            [label]="'actions.confirm' | translate"
+            [panelclass]="'w-100 py-0 px-5 rounded-pill'"
+        ></app-button>
+        <app-button
+            mat-dialog-close
+            [stroked]="true"
+            [label]="'actions.discard' | translate"
+            panelclass="max-w-100 !rounded-full py-0 !border-[transparent] border-0"
+        ></app-button>
+    </div>
+
+</form>

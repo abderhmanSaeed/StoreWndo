@@ -1,0 +1,42 @@
+.fav-btn {
+    // Structure Block 
+    width: 23px;
+    height: 23px;
+    min-width: auto;
+
+    mat-icon {
+
+        // Structure Block 
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        // Typography Block 
+        color: #AAB2B7;
+        font-size: inherit;
+
+    }
+
+    &--liked {
+        mat-icon {
+
+            // Typography Block 
+            color: var(--bs-primary);
+        }
+
+        img {
+            
+            // Structure Block 
+            display: none;
+
+
+            &.active {
+                // Structure Block  
+                display: block;
+            }
+        }
+    }
+
+}

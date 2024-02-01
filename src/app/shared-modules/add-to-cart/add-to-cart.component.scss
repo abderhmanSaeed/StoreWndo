@@ -1,0 +1,45 @@
+
+.btn-hover-show-icon {
+    .btn-icon {
+
+        // Positioing Block 
+        position: absolute;
+        top: 50%;
+
+        // Modifire Block 
+        transform: translate(-100%, -50%);
+        transition: all .3s ease-in-out;
+        opacity: 0;
+
+    }
+
+    small {
+
+        // Modifire Block 
+        transition: all .3s ease-in-out;
+
+        // Structure Block 
+        display: inline-block;
+
+        
+    }
+
+    &:hover {
+        .btn-icon {
+
+            // Modifire Block 
+            transition: all .3s ease-in-out;
+            opacity: 1;
+
+        }
+
+
+        small {
+
+            // Modifire Block 
+            transform: translateX(11px);
+            transition: all .3s ease-in-out;
+
+        }
+    }
+}

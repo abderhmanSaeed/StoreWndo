@@ -1,0 +1,65 @@
+<section class="p-4 text-white my-2">
+
+
+    <!-- begin:: logo  -->
+    <div class="logo">
+        <img width="184" src="assets/media/logos/white-logo.svg" alt="Logo">
+    </div>
+    <!-- end:: logo  -->
+
+    
+    <div class="dialog__content main-rounded gradient-border text-center">
+        <div class="position-relative z-[1] px-4 py-5 bg-[#353434e3]">
+    
+            <!-- begin:: closer  -->
+            <div class="dialog__closer absolute top-[13px] right-[13px]">
+                <button color="bg-gray-700" class="bg-gray-700 text-white shadow-xl w-[35px] h-[35px] d-flex items-center justify-center lh-normal" mat-dialog-close mat-mini-fab aria-label="Example icon button with a home icon">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </div>
+            <!-- end:: closer  -->
+
+    
+            <!-- begin:: header  -->
+            <div class="text-center mb-3 py-2">
+                <span class="mb-4 text-[1rem] gothic-font" mat-dialog-title>
+                    {{ 'seller-dialog.seller-mode' | translate }}
+                </span>
+                <h2 class="gothic-font h1 mb-0 !text-[1.5rem]">{{ 'seller-dialog.coming-soon' | translate }}</h2>
+            </div>
+            <!-- end:: header  -->
+
+            <span class="text-[#C2C5D2] mb-4 block">{{ 'seller-dialog.available-in-mobile-app-only' | translate }}</span>
+
+            <div class="apps text-center mb-5">
+                <span class="fw-400 block mb-3">{{ 'footer.download-now' | translate }}</span>
+
+                <div class="apps__imgs flex justify-center">
+                    <ul class="list-unstyled d-flex apps-list mb-0 flex-wrap">
+                        <ng-container *ngFor="let item of apps">
+                            <li class="apps-list__item mx-[.45rem]">
+                                <a [href]="item?.url" target="_blank" rel="noopener">
+                                    <img width="99" class="img-fluid" [src]="item?.imagePath" [alt]="item?.imageAlt">
+                                </a>
+                            </li>
+                        </ng-container>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div mat-dialog-content class="mx-0 !px-[6rem]">
+                <app-button
+                    class="block"
+                    mat-dialog-close
+                    [label]="'actions.ok' | translate"
+                    [panelclass]="'w-100 py-1 rounded-pill'"
+                ></app-button>
+            </div>
+    
+    
+    
+        </div>
+    </div>
+
+</section>

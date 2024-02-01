@@ -1,0 +1,68 @@
+.radio-btn {
+    line-height: normal;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
+    color: #96A1AB;
+}
+  
+.radio-btn + .radio-btn {
+    margin-top: 1em;
+}
+
+  
+input[type="radio"] {
+    /* Add if not using autoprefixer */
+    -webkit-appearance: none;
+    /* Remove most all native input styles */
+    appearance: none;
+    /* For iOS < 15 */
+    // background-color: var(--form-background);
+    /* Not removed via appearance */
+    margin: 0;
+  
+    font: inherit;
+    color: currentColor;
+    width: 15px;
+    height: 15px;
+    border: 0.12em solid #96A1AB;
+    border-radius: 50%;
+    transform: translateY(-0.075em);
+  
+    display: grid;
+    place-content: center;
+
+
+    &:checked {
+
+        // Structure Block 
+        border-color: var(--bs-primary);
+
+
+        & ~ span {
+            
+            // Typography Block 
+            color: var(--bs-primary);
+        }
+    }
+}
+
+  
+input[type="radio"]::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    // box-shadow: inset 1em 1em var(--radio-btn-color);
+    /* Windows High Contrast Mode */
+    background-color: transparent;
+}
+  
+input[type="radio"]:checked::before {
+    transform: scale(1);
+    background-color: var(--bs-primary);
+}
+  

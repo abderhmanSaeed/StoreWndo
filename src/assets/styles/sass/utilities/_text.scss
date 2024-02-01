@@ -1,0 +1,64 @@
+// Font weight and italics utilities
+.fw {
+    &-400 {
+        font-weight: 400 !important;
+    }
+
+    &-500 {
+        font-weight: 500 !important;
+    }
+
+    &-600 {
+        font-weight: 600 !important;
+    }
+}
+
+.lh-normal {
+    line-height: normal !important;
+}
+
+
+// text colors 
+.text {
+
+    &-muted {
+        color: $mutedColor !important;
+    }
+
+    &-gray {
+        color: $grayColor !important;
+
+        &--dark {
+            color: #7F7A7A !important;
+        }
+        
+    }
+
+    &-inherit {
+        color: inherit !important;
+    }
+
+    &-blue {
+        // Typography Block 
+        color: #0D1863;
+
+        &--force {
+            // Typography Block 
+            color: #0D1863 !important;
+        }
+    }
+}  
+
+
+
+.text-clamp {
+
+    overflow: hidden;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    display: -webkit-box !important;
+
+    &--2 {
+        -webkit-line-clamp: 2;
+    }
+}

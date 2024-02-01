@@ -1,0 +1,33 @@
+ <section class="item-stats">
+    <ul class="list-unstyled mb-0">
+        <ng-container *ngFor="let item of stats">
+            <li 
+                *ngIf="item?.type != 'action'"
+                class="item-stats__item d-flex flex-column flex-center main-rounded w-[70px] h-[52px]"
+                [ngStyle]="{
+                    'background-color': item?.bg,
+                    'color': item?.color
+                }"
+                >
+                <mat-icon *ngIf="item?.icon" class="item-stats__item__icon d-flex flex-center">{{ item?.icon }}</mat-icon>
+                <img height="18" *ngIf="item?.imgPath" class="img-fluid mb-1" [src]="item?.imgPath" alt="Reply">
+                <small class="lh-normal">{{ item?.value | shortNumbers }}</small>
+            </li>
+
+            <!-- if has action  -->
+            <li 
+                *ngIf="item?.type == 'action'"
+                (click)="onClick(item)"
+                class="item-stats__item cursor-pointer d-flex flex-column flex-center main-rounded w-[70px] h-[52px]"
+                [ngStyle]="{
+                    'background-color': item?.bg,
+                    'color': item?.color
+                }"
+                >
+                <mat-icon *ngIf="item?.icon" class="item-stats__item__icon d-flex flex-center !text-[1.5rem]">{{ item?.icon }}</mat-icon>
+                <img height="18" *ngIf="item?.imgPath" class="img-fluid mb-1" [src]="item?.imgPath" alt="Reply">
+                <small class="lh-normal">{{ item?.value | shortNumbers }}</small>
+            </li>
+        </ng-container>        
+    </ul>
+</section>

@@ -1,0 +1,53 @@
+:host-context(.theme-light) {
+    .breadcrumb-item {
+        // Typography Block 
+        color: #04043F;
+        text-decoration: underline;
+
+        &.active {
+
+            // Typography Block 
+            text-decoration: none;
+
+            a {
+                // Structure Block 
+                cursor: inherit;
+            }
+        }
+    }
+}
+
+
+.breadcrumb {
+    &--slash {
+        .breadcrumb-item {
+
+            // Structure Block 
+            padding-left: 0;
+
+            // Typography Block 
+            text-decoration: none;
+
+
+            &::before {
+                // Structure Block 
+                padding-right: 0;
+            }
+
+            &:not(:first-of-type) {
+                
+                &::before {
+                    // Structure Block 
+                    content: '/';
+                }
+            }
+
+            &:last-of-type {
+                
+                // Typography Block 
+                color: #04043FB3;
+                
+            }
+        }
+    }
+}

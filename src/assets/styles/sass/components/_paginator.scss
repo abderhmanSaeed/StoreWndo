@@ -1,0 +1,78 @@
+.pagination {
+   
+
+    .page-item {
+
+
+        &:last-of-type,
+        &:first-of-type {
+            [dir=rtl] & {
+                transform: rotate(180deg);
+            }
+        }
+
+
+
+        &.active {
+            .page-link {
+
+                // Structure Block 
+                background-color: #001d7d;
+                border-color: #001d7d;
+
+                // Typography Block
+                color: #fff; 
+
+            }
+        }
+
+
+        &.disabled {
+            .page-link {
+
+                // Typography Block 
+                color: #D9D9E0;
+            }
+       
+        }
+
+        .page-link {
+
+            // Structure Block 
+            border: 0;
+            padding: 5px;
+            display: flex;
+            align-items: center;
+            border-radius: 50%;
+            min-width: 22px;
+            height: 22px;
+            justify-content: center;
+            margin: 0 4px;
+
+
+            // Typography Block 
+            font-size: .75rem;
+            color: #aab2b7;
+            line-height: normal;
+        }
+
+        &:first-of-type,
+        &:last-of-type {
+            &:not(&.disabled) {
+
+                .page-link {
+                    // Typography Block
+                    color: #001d7d !important; 
+
+                }
+
+            }
+
+
+            .page-link {
+                // Structure Block 
+                border-radius: 8px;
+            }
+        }
+    }
+}

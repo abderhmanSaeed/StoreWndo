@@ -1,0 +1,107 @@
+:host-context(.theme-light) {
+
+    
+    ::ng-deep {
+        .auk-card-a  {
+            // Structure Block 
+            background-color: #FFF5F5;
+    
+    
+            &__info {
+                
+                mat-card-title {
+    
+                    // Typography Block     
+                    color: #04043F;
+    
+                }
+    
+                mat-card-subtitle {
+                    // Typography Block     
+                    color: #4E4E78;
+                }
+    
+            }
+    
+    
+            &__img-box {
+                // Structure Block 
+                background-color: #fff;
+            }
+        }
+    
+        mat-card-title {
+    
+            // Typography Block     
+            color: #4E4E78;
+    
+        }
+    
+    }
+}
+
+
+
+:host {
+    ::ng-deep {
+        .auk-card-a {
+
+
+            &__header {
+                
+                mat-card-title {
+                    // Typography Block 
+                    font-size: .95rem;
+                }
+            }
+        
+            &__info {
+                mat-card-title {
+                    // Typography Block 
+                    font-size: .9rem;
+                }
+            }
+        
+            &__img-box {
+                
+                // Structure Block 
+                width: 135px;
+                height: 100px;
+        
+            }
+        
+        
+            &__discount {
+                // Positioning Block 
+        
+                right: .3rem;
+                top: .3rem;
+
+
+                [dir=rtl] & {
+                    right: auto;
+                    left: .3rem;
+                }
+            }
+        
+            .mat-card-avatar {
+        
+                // Structure Block 
+                height: 47px;
+                width: 47px;    
+            }
+            
+        
+            ::ng-deep {
+        
+                .follow-btn {
+        
+                    // Typography Block 
+                    font-size: .75rem;
+        
+                }
+            }
+        }
+        
+    }
+}

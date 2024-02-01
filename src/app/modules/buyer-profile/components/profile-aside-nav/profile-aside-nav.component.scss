@@ -1,0 +1,24 @@
+.nav-link {
+
+    &:hover,
+    &.active {
+        // Structure Block 
+        background-color: var(--bs-primary);
+
+        // Typography Block 
+        color: #fff;
+
+
+        img {
+
+            // Structure Block 
+            display: none;
+
+            &.active {
+                // Structure Block 
+                display: block;
+            }
+
+        }
+    }
+}

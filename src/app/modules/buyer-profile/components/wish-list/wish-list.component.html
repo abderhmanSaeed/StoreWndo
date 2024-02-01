@@ -1,0 +1,114 @@
+<section class="wish-list animate__animated animate__fadeIn h-100 w-100">
+    <div class="h-100">
+
+        <ng-container *ngIf="wishList.length else noData">
+            <ng-container *ngFor="let item of wishList">
+                <div class="mb-3">
+                    <mat-card 
+                        matRipple 
+                        [matRippleColor]="mainRippleColor"
+                        [routerLink]="['/product', item.id]"
+                        class="main-rounded--force !flex justify-between items-center cursor-pointer">
+                       
+                       
+                        <div class="row start flex-grow-1 items-center">
+    
+                            <div class="col-lg-5 prod-info flex items-center">
+                               
+                                <div class="img-box ltr:me-3 rtl:me-3 w-[48px] h-[48px] min-w-[48px] min-h-[48px] main-rounded overflow-hidden">
+                                    <img
+                                        (error)="onImgError($event)"
+                                        *ngIf="item.image?.urlPreview else imgPlaceholder" 
+                                        class="w-100 h-100 img-fluid fit-img"
+                                        [src]="item.image?.urlPreview"
+                                        alt="Product Image"
+                                    >
+                                </div>
+    
+                                <div class="prod-info__txt flex flex-col text-truncate">
+                                    <span class="text-blue fw-600 text-[.85rem]">
+                                        {{ item?.name }}
+                                    </span>
+                                    <span class="text-muted text-truncate d-inline-block text-[.85rem]">
+                                        {{ item?.description }}
+                                    </span>
+                                </div>
+    
+                            </div>
+    
+                            <div class="col">
+                                <owner-small-card
+                                    txtPanelClass="fw-500"
+                                    [imagePath]="item?.seller?.imagePath"
+                                    imgBoxPanelClass="w-[30px] h-[30px]"
+                                ></owner-small-card>
+                            </div>
+                            
+                            
+                            <div class="col text-blue fw-500 font-[85rem]">
+                                <span>{{ 'my-orders.price' | translate }}: </span>
+                                <span>{{ item?.priceAfterOffer ? item?.priceAfterOffer : item?.price }} {{ 'shared.EGP' | translate }}</span>
+                            </div>
+    
+                        </div>
+                      
+                      
+                      
+                        <!-- begin:: card actions  -->
+                        <div class="end flex items-center">
+                            <add-to-cart 
+                                [productId]="item?.id"
+                                class="ltr:me-2 rtl:me-2 show-if-expanded"
+                                [isInCart]="item?.isInCart">
+                            </add-to-cart>
+                            <add-to-fav 
+                                (onProductWishChange)="onProductWishChange(item?.id)"
+                                class="ltr:ms-2 rtl:ms-2"
+                                [isFavorite]="true"
+                                [productId]="item?.id"
+                                [panelStyle]="{
+                                    'width': '28px',
+                                    'height': '28px',
+                                    'font-size': '1.1rem'
+                                }"
+                            ></add-to-fav>
+                            <auk-sharing 
+                                [content]="productDetailsRoute+item?.id"
+                                class="ltr:ms-2 rtl:ms-2"
+                                [panelStyle]="{
+                                    'width': '28px',
+                                    'height': '28px',
+                                    'font-size': '1.1rem'
+                                }"
+                            ></auk-sharing>
+                        </div>
+                        <!-- end:: card actions  -->
+    
+    
+                    </mat-card>
+                </div>
+                
+            </ng-container>
+    
+        </ng-container>
+        
+    </div>
+</section>
+
+
+
+<ng-template #imgPlaceholder>
+    <img-placeholder></img-placeholder>
+</ng-template>
+
+
+   
+<!-- begin no data  -->
+<ng-template #noData>
+    <no-data
+        size="xl"
+        class="flex items-center justify-center"
+        message="No result in Wish list"
+    ></no-data>
+</ng-template>
+<!-- end no data  -->

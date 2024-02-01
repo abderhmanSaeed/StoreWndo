@@ -1,0 +1,36 @@
+<mat-card
+    class="!flex px-2 py-3 justify-between items-center main-rounded--force cursor-pointer"
+>
+    <div class="start flex-grow flex justify-start text-truncate">
+
+        <div mat-card-avatar class="example-header-image relative rounded-circle ltr:me-2 rtl:me-2 !w-[47px] !h-[47px]">
+            <img 
+                (error)="onImgError($event)"
+                class="img-fluid fit-img w-100 h-100 rounded-full" [src]="data?.photo ? data?.photo : imgPlaceholder" alt="Seller Image">
+            <span class="icon absolute right-0 bottom-0">
+                <img class="h-[18px]" src="assets/media/svg/likes.svg" alt="Likes">
+            </span>
+        </div>
+
+        <div class="d-flex ltr:pr-[3rem] rtl:pl-[3rem] flex-grow-1 flex-column justify-content-between ltr:ps-1 rtl:ps-1 text-truncate text-[.8rem]">
+            <div class="top flex items-center text-truncate">
+                <mat-card-title class="mb-0 text-truncate text-[.88rem] ltr:me-1 rtl:me-1 fw-bloder">{{ data?.name }}</mat-card-title>
+                <span class="text-[#212B36]">{{ 'shared.liked-your-comments' | translate }}</span>
+            </div>
+            <mat-card-subtitle class="mb-0 d-flex text-truncate text-[#7A8D9C] align-items-center text-[.8rem] pt-1">
+                {{ data?.comment }}
+            </mat-card-subtitle>
+
+            <small class="text-[#C8CACB]">
+                {{ data?.createAt | date }}
+            </small>
+        </div>
+    </div>
+    <div class="end mb-auto">
+        <!-- begin:: actions  -->
+        <button class="text-[#AAB2B7] d-flex items-center justify-center lh-normal">
+            <mat-icon class="text-base">close</mat-icon>
+        </button>
+        <!-- end:: actions  -->
+    </div>
+</mat-card>

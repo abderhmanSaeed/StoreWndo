@@ -1,0 +1,30 @@
+:host-context(.aside-minimize) {
+
+    .sidebar__ad__title,
+    .sidebar__ad__content {
+        // Structure Block 
+        display: none;
+    }
+
+    header {
+        // Structure Block 
+        justify-content: center;
+        
+        // Modifire Block 
+        transition: all .3s ease-in-out;
+    }
+}
+
+
+
+.sidebar__ad {
+    &__title {
+        // Positiong Block 
+        position: relative;
+        top: 1px;
+    }
+}
+
+
+
+

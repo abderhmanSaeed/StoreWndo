@@ -1,0 +1,39 @@
+.pay-methods {
+    &--edit {
+
+        mat-card {
+
+            // Structure Block
+            padding: 0 !important;
+        }
+
+
+        .hint {
+            // Structure Block
+            display: none;
+        }
+    }
+}
+
+input[type="radio"]:checked {
+    & ~ .label-content {
+        img {
+
+            // Structure Block 
+            display: none;
+
+            &.active {
+                // Structure Block 
+                display: block;
+            }
+        }
+    }
+}
+
+
+label {
+    &:not(:last-of-type) {
+        // Structure Block 
+        margin-bottom: .5rem;
+    }
+}

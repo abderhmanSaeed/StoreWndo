@@ -1,0 +1,145 @@
+<mat-card class="mr-8">
+  <div class="flex">
+    <div class="mt-1.5">
+      <button (click)="getBacktoProduct(productData.id)">
+        <img class="rtl:rotate-180" src="assets/media/svg/left-arrow.svg" />
+      </button>
+    </div>
+    <div class="ltr:ml-5 rtl:mr-5 w-full ltr:pr-8 rtl:pl-8">
+      <h3 style="font-weight: 500" class="text-[#4E4E78] pb-2 border-b-2">
+        {{ "reviews.verified-customer-reviews" | translate }}
+      </h3>
+      <ng-container *ngIf="productReviews.length; else noReviews">
+        <div class="mt-4">
+          <h4 style="font-weight: 500" class="text-[#4E4E7899]">
+            {{ "reviews.verified-ratings" | translate }}
+            ({{ productReviewsCount }})
+          </h4>
+          <div class="bg-[#F8F8F8] p-6 max-w-sm rounded-lg">
+            <div class="text-center">
+              <h3 style="font-weight: 500" class="text-[#4E4E78] m-0">{{statisticsRate}}/5</h3>
+              <div class="my-2">
+                <app-stars-rating 
+                  class="barRating flex justify-center"
+                  [widthClass]="'w-4'"
+                  [customStars]="true"
+                  [readOnly]="true"
+                  [rate]="statisticsRate"
+                  [max]="5">
+                </app-stars-rating>
+              </div>
+              <p class="text-[#4E4E78]">
+                {{statisticsVerifiedRatings}} {{ "reviews.verified-ratings" | translate }}
+              </p>
+            </div>
+            <div>
+              <ng-container *ngFor="let item of (statisticsReviews | keyvalue).reverse()">
+                <app-reviews-bar [star]="item.key" [starRate]="item.value"></app-reviews-bar>
+              </ng-container>
+            </div>
+          </div>
+          <div class="mt-12 max-w-2xl">
+            <h4 style="font-weight: 500" class="text-[#4E4E7899] uppercase m-0">
+              {{ "reviews.product-reviews" | translate }}
+              ({{ productReviewsCount }})
+            </h4>
+            <div class="reviewCards" *ngFor="let review of productReviews">
+              <mat-card class="cardWrapper example-card p-0 mt-4">
+                <div class="flex">
+                  <div
+                    mat-card-avatar
+                    class="example-header-image ltr:mr-3 rtl:ml-3"
+                  >
+                    <img
+                      (error)="onImgError($event)"
+                      class="img-fluid fit-img w-100 h-100 rounded-full"
+                      [src]="review.user.imagePath ? review.user.imagePath : imgPlaceholder"
+                      alt="Profile Image"
+                    />
+                  </div>
+                  <div class="cardContent w-full border-b-2 pb-2">
+                    <mat-card-title class="m-0 mb-1">
+                      <div class="flex justify-between">
+                        <span class="font-semibold text-[16px]"
+                          >{{review.user.name}}</span
+                        >
+                        <span class="font-thin text-[14px]">{{ review.createdAt | date }}</span>
+                      </div>
+                    </mat-card-title>
+                    <div class="mb-1">
+                      <app-stars-rating 
+                        [widthClass]="'w-3'"
+                        [customStars]="true"
+                        [readOnly]="true"
+                        [rate]="review.rate"
+                        [max]="5">
+                      </app-stars-rating>
+                    </div>
+                    <p class="mb-1.5 mt-1 text-[13px] font-medium">
+                      {{review.description}}
+                    </p>
+                    <div class="h-[130px] w-[110px]">
+                      <ng-container *ngIf="review.videoId">
+                          <!-- class="h-100" -->
+                          <auk-video
+                              [autoPlay]="false"
+                              [fullscreen]="true"
+                              class="my-auto w-100 shadow"
+                              [source]="review.urlPreview"
+                              thmbnailClass="min-h-[130px] w-100 max-h-[130px]"
+                              [urlThumbnail]="review.urlThumbnail"
+                          ></auk-video>
+                      </ng-container>
+                    </div>
+                  </div>
+                </div>
+              </mat-card>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+      <!-- begin:: paginator  -->
+      <ng-container *ngIf="productReviewsCount > perPage && productReviews.length">
+        <div class="flex justify-center my-4 ltr:ml-24 rtl:mr-24 w-3/5">
+          <ngb-pagination
+            [(page)]="page"
+            [pageSize]="perPage"
+            (pageChange)="onPageChange($event)"
+            [collectionSize]="productReviews.length"
+            aria-label="Default pagination"
+          >
+            <ng-template ngbPaginationPrevious>
+              <mat-icon>keyboard_backspace</mat-icon>
+            </ng-template>
+            <ng-template ngbPaginationNext>
+              <mat-icon class="rotate-180">keyboard_backspace</mat-icon>
+            </ng-template>
+          </ngb-pagination>
+        </div>
+      </ng-container>
+      <!-- end:: paginator  -->
+      <div *ngIf="productData?.isInReview" class="flex justify-end pb-4 mt-4">
+        <app-button
+          [stroked]="false"
+          class="ltr:mr-8 rtl:ml-8"
+          (click)="openAddRateDialog()"
+          [label]="'actions.add-review' | translate"
+          panelclass="max-w-100 w-[200px] !rounded-full lh-normal py-3"
+        ></app-button>
+      </div>
+    </div>
+  </div>
+</mat-card>
+
+<!-- begin no data templete  -->
+<ng-template #noReviews>
+  <div class="noContent-wrapper">
+    <no-data
+      size="xl"
+      [isSorry]="true"
+      [message]="'reviews.no-reviews' | translate"
+      class="flex justify-center items-center flex-grow-1"
+    ></no-data>
+  </div>
+</ng-template>
+<!-- end no data templete  -->

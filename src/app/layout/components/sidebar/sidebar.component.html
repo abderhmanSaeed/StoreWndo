@@ -1,0 +1,135 @@
+<aside class="aside h-100 animate__animated animate__fadeIn d-flex flex-column pb-2" [class.aside-minimize]="!openedStart">
+
+    <div class="py-3 d-flex align-items-center px-4 aside__header justify-content-between">
+       
+        <a routerLink="/" class="logo-box d-flex align-items-center">
+            <img class="mx-auto logo" src="assets/media/logos/logo.svg" alt="Logo">                
+        </a>
+
+        <button class="menu-btn p-0 btn ltr:ms-4 rtl:ms-4" (click)="toggleDrawer.emit()" type="button"
+            [ngClass]="{
+            'right-arrow': !draweState,
+            'left-arrow': draweState
+            }"
+        >
+            <span class="menu-toggle"></span>
+        </button> 
+    </div>
+
+
+    <!-- begin:: nav 1  -->
+    <nav class="aside__nav">
+        <ul class="list-unstyled mb-0">
+            <li *ngFor="let item of nav1">
+                <a *ngIf="!item.isExternal" mat-button class="nav__item d-flex align-items-center" [target]="item?.target" [routerLink]="[item.page]" routerLinkActive="active">
+                    <span 
+                        class="svg-icon"
+                        [ngStyle]="bindSvgIcon(item.svg)" 
+                        >
+                    </span>
+                    <small class="nav-txt animate__animated animate__fadeIn ltr:ms-3 rtl:ms-3">{{ 'sidebar.'+item.title | translate }}</small>
+                </a>
+                <a *ngIf="item.isExternal" [href]="item?.page" mat-button class="nav__item d-flex align-items-center" [target]="item?.target">
+                    <span 
+                        class="svg-icon"
+                        [ngStyle]="bindSvgIcon(item.svg)" 
+                        >
+                    </span>
+                    <small class="nav-txt animate__animated animate__fadeIn ltr:ms-3 rtl:ms-3">{{ 'sidebar.'+item.title | translate }}</small>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <!-- end:: nav 1  -->
+
+    <!-- begin:: separetor  -->
+    <div class="px-3"><hr class="my-2"></div>
+    <!-- end:: separetor  -->
+
+
+    <!-- begin section btn  -->
+    <div class="px-3 mb-2 aside__section-wrap">
+        <button disabled mat-button color="primary" class="aside__section d-flex w-100 !min-w-[auto] text-start mat-primary-light text-inherit mt-1">
+            <span 
+                class="svg-icon"
+                [ngStyle]="bindSvgIcon('assets/media/svg/sections.svg')" 
+            >                                                               
+            </span>
+            <small class="nav-txt animate__animated animate__fadeIn ltr:ms-3 rtl:ms-3">{{ 'sidebar.sections' | translate }}</small>
+        </button>
+    </div>
+    <!-- end section btn  -->
+
+
+    <!-- begin:: nav 2  -->
+    <ng-template #infiniteSide let-list="list" let-first="first" let-parentId="parentId">
+        <mat-accordion class="custom-scroll" [class.first]="first">
+
+            <nav class="aside__nav aside__nav--2">
+            <ul class="list-unstyled" [class.aside__nav__sub]="!first">
+                <li *ngFor="let item of list">                        
+                    <ng-container *ngIf="!item?.categories?.length">
+                        <a 
+                            [routerLink]="['/explore']"
+                            routerLinkActive="active"
+                            [queryParams]="{
+                                'section': parentId,
+                                'category': item?.id
+                            }"
+                            class="nav__item d-flex align-items-center rounded-0"
+                        >
+                            <span 
+                                class="svg-icon"
+                            >
+                            <img class="img-fluid h-100" [src]="first ? item?.icon1 : item?.imagePath2" alt="Nav Icon">
+                            <img class="img-fluid h-100 svg-icon__active-img" [src]="first ? item?.icon2 : item?.imagePath3" alt="Nav Icon">
+                        </span>
+                            <small class="nav-txt animate__animated animate__fadeIn ltr:ms-3 rtl:ms-3 animate__animated animate__fadeIn text-truncate">{{ item?.name }}</small>
+                        </a>
+                    </ng-container>
+                    
+                    <!-- begin:: submenu  -->
+                    <ng-container *ngIf="item?.categories?.length">
+                            <mat-expansion-panel class="px-0 rounded-0" [expanded]="item?.id == selectedSectionId && routerService.hasRoute('explore')">
+                                <mat-expansion-panel-header [routerLink]="['/explore']" routerLinkActive="active" [queryParams]="{'section': item?.id}" class="nav__item rounded-0" mat-button>
+                                    <mat-panel-title class="d-flex align-items-center px-0">
+                                        <span 
+                                            class="svg-icon">
+                                            <img class="img-fluid h-100" [src]="item?.icon1" alt="Nav Icon">
+                                            <img class="img-fluid h-100 svg-icon__active-img" [src]="item?.icon2" alt="Nav Icon">
+                                        </span>
+                                        <small class="nav-txt animate__animated animate__fadeIn ltr:ms-3 rtl:ms-3 animate__animated animate__fadeIn text-truncate">{{ item?.name }}</small>
+                                    </mat-panel-title>
+                                </mat-expansion-panel-header>
+                                
+                                <ng-container
+                                *ngTemplateOutlet="
+                                    infiniteSide;
+                                    context: { list: item?.categories, first: false, parentId: item?.id }
+                                "
+                                ></ng-container>
+                            </mat-expansion-panel>
+                        </ng-container>
+                        <!-- end:: submenu  -->
+                        
+                    </li>
+                </ul>
+            </nav>
+        </mat-accordion>
+    </ng-template>
+
+    <ng-container
+    *ngTemplateOutlet="
+        infiniteSide;
+        context: { list: sections, first: true }
+    "
+    ></ng-container>
+    <!-- end:: nav 2  -->
+
+
+
+    <!-- begin ad section  -->
+    <sidebar-ad class="px-4 d-block mt-auto mb-1"></sidebar-ad>
+    <!-- end ad section  -->
+
+</aside>

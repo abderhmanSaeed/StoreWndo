@@ -1,0 +1,11 @@
+.main-rounded {
+    border-radius: 9px;
+
+    &--force {
+        border-radius: 9px !important;
+    }
+}
+
+.rounded-7px {
+    border-radius: 7px !important;
+}

@@ -1,0 +1,36 @@
+.mySwiper {
+    // Structure Block 
+    padding-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+
+    ::ng-deep {
+
+
+
+        .swiper-pagination {
+
+
+            // Structure Block 
+            order: 2;
+            margin-top: 0.5rem;
+
+            // Positioning Block 
+            position: static;
+        }
+    }
+}
+
+
+
+
+.alarm-icon {
+
+    // Typography Block 
+    font-size: 1.3rem;
+    color: #D2CFD6;
+
+    // Structure Block 
+    display: flex;
+    align-items: center;
+}

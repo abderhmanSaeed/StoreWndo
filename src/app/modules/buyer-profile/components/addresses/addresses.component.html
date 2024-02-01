@@ -1,0 +1,88 @@
+<section class="wish-list animate__animated animate__fadeIn">
+    <div class="row">
+
+        <ng-container *ngFor="let address of addresses">
+            <div class="col-12 mb-3 flex items-center">
+               
+                <mat-card class="main-rounded--force !flex justify-between items-center ltr:me-4 rtl:me-4 flex-grow-1 relative">
+                    
+                    <div class="row start flex-grow-1 items-center truncate">
+
+                        <div class="col-lg-12 prod-info flex items-center truncate">
+                           
+                            <div class="img-box ltr:me-3 rtl:me-3 w-[35px] h-[35px] min-w-[35px] min-h-[35px] truncate">
+                                <ng-container *ngFor="let item of ( addressIcons | filter: 'id': address?.icon )">
+                                    <img 
+                                        class="img-fluid w-100 h-100"
+                                        [src]="item?.activeIconPath"
+                                        alt="Icon"
+                                    >
+                                </ng-container>
+                            </div>
+
+                            <div class="prod-info__txt flex flex-col text-truncate">
+                                <span class="text-blue fw-600 text-[.85rem] truncate">
+                                    {{ address?.name }}
+                                </span>
+                                <span class="text-muted text-truncate d-inline-block text-[.85rem] truncate">
+                                    {{ address?.location }}
+                                </span>
+                            </div>
+
+                        </div>
+
+                    </div>
+                  
+                    <!-- begin:: card actions  -->
+                    <div class="end flex items-center ltr:pr-[2.5rem] rtl:pl-[2.5rem]">
+                       
+                        <!-- isDefault -->
+                        <auk-slide-toggle
+                            labelPanelClass="ltr:me-3 rtl:me-3"
+                            [label]="'buyer-profile.default-address' | translate"
+                            [value]="address?.isDefault"
+                            [disabled]="address?.isDefault"
+                            panelClass="border-0 p-0 fw-500 auk-slide--sm"
+                            (onChange)="onIsDefaultChange($event, address)"
+                        ></auk-slide-toggle>
+                        
+                        <button (click)="openAddressFormDialog(address, true)" class="ltr:translate-x-[50%] rtl:translate-x-[-50%] shadow bg-white w-[40px] h-[40px] flex items-center justify-center !absolute ltr:right-0 rtl:left-0" mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+                            <img class="img-fluid w-50 h-50 m-auto" src="assets/media/svg/pen-i.svg" alt="Edit Address">
+                        </button>
+                    </div>
+                    <!-- end:: card actions  -->
+
+                </mat-card>
+
+                <div class="delete-row ps-2">
+                    <button
+                        (click)="openDeleteAddressConfirmationDialog(address?.id)"
+                        mat-stroked-button
+                        class="px-3 !py-[.7rem] min-w-auto border-0"
+                    >
+                        <fa-icon class="d-flex fw-bold items-center justify-center text-[1.1rem] text-[#c1c1c1]" [icon]="faTrashCan"></fa-icon>
+                    </button>
+                </div>
+
+            </div>
+            
+        </ng-container>
+
+    </div>
+
+
+    <!-- begin:: add address btn  -->
+    <div class="btn-wrapper flex items-center justify-end mb-3">
+        <button
+            (click)="openAddressFormDialog()"
+            mat-raised-button
+            color="primary"
+            class="d-block px-3 !py-[.7rem] min-w-auto order-2" 
+        >
+            <fa-icon class="d-flex fw-bold text-white items-center justify-center text-[1.1rem]" [icon]="faPlus"></fa-icon>
+        </button>
+        <span class="btn-wrapper__label opacity-0 ltr:me-2 rtl:me-2 order-1 text-primary transition-all">{{ 'buyer-profile.add-new-address' | translate }}</span>
+    </div>
+    <!-- begin:: add address btn  -->
+
+</section>

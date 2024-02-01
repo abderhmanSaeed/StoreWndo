@@ -1,0 +1,104 @@
+<mat-card class="border-[#ffa803] border-b-[3px] rounded-0 d-flex p-0">
+
+
+    <div class="img-box main-rounded p-3 d-flex flex-center position-relative w-[170px] min-w-[170px] h-[170px]">
+        <ng-container *ngIf="item?.discount">
+            <small class="position-absolute badge bg-primary px-2 fw-400 auk-card-a__discount right-0 top-0 translate-y-full">
+                {{ item?.discount }}
+            </small>
+        </ng-container>
+        
+        <img *ngIf="item?.image?.urlThumbnail else imgPlaceholder" class="img-fluid main-rounded max-h-100 fit-img" [src]="item?.image?.urlThumbnail" alt="Product Image">
+    </div>
+    
+
+    <mat-card-content class="p-3 flex-grow-1 text-truncate">
+     
+        <mat-card-header class="mx-0 flex justify-between mb-3 text-truncate">
+            <mat-card-title class="mx-0 !text-[.9rem] ltr:me-2 rtl:me-2 text-truncate">{{ item?.name }}</mat-card-title>
+            <dropdown [items]="productActions" (onClick)="onActionClick($event)"></dropdown>
+        </mat-card-header>
+
+
+        <div class="card-info mb-3">
+
+            <ul class="mb-0 inline-flex items-center p-1 bg-[#f8f8f8] text-[#8D8D8D] rounded">
+
+                <!-- begin:: color  -->
+                <li *ngIf="item?.colorHexaCode" class="px-2 inline-flex items-center ltr:border-r-[1px] rtl:border-l-[1px] border-[#d4d6d7]">
+                    <small class="key me-1">{{ 'checkout.color' | translate }}:</small>
+                    <small [style.backgroundColor]="'#'+item?.colorHexaCode" class="val w-[8px] h-[8px] inline-block rounded-full"></small>
+                </li>
+                
+                <!-- begin:: size  -->
+                <li *ngIf="item?.sizeName" class="px-2 inline-flex items-center ltr:border-r-[1px] rtl:border-l-[1px] border-[#d4d6d7]">
+                    <small class="key me-1">{{ 'checkout.size' | translate }}:</small>
+                    <small class="val">{{ item?.sizeName }}</small>
+                </li>
+
+                <!-- begin:: QTY  -->
+                <li *ngIf="item?.quantity" class="px-2 inline-flex items-center border-[#d4d6d7]">
+                    <small class="key me-1">{{ 'checkout.QTY' | translate }}:</small>
+                    <small class="val">{{ item?.quantity }}</small>
+                </li>
+            </ul>
+
+        </div>
+
+      
+        
+        <mat-card-actions class="d-flex justify-between mx-0">
+          
+            
+           <ng-container *ngIf="item?.sellerId">
+                <div class="start">
+                    <!-- begin:: owner small card  -->
+                    <owner-small-card [name]="item?.seller?.name" [imagePath]="item?.seller?.imagePath"></owner-small-card>
+                    <!-- end:: owner small card  -->
+                </div>
+           </ng-container>
+           
+
+
+           <div class="end flex items-center">
+            
+                <div class="card-price fw-400 d-flex ltr:me-3 rtl:me-3">
+                
+                    <ng-container *ngIf="!item?.priceAfterOffer else prices">
+                        <span class="text-primary fw-500">
+                            <span class="price d-inline-block ltr:me-1 rtl:me-1">{{ item?.price }}</span>
+                            <span class="currency">{{ 'checkout.EGP' | translate }}</span>
+                        </span>
+                    </ng-container>
+                    
+                    <ng-template #prices>
+                        <span class="text-primary ltr:me-2 rtl:me-2 fw-500">
+                            <span class="price d-inline-block ltr:me-1 rtl:me-1">{{ item?.priceAfterOffer }}</span>
+                            <span class="currency">{{ 'checkout.EGP' | translate }}</span>
+                        </span>
+                        <span class="auk-card-b__price__old text-gray--dark text-decoration-line-through">
+                            <span class="old-price__price ltr:me-1 rtl:me-1">{{ item?.price }}</span>
+                            <span class="old-price__currency">{{ 'checkout.EGP' | translate }}</span>
+                        </span>
+                    </ng-template>
+
+                </div>                    
+
+                <div class="change-qty">
+                    <cart-item-quantity [cartId]="item.cartId" [quantity]="item.quantity"></cart-item-quantity>
+                </div>
+
+           </div>
+
+
+        </mat-card-actions>
+
+
+    </mat-card-content>
+
+</mat-card>
+
+
+<ng-template #imgPlaceholder>
+    <img-placeholder></img-placeholder>
+</ng-template>

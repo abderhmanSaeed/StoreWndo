@@ -1,0 +1,33 @@
+<button
+    [disabled]="disabled"
+    *ngIf="!stroked"
+    [class]="panelclass"
+    [type]="type"
+    mat-raised-button
+    [color]="fill"
+    class="border"
+    [ngClass]="{
+        'border-primary': fill == 'primary'
+    }"
+>
+    <div class="flex items-center justify-content-center">
+        <fa-icon [class]="iconPanelclass" *ngIf="icon" class="d-flex ltr:me-2 rtl:me-2" [icon]="icon"></fa-icon>
+        <span>{{ label }}</span>
+    </div>
+</button>
+
+
+<button
+    [disabled]="disabled"
+    *ngIf="stroked"
+    [class]="panelclass"
+    [type]="type"
+    mat-stroked-button
+    [color]="fill"
+    [ngClass]="{
+        'border-primary': fill == 'primary' && !disabled
+    }"
+>
+    {{ label }}
+</button>
+

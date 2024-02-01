@@ -1,0 +1,171 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+
+@import '~@angular/material/theming';
+
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+mat.$theme-ignore-duplication-warnings: true;
+
+
+// begin:: bootstrap configs 
+$theme-colors: (
+  "primary":    #f00,
+//   "secondary":  $secondary,
+//   "success":    $success,
+//   "info":       $info,
+//   "warning":    $warning,
+//   "danger":     $danger,
+//   "light":      $light,
+//   "dark":       $dark
+);
+@import "../../../../node_modules/bootstrap/scss/bootstrap";
+// end:: bootstrap configs 
+
+// ngx-bar-rating style
+@import '../../../../node_modules/ngx-bar-rating/themes/br-default-theme';
+
+
+/* For use in src/lib/core/theming/_palette.scss */
+$md-mcgpalette0: (
+    50 : #ffe0e0,
+    100 : #ffb3b3,
+    200 : #ff8080,
+    300 : #ff4d4d,
+    400 : #ff2626,
+    500 : #ff0000,
+    600 : #ff0000,
+    700 : #ff0000,
+    800 : #ff0000,
+    900 : #ff0000,
+    A100 : #ffffff,
+    A200 : #fff2f2,
+    A400 : #ffbfbf,
+    A700 : #ffa6a6,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$wndo-primary: mat.define-palette($md-mcgpalette0);
+$wndo-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+
+
+// MatButtonHarness
+
+// The warn palette is optional (defaults to red).
+$wndo-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$wndo-theme: mat.define-light-theme((
+  color: (
+    primary: $wndo-primary,
+    accent: $wndo-accent,
+    warn: $wndo-warn,
+  )
+));
+
+$wndo-theme-dark: mat.define-dark-theme((
+  color: (
+    primary: $wndo-primary,
+    accent: $wndo-accent,
+    warn: $wndo-warn,
+  )
+));
+
+
+$currentFont: 'Rubik';
+$custom-typography: mat-typography-config(
+  $font-family: $currentFont
+);
+@include mat-core($custom-typography);
+
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+
+@mixin custome-theme($theme) {
+  @include mat.all-component-themes($theme);
+}
+
+.theme-light {
+  @include custome-theme($wndo-theme);
+}
+
+.theme-dark  {
+  @include custome-theme($wndo-theme-dark);
+}
+
+
+// utilities imports
+@import 'utilities/variables',
+        'utilities/functions',
+        'utilities/mixins',
+        'utilities/text',
+        'utilities/sizing',
+        'utilities/shadow',
+        'utilities/background',
+        'utilities/animations',
+        'utilities/borders',
+        'utilities/classes';
+
+
+
+// base imports
+@import 'base/reset',
+        'base/typography',
+        'base/global'
+;
+
+
+// layout imports
+@import 'layout/grid',
+        'layout/header',
+        'layout/footer',
+        'layout/sidebar',
+        'layout/forms'
+;
+
+// components imports
+@import 'components/buttons',
+        'components/carousel',
+        'components/toastr',
+        'components/slider',
+        'components/tooltip',
+        'components/dropdown',
+        'components/accordion',
+        'components/paginator',
+        'components/accordion',
+        'components/progressbar.scss',
+        'components/dialog';
+
+
+// themes imports
+@import 'themes/theme';

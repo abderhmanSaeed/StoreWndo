@@ -1,0 +1,61 @@
+<section class="p-3 md:p-4 text-white my-2 w-100">
+
+
+    <!-- begin:: logo  -->
+    <div class="logo px-1">
+        <img class="w-[150px] md:w-[180px]" width="184" src="assets/media/logos/white-logo.svg" alt="Logo">
+    </div>
+    <!-- end:: logo  -->
+
+    
+    <div class="dialog__content main-rounded gradient-border text-center">
+        <div class="position-relative z-[1] px-2 md:px-4 py-5 bg-[#353434e3]">
+    
+    
+            <!-- begin:: header  -->
+            <div class="text-center mb-3 py-2">
+               <div class="flex items-center justify-center">
+                    <img class="ltr:me-3 rtl:me-3 rtl:rotate-180" src="assets/media/svg/sayer.svg" alt="Icon">
+                    <h4 class="gothic-font h1 mb-0 !text-[1.1rem]">{{ 'shared.responsive-uc-hi' | translate }}</h4>
+               </div>
+            </div>
+            <!-- end:: header  -->
+
+            <div class="flex items-center justify-center mb-4">
+                <span class="text-[#C2C5D2] block gothic-font text-[1rem]">{{ 'shared.responsive-uc-note' | translate }}</span>
+                <img width="35" class="ltr:ms-3 rtl:ms-3" src="assets/media/svg/wndo-mobile-app.svg" alt="Icon">
+            </div>
+
+            <div class="apps text-center mb-5">
+                <span class="fw-400 block mb-3">{{ 'footer.download-now' | translate }}</span>
+
+                <div class="apps__imgs flex justify-center">
+                    <ul class="list-unstyled d-flex apps-list mb-0 flex-wrap">
+                        <ng-container *ngFor="let item of apps">
+                            <li class="apps-list__item mx-[.45rem]">
+                                <a [href]="item?.url" target="_blank" rel="noopener">
+                                    <img width="99" class="img-fluid" [src]="item?.imagePath" [alt]="item?.imageAlt">
+                                </a>
+                            </li>
+                        </ng-container>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div mat-dialog-content class="mx-0 !px-[6rem]">
+                <button
+                    (click)="close()"
+                    mat-dialog-close
+                    class="block w-100 py-[.9rem] rounded-pill bg-primary text-white"
+                >
+                    {{ 'actions.continue' | translate }}
+                </button>
+            </div>
+    
+    
+    
+        </div>
+    </div>
+
+</section>

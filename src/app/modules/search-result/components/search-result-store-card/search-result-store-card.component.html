@@ -1,0 +1,37 @@
+<section
+    matRipple 
+    [matRippleColor]="mainRippleColor"
+    class="overflow-hidden block main-rounded shadow-sm pt-[2px]"
+>
+    <mat-card class="search-type-store !px-[1rem] w-[126px] relative">
+       
+        <div class="rate bg-[#e9eaea] rounded-full py-[0.1rem] px-[0.4rem] absolute top-[-2px] left-0">
+            <auk-rating [data]="seller?.rate" [theme]="2" textPanelClass="text-[#1b1b1b] fw-400"></auk-rating>
+        </div>
+
+        <mat-card-content class="text-center d-flex items-center justify-center flex-col">
+            <div [routerLink]="['/seller', seller?.id]" class="cursor-pointer icon mb-2 w-[55px] h-[55px] rounded-full bg-white shadow-sm flex justify-center items-center p-2">
+                <img (error)="onImgError($event)" *ngIf="seller?.image else imgPlaceholder"  class="img-fluid fit-img max-h-100"
+                [src]="seller?.image" alt="Icon">
+            </div>
+            <div [routerLink]="['/seller', seller?.id]" class="cursor-pointer info mb-1 leading-[.9rem] w-100">
+                <div class="label fw-500 text-truncate">
+                    <small> {{ seller?.name }} </small>
+                </div>
+                <div class="items-count">
+                    <small class="text-[#011447]">{{seller?.items}} {{ 'shared.items' | translate }}</small>
+                </div>
+            </div>
+            <follow panelclass="max-w-[80px]" [isFollowed]="seller?.isFollow" [userId]="seller?.id"></follow>
+        </mat-card-content>
+    </mat-card>
+</section>
+
+
+
+<ng-template #imgPlaceholder>
+    <img-placeholder></img-placeholder>
+</ng-template>
+
+
+

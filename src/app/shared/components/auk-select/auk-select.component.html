@@ -1,0 +1,40 @@
+
+<div class="select-wrapper">
+
+    <label [class]="labelPanelclass" *ngIf="label" for="exampleFormControlInput1" class="form-label text-blue fw-600 text-[.9rem]">
+        <span>{{ label }} </span>
+        <span *ngIf="control && control?.hasValidator(validatorEnum.required)" class="text-primary"> *</span>
+    </label>
+    
+    <ng-select
+            [items]="items"
+            [clearable]="clearable"
+            [loading]="loading"
+            [class]="panelclass"
+            [bindLabel]="bindLabel"
+            [bindValue]="bindValue"
+            [placeholder]="placeholder"
+            [(ngModel)]="selectedValue"
+            (change)="onSelectChange($event)"
+            [ngClass]="{'ng-select--wndo': wndoStyle}"
+        >
+        <ng-container *ngIf="static">
+
+            <ng-template ng-label-tmp let-item="item">
+                <div>{{ item?.name | translate }}</div>
+            </ng-template>
+
+            <ng-template ng-option-tmp let-item="item" let-index="index" let-search="searchTerm">
+                <div>{{ item?.name | translate }}</div>
+            </ng-template>
+        </ng-container>
+    </ng-select>
+
+
+    
+    <app-validation
+        *ngIf="(showValidations && control?.dirty) || showValidations"
+        [control]="control"
+    ></app-validation>
+
+</div>

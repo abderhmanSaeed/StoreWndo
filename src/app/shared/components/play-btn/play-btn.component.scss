@@ -1,0 +1,45 @@
+.paly-btn {
+
+    // Positioning Block 
+    position: relative;
+
+    // Structure Block 
+    width: 35px;
+    height: 35px;
+    background: rgba(0, 0, 0,.5);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    fa-icon {
+        // Typography Block 
+        font-size: .9rem;
+    }
+
+
+    &::before {
+        // Positioning Block 
+        position: absolute;
+        inset: 0;
+
+        content: '';
+
+
+        // Structure Block 
+        border: #e1e1e1 solid 6px;
+        border-color: rgba(255, 255, 255, 0.15);
+        border-radius: 50%;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+        -o-border-radius: 50%;
+        -webkit-animation-duration: 1s;
+        animation-duration: 1s;
+        animation-iteration-count: infinite;
+        -webkit-animation-name: hvr-ripple-out;
+        animation-name: hvr-ripple-out;
+        animation-delay: 0;
+        
+    }
+}

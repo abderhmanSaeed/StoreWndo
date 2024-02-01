@@ -1,0 +1,23 @@
+
+<div class="input-group rounded-full border !border-[#EFEFEF] overflow-hidden">
+    <span class="input-group-text border-0 bg-transparent !border-solid ltr:!border-r rtl:!border-l !border-[#EFEFEF]" id="basic-addon1">
+        <img 
+            class="h-[23px]"
+            src="assets/media/icons/emoji2x.png" alt="Emojj"
+            [ngClass]="{
+                'h-[18px]': size == 'sm' 
+            }"
+        >
+    </span>
+    <input #input (keyup.enter)="onComment()" [(ngModel)]="comment" type="text" class="form-control border-0 bg-transparent !text-[#4E4E78]" [placeholder]="'product-details.say-something' | translate" aria-label="Username" aria-describedby="basic-addon1">
+    <button
+        [ngClass]="{
+            '!h-[30px]': size == 'sm',
+            '!w-[30px]': size == 'sm' 
+        }"
+        (click)="onComment()"
+        mat-mini-fab class="btn p-0 shadow !mx-[.25rem] d-flex justify-content-center items-center !my-[.3rem] !rounded-full border-0 bg-transparent w-[35px] h-[35px]"
+        id="basic-addon1">
+        <img class="rtl:rotate-[-90deg]" src="assets/media/svg/send.svg" alt="Send">
+    </button>
+</div>

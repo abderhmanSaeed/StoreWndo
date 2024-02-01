@@ -1,0 +1,23 @@
+<div class="user-menu" ngbDropdown display="dynamic" class="d-inline-block" placement="bottom-end">
+    <button type="button" class="btn text-[.9rem] d-flex align-items-center justify-content-start text-start border rounded-full text-blue" id="dropdownBasic1" ngbDropdownToggle>
+        <div class="icon me-1">
+            <img width="14" [src]="selectedLanguage?.imgPath" [alt]="selectedLanguage?.name">
+        </div>
+        <span> {{ 'header.'+selectedLanguage?.name | translate }} </span>
+    </button>
+    <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="border-0 shadow mt-2 dropdown--arrow p-2">
+        <ng-container *ngFor="let item of languages">
+            <button [class.active]="selectedLanguage == item" (click)="onLangChange(item)" class="dropdown-item flex items-center text-blue border rounded-md px-[.8rem] py-[.5rem] text-[.9rem]" ngbDropdownItem>
+                <div class="icon ltr:me-1 rtl:me-1">
+                    <img width="14" [src]="item.imgPath" [alt]="item.name">
+                </div>
+                <span
+                    [ngClass]="{
+                        'messiri-ar-font': item.key == languageEnu.AR,
+                        'raleway-font': item.key == languageEnu.EN
+                    }"
+                > {{ 'header.'+item.name | translate }} </span>
+            </button>
+        </ng-container>
+    </div>
+</div>

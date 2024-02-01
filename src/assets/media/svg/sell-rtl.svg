@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="25.701" height="37.702" viewBox="0 0 25.701 37.702">
+  <g id="sell" transform="translate(-0.186 11)">
+    <g id="Group_10744" data-name="Group 10744" transform="translate(0 0)">
+      <g id="Group_10743" data-name="Group 10743">
+        <g id="Group_15067" data-name="Group 15067" transform="translate(0.184)">
+          <path fill="#fff" id="Path_44228" data-name="Path 44228" d="M359.991,252h-5.974a1,1,0,0,0,0,2.008h5.974a1,1,0,0,0,0-2.008Z" transform="translate(-335.291 -238.814)"/>
+          <path fill="#fff" id="Path_44229" data-name="Path 44229" d="M207.748,237.312l-5.362-4.837-.026-.023A2.029,2.029,0,0,0,199.024,234v7.493a2.1,2.1,0,0,0,2.052,2.076h.007a1,1,0,0,0,.014-2.008c-.022-.007-.064-.041-.064-.068V234a.073.073,0,0,1,0-.008.059.059,0,0,1,.025-.011l0,0,5.291,4.774a.077.077,0,0,1-.016.043h-2.494a1,1,0,0,0-.9,1.439l2.51,5.221a1,1,0,1,0,1.81-.87l-1.818-3.782h.966a2.043,2.043,0,0,0,1.4-3.44Q207.778,237.339,207.748,237.312Z" transform="translate(-189.033 -219.328)"/>
+          <path fill="#fff" id="Path_44231" data-name="Path 44231" d="M7.018,252H1.044a1,1,0,1,0,0,2.008H7.018a1,1,0,1,0,0-2.008Z" transform="translate(-0.038 -238.814)"/>
+        </g>
+        <text fill="#fff" id="بيع" transform="translate(1.186 7)" font-size="17" font-family="SegoeUI-Bold, Segoe UI" font-weight="700" letter-spacing="0.074em"><tspan x="0" y="0">بيع</tspan></text>
+      </g>
+    </g>
+  </g>
+</svg>

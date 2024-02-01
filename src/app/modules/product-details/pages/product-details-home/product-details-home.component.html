@@ -1,0 +1,19 @@
+
+<!-- begin:: main info  -->
+<main-info class="block mb-4" [data]="producData"></main-info>
+<!-- end:: main info  -->
+
+
+<!-- begin:: comments and replies  -->
+<comments-replies class="pt-2" [comments]="producData?.comments" [productId]="producData?.id"></comments-replies>
+<!-- end:: comments and replies  -->
+
+
+<!-- begin:: you may also like section  -->
+<you-may-also-like-section></you-may-also-like-section>
+<!-- end:: you may also like section  -->
+
+
+<!-- begin:: recently viewed section  -->
+<app-recently-viewed></app-recently-viewed>
+<!-- end:: recently viewed section  -->

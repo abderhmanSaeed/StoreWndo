@@ -1,0 +1,18 @@
+<ng-container *ngIf="!isInCart || ! authService.isAuthenticated">
+    <button (click)="addToCartHandler($event);" [class]="panelClass" class="lh-normal !min-w-[130px] py-2 w-100 rounded-7px d-flex flex-center btn-hover-show-icon main-transition px-4" mat-raised-button color="primary">
+        <img class="ltr:me-2 rtl:me-2 img-fluid btn-icon" width="12" src="assets/media/svg/white-cart.svg" alt="Cart">
+        <small>
+            {{ 'actions.add-to-cart' | translate}}
+        </small>
+    </button>
+</ng-container>
+
+
+<ng-container *ngIf="authService.isAuthenticated && isInCart">
+    <a (click)="checkOutHandler($event)" [routerLink]="['/cart']" routerLinkActive="router-link-active" [class]="panelClass" class="relative !min-w-[130px] z-50 lh-normal border-primary py-2 w-100 rounded-7px d-flex flex-center px-4"
+    mat-stroked-button color="primary">
+        <small>
+            {{ 'actions.check-out' | translate}}
+        </small>
+    </a>
+</ng-container>

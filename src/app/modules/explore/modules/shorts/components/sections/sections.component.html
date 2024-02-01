@@ -1,0 +1,23 @@
+<section class="short__sections">
+    <ul class="list-unstyled mb-0 d-flex align-items-center">
+        <ng-container *ngFor="let item of sections; let index = index">
+            <li class="cat-item ltr:me-3 rtl:me-3">
+                <a
+                    [routerLink]="['/explore']"
+                    [queryParams]="{
+                        'section': selectedSectionId == item?.id ? null : item?.id
+                    }"
+                    container="body"
+                    placement="bottom"
+                    [ngbTooltip]="item?.name"
+                    [class.active]="selectedSectionId == item?.id"
+                    class="btn cat-item__btn border d-flex main-transition position-relative flex-center"
+                >
+                    <img class="img-fluid h-100" [src]="item?.icon1" alt="Category Icon">
+                    <img class="img-fluid h-100 hover-img" [src]="item?.icon2" alt="Category Icon">
+                    <img class="img-fluid h-100 active-img" [src]="item?.icon3" alt="Category Icon">
+                </a>
+            </li>    
+        </ng-container>
+    </ul>
+</section>

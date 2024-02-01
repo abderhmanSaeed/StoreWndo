@@ -1,0 +1,29 @@
+<mat-card
+    matRipple 
+    [matRippleColor]="mainRippleColor"
+    [routerLink]="['/seller', data?.userId]"
+    class="!flex justify-between items-center main-rounded--force cursor-pointer !bg-[#0D186308]"
+>
+    <div class="start flex justify-between text-truncate">
+
+        <div mat-card-avatar class="example-header-image rounded-circle overflow-hidden ltr:me-2 rtl:me-2 !w-[47px] !h-[47px]">
+            <img 
+                (error)="onImgError($event)"
+                class="img-fluid fit-img w-100 h-100" [src]="data?.picture ? data?.picture : imgPlaceholder" alt="Seller Image">
+        </div>
+
+        <div class="d-flex flex-column justify-content-between ltr:ps-1 rtl:ps-1 text-truncate text-[.8rem] py-1 fw-500">
+            <div class="top flex items-center text-truncate pb-1">
+                <mat-card-title class="mb-0 text-truncate text-[.8rem] ltr:me-2 rtl:me-2 text-blue">{{ data?.name }}</mat-card-title>
+                <span class="text-primary"> {{ data?.isFollowing ?  ('seller.following' | translate) : null}}</span>
+            </div>
+            <mat-card-subtitle class="mb-0 d-flex align-items-center text-[.8rem] pt-1">
+                {{ data?.items }} {{ 'seller.items' | translate }}
+            </mat-card-subtitle>
+        </div>
+    </div>
+    <div class="end mt-auto absolute bottom-[5px] ltr:right-[10px] rtl:left-[10px]">
+        <!-- rate  -->
+        <auk-rating [theme]="2" [data]="data?.rate"></auk-rating>
+    </div>
+</mat-card>

@@ -1,0 +1,38 @@
+<div class="field relative">
+    <label *ngIf="label" for="exampleFormControlInput1" class="form-label text-blue fw-600 text-[.9rem]">
+        <span>{{ label }} </span>
+        <span *ngIf="control && control?.hasValidator(validatorEnum.required)" class="text-primary"> *</span>
+    </label>
+    <div class="input-wrapper flex items-center" dir="ltr">
+       
+        <!--Using items input-->
+        <ng-select
+            [dir]="lang == LanguagesEnum.EN ? 'ltr' : 'rtl' "
+            [clearable]="false"
+            (change)="emitValue()"
+            [items]="countriesCodes"
+            [(ngModel)]="selectedCode"
+            class="rounded-r-[0px] w-[94px]"
+            [class.ng-select--matrial]="isMatrial"
+        >
+        </ng-select>
+       
+        <input 
+            [dir]="lang == LanguagesEnum.EN ? 'ltr' : 'rtl' "
+            [id]="id"
+            [type]="'text'"
+            [class]="panelclass"
+            maxlength="11"
+            [(ngModel)]="value"
+            (input)="emitValue()"
+            [placeholder]="placeholder"                                                 
+            class="form-control rounded-l-[0px] h-[43px]"
+        >
+
+    </div>
+</div>
+
+<app-validation
+*ngIf="(showValidations && control?.dirty) || showValidations"
+[control]="control"
+></app-validation>

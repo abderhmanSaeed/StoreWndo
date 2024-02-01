@@ -1,0 +1,27 @@
+.mat-button {
+
+   &-base {
+        &.mat {
+            &-bg-gray {
+                &-700 {
+                    // Structure Blok 
+                    background-color:   #757575;
+                }
+                &-300 {
+                    // Structure Blok 
+                    background-color:   #EAEAEA;
+                }
+            }
+
+        }
+
+      
+
+   }
+
+
+    &.mat-primary-light {
+        // Structure Blok 
+        background-color: mat.get-color-from-palette($md-mcgpalette0, 50) !important;
+    }
+}

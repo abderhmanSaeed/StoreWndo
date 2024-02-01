@@ -1,0 +1,72 @@
+<section class="product-features text-[#97979d] w-100">
+    <div class="product-features__content main-rounded gradient-border bg-white h-100">
+        <div class="position-relative z-[1] pt-5 pb-4 px-4 flex flex-col h-100 justify-between">
+       
+            <!-- begin:: closer  -->
+            <div class="dialog__closer w-[fit-content] position-absolute z-[2] flex justify-end mb-4 right-0 top-0 translate-y-[-150%] translate-x-[200%]">
+                <button mat-dialog-close color="bg-gray-700" class="bg-gray-700 text-white shadow-xl !w-[32px] !h-[32px] d-flex items-center justify-center lh-normal" mat-mini-fab aria-label="Example icon button with a home icon">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </div>
+            <!-- end:: closer  -->
+            <div class="text-center">
+                <h2 mat-dialog-title class="text-blue fw-600"> {{ 'shared.add-rate-title' | translate }} </h2>
+            </div>
+
+            <div mat-dialog-content class="mx-0 mt-3 mb-4">
+
+                <div class="mb-4 block flex items-center justify-center flex-col">
+                    <bar-rating class="mb-1 raleway-font" [(rate)]="rate" [max]="5"></bar-rating>
+
+                    <div *ngIf="mediaPath" (error)="onImgError($event)" class="img-preview w-[100px] height-[130px] p-[.1rem] bg-white main-rounded mt-4 relative flex items-center justify-center">
+                        <img class="img-fluid main-rounded" [src]="mediaPath" alt="Wndo">
+                        <button (click)="deleteSelectedMedia()" matRipple [matRippleColor]="mainRippleColor" class="btn absolute top-[-9px] ltr:right-[-18px] rtl:left-[-18px] p-0 bg-white rounded-full w-[25px] h-[25px] shadow flex items-center justify-center ml-[-12px]">
+                            <mat-icon class="d-flex items-center justify-center lh-normal w-auto h-auto text-[.8rem] text-[#82819f] pr-0">close</mat-icon>
+                        </button>
+                    </div>
+                </div>
+
+                
+                <form class="relative" [formGroup]="form">
+                    <app-textarea
+                        rows="8"
+                        ngDefaultControl
+                        panelclass="resize-none"
+                        formControlName="description"
+                        [control]="form | getControl: 'description'"
+                    ></app-textarea>
+                    <label 
+                        matRipple 
+                        for="formFile"
+                        *ngIf="!mediaPath"
+                        [matRippleColor]="mainRippleColor"
+                        class="btn absolute top-[10px] ltr:right-[10px] rtl:left-[10px] p-0 bg-white rounded-full w-[25px] h-[25px] shadow flex items-center justify-center ltr:ml-[-12px] rtl:mr-[-12px]">
+                        <fa-icon class="d-flex text-[.8rem] text-[#82819f] pr-0" [icon]="faCamera"></fa-icon>
+                        <input 
+                            type="file"
+                            id="formFile"
+                            accept="image/*"
+                            (change)="onFileChange($event)"
+                            class="form-control invisble w-0 h-0 p-0 border-0"
+                        >
+                    </label>
+                </form>
+            </div>
+      
+            <mat-dialog-actions align="center" class="flex flex-col items-center">
+                <app-button
+                    (click)="submit()"
+                    [stroked]="true"
+                    [label]="'actions.review' | translate"
+                    [panelclass]="'w-100 py-1 rounded-pill !px-[7rem] uppercase mb-2'"
+                ></app-button>
+                <app-button
+                    mat-dialog-close
+                    [stroked]="true"
+                    [label]="'actions.later' | translate"
+                    panelclass="max-w-100 w-[260px] mx-3 !rounded-full py-1 !border-[transparent] text-[#96A1AB]"
+                ></app-button>
+            </mat-dialog-actions>
+        </div>
+    </div>
+</section> 

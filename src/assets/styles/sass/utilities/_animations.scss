@@ -1,0 +1,114 @@
+
+
+/* skeleton elements */
+.skeleton {
+    background: linear-gradient(
+      90deg,
+      hsl(210, 15%, 88%),
+      hsl(210, 15%, 95%),
+      hsl(210, 15%, 88%)
+    );
+    background-size: 200%;
+    animation: shimmering 1s infinite reverse;
+}
+
+
+
+
+/* skeleton animation */
+@keyframes shimmering {
+    from {
+      background-position: -100% 0;
+    }
+    to {
+      background-position: 100% 0;
+    }
+}
+
+
+@keyframes rotation {
+    from {
+      opacity: 1;
+      transform: rotate(0deg);
+    }
+    to {
+      opacity: 1;
+      transform: rotate(359deg);
+    }
+}
+
+// begin:: fadeInFromNone animation 
+
+
+
+// begin:: fadeInFromNone animation 
+@include keyframes(fadeInFromNone) {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+
+  1% {
+    display: block;
+    opacity: 0;
+  }
+
+  100% {
+    display: block;
+    opacity: 1;
+  }
+}
+// end:: fadeInFromNone animation 
+
+
+
+// begin:: hvr-ripple-out animation 
+@include keyframes(hvr-ripple-out) {
+  100% {
+    top: -12px;
+    right: -12px;
+    bottom: -12px;
+    left: -12px;
+    opacity: 0;
+  }
+}
+// end:: hvr-ripple-out animation 
+
+
+// begin:: circle animation 
+@include keyframes(circle) {
+	0% {
+		opacity: 1;
+	}
+	40% {
+		opacity: 1;
+	}
+	100% {
+		width: 150%;
+		height: 150%;
+		opacity: 0;
+	}
+}
+// end:: circle animation 
+
+// begin:: gradient animation 
+@include keyframes(gradient) {
+
+  0% {
+      background-position: 0% 50%;
+  }
+
+  50% {
+      background-position: 100% 50%;
+  }
+
+  100% {
+      background-position: 0% 50%;
+  }
+  
+}
+// end:: gradient animation 
+
+/* End:: animation  */
+
+

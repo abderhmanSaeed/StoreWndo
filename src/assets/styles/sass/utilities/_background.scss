@@ -1,0 +1,26 @@
+.bg {
+
+    &-secondary {
+        // Structure Block 
+        background-color: $secondaryColor !important;
+    }
+
+    &-success {
+        // Structure Block 
+        background-color: var(--bs-success) !important;
+    }
+
+    &-warning {
+        // Structure Block 
+        background-color: var(--bs-warning) !important;
+    }
+
+
+    &-wndo-watermark {
+
+        // Structure Block 
+        background-image: url(../../../../assets/media/logos/wndo-pattern.svg);
+        background-repeat: repeat;
+        background-attachment: fixed;
+    }
+}

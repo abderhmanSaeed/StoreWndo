@@ -1,0 +1,9 @@
+<div class="flex items-center">
+  <ng-container [ngSwitch]="star">
+    <ng-container *ngFor="let starReview of ReviewsStarsObjectEnum">
+      <h3 *ngSwitchCase="starReview.key" style="font-weight: 500; line-height: 1;" class="w-[12px] leading-none text-[#4E4E78] m-0">{{starReview.value}}</h3>
+  </ng-container>
+  </ng-container>
+    <img class="mx-2 w-5" src="assets/media/svg/{{star}}.svg" />
+  <h3 style="font-weight: 500; line-height: 1;" class="leading-none text-[#4E4E78] m-0">({{starRate}})</h3>
+</div>

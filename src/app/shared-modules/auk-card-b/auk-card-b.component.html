@@ -1,0 +1,42 @@
+<mat-card 
+        matRipple 
+        [matRippleColor]="mainRippleColor"
+        [routerLink]="['/product', data?.id]"
+        class="auk-card-b border main-rounded--force text-center px-4 cursor-pointer" 
+        >
+    <a class="d-block">
+        <add-to-fav
+            class="position-absolute"
+            [isFavorite]="data.isInWishList"
+            [productId]="data.id"
+            (onProductWishChange)="onProductWishChange.emit($event)"
+        ></add-to-fav>
+
+        <div class="h-[75px] mb-3 flex items-center justify-center px-3">
+            <img 
+                *ngIf="data.image?.urlPreview else imgPlaceholder"
+                class="img-fluid max-h-100 fit-img mx-auto rounded"
+                [src]="data.image?.urlPreview"
+                alt="Product image"
+            >
+        </div>
+        
+        <mat-card-title class="text-truncate">{{ data.name }}</mat-card-title>
+        
+        <mat-card-content class="mb-2 d-flex flex-center">
+            <auk-card-b-price [priceAfterOffer]="data.priceAfterOffer" [price]="data.price"></auk-card-b-price>
+        </mat-card-content>
+        <mat-card-actions class="px-3 pb-2 mb-0">
+            <add-to-cart 
+                [productId]="data.id"
+                [isInCart]="data.isInCart"
+                (addedToCart)="addedToCart.emit(true)"
+            ></add-to-cart>
+        </mat-card-actions>
+    </a>
+</mat-card>
+
+
+<ng-template #imgPlaceholder>
+    <img-placeholder></img-placeholder>
+</ng-template>

@@ -1,0 +1,50 @@
+<div class="video-wrapper relative h-100 main-rounded overflow-hidden"
+    [ngClass]="{
+        'video-wrapper--played': isPlayed
+    }"
+>
+   
+    <img 
+        (error)="onImgError($event)"
+        [src]="urlThumbnail" alt="Ad Image"
+        *ngIf="urlThumbnail else imgPlaceholder"
+        class="video-thmbnail-img img-fluid fit-img h-100"
+        [class]="thmbnailClass"
+    >
+
+   
+    <wndo-loader *ngIf="isVideoLoading" class="block h-100 border !border-[#fff] absolute z-[2] absolute inset-0"></wndo-loader>
+ 
+    <div *ngIf="isPlayed" class="h-fit m-auto video position-relative main-rounded overflow-hidden flex-grow-1 d-flex flex-center bg-secondary">
+        <vg-player class="max-h-100 flex items-center h-auto bg-transparent" *ngIf="source" (onPlayerReady)="onPlayerReady($event)">
+            <video
+                controlslist="nodownload noplaybackrate noremoteplayback"
+                disablepictureinpicture [loop]="isloop" autoplay="true" oncanplay="this.play()"
+                width="100%" class="max-h-[565px] bg-white main-rounded--force object-cover" [vgMedia]="$any(media)"
+                [vgMaster]="true" preload="metadata" #media controls="true"
+            >
+                <source [src]="source" type="video/mp4">
+            </video>
+        </vg-player>
+    </div>
+
+
+
+    <div 
+        class="video-thumbnail-overlay position-absolute d-flex align-items-center justify-content-center"
+        [ngClass]="{'video-thumbnail-overlay--playing': isPlaying}"
+    >
+        <div *ngIf="isPlaying" (click)="pause()" class="pause-layer absolute w-100 h-100 cursor-pointer"></div>
+        <play-btn *ngIf="!isPlayed || isPaused" (click)="fullscreen ? expandVideo() : play()"></play-btn>
+    </div>
+
+    <button (click)="expandVideo()" class="btn p-0 expand-btn absolute right-[7px] bottom-[7px] z-[99]">
+        <fa-icon class="d-flex text-white text-[.85rem]" [icon]="faExpand"></fa-icon>
+    </button>
+
+</div>
+
+
+<ng-template #imgPlaceholder>
+    <img-placeholder></img-placeholder>
+</ng-template>

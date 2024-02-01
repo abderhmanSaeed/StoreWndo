@@ -1,0 +1,143 @@
+<section (mouseenter)="isMouseEnter = true" (mouseleave)="onLeaveonCard()" class="grid-view__card h-100">
+    <div class="grid-view__card__content animate__animated animate__fadeIn h-100">
+
+        <div class="h-100 p-0 video-thumbnail-btn position-relative main-rounded overflow-hidden bg-white">
+          
+          
+            <!-- begin:: video thumbnail  -->
+            <ng-container *ngIf="!showVideo">
+                <img (error)="onImgError($event)" *ngIf="data.imageUrl else imgPlaceholder" class="video-thumbnail-img img-fluid fit-img w-100 h-100" [src]="data.imageUrl" alt="Ad Image">
+            </ng-container>
+            <!-- end:: video thumbnail  -->
+
+            <!-- begin:: video  -->
+            <vg-player *ngIf="data.videoUrl && showVideo"(onPlayerReady)="onPlayerReady($event)">
+                <video width="100%" class="h-100" [vgMedia]="$any(media)" [vgMaster]="true" preload="auto" muted #media>
+                    <source [src]="data.videoUrl" type="video/mp4">
+                </video>
+            </vg-player>
+            <!-- end:: video  -->
+
+            <!-- begin:: overlay -->
+            <div 
+                class="video-thumbnail-overlay position-absolute d-flex align-items-center justify-content-center"
+                [ngClass]="{
+                    'video-thumbnail-overlay--loading': isLoading,
+                    'video-thumbnail-overlay--expanded': isMouseEnter,
+                    'video-thumbnail-overlay--shrinked': !isMouseEnter
+                }"
+            >
+                <!-- <ripple-loader *ngIf="isLoading"></ripple-loader> -->
+                <wndo-loader class="block w-full h-full border !border-[#fff]" *ngIf="isLoading"></wndo-loader>
+                <play-btn (click)="playVideo()" *ngIf="!showVideo"></play-btn>
+               
+
+                <div class="absolute right-0 px-[.75rem] top-[8px]">
+                    <button (click)="onExpandClick(data.productId)" class="btn bg-[#bababa] p-1 w-[25px] h-[25px] flex items-center justify-center text-blue rounded-full expand-btn text-[.87rem]">
+                        <fa-icon class="d-flex text-white" [icon]="faExpand"></fa-icon>
+                    </button>
+                </div>
+                
+                <!-- begin:: owner info  -->
+                <a 
+                    [routerLink]="['/seller', data?.seller?.id]"
+                    type="button"
+                    class="btn d-flex py-0 align-items-center justify-content-start absolute left-0 top-[8px] text-white hover:text-white"
+                    >
+                    <div class="start ltr:me-2 rtl:ms-2">
+                        
+                        
+                        <div class="owner__img-box rounded-circle d-flex flex-center w-[23px] h-[23px]">
+                            <img (error)="onSellerImgError($event)" class="img-fluid rounded-circle fit-img w-100 h-100" [src]="data.seller?.imagePath ? data.seller?.imagePath : 'assets/media/users/user-placeholder.png' " alt="User Image">
+                        </div>
+
+
+                    </div>
+            
+                    <div class="end ltr:pe-2 rtl:ps-2 show-if-expanded">
+                        <small
+                            class="owner__name lh-normal"
+                            [ngClass]="{'text-[#7f7a7a]': isLoading}"
+                        >{{ data?.seller?.name }}</small>
+                    </div>
+                </a>
+                <!-- end:: owner info  -->
+
+                <!-- begin:: product base info  -->
+                <section class="prod-bas-info absolute bottom-[14px] text-white right-0 left-0 w-100 px-[.75rem]">
+                    <header class="show-if-expanded show-if-expanded--flex flex align-items-center mb-1 justify-content-between">
+                        <span 
+                            class="fw-600 mb-0 ltr:me-2 rtl:me-2 text-truncate"
+                            [ngClass]="{'text-[#7f7a7a]': isLoading}"
+                        > {{ data?.productName }} </span>
+                        <auk-rating [textPanelClass]=" !isLoading ? 'text-white' : 'text-[#7f7a7a]' " [data]="data?.rate"></auk-rating>
+                    </header> 
+                    <div class="body mb-2">
+                        <auk-price
+                            [price]="data.price"
+                            [priceAfterOffer]="data.priceAfterOffer"
+                        ></auk-price>
+                    </div>
+                    <footer class="flex justify-between items-center">
+                        <div class="start flex items-center">
+                            <add-to-cart 
+                                [productId]="data.productId"
+                                class="ltr:me-2 rtl:me-2 show-if-expanded"
+                                [isInCart]="data?.isInCart">
+                            </add-to-cart>
+                            <add-to-fav 
+                            class="ltr:ms-2 rtl:ms-2"
+                                [productId]="data.productId"
+                                [panelStyle]="{
+                                    'width': '28px',
+                                    'height': '28px',
+                                    'font-size': '1.1rem',
+                                    'border-color': '#a2a2a2'
+                                }"
+                                [isFavorite]="data?.isInWishList"
+                                (onProductWishChange)="onWishChange($event)"
+                            ></add-to-fav>
+                            <like 
+                                [isliked]="data?.isLiked"
+                                [productId]="data.productId"
+                                (onProductLikeChange)="onLikeChange($event)"
+                                class="ltr:ms-2 rtl:ms-2 show-if-expanded"
+                                [panelStyle]="{
+                                    'width': '28px',
+                                    'height': '28px',
+                                    'font-size': '1rem',
+                                    'border-color': '#a2a2a2'
+                                }"
+                            ></like>
+                        </div>
+                        <div class="end show-if-expanded"
+                            [ngClass]="{'text-[#7f7a7a]': isLoading}"
+                        >
+                            <small>07:45</small>
+                        </div>
+                    </footer>
+                </section>
+                <!-- end:: product base info  -->
+
+
+
+            </div>
+            <!-- end:: overlay -->
+
+        </div>
+    </div>
+</section>
+
+
+<ng-template #imgPlaceholder>
+    <img-placeholder
+    class="
+        w-full
+        h-full
+        flex
+        items-center
+        justify-center
+        bg-white
+    "
+    ></img-placeholder>
+</ng-template>

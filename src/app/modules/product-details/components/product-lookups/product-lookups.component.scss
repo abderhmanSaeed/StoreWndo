@@ -1,0 +1,8 @@
+.lookups {
+    &__lookup {
+        &:nth-of-type(odd) {
+            // Structure Block 
+            background-color: #F7F7F7;
+        }
+    }
+}

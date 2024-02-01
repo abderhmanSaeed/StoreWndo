@@ -1,0 +1,24 @@
+:host-context(html[dir=rtl]) {
+    .btn-hover-show-icon {
+
+
+        .btn-icon {
+    
+            // Modifire Block 
+            transform: translate(100%, -50%);
+    
+        }
+
+
+        &:hover {
+    
+            small {
+    
+                // Modifire Block 
+                transform: translateX(-11px);    
+            }
+        }
+
+    }
+
+}

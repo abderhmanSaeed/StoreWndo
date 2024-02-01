@@ -1,0 +1,182 @@
+<section class="address text-[#97979d]">
+    <div class="address__content main-rounded gradient-border bg-white">
+        <form [formGroup]="form" class="position-relative z-[1] p-4" (ngSubmit)="submit()">
+       
+            <!-- begin:: closer  -->
+            <div class="dialog__closer w-[fit-content] position-absolute z-[2] flex justify-end mb-4 right-0 top-0 translate-y-[-150%] translate-x-[200%]">
+                <button mat-dialog-close color="bg-gray-700" class="bg-gray-700 text-white shadow-xl !w-[32px] !h-[32px] d-flex items-center justify-center lh-normal" mat-mini-fab aria-label="Example icon button with a home icon">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </div>
+            <!-- end:: closer  -->
+
+            <div class="text-center px-4">
+                <ng-container *ngIf="back">
+                    <div class="text-left flex rtl:justify-start rtl:justify-end">
+                        <button dir="ltr" mat-button type="button" (click)="onBack.emit(true)" class="px-1 !ml-[-.50rem] py-0 min-w-auto d-flex items-center justify-center lh-normal" aria-label="Example icon button with a home icon">
+                            <mat-icon class="text-muted">keyboard_backspace</mat-icon>
+                        </button>
+                    </div>
+                </ng-container>
+                <h2 mat-dialog-title class="text-blue fw-600">
+
+                    {{ isEdit ? ('address-form.edit-the-address' | translate ) : ('address-form.add-new-address' | translate ) }}
+                    
+                </h2>
+            </div>
+
+            <div mat-dialog-content class="mx-0 my-5 px-4">
+                
+
+                <div class="row">
+
+                    <div class="col-lg-6 mb-4">
+                        <field
+                            type="text"
+                            ngDefaultControl
+                            formControlName="name"
+                            [showValidations]="formError"
+                            [control]="form | getControl: 'name'"
+                            [label]="'address-form.address-name' | translate"
+                            [placeholder]="'address-form.enter-your-address' | translate"
+                            [panelclass]="'border-0 px-0 !border-b !border-solid rounded-0 !border-[#E5E6E8]'"
+                        ></field>
+                    </div>
+
+                    <div class="col-lg-6 mb-4">
+
+                        <div class="h-100 border-b border-[#E5E6E8]">
+                            <label class="text-[.9rem] fw-500 text-blue mb-2 fw-600">
+                                <span>{{ 'address-form.address-icon' | translate }} </span>
+                                <span class="text-primary"> *</span>
+                            </label>
+                            <div class="times flex items-center">
+                               <ng-container *ngFor="let item of addressIcons">
+                                    <div class="address-icon-wrapper">
+                                        <input checked type="radio" class="btn-check" formControlName="icon" name="icon" [value]="item?.id" [id]="item.name" autocomplete="off">
+                                        <label class="btn btn-secondary p-0 ltr:me-3 rtl:me-3" [for]="item.name">
+                                            <img [width]="item.width" [src]="item?.iconPath" alt="Icon">
+                                            <img [width]="item.width" class="active hidden" [src]="item?.activeIconPath" alt="Icon">
+                                        </label>
+                                    </div>
+                               </ng-container>
+                            </div>
+                            <div
+                                role="alert"
+                                class="h-0 feedback mt-1"
+                                *ngIf="(formError && (form | getControl: 'icon')?.dirty) || formError"
+                                >
+                                <small class="font-medium text-primary d-inline-block h-0 top-[1px] relative">
+                                    {{ "validations.icon" | translate }}
+                                </small>
+                            </div>
+                        </div>
+                        
+                    </div>
+
+                    <div class="col-lg-6 mb-4">
+                        <field
+                            type="text"
+                            ngDefaultControl
+                            formControlName="street"
+                            [showValidations]="formError"
+                            [control]="form | getControl: 'street'"
+                            [label]="'address-form.street-address' | translate"
+                            [placeholder]="'address-form.enter-your-street-address' | translate"
+                            [panelclass]="'border-0 px-0 !border-b !border-solid rounded-0 !border-[#E5E6E8]'"
+                        ></field>
+                    </div>
+
+                    <div class="col-lg-6 mb-4">
+                        <auk-select 
+                            [items]="cities"
+                            ngDefaultControl
+                            [loading]="cityLoading"
+                            formControlName="cityId"
+                            [showValidations]="formError"
+                            (onChange)="onCityChange($event)"
+                            panelclass="matrial border-[#E5E6E8]"
+                            [control]="form | getControl: 'cityId'"
+                            [label]="'address-form.city' | translate"
+                            [placeholder]="'address-form.enter-your-city' | translate"
+                        ></auk-select>
+                    </div>
+
+                    <div class="col-lg-6 mb-4">
+                        <auk-select 
+                            ngDefaultControl
+                            formControlName="zoneId"
+                            [items]="districtsAndZones?.zones"
+                            [showValidations]="formError"
+                            [loading]="districtsAndZonesLoading"
+                            panelclass="matrial border-[#E5E6E8]"
+                            [control]="form | getControl: 'zoneId'"
+                            [label]="'address-form.zone' | translate"
+                            [placeholder]="'address-form.enter-your-zone-name' | translate"
+                        ></auk-select>
+                    </div>
+
+                    <div class="col-lg-6 mb-4">
+                        <auk-select 
+                            ngDefaultControl
+                            formControlName="districtId"
+                            [showValidations]="formError"
+                            [loading]="districtsAndZonesLoading"
+                            panelclass="matrial border-[#E5E6E8]"
+                            [items]="districtsAndZones?.districts"
+                            [control]="form | getControl: 'districtId'"
+                            [label]="'address-form.district' | translate"
+                            [placeholder]="'address-form.enter-your-district-name' | translate"
+                        ></auk-select>
+                    </div>
+
+                    <div class="col-lg-6 mb-4">
+                        <field
+                            type="number"
+                            ngDefaultControl
+                            formControlName="buildingNo"
+                            [showValidations]="formError"
+                            [control]="form | getControl: 'buildingNo'"
+                            [label]="'address-form.building-no' | translate"
+                            [placeholder]="'address-form.enter-your-building-number' | translate"
+                            [panelclass]="'border-0 px-0 !border-b !border-solid rounded-0 !border-[#E5E6E8]'"
+                        ></field>
+                    </div>
+
+                    <div class="col-lg-6 mb-4">
+                        <field
+                            type="text"
+                            ngDefaultControl
+                            [label]="'address-form.landMark' | translate"
+                            formControlName="landMark"
+                            [showValidations]="formError"
+                            [control]="form | getControl: 'landMark'"
+                            [placeholder]="'address-form.if-you-have-landmark' | translate"
+                            [panelclass]="'border-0 px-0 !border-b !border-solid rounded-0 !border-[#E5E6E8]'"
+                        ></field>
+                    </div>
+                </div>
+            
+
+            </div>
+      
+            <mat-dialog-actions align="center">
+                <app-button
+                    [label]="'actions.save' | translate"
+                    [panelclass]="'w-100 py-1 rounded-pill !px-[7rem]'"
+                ></app-button>
+            </mat-dialog-actions>
+      
+        </form>
+    </div>
+</section> 
+
+
+
+
+
+
+
+
+
+

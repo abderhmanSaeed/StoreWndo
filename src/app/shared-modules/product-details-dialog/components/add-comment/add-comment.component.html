@@ -1,0 +1,10 @@
+
+<div class="input-group rounded-full border !border-[#97979d] overflow-hidden">
+    <span class="input-group-text border-0 bg-transparent !border-solid ltr:!border-r rtl:!border-l !border-[#97979d] rounded-0" id="basic-addon1">
+        <mat-icon class="text-[#97979d]">sentiment_satisfied_alt</mat-icon>
+    </span>
+    <input (keyup.enter)="onComment()" [(ngModel)]="comment" type="text" class="form-control border-0 bg-transparent !text-[#97979d]" [placeholder]="'explore.say-something' | translate" aria-label="Username" aria-describedby="basic-addon1">
+    <button (click)="onComment()" mat-stroked-button class="btn send-btn min-w-auto input-group-text border-0 bg-transparent !border-solid ltr:!border-l rtl:!border-r !border-[#97979d]" id="basic-addon1">
+        <mat-icon class="text-[#97979d] text-[1.4rem] flex items-center justify-center">send</mat-icon>
+    </button>
+</div>

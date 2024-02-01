@@ -1,0 +1,67 @@
+
+* {
+    outline: 0 !important;
+    box-shadow: none !important;
+}
+
+a,
+a:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+
+/* Change the white to any color */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+    color: rgba(3, 1, 76, .56) !important;
+}
+
+
+.mat-dialog-title,
+.mat-h4, .mat-subheading-1, .mat-typography .mat-h4, .mat-typography .mat-subheading-1, .mat-typography h4, .mat-typography .h4,
+.mat-h2, .mat-title, .mat-typography .mat-h2, .mat-typography .mat-title, .mat-typography h2, .mat-typography .h2,
+.mat-expansion-panel-content,
+.mat-expansion-panel-header,
+.mat-h3,
+.mat-subheading-2,
+.mat-typography .mat-h3,
+.mat-typography .mat-subheading-2,
+.mat-typography h3,
+.mat-typography .h3,
+.mat-h1,
+.mat-headline,
+.mat-typography .mat-h1,
+.mat-typography .mat-headline,
+.mat-typography h1,
+.mat-typography .h1,
+.mat-card,
+.mat-button,
+.mat-raised-button,
+.mat-icon-button,
+.mat-stroked-button,
+.mat-flat-button,
+.mat-fab,
+.mat-mini-fab {
+  font-family: inherit;
+}
+
+
+.mat-card-header-text {
+  margin: 0 !important;
+}

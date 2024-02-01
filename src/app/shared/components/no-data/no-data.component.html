@@ -1,0 +1,30 @@
+<section class="no-data flex justify-content-center items-center flex-col">
+   
+   
+    <img 
+        *ngIf="!isSorry"
+        [width]="size == 'xl' ? 90 : 45"
+        class="mb-1"
+        [src]="
+            size == 'xl' ? 'assets/media/logos/sad-big.png' : 'assets/media/logos/sad-sm.png'    
+        "
+        alt="No data to show"
+    >
+
+    <!-- sorry  -->
+    <img 
+        *ngIf="isSorry"
+        [width]="size == 'xl' ? 120 : 45"
+        class="mb-3"
+        [src]="
+            size == 'xl' ? 'assets/media/logos/sorry-xl.png' : 'assets/media/logos/sorry-sm.png'    
+        "
+        alt="No data to show"
+    >
+
+    <small class="text-[#AAB2B7]"
+        [ngClass]="{
+            'text-sm': size == 'xl'
+        }"
+    >{{ message }}</small>
+</section>

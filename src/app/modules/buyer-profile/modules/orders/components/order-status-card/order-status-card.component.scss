@@ -1,0 +1,68 @@
+.mat-card {
+    &__btn {
+
+        // Structure Block 
+        background-repeat: no-repeat !important;
+        background-size: cover !important;
+
+        &.active,
+        &:hover {
+
+            .label {
+
+                // Typography Block 
+                color: #fff !important;
+
+            }
+
+
+            .icon {
+                img {
+                    // Structure Block 
+                    display: none;
+
+                    &.active {
+                        // Structure Block 
+                        display: block;
+                    }
+                }
+            }
+
+            &.ordered {
+
+                // Structure Block 
+                background: rgb(71,156,241);
+                background: linear-gradient(90deg, rgba(71,156,241,1) 0%, rgba(27,112,197,1) 100%);
+            }
+
+            &.shipping {
+
+                // Structure Block 
+                background: rgb(253,167,0);
+                background: linear-gradient(90deg, rgba(253,167,0,1) 0%, rgba(231,153,2,1) 100%);
+            }
+
+            &.delivered {
+
+                // Structure Block 
+                background: rgb(2,164,7);
+                background: linear-gradient(90deg, rgba(2,164,7,1) 0%, rgba(1,125,5,1) 100%);
+            }
+
+            &.returned {
+
+                // Structure Block 
+                background: rgb(244,209,21);
+                background: linear-gradient(83deg, rgba(244,209,21,1) 0%, rgba(234,183,3,1) 100%);
+            }
+
+            &.cancelled {
+
+                // Structure Block 
+                background: rgb(250,0,41);
+                background: linear-gradient(83deg, rgba(250,0,41,0.8799894957983193) 0%, rgba(250,0,41,1) 100%);
+            }
+
+        }
+    }
+}

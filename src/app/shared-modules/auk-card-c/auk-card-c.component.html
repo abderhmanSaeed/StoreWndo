@@ -1,0 +1,105 @@
+<mat-card 
+        matRipple 
+        [routerLink]="['/product', data?.id]"
+        [matRippleColor]="mainRippleColor"
+        class="auk-card-a main-rounded--force p-4 cursor-pointer" 
+        >
+
+    <!-- begin:: card header   -->
+    <div class="auk-card-a__header mb-2">
+       
+        <mat-card-title class="fw-600 mb-0 ltr:me-2 rtl:me-2 text-truncate"> {{ data.name }} </mat-card-title>
+
+        <div class="start mt-1">
+            <!-- begin:: owner small card  -->
+            <owner-small-card [name]="data?.sellerName" [imagePath]="data?.sellerImage" [ownerId]="data?.sellerId"></owner-small-card>
+            <!-- end:: owner small card  -->
+        </div>
+    </div>
+    <!-- end:: card header   -->
+
+
+    <mat-card-content class="mb-0 d-flex mb-2">
+        <div class="start ltr:me-3 rtl:me-3 max-w-[55%]">
+            <div class="auk-card-a__img-box main-rounded p-1 d-flex flex-center position-relative border border-white">
+                <ng-container *ngIf="data.offerPercentage">
+                    <small class="position-absolute badge bg-[#fe4b46] px-2 fw-400 auk-card-a__discount">{{ data.offerPercentage}} %</small>
+                </ng-container>
+                <img 
+                    (error)="onImgError($event)"
+                    *ngIf="data.image else imgPlaceholder" class="img-fluid max-h-100 fit-img rounded" [src]="data.image?.urlPreview" alt="Product Photo"
+                >
+            </div>
+        </div>
+
+        <div class="end flex flex-col justify-between">
+
+            <div class="d-flex align-items-center mb-2 justify-content-center">
+                <auk-rating [data]="data.rate"></auk-rating>
+            </div>
+
+            <div class="auk-card-a__price pt-3">
+                <auk-price
+                    [isVertical]="true"
+                    [price]="data.price"
+                    [priceAfterOffer]="data.priceAfterOffer"
+                ></auk-price>
+            </div>
+        </div>
+    </mat-card-content>
+
+
+    <!-- begin:: card footer   -->
+    <div class="mat-card-footer d-flex m-0">
+
+        <mat-card-actions class="m-0">
+            <div class="d-flex justify-content-between align-items-center">
+                 <div class="start ltr:me-2 rtl:me-2">
+                                      
+                    <add-to-cart
+                        *ngIf="!data?.isOutOfStock"
+                        (click)="$event.stopPropagation()"
+                        [panelClass]="'!px-[2rem]'"
+                        [productId]="data.id"
+                        [isInCart]="data.isInCart"
+                     ></add-to-cart>
+
+                     <span *ngIf="data?.isOutOfStock" class="text-[#FFA90A] fw-500">{{ 'shared.out-of-stock' | translate }}</span>
+
+                 </div>
+                 <div class="end text-end flex items-center">
+                     <add-to-fav 
+                        (click)="$event.stopPropagation()"
+                         class="ltr:ms-2 rtl:ms-2"
+                         [productId]="data.id"
+                         [isFavorite]="data.isInWishList"
+                         [panelStyle]="{
+                             'width': '28px',
+                             'height': '28px',
+                             'font-size': '1.1rem'
+                         }"
+                     ></add-to-fav>
+                     <like 
+                        (click)="$event.stopPropagation()"
+                         class="ltr:ms-2 rtl:ms-2"
+                         [productId]="data.id"
+                         [isliked]="data.isLike"
+                         [panelStyle]="{
+                             'width': '28px',
+                             'height': '28px',
+                             'font-size': '1rem'
+                         }"
+                     ></like>
+                 </div>
+            </div>
+         </mat-card-actions>        
+    </div>
+    <!-- end:: card footer   -->
+
+</mat-card>
+
+
+
+<ng-template #imgPlaceholder>
+    <img-placeholder></img-placeholder>
+</ng-template>

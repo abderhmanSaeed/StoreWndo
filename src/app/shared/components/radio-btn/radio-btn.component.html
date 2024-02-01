@@ -1,0 +1,16 @@
+<label
+    class="radio-btn cursor-pointer"
+    [class]="panelClass"
+    
+    >
+    <input
+        [id]="id"
+        type="radio" 
+        [name]="name"
+        [value]="value"
+        [checked]="checked"
+        (change)="emitValue($event)"                                                
+        class="cursor-pointer"    
+    />
+    <span>{{ label | translate }}</span>
+</label>

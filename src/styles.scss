@@ -1,0 +1,45 @@
+/* You can add global styles to this file, and also import other style files */
+
+// begin:: swiper styles 
+@import "~swiper/css";
+@import "~swiper/css/pagination";
+
+// tailwind styles
+@import "~tailwindcss/base";
+@import "~tailwindcss/components";
+@import "~tailwindcss/utilities";
+
+// ng-selec styles
+@import "~@ng-select/ng-select/themes/default.theme.css";
+
+
+
+
+
+
+:root {
+
+    // begin:: colors 
+    --bs-primary: #FF002A;
+    --bs-secondary: #F8F8F8;
+    --third: #0D1863;
+    --bs-success: #198754;
+    --bs-success-light: #02A707;
+    --bs-info: #0dcaf0;
+    --bs-warning: #ffc107;
+    --main-gradient: linear-gradient(90deg, rgba(13,24,99,1) 0%, rgba(197,1,35,1) 50%, rgba(13,24,99,1) 100%);
+
+    // begin:: borders 
+    --main-rounded: 9px
+}
+
+
+html, body { height: 100%; }
+
+
+
+
+// video[controls]::-webkit-media-controls-panel {
+//   display: flex !important;
+//   opacity: 1 !important;
+// }

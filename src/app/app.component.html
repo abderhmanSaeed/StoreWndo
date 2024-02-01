@@ -1,0 +1,11 @@
+<ngx-spinner
+    bdColor="rgba(255, 255, 255, .75)"
+    template="<img src='assets/media/gif/loader.gif' />"
+    type="line-scale-party"
+>
+</ngx-spinner>
+<ng-container *ngIf="isLoaded">
+    <router-outlet></router-outlet>
+</ng-container>
+
+

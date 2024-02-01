@@ -1,0 +1,131 @@
+<section class="confirmation animate__animated animate__fadeIn">
+
+    <header class="mb-3 text-[.9rem]">
+        <strong>{{ 'checkout.your-cart' | translate }} ({{cart?.carts?.length}})</strong>
+    </header>
+    
+    <div class="row">
+
+        <div class="col-lg-9 mb-4">
+            <ng-container *ngIf="cart?.carts?.length else isEmpty">
+                <div class="col-box ltr:mr-[8rem] rtl:ml-[8rem]">
+     
+                     <ng-container *ngFor="let item of cart?.carts">
+                         <!-- begin:: cart items -->
+                         <cart-item [item]="item" class="mb-3 block"></cart-item>
+                         <!-- end:: cart items -->
+                     </ng-container>
+     
+     
+     
+     
+                     <!-- begin:: shipping address and payment summary -->
+                     <mat-card class="p-4 relative">
+     
+                         <mat-card-content class="mb-0">
+     
+                             <!-- Shipping Address -->
+                             <div class="row">
+                                 <div class="col-lg-6 ltr:border-r rtl:border-l">
+                                     <div class="col-box">
+                                         <h4 class="fw-500 text-[.9rem] mb-2">{{ 'checkout.shipping-address' | translate }}</h4>
+                                         <span class="fw-400 text-[#424E78] text-[.85rem] lh-normal">{{ order?.address?.name }}</span>
+                                     </div>
+                                 </div>
+         
+                                 <!-- Payment -->
+                                 <div class="col-lg-6">
+                                     <div class="col-box ltr:ps-3 rtl:ps-3">
+                                         <h4 class="fw-500 text-[.9rem] mb-2">{{ 'checkout.payment' | translate }}</h4>
+                                       
+                                         <ng-container *ngFor="let item of paymentMethods">
+                                             <ng-container *ngIf="item?.id == order?.paymentMethod">
+                                                 <div class="flex items-center text-[#4E4E78]">
+                                                     <img [width]="item?.id == paymentMethodsEnum.Cash ? 14 : 16" class="img-fluid ltr:me-2 rtl:me-2" [src]="item?.activeIconPath" alt="Cash Icon">
+                                                     <span class="fw-400 text-[.82rem] lh-normal">
+                                                        {{ item.label | translate }}
+                                                     </span>   
+                                                 </div>
+                                             </ng-container>
+
+                                             <ng-container *ngIf="isDeductFromWallet && item?.id == paymentMethodsEnum.Wallet">
+                                                <div class="flex items-center text-[#4E4E78] mt-4">
+                                                    <img width="16" class="img-fluid ltr:me-2 rtl:me-2" [src]="item?.activeIconPath" alt="Cash Icon">
+                                                    <span class="fw-400 text-[.82rem] lh-normal">
+                                                       {{ item.label | translate }}
+                                                    </span>   
+                                                </div>
+                                             </ng-container>
+
+                                         </ng-container>
+
+
+                                        
+                                         
+     
+                                     </div>
+                                 </div>
+                             </div>
+     
+                         </mat-card-content>     
+                         
+                         <mat-card-actions class="d-flex justify-between absolute ltr:right-0 rtl:left-0 top-[50%] translate-y-[-50%] ltr:translate-x-[50%] rtl:translate-x-[-50%] m-0 pt-0">
+                             <button (click)="openEditAddressAndPaymentMethodDialog()" class="shadow bg-white w-[35px] h-[35px]" mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+                                 <fa-icon class="d-flex justify-center items-center" [icon]="faPen"></fa-icon>
+                             </button>
+                         </mat-card-actions>           
+                     </mat-card>
+                     <!-- end:: shipping address and payment summary -->
+     
+                     
+     
+     
+                     <!-- begin:: cart actions -->
+                     <div class="cart-actions flex items-center justify-center pt-[2rem]">
+                         
+                         <app-button
+                             routerLink="/cart"
+                             [stroked]="true"
+                             [label]="'checkout.back-to-cart' | translate"
+                             panelclass="max-w-100 w-[250px] mx-3 !rounded-full lh-normal !py-[.65rem]"
+                         ></app-button>
+                         
+                         <app-button
+                             (click)="submitOrder()"
+                             [label]="'checkout.pay-now' | translate"
+                             panelclass="max-w-100 w-[250px] mx-3 !rounded-full lh-normal !py-[.65rem]"
+                         ></app-button>
+                         
+                     </div>
+                     <!-- end:: cart actions -->
+                </div>
+            </ng-container>
+        </div>
+        
+
+
+        <div class="col-lg-3">
+
+            <!-- begin:: order summary -->
+            <order-summary [cart]="cart"></order-summary>
+            <!-- end:: order summary -->
+
+            <!-- begin:: voucher -->
+            <add-voucher *ngIf="cart?.carts?.length" [addressId]="addressId"></add-voucher>
+            <!-- end:: voucher -->
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+
+
+<!-- if the cart is empaty  -->
+<ng-template #isEmpty>
+    <is-empty class="mr-[8rem] block"></is-empty>
+</ng-template>

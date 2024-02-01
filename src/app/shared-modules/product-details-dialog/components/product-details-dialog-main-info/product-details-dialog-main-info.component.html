@@ -1,0 +1,146 @@
+<section class="product-info h-100 flex flex-column justify-content-between">
+    
+    <div class="top">
+         <h3 class="mb-1 text-white">{{ data?.name }}</h3>
+         <span class="mb-2 block">{{ data?.section?.name }}/{{ data?.category?.name }}</span>
+ 
+         <a 
+             [routerLink]="['/seller', data?.seller?.id]"
+             mat-dialog-close
+             class="btn d-flex p-0 align-items-center justify-content-start text-white mb-3"
+             >
+             <div class="start ltr:me-2 rtl:me-2">
+                 <div class="owner__img-box rounded-circle d-flex flex-center w-[23px] h-[23px]">
+                     <img class="img-fluid rounded-circle fit-img w-100 h-100" [src]="data?.seller?.imagePath ? data?.seller?.imagePath : 'assets/media/users/user-placeholder.png'" alt="User Image">
+                 </div>
+             </div>
+ 
+             <div class="end ltr:pe-2 rtl:pe-2">
+                 <small class="owner__name lh-normal">{{ data?.seller?.name }}</small>
+             </div>
+         </a>
+ 
+ 
+         <div class="product-info__desc">
+             <p>
+                 {{ data?.description }}
+             </p>
+         </div>
+ 
+         <!-- brgin:: rating  -->
+         <div class="rating flex items-center mb-3">
+             <bar-rating  [readOnly]="true" [(rate)]="data.rate" [max]="5"></bar-rating>
+             <span class="inline-block ltr:ms-3 rtl:ms-3 text-[#787878]">{{ data?.reviewCount }} {{ 'explore.reviews' | translate }}</span>
+         </div>
+         <!-- end:: rating  -->
+ 
+ 
+ 
+         <!-- begin:: product price  -->
+         <div class="product__price text-[1.1rem] fw-600 d-flex mb-3">
+             <span class="text-primary ltr:me-2 rtl:me-2">
+                 <span class="currency">{{ 'shared.LE' | translate }} </span>
+                 <span class="price d-inline-block">
+                     {{ data?.price?.priceAfterOffer }}
+                 </span>
+             </span>
+             <span class="product__price__old text-[.9rem] text-gray--dark text-decoration-line-through">
+                 <span class="old-price__currency">{{ 'shared.LE' | translate }} </span>
+                 <span class="old-price__price">
+                     {{ data?.price?.price }}
+                 </span>
+             </span>
+         </div>
+         <!-- end:: product price  -->
+ 
+ 
+         <!-- begin:: product actions  -->
+         <div class="d-flex align-items-center">
+             <div class="start ltr:me-2 rtl:me-2">
+                 <add-to-cart [isIsolated]="true"  [isInCart]="data?.isInCart" (click)="addToCartHandler(data.id)"></add-to-cart>
+             </div>
+             <div class="end text-end">
+                 <add-to-fav 
+                     class="ltr:ms-2 rtl:ms-2"
+                     [productId]="data.id"
+                     [isFavorite]="data?.isInWishList"
+                     [panelClass]="'border !border-[#97979d]'"
+                     [panelStyle]="{
+                         'width': '28px',
+                         'height': '28px',
+                         'font-size': '1.1rem'
+                     }"
+                     (onProductWishChange)="onProductDataChange({'isInWishList': $event})"
+                 ></add-to-fav>
+                 <like 
+                     class="ltr:ms-2 rtl:ms-2"
+                     [isliked]="data?.isLike"
+                     [productId]="data.id"
+                     [panelClass]="'border !border-[#97979d]'"
+                     [panelStyle]="{
+                         'width': '28px',
+                         'height': '28px',
+                         'font-size': '1rem'
+                     }"
+                     (onProductLikeChange)="onProductDataChange({'isLiked': $event})"
+                 ></like>
+             </div>
+     </div>
+     <!-- end:: product actions  -->
+ 
+ 
+     <!-- begin:: separator  -->
+     <hr class="my-3">
+     <!-- end:: separator  -->
+    </div>
+ 
+ 
+ 
+   <div class="bottom">
+ 
+     <ng-container *ngIf="data?.comments?.length">
+    
+         <div 
+         *ngFor="let item of data.comments | slice:0:1"
+         class="d-flex p-0 align-items-start justify-content-start mb-3"
+              >
+              <div class="start me-3">
+                  <div class="owner__img-box rounded-circle d-flex flex-center w-[30px] h-[30px]">
+                      <img class="img-fluid rounded-circle fit-img w-100 h-100"
+                           [src]="item?.user?.imagePath ? item?.user?.imagePath : 'assets/media/users/user-placeholder.png'" alt="User Image">
+                  </div>
+              </div>
+      
+              <div class="end ltr:pe-2 rtl:pe-2 leading-[17px] max-w-[calc(100% - 40px)]">
+                  <small class="inline-block mb-2 text-clamp text-clamp--2">
+                      {{ item?.message }}
+                  </small>
+                  <div class="flex items-center">
+                          <small class="me-4 lh-normal">{{ item?.creationTime }}</small>
+                          <button (click)="updateCommentLike(item?.id)" class="btn flex ;h-normal ltr:me-2 rtl:me-2 text-[#97979d] p-0 text-[.85rem] hover:text-[#003b6d]">
+                              <small>
+                                 {{ item?.isLike ? "Dislike" :  'Like'}}
+                              </small>
+                          </button>
+                          <button (click)="isAuthenticated()" class="btn flex ;h-normal ltr:me-2 rtl:me-2 text-[#97979d] p-0 text-[.85rem] hover:text-[#003b6d]">
+                              <small>Reply</small>
+                          </button>
+                          <button (click)="isAuthenticated()" class="btn flex ;h-normal ltr:me-2 rtl:me-2 text-[#97979d] p-0 text-[.85rem] hover:text-[#003b6d]">
+                              <small>Report</small>
+                          </button>
+                  </div>
+              </div>
+         </div>
+ 
+     </ng-container>
+  
+      
+      <add-comment (addComment)="commentHandler($event)"></add-comment>
+ 
+ 
+   </div>
+ 
+ 
+ 
+ 
+ </section>

@@ -1,0 +1,17 @@
+:host {
+    input {
+        
+        &::placeholder {
+            // Typography block 
+            color: inherit;
+            opacity: .6;
+        }
+    }
+
+    ::ng-deep {
+        .mat-button-wrapper {
+            // Structure Block 
+            padding: 0;
+        }
+    }
+}

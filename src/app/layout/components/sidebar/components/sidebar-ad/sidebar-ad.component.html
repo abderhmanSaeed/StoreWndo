@@ -1,0 +1,20 @@
+<section class="sidebar__ad">
+
+    <header (click)="aukVideo?.expandVideo()" class="d-flex align-items-center mb-1 cursor-pointer">
+        <fa-icon class="d-flex text-blue fa-lg" [icon]="faVideo"></fa-icon>
+        <small class="sidebar__ad__title animate__animated animate__fadeIn text-uppercase fw-600 text-blue ltr:ms-2 rtl:ms-2">{{ 'sidebar.watch' | translate }} <span class="text-primary">{{ 'sidebar.demo' | translate }}</span></small>
+    </header>
+
+
+    <div class="sidebar__ad__content pt-1 animate__animated animate__fadeIn">
+        <div class="p-0 position-relative main-rounded overflow-hidden h-[100px] flex flex-center items-center">
+            <auk-video
+                #aukVideo
+                [fullscreen]="true"
+                [source]="videoUrl"
+                class="block h-[100px] w-100"
+            ></auk-video>
+        </div>
+    </div>
+
+</section>

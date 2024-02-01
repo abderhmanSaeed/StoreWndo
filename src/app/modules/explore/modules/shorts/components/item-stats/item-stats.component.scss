@@ -1,0 +1,28 @@
+.item-stats {
+    &__item {
+        // Strucure Block 
+        padding: 0.4rem 1.2rem;
+
+        &:not(:last-of-type) {
+
+            // Strucure Block 
+            margin-bottom: .6rem;
+        }
+
+        &__icon {
+            // Typography Block 
+            font-size: 1.2rem;
+        }
+
+
+
+        &:nth-of-type(3) {
+            small {
+                // Typography Block 
+                color: #dad079;
+            }
+        }
+    } 
+
+  
+}

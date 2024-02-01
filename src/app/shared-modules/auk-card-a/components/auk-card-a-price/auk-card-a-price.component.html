@@ -1,0 +1,12 @@
+<div class="auk-card-b__price fw-600 d-flex">
+    <span class="text-primary ltr:me-2 rtl:me-2">
+        <span class="currency">{{ 'shared.LE' | translate }} </span>
+        <span class="price d-inline-block">{{ priceAfterOffer ? priceAfterOffer : price }}</span>
+    </span>
+    <ng-container *ngIf="priceAfterOffer">
+        <span class="auk-card-b__price__old text-gray--dark text-decoration-line-through">
+            <span class="old-price__currency">{{ 'shared.LE' | translate }} </span>
+            <span class="old-price__price">{{ price }}</span>
+        </span>
+    </ng-container>
+</div>

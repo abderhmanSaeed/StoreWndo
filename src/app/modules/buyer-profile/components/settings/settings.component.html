@@ -1,0 +1,38 @@
+<section class="settings animate__animated animate__fadeIn pb-4">
+    
+    <header class="mb-3">
+        <span class="fw-600 text-[1rem] text-[#011447]">
+            {{ 'buyer-profile.your-settings' | translate }}
+        </span>
+    </header>
+
+
+    <div class="body">
+
+
+
+        <!-- begin:: change password  -->
+        <change-password *ngIf="!accountSettings?.isExternalProvider" class="mb-3 block" [accountSettings]="accountSettings"></change-password>
+        <!-- end:: change password  -->
+
+        
+        <!-- begin:: change password  -->
+        <location class="mb-3 block" (onChange)="onValueChange($event)" [city]="accountSettings?.city"></location>
+        <!-- end:: change password  -->
+
+
+        <!-- begin:: g settings  -->
+        <toggler-settings class="mb-3 block" [accountSettings]="accountSettings" (onChange)="onValueChange($event)"></toggler-settings>
+        <!-- end:: g settings  -->
+
+        
+        <!-- begin:: delete account  -->
+        <delete-account></delete-account>
+        <!-- begin:: delete account  -->
+
+
+
+    </div>
+
+
+</section>

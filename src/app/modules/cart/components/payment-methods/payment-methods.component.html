@@ -1,0 +1,125 @@
+<section class="pay-methods" [class.pay-methods--edit]="isEdit">
+   
+    <mat-card class="rounded-0 p-0">
+
+        <mat-card-title class="text-blue text-[.9rem] mb-4 px-3 pt-3 flex items-center"
+            [ngClass]="{
+                'ltr:text-left rtl:text-right': isEdit
+            }"
+            >
+            <button *ngIf="isHybridPayment" (click)="noHybridPayment()" class="!bg-[#f7f8f8] w-[35px] h-[35px] rtl:me-2 ltr:me-2" mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+                <fa-icon class="d-flex text-[#a1aab3] justify-center items-center" [icon]="faLongArrowLeft"></fa-icon>
+            </button>
+            
+            <span>
+                {{ 'checkout.choose-payment-method' | translate }}
+            </span>
+        </mat-card-title>
+    
+    
+        <mat-card-content class="!flex flex-col items-start p-4 pt-0">	
+    
+            <ng-container *ngFor="let item of paymentMethods; let first = first; let i = index">
+               
+                <label
+                    *ngIf="item?.id != paymentMethodsEnum.Wallet"
+                    class="radio-btn radio-checkbox-btn cursor-pointer items-baseline w-100 justify-start">
+                    <input
+                        type="radio" 
+                        [id]="item?.id"
+                        [value]="item?.id"
+                        name="paymentMethod"
+                        class="cursor-pointer"
+                        (change)="onMethodChange(item?.id)"
+                        [checked]="initValue == item?.id"
+                    />
+                    <div class="flex flex-col flex-grow-1 label-content">
+                        <div class="flex justify-between">
+                            <span class="text-blue mb-1 pb-1 fw-500">{{ item?.label | translate }}</span>
+                            <img [width]="item?.width" [src]="item?.iconPath" alt="Icon">
+                            <img [width]="item?.width" class="active hidden" [src]="item?.activeIconPath" alt="Icon">
+                        </div>
+                        <div class="flex">
+                            <small *ngIf="item?.sublabel">{{ item?.sublabel | translate }}</small>
+                        </div>
+                    </div>
+                </label>
+
+
+                <label
+                    *ngIf="item?.id == paymentMethodsEnum.Wallet && !isHybridPayment"
+                    class="radio-btn radio-checkbox-btn cursor-pointer items-baseline w-100 justify-start"
+                    [ngClass]="{'opacity-30': !paymentData.walletAmount}"
+                    >
+                    <input
+                        type="radio" 
+                        [id]="item?.id"
+                        [value]="item?.id"
+                        name="paymentMethod"
+                        class="cursor-pointer"
+                        [disabled]="!paymentData.walletAmount"
+                        (change)="onMethodChange(item?.id)"
+                        [checked]="initValue == item?.id"
+                    />
+                    <div class="flex flex-col flex-grow-1 label-content">
+                        <div class="flex justify-between">
+                            <span class="text-blue mb-1 pb-1 fw-500">{{ item?.label | translate }}</span>
+                            <img [width]="item?.width" [src]="item?.iconPath" alt="Icon">
+                            <img [width]="item?.width" class="active hidden" [src]="item?.activeIconPath" alt="Icon">
+                        </div>
+                        <div class="flex">
+                            <small *ngIf="item?.sublabel">{{ item?.sublabel | translate }}</small>
+                            <small class="text-blue fw-600" *ngIf="item?.id == paymentMethodsEnum.Wallet">: {{ 'shared.EGP' | translate }} {{ paymentData.walletAmount }}</small>
+                        </div>
+                    </div>
+                </label>
+
+
+
+            </ng-container>
+
+        </mat-card-content>
+    
+    </mat-card>
+    
+    <mat-card *ngIf="isHybridPayment" class="px-3 mt-3 py-4 border-[#ffa803] border-b-[3px] border-l-8 rounded-0">
+        <mat-card-content>	    
+            <!-- begin:: order price section  -->
+            <section class="order-price">
+                <ul class="mb-0">
+                    <li class="flex items-center justify-between capitalize mb-1">
+                        <small class="key ltr:me-2 rtl:me-2">{{ 'checkout.wallet-share' | translate }}:</small>
+                        <small class="val">{{ hybridPayCalc?.walletShare }} {{ 'checkout.EGP' | translate }}</small>
+                    </li>
+                    <li class="flex items-center justify-between capitalize">
+                        <small class="key ltr:me-2 rtl:me-2">{{ 'checkout.remaining-amount' | translate }}:</small>
+                        <small class="val">{{ hybridPayCalc?.remainingAmount }} {{ 'checkout.EGP' | translate }}</small>
+                    </li>
+                    <!-- begin:: separator  -->
+                    <hr class="my-3 bg-[#ffa803]">
+                    <!-- begin:: separator  -->
+                    <li class="flex items-center justify-between capitalize fw-bold">
+                        <small class="key ltr:me-2 rtl:me-2">{{ 'checkout.total-amount' | translate }}:</small>
+                        <small class="val">{{ hybridPayCalc?.totalAmount }} {{ 'checkout.EGP' | translate }}</small>
+                    </li>
+                </ul>
+            </section>
+            <!-- end:: order price section  -->
+        </mat-card-content>
+    </mat-card>
+
+
+    <!-- brgin:: hint  -->
+    <div *ngIf="isNeededMultiplePayment && !isHybridPayment" class="hint flex items-start px-3 pt-3 text-warning">
+        <img class="ltr:me-2 rtl:me-2" width="18" src="assets/media/svg/warning.svg" alt="Info Icon">
+        <span>{{ 'checkout.wallet-balance-not-enough' | translate }}</span>
+    </div>
+    <!-- end:: hint  -->
+    
+    <!-- brgin:: hint  -->
+    <div class="hint flex items-start p-3 text-blue mb-3">
+        <img class="ltr:me-2 rtl:me-2" width="18" src="assets/media/svg/info.svg" alt="Info Icon">
+        <span>{{ 'checkout.you-will-Able-add-voucher-next-step' | translate }}</span>
+    </div>
+    <!-- end:: hint  -->
+</section>

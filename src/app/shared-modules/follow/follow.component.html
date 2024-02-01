@@ -1,0 +1,30 @@
+<ng-container *ngIf="!isMine">
+    <ng-container *ngIf="!isFollowed || !authService.isAuthenticated">
+        <button
+            [class]="panelclass"
+            (click)="followingHandler(); $event.stopPropagation()"
+            class="follow-btn lh-normal py-1 w-100 rounded-7px d-flex flex-center main-transition px-4"
+            mat-raised-button color="primary"
+        >
+            <small class="py-1 d-inline-block">
+                {{ 'actions.follow' | translate}}
+            </small>
+        </button>
+    </ng-container>
+    
+    
+    
+    <ng-container *ngIf="authService.isAuthenticated && isFollowed">
+        <button
+            [class]="panelclass"
+            (click)="followingHandler(); $event.stopPropagation()"
+            class="follow-btn lh-normal border-primary py-1 w-100 rounded-7px d-flex flex-center main-transition px-4"
+            mat-stroked-button color="primary"
+        >
+            <small class="py-1 d-inline-block">
+                {{ 'actions.unfollow' | translate}}
+            </small>
+        </button>
+    </ng-container>
+</ng-container>
+

@@ -1,0 +1,52 @@
+<div class="hybrid-payment-methods">
+    <ng-container *ngFor="let item of paymentMethods; let first = first; let i = index">
+               
+        <label
+            *ngIf="item?.id != paymentMethodsEnum.Wallet"
+            class="radio-btn radio-checkbox-btn cursor-pointer items-baseline w-100 justify-start">
+            <input
+                type="radio" 
+                [id]="item?.id"
+                [value]="item?.id"
+                name="paymentMethod"
+                class="cursor-pointer"
+                (change)="onMethodChange(item?.id)"
+                [checked]="initValue == item?.id"
+            />
+            <div class="flex flex-col flex-grow-1 label-content">
+                <div class="flex justify-between">
+                    <span class="text-blue mb-1 pb-1 fw-500">{{ item?.label | translate }}</span>
+                    <img [width]="item?.width" [src]="item?.iconPath" alt="Icon">
+                    <img [width]="item?.width" class="active hidden" [src]="item?.activeIconPath" alt="Icon">
+                </div>
+                <div class="flex">
+                    <small *ngIf="item?.sublabel">{{ item?.sublabel | translate }}</small>
+                </div>
+            </div>
+        </label>
+    </ng-container>
+
+
+    <label class="radio-btn radio-checkbox-btn cursor-pointer items-baseline w-100 justify-start">
+        <input
+            type="checkbox" 
+            [id]="walletPayMethod.id"
+            [value]="walletPayMethod.id"
+            name="paymentMethod"
+            class="cursor-pointer"
+            (change)="isHybridPaymentChange($event)"
+            [checked]="true"
+        />
+        <div class="flex flex-col flex-grow-1 label-content">
+            <div class="flex justify-between">
+                <span class="text-blue mb-1 pb-1 fw-500">{{ walletPayMethod.label | translate }}</span>
+                <img [width]="walletPayMethod.width" [src]="walletPayMethod.iconPath" alt="Icon">
+                <img [width]="walletPayMethod.width" class="active hidden" [src]="walletPayMethod.activeIconPath" alt="Icon">
+            </div>
+            <div class="flex">
+                <small *ngIf="walletPayMethod.sublabel">{{ walletPayMethod.sublabel | translate }}</small>
+                <small class="text-blue fw-600">: {{ 'shared.EGP' | translate }} {{ walletAmount }}</small>
+            </div>
+        </div>
+    </label>  
+</div>

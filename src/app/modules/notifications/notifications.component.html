@@ -1,0 +1,73 @@
+<main class="notifications py-4">
+  <div class="container">
+    <!-- begin:: breadcrumb -->
+    <breadcrumb class="d-block mb-4"></breadcrumb>
+    <!-- end:: breadcrumb -->
+    <div>
+      <!-- begin:: notifications  -->
+      <ng-container *ngIf="notifications.length; else noContent">
+        <div
+          class="notification-wrapper bg-white main-rounded--force ltr:ml-24 rtl:mr-24 w-3/5 p-6"
+        >
+          <!-- begin:: actions  -->
+          <div class="flex justify-end">
+            <button
+              (click)="clearAll()"
+              class="text-[#001D7D] font-semibold underline underline-offset-2 mb-3"
+            >
+              {{ "actions.clear-all" | translate }}
+            </button>
+          </div>
+          <!-- end:: actions  -->
+          <ng-container
+            *ngFor="let item of notifications">
+            <app-notifications-card
+              [data]="item"
+              (deleteNotification)="deleteNotificationCard(item.id)"
+              class="block border-b-2 last:border-b-0"
+            ></app-notifications-card>
+          </ng-container>
+        </div>
+      </ng-container>
+      <!-- end:: notifications  -->
+
+      <!-- begin:: paginator  -->
+      <ng-container
+        *ngIf="notificationsCount > perPage && notifications?.length"
+      >
+        <div class="flex justify-center mt-4 ltr:ml-24 rtl:mr-24 w-3/5">
+          <ngb-pagination
+            [(page)]="page"
+            [pageSize]="perPage"
+            (pageChange)="onPageChange($event)"
+            [collectionSize]="notifications.length"
+            aria-label="Default pagination"
+          >
+            <ng-template ngbPaginationPrevious>
+              <mat-icon>keyboard_backspace</mat-icon>
+            </ng-template>
+            <ng-template ngbPaginationNext>
+              <mat-icon class="rotate-180">keyboard_backspace</mat-icon>
+            </ng-template>
+          </ngb-pagination>
+        </div>
+      </ng-container>
+      <!-- end:: paginator  -->
+    </div>
+  </div>
+</main>
+
+<!-- begin no data templete  -->
+<ng-template #noContent>
+  <div class="noContent-wrapper">
+    <no-data
+      size="xl"
+      [isSorry]="true"
+      [message]="
+        'notifications.notifications-didnt-publish-content-yet' | translate
+      "
+      class="flex justify-center items-center flex-grow-1"
+    ></no-data>
+  </div>
+</ng-template>
+<!-- end no data templete  -->

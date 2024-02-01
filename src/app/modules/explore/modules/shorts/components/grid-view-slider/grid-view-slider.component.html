@@ -1,0 +1,58 @@
+<div class="grid-view__content w-100 flex items-center">
+    <mat-card class="main-rounded--force w-100 mb-3 mt-2 p-3 pb-3"
+    [ngClass]="{'pb-4': slidesCount > 1}"
+    >
+
+        <section class="swiper-wrap pb-1">
+            <swiper
+                (swiper)="onSwiper($event)"
+                [config]="swiperConfig"
+                #swiper
+                class="swiper flex flex-col"
+            >
+                <ng-container *ngFor="let item of [].constructor(slidesCount)">
+                    <ng-template swiperSlide>
+                        <div class="grid grid-cols-5 gap-3 min-h-[526px]">
+                           
+                            <ng-container *ngFor="let item of filterdItems ; let index = index">
+                                <div 
+                                    [class.grid-card-wrapper--bottom]="index > 4"
+                                    class="grid-card-wrapper relative h-[255px]"
+                                    >
+                                    <grid-view-card
+                                        [lang]="lang"
+                                        [data]="item"
+                                        (productLikeChange)="onProductLikeChange($event)"
+                                        (productWishChange)="onProductWishChange($event)"
+                                        class="d-block h-100 min-w-full"
+                                    ></grid-view-card>
+                                </div>
+                            </ng-container>
+
+                        </div>
+                    </ng-template>
+                </ng-container>
+                
+            </swiper>
+        
+            <div *ngIf="slidesCount > 1" class="swiper__controllers inline-flex">
+                <button (click)="slidePrev()" mat-raised-button color="bg-gray-300" class="lh-normal min-w-auto p-1 w-[32px] h-[28px] main-rounded--force ltr:me-2 rtl:me-2">
+                    <fa-icon
+                        class="d-flex fa-lg justify-center items-center text-blue" 
+                        [icon]="faLongArrowAltLeft"
+                    ></fa-icon>
+                </button>
+                <button (click)="slideNext()" mat-raised-button color="bg-gray-300" class="lh-normal min-w-auto p-1 w-[32px] h-[28px] main-rounded--force">
+                    <fa-icon
+                        class="d-flex fa-lg justify-center items-center text-blue" 
+                        [icon]="faLongArrowAltRight"
+                    ></fa-icon>
+                </button>
+            </div>
+        </section>
+
+    </mat-card>
+</div>
+
+
+
