@@ -1,0 +1,332 @@
+:host {
+  ::ng-deep {
+    .mat-accordion {
+      // Structure Block
+      display: block;
+
+      &.first {
+        // Structure Block
+        // max-height: 15vh;
+        max-height: calc(100% - 370px);
+      }
+
+      // Modifire Block
+      overflow: auto;
+    }
+
+    .mat-expanded,
+    .mat-expansion-panel-header {
+      // Structure Block
+      height: auto !important;
+      min-height: 43px !important;
+
+      .mat-expansion-indicator {
+        // Structure Block
+        display: flex;
+        align-items: center;
+
+        &::after {
+          // Typography Block
+          color: #aab2b7;
+        }
+      }
+    }
+
+    .mat-expansion-panel-body {
+      // Structure Block
+      padding: 0;
+    }
+
+    .aside {
+      // Modifire Block
+      overflow-x: hidden;
+
+      &-minimize {
+        .mat-expansion-indicator {
+          // Structure Block
+          display: none;
+        }
+
+        .nav-txt {
+          // Structure Block
+          display: none;
+        }
+
+        .aside__nav__sub {
+          // Structure Block
+          display: none;
+        }
+
+        .menu-btn {
+          // Structure Block
+          margin: 0 auto;
+
+          // Modifire Block
+          transition: all 0.3s ease-in-out;
+        }
+
+        ::ng-deep {
+          mat-panel-title {
+            // Structure Block
+            justify-content: center;
+            margin: auto;
+          }
+        }
+
+        .aside__section {
+          // Structure Block
+          justify-content: center;
+        }
+      }
+    }
+  }
+}
+
+.aside {
+  &__header {
+    // Structure Block
+    height: 78px;
+
+    .logo {
+      // Structure Block
+      width: 119px;
+
+      // Modifire Block
+      transition: all 0.3s ease-in-out;
+    }
+  }
+
+  &-minimize {
+    .logo-box {
+      // Modifire Block
+      transition: all 0.3s ease-in-out;
+
+      .logo {
+        // Structure Block
+        width: 0;
+
+        // Modifire Block
+        transition: all 0.3s ease-in-out;
+      }
+    }
+
+    .nav__item {
+      // Structure Block
+      justify-content: center;
+    }
+
+    .menu-btn {
+      // Structure Block
+      margin-inline-start: 0 !important;
+    }
+  }
+
+  &__section {
+    // Structure Block
+    padding: 0.1rem 0.5rem;
+
+    .svg-icon {
+      // Structure Block
+      width: 25px;
+      height: 20px;
+      max-width: 100%;
+      display: inline-block;
+      mask-repeat: no-repeat;
+      mask-position: center;
+      mask-size: auto 100%;
+      background-color: var(--bs-primary); // or any color of your choice.
+
+      // Modifire Block
+      transition: all 0.3s ease-in-out;
+    }
+  }
+
+  &__nav {
+    &:not(.aside__nav--2) {
+      .nav__item {
+        // Structure Block
+        border-radius: 0;
+        border-right: 5px solid transparent;
+
+        // Modifire Block
+        transition: all 0.1s ease-in-out;
+
+        &.active {
+          // Structure Block
+          border-right: 5px solid var(--bs-primary);
+        }
+
+        .svg-icon {
+          // Structure Block
+          // width: 25px;
+          // height: 25px;
+          // display: inline-block;
+          mask-repeat: no-repeat;
+          mask-position: center;
+          mask-size: 20px;
+          background-color: #200e32; // or any color of your choice.
+
+          // Modifire Block
+          transition: all 0.3s ease-in-out;
+          opacity: 40%;
+        }
+
+        &.active {
+          ::ng-deep {
+            .mat-button-focus-overlay {
+              background-color: rgba(0, 0, 0, 0.04) !important;
+              opacity: 1 !important;
+            }
+          }
+        }
+
+        &:hover:not(.active) {
+          // Structure Block
+          border-right-color: rgba(0, 0, 0, 0.04) !important;
+
+          // Modifire Block
+          transition: all 0.1s ease-in-out;
+        }
+
+        &.active,
+        &:hover {
+          .svg-icon {
+            // Structure Block
+            background-color: var(--bs-primary); // or any color of your choice.
+            opacity: 100%;
+          }
+        }
+      }
+    }
+
+    .nav__item {
+      // Structure Block
+      padding: 0.2rem 1.5rem;
+
+      .svg-icon {
+        // Structure Block
+        width: 25px;
+        height: 25px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        &__active-img {
+          // Structure Block
+          display: none;
+        }
+      }
+
+      &.active,
+      &:hover:not(.mat-expansion-panel-header) {
+        .svg-icon {
+          img {
+            // Structure Block
+            display: none;
+          }
+
+          .svg-icon__active-img {
+            // Structure Block
+            display: inline;
+          }
+        }
+
+        .nav-txt {
+          // Modifire Block
+          transition: none;
+
+          // Typography Block
+          color: var(--bs-primary);
+        }
+      }
+    }
+
+    &__sub {
+      // Structure Block
+      padding: 0 2rem 0 3.8rem;
+
+      .nav__item {
+        // Structure Block
+        padding: 0.2rem 0;
+
+        .svg-icon {
+          // Structure Block
+          width: 20px;
+          height: 20px;
+        }
+      }
+
+      li {
+        &:not(:last-of-type) {
+          // Structure Block
+          border-bottom: 1px solid #d9d9e0;
+        }
+      }
+
+      .nav__item {
+        // Typography Block
+        line-height: 31px;
+      }
+    }
+
+    &--2 {
+      .nav-txt,
+      .nav__item {
+        // Typography Block
+        color: #aab2b7;
+      }
+    }
+  }
+}
+
+.current-page {
+  // Structure Block
+  padding: 0.2rem 1.5rem;
+
+  .icon {
+    // Structure Block
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.nav__item {
+  &:hover {
+    i,
+    small {
+      // Modifire Block
+      transition: all 0.3s ease-in-out;
+    }
+  }
+}
+
+.short-nav {
+  // Structure Block
+  padding: calc(73px / 4);
+
+  a {
+    i {
+      // Modifire Block
+      transition: all 0.3s ease-in-out;
+    }
+
+    &:hover {
+      i {
+        // Tpography Block
+        color: var(--primary-color);
+
+        // Modifire Block
+        transition: all 0.3s ease-in-out;
+      }
+    }
+  }
+}
+
+hr {
+  // Structure Block
+  background-color: #3b3d42;
+}

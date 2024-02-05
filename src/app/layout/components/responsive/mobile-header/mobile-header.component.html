@@ -1,0 +1,41 @@
+<mat-drawer #drawer class="example-sidenav w-100" mode="side">
+  <div class="flex justify-between items-center p-2">
+    <button
+      (click)="drawer.toggle()"
+      mat-raised-button
+      type="button"
+      class="ms-auto"
+    >
+      <i class="fa-solid fa-circle-xmark"></i>
+      <fa-icon class="text-3xl text-gray-400" [icon]="faTimesCircle"></fa-icon>
+      <span class="sr-only">close</span>
+    </button>
+  </div>
+
+  <app-mobile-sidebar></app-mobile-sidebar>
+</mat-drawer>
+
+<div class="example-sidenav-content p-4">
+  <div class="flex items-center justify-between">
+    <a routerLink="/" class="logo-box d-flex align-items-center w-24">
+      <img class="logo w-100" src="assets/media/logos/logo.svg" alt="Logo" />
+    </a>
+    <!-- <button type="button" mat-button (click)="drawer.toggle()" class="menu-btn">
+      <span class="menu-toggle"></span>
+      <span class="sr-only">Toggle sidenav</span>
+    </button> -->
+
+    <button
+      class="menu-btn"
+      (click)="drawer.toggle()"
+      type="button"
+      [ngClass]="{
+        'right-arrow': !draweState,
+        'left-arrow': draweState
+      }"
+    >
+      <span class="menu-toggle"></span>
+      <span class="sr-only">menu toggle</span>
+    </button>
+  </div>
+</div>

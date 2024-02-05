@@ -1,31 +1,6 @@
 <aside
-  class="aside h-100 animate__animated animate__fadeIn d-flex flex-column pb-2 !hidden sm:!flex"
-  [class.aside-minimize]="!openedStart"
+  class="animate__animated animate__fadeIn flex-col justify-between flex h-[90vh] pb-4"
 >
-
-<!-- Logo and toggle button -->
-  <div
-    class="py-3 d-flex align-items-center px-4 aside__header justify-content-between"
-  >
-    <a routerLink="/" class="logo-box d-flex align-items-center">
-      <img class="mx-auto logo" src="assets/media/logos/logo.svg" alt="Logo" />
-    </a>
-
-    <button
-      class="menu-btn p-0 btn ltr:ms-4 rtl:ms-4"
-      (click)="toggleDrawer.emit()"
-      type="button"
-      [ngClass]="{
-        'right-arrow': !draweState,
-        'left-arrow': draweState
-      }"
-    >
-      <span class="menu-toggle"></span>
-      <span class="sr-only">menu toggle</span>
-    </button>
-  </div>
-  <!-- End  Logo and toggle button -->
-
   <!-- begin:: nav 1  -->
   <nav class="aside__nav">
     <ul class="list-unstyled mb-0">

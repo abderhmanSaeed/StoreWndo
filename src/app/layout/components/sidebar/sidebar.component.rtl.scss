@@ -1,13 +1,10 @@
-:host-context(html[dir=rtl]) {
-
-    .aside {
-        &__nav  {    
-            &__sub {
-    
-                // Structure Block 
-                padding: 0 3.8rem 0 2rem;  
-            }
-
-        }
+:host-context(html[dir="rtl"]) {
+  .aside {
+    &__nav {
+      &__sub {
+        // Structure Block
+        padding: 0 3.8rem 0 2rem;
+      }
     }
+  }
 }

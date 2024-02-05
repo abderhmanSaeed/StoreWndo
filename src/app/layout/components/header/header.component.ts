@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { ActionTypes } from 'src/app/shared/enums/action-types/action-types';
 import { SettingsService } from 'src/app/shared/services/settings/settings.service';
 import { DynamicHeaderMenuConfig } from './configs/dynamic-header-menu.config';
@@ -22,12 +22,20 @@ import { BuyerProfileService } from 'src/app/modules/buyer-profile/servises/buye
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-  
+
   @Input() draweState: boolean = false;
   @Input() openedStart: boolean = false;
 
+  showFiller = false;
+  @Output() sidebarToggle = new EventEmitter<void>();
+  isMobileView: boolean = false; // Determine this based on screen size
 
-  // Props 
+toggleSidebar() {
+  this.sidebarToggle.emit();
+}
+
+
+  // Props
   user: User | null = {};
   LanguagesEnum = Languages;
   actionTypes = ActionTypes;
@@ -39,7 +47,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   subscription: Subscription = new Subscription();
   lang: Languages = (this._TranslateService.currentLang as Languages);
 
-  // booleans 
+  // booleans
   isDark: boolean = false;
   public isCollapsed: boolean = true;
 
@@ -67,7 +75,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }));
   }
 
-  
+
   ngOnDestroy(): void {
     //Called once, before the instance is destroyed.
     //Add 'implements OnDestroy' to the class.
@@ -111,8 +119,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   onAuthChange(): void {
     this.subscription.add(
       this.authService.authChange$.subscribe( (data: User | null) => {
-        this.user = data;       
-        this.ifIsAuthenticated(); 
+        this.user = data;
+        this.ifIsAuthenticated();
       })
     )
   }
@@ -124,7 +132,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       case 'sell':
         this.openSellDialog();
         break;
-    
+
       default:
         break;
     }

@@ -20,6 +20,8 @@ import { SellDialogComponent } from './components/header/components/sell-dialog/
 import { HelpComponent } from './components/help/help.component';
 import { AukVideoModule } from '../shared-modules/auk-video/auk-video.module';
 import { FormsModule } from '@angular/forms';
+import { MobileSidebarComponent } from './components/responsive/mobile-sidebar/mobile-sidebar.component';
+import { MobileHeaderComponent } from './components/responsive/mobile-header/mobile-header.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { FormsModule } from '@angular/forms';
     SidebarAdComponent,
     ChangeLanguageComponent,
     SellDialogComponent,
-    HelpComponent
+    HelpComponent,
+    MobileSidebarComponent,
+    MobileHeaderComponent
   ],
   imports: [
     FormsModule,

@@ -16,21 +16,21 @@ import { NavigationEnd } from '@angular/router';
 })
 export class SidebarComponent implements OnInit, OnDestroy {
 
-  // inputs props 
+  // inputs props
   @Input() draweState: boolean = false;
   @Input() openedStart: boolean = false;
   @Output() toggleDrawer: EventEmitter<boolean> = new EventEmitter(false);
 
 
-  // props 
+  // props
   sections: Section[] = [];
   currentRoute: string = '';
   selectedSectionId: number | null = null;
   nav1: any[] = DynamicAsideMenuConfig.menu1;
   subscription: Subscription = new Subscription();
 
-  
-  
+
+
   constructor(
     private _HttpService: HttpService,
     public routerService: RouterService,
@@ -57,16 +57,16 @@ export class SidebarComponent implements OnInit, OnDestroy {
     );
   }
 
-  
+
   getAllData(): void {
     this.getSectionsWithCategories();
   }
 
 
   /**
-   * 
-   * @param svgURL 
-   * @returns 
+   *
+   * @param svgURL
+   * @returns
    */
   bindSvgIcon(svgURL: string): object {
     return {
