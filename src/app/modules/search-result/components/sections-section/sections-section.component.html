@@ -1,11 +1,11 @@
 <section>
-    <header class="mb-2 flex">
+    <header class="mb-2 d-flex">
         <h4 class="text-blue fw-600">{{ sectionTitle | translate }}</h4>
     </header>
 
     <!-- begin:: sections -->
     <ng-container *ngIf="sections?.length && !categories.length">
-        <div class="flex gap-4 flex-wrap justify-content-center">
+        <div class="d-flex gap-4 d-flex-wrap justify-content-center">
             <ng-container *ngFor="let item of sections">
                 <button (click)="onSectionClick(item)" class="btn p-0">
                     <search-type-card [data]="item"></search-type-card>
@@ -18,9 +18,9 @@
 
     <!-- begin:: categories -->
     <ng-container *ngIf="categories?.length && !sections?.length">
-        <div class="flex gap-4 flex-wrap justify-content-center">
+        <div class="d-flex gap-4 d-flex-wrap justify-content-center">
             <ng-container *ngFor="let item of categories">
-                <a 
+                <a
                     class="btn p-0"
                     [routerLink]="['/search-results/products']"
                     [queryParams]="{
@@ -37,7 +37,7 @@
     </ng-container>
     <!-- end:: categories -->
 
-    
+
     <!-- begin no data  -->
     <no-data
         size="xl"

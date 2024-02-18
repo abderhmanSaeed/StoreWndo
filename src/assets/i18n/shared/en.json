@@ -14,7 +14,10 @@
     "my-orders": "My Orders",
     "my-wish-list": "My WishList",
     "setting": "Setting",
-    "logout": "Logout"
+    "logout": "Logout",
+    "explore": "Explore",
+    "changeLanguage": "Change Language"
+
   },
 
   "sidebar": {
@@ -22,7 +25,10 @@
     "knowledge-gate": "Knowledge Gate",
     "sections": "Sections",
     "watch": "Watch",
-    "demo": "Demo"
+    "demo": "Demo",
+    "help": "Help",
+    "settings": "Settings",
+    "language": "Language"
   },
 
   "footer": {
@@ -117,6 +123,7 @@
   },
 
   "shared": {
+    "flash-sale": "Flash Sale",
     "add-rate-title": "We Wish You Liked Our Product",
     "comments": "Comments",
     "items": "Items",
@@ -226,5 +233,10 @@
     "verified-ratings": "Verified Ratings",
     "verified-customer-reviews": "Verified Customer Reviews",
     "no-reviews": "No reviews for this product"
+  },
+  "help": {
+    "faq":"FAQ",
+    "helpCenter":"Help Center",
+    "contactUs":"Contact Us"
   }
 }

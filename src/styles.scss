@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 
-// begin:: swiper styles 
+// begin:: swiper styles
 @import "~swiper/css";
 @import "~swiper/css/pagination";
 
@@ -19,7 +19,7 @@
 
 :root {
 
-    // begin:: colors 
+    // begin:: colors
     --bs-primary: #FF002A;
     --bs-secondary: #F8F8F8;
     --third: #0D1863;
@@ -29,7 +29,7 @@
     --bs-warning: #ffc107;
     --main-gradient: linear-gradient(90deg, rgba(13,24,99,1) 0%, rgba(197,1,35,1) 50%, rgba(13,24,99,1) 100%);
 
-    // begin:: borders 
+    // begin:: borders
     --main-rounded: 9px
 }
 
@@ -40,6 +40,17 @@ html, body { height: 100%; }
 
 
 // video[controls]::-webkit-media-controls-panel {
-//   display: flex !important;
+//   display: d-flex !important;
 //   opacity: 1 !important;
 // }
+
+
+@layer components {
+  .dir-ltr {
+    direction: ltr;
+  }
+
+  .dir-rtl {
+    direction: rtl;
+  }
+}

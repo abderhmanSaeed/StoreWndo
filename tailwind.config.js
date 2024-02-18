@@ -21,14 +21,40 @@ module.exports = {
           700 : '#ff0000',
           800 : '#ff0000',
           900 : '#ff0000',
+          950 : '#FF002A',
           A100 : '#ffffff',
           A200 : '#fff2f2',
           A400 : '#ffbfbf',
           A700 : '#ffa6a6',
         },
         success: '#02A707',
-        warning: '#FFA800'
+        warning: '#FFA800',
+        gray: {
+          50: "#fafafa",
+          60: "#BFBFBF",
+          100: "#F8F8F8",
+          200:"#EFEFEF",
+          300:"#F9F9F9",
+          900: "#101010",
+        },
+        purple:{
+          500: "#4C4C75",
+        },
+        blue: {
+         500: "#0d1863",
+          700: "#04043f",
+        },
+        blueGray: {
+          100: "#AAB2B7",
+        }
+      },
+      spacing: {
+        4.5: "1.125rem"
+      },
+      leading: {
+        0: 0
       }
+
     },
   },
   variants: {

@@ -1,43 +1,50 @@
 <div class="field relative">
-    <label *ngIf="label" for="exampleFormControlInput1" class="form-label text-blue fw-600 text-[.9rem]">
-        <span [class]="labelPanelclass">{{ label }} </span>
-        <span *ngIf="control && control?.hasValidator(validatorEnum.required)" class="text-primary"> *</span>
-    </label>
-    <div class="input-wrapper flex items-center">
-        <input 
-            [id]="id"
-            [(ngModel)]="value"
-            [class]="panelclass"
-            class="form-control"
-            [readonly]="readonly"
-            [placeholder]="placeholder"
-            [type]="showPassword ? '' : type"
-            (input)="onInput()"
+  <label
+    *ngIf="label"
+    for="exampleFormControlInput1"
+    class="form-label text-blue fw-600 text-[.9rem]"
+  >
+    <span [class]="labelPanelclass">{{ label }} </span>
+    <span
+      *ngIf="control && control?.hasValidator(validatorEnum.required)"
+      class="text-primary"
     >
+      *</span
+    >
+  </label>
+  <div class="input-wrapper flex items-center">
+    <input
+      [id]="id"
+      [(ngModel)]="value"
+      [class]="panelclass"
+      class="form-control"
+      [readonly]="readonly"
+      [placeholder]="placeholder"
+      [type]="showPassword ? '' : type"
+      (input)="onInput()"
+    />
 
+    <!-- begin:: show password btn  -->
+    <ng-container *ngIf="type == 'password'">
+      <button
+        type="button"
+        [class]="showPasswordBtnClass"
+        (click)="showPassword = !showPassword"
+        class="btn aps absolute ltr:!right-4 ltr:!left-auto rtl:!right-auto rtl:!left-4 inline-flex w-3 h-3 items-center"
+      >
+        <fa-icon
+          [class.text-[#D9D9E0]]="!showPassword"
+          [icon]="showPassword ? faEyeSlash : faEye"
+          class="d-flex justify-center items-center"
+        ></fa-icon>
+        <span class="sr-only">show password icon</span>
+      </button>
+    </ng-container>
+    <!-- end:: show password btn  -->
+  </div>
 
-        <!-- begin:: show password btn  -->
-        <ng-container *ngIf="type == 'password'">
-            <button 
-                type="button"
-                [class]="showPasswordBtnClass"
-                (click)="showPassword = !showPassword"
-                class="btn aps absolute ltr:right-[5px] rtl:left-[5px]">
-                <fa-icon
-                    [class.text-[#D9D9E0]]="!showPassword"
-                    [icon]="showPassword ? faEyeSlash : faEye"                                                         
-                    class="d-flex justify-center items-center" 
-                ></fa-icon>
-            </button>
-        </ng-container>
-        <!-- end:: show password btn  -->
-
-    </div>
-
-
-    <app-validation
-        *ngIf="(showValidations && control?.dirty) || showValidations"
-        [control]="control"
-    ></app-validation>
-    
+  <app-validation
+    *ngIf="(showValidations && control?.dirty) || showValidations"
+    [control]="control"
+  ></app-validation>
 </div>

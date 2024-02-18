@@ -13,7 +13,7 @@
       />
     </a>
 
-    <div class="end ms-auto order-lg-3 flex items-center me-2 me-lg-0">
+    <div class="end ms-auto order-lg-3 d-flex items-center me-2 me-lg-0">
       <div class="lang me-2">
         <change-language></change-language>
       </div>
@@ -52,17 +52,17 @@
             placement="bottom"
             [ngbTooltip]="'header.' + item?.title | translate"
             [class]="item?.className"
-            class="nav-item navbar-nav__item lh-normal mx-2 px-1 mb-3 mb-lg-0 rounded-circle d-inline-flex flex-center position-relative"
+            class="nav-item navbar-nav__item lh-normal mx-2 px-1 mb-3  mb-lg-0 rounded-circle d-inline-flex d-flex-center position-relative"
           >
             <!-- if link -->
             <ng-container *ngIf="item?.actionType == actionTypes.Link">
               <a
-                class="w-100 h-100 d-inline-flex flex-center"
+                class="w-100 h-full inline-flex items-center justify-center"
                 [routerLink]="item?.page"
                 routerLinkActive="active-link"
               >
                 <span class="svg-icon flex items-center justify-center">
-                  <img [src]="item?.imgPath" alt="Icon" />
+                  <mat-icon [svgIcon]="item.title" class=" text-blue-700/70"></mat-icon>
                 </span>
 
                 <ng-container *ngIf="authService.isAuthenticated">
@@ -113,9 +113,9 @@
         <!-- end:: dynamic links  -->
 
         <!-- begin theme toggler  -->
-        <!-- <li class="nav-item theme navbar-nav__item lh-normal mx-2 px-1 mb-3 mb-lg-0 rounded-circle d-inline-flex flex-center">
-            <button placement="bottom" [ngbTooltip]="'Change Theme'" (click)="toggleTheme()" class="btn p-0 w-100 h-100 d-inline-flex flex-center">
-              <span class="svg-icon flex items-center justify-center">
+        <!-- <li class="nav-item theme navbar-nav__item lh-normal mx-2 px-1 mb-3 mb-lg-0 rounded-circle d-inline-flex d-flex-center">
+            <button placement="bottom" [ngbTooltip]="'Change Theme'" (click)="toggleTheme()" class="btn p-0 w-100 h-full d-inline-flex d-flex-center">
+              <span class="svg-icon d-flex items-center justify-center">
                 <img src="assets/media/svg/theme.svg" alt="Icon">
               </span>
             </button>

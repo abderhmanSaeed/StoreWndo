@@ -1,0 +1,36 @@
+<mat-expansion-panel>
+  <mat-expansion-panel-header
+    class="aside__help !rounded-[10px] !bg-gray-300 !py-6 !px-5 !text-gray-900"
+  >
+    <mat-panel-title class="text-sm">
+      <span
+        class="svg-icon me-2"
+        [ngStyle]="bindSvgIcon('assets/media/svg/help.svg')"
+      >
+      </span>
+
+      {{ "sidebar.help" | translate }}
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+  <ul role="list" class="help__nav-list transition-all space-y-4 px-2">
+    <ng-container *ngFor="let item of helpNavList">
+      <li
+        role="listitem"
+        class="help__nav-list__item border border-gray-400 bg-gray-100/20 py-2 px-2 rounded-[10px] first:mt-3"
+      >
+        <a
+          [href]="item?.route"
+          target="_blank"
+          mat-button
+          class="p-0 min-w-auto aside__help"
+        >
+          <span class="svg-icon" [ngStyle]="bindSvgIcon(item.imgPath)"> </span>
+
+          <span class="font-normal ms-2">
+            {{ item.name | translate }}
+          </span>
+        </a>
+      </li>
+    </ng-container>
+  </ul>
+</mat-expansion-panel>

@@ -1,169 +1,179 @@
 <aside
-  class="animate__animated animate__fadeIn flex-col justify-between flex h-[90vh] pb-4"
+  class="animate__animated animate__fadeIn flex-col justify-between flex pb-4 mobile-sidebar"
 >
-  <!-- begin:: nav 1  -->
-  <nav class="aside__nav">
-    <ul class="list-unstyled mb-0">
-      <li *ngFor="let item of nav1">
-        <a
-          mat-button
-          *ngIf="!item.isExternal"
-          class="nav__item d-flex align-items-center"
-          [target]="item?.target"
-          [routerLink]="item.page"
-          routerLinkActive="active"
-        >
-          <span class="svg-icon" [ngStyle]="bindSvgIcon(item.svg)"> </span>
-          <small
-            class="nav-txt animate__animated animate__fadeIn ltr:ms-3 rtl:ms-3"
-            >{{ "sidebar." + item.title | translate }}</small
-          >
-        </a>
-        <a
-          *ngIf="item.isExternal"
-          [href]="item?.page"
-          mat-button
-          class="nav__item d-flex align-items-center"
-          [target]="item?.target"
-        >
-          <span class="svg-icon" [ngStyle]="bindSvgIcon(item.svg)"> </span>
-          <small
-            class="nav-txt animate__animated animate__fadeIn ltr:ms-3 rtl:ms-3"
-            >{{ "sidebar." + item.title | translate }}</small
-          >
-        </a>
-      </li>
-    </ul>
-  </nav>
-  <!-- end:: nav 1  -->
-
-  <!-- begin:: separetor  -->
-  <div class="px-3"><hr class="my-2" /></div>
-  <!-- end:: separetor  -->
+  <!-- begin user   -->
+  <div
+    *ngIf="authService.isAuthenticated; else notAuthenticated"
+    class="px-3 mb-3 aside__section-wrap"
+  >
+    <app-user-section [buyerProfile]="profileData"></app-user-section>
+  </div>
+  <!-- end user   -->
 
   <!-- begin section btn  -->
-  <div class="px-3 mb-2 aside__section-wrap">
-    <button
-      type="button"
-      disabled
-      mat-button
-      color="primary"
-      class="aside__section d-flex w-100 !min-w-[auto] text-start mat-primary-light text-inherit mt-1"
-    >
-      <span
-        class="svg-icon"
-        [ngStyle]="bindSvgIcon('assets/media/svg/sections.svg')"
-      >
-      </span>
-      <small
-        class="nav-txt animate__animated animate__fadeIn ltr:ms-3 rtl:ms-3"
-        >{{ "sidebar.sections" | translate }}</small
-      >
-    </button>
+  <div class="px-3 mb-3 aside__section-wrap">
+    <app-sections></app-sections>
   </div>
   <!-- end section btn  -->
 
-  <!-- begin:: nav 2  -->
-  <ng-template
-    #infiniteSide
-    let-list="list"
-    let-first="first"
-    let-parentId="parentId"
+    <!-- begin Offers btn  -->
+    <div class="px-3 mb-3 aside__section-wrap">
+      <button
+        type="button"
+        routerLinkActive="active"
+        routerLink="/buyer-profile/setting"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="icon rounded-[10px] justify-between bg-gray-300 !py-6 !px-5 text-gray-900 flex items-center"
+        ngbDropdownItem
+      >
+        <div class="flex items-center">
+          <span
+            class="svg-icon me-2"
+            [ngStyle]="bindSvgIcon('assets/media/svg/discount.svg')"
+          >
+          </span>
+
+          <span> {{ "shared.offers" | translate }} </span>
+        </div>
+
+        <fa-icon class="rtl:rotate-180" [icon]="faChevronRight"></fa-icon>
+      </button>
+    </div>
+    <!-- end Offers btn  -->
+
+     <!-- begin flash sale btn  -->
+     <div class="px-3 mb-3 aside__section-wrap">
+      <button
+        type="button"
+        routerLinkActive="active"
+        routerLink="/buyer-profile/setting"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="icon rounded-[10px] justify-between bg-gray-300 !py-6 !px-5 text-gray-900 flex items-center"
+        ngbDropdownItem
+      >
+        <div class="flex items-center">
+          <span
+            class="svg-icon me-2"
+            [ngStyle]="bindSvgIcon('assets/media/svg/flash-sale.svg')"
+          >
+          </span>
+
+          <span> {{ 'shared.flash-sale' | translate }} </span>
+        </div>
+
+        <fa-icon class="rtl:rotate-180" [icon]="faChevronRight"></fa-icon>
+      </button>
+    </div>
+    <!-- end flash sale btn  -->
+
+
+  <!-- begin help btn  -->
+  <div class="px-3 mb-3 aside__section-wrap">
+    <app-help-section></app-help-section>
+  </div>
+  <!-- end help btn  -->
+
+  <!-- begin settings btn  -->
+  <div class="px-3 mb-3 aside__section-wrap">
+    <button
+      type="button"
+      routerLinkActive="active"
+      routerLink="/buyer-profile/setting"
+      [routerLinkActiveOptions]="{ exact: true }"
+      class="icon rounded-[10px] justify-between bg-gray-300 !py-6 !px-5 text-gray-900 flex items-center"
+      ngbDropdownItem
+    >
+      <div class="flex items-center">
+        <span
+          class="svg-icon me-2"
+          [ngStyle]="bindSvgIcon('assets/media/profile/icons/menu.svg')"
+        >
+        </span>
+
+        <span> {{ "sidebar.settings" | translate }} </span>
+      </div>
+
+      <fa-icon class="rtl:rotate-180" [icon]="faChevronRight"></fa-icon>
+    </button>
+  </div>
+  <!-- end settings btn  -->
+
+  <!-- begin change-language    -->
+  <div class="mx-3 mb-4 aside__section-wrap pt-4">
+    <div class="space-y-3">
+      <span class="icon flex items-center">
+        <span
+          class="svg-icon ltr:me-3 rtl:me-3 bg-blueGray-100"
+          [ngStyle]="bindSvgIcon('assets/media/svg/lang.svg')"
+        >
+        </span>
+        <span class="text-blueGray-100 text-md fw-500">{{
+          "sidebar.language" | translate
+        }}</span>
+      </span>
+
+      <auk-slide-toggle
+        class="block"
+        [value]="true"
+        panelClass="!p-0 !py-0 border-0 justify-start"
+        (onChange)="onToggleLangChange(lang === 'en' ? 'ar' : 'en')"
+        [label]="
+          lang === 'en'
+            ? ('header.english' | translate)
+            : ('header.arabic' | translate)
+        "
+      >
+        ></auk-slide-toggle
+      >
+    </div>
+  </div>
+  <!-- end change-language    -->
+
+  <!-- begin logout btn  -->
+  <div
+    *ngIf="authService.isAuthenticated"
+    class="mx-3 mb-4 aside__section-wrap border-t border-black/10 pt-4"
   >
-    <mat-accordion class="custom-scroll" [class.first]="first">
-      <nav class="aside__nav aside__nav--2">
-        <ul class="list-unstyled" [class.aside__nav__sub]="!first">
-          <li *ngFor="let item of list">
-            <ng-container *ngIf="!item?.categories?.length">
-              <a
-                [routerLink]="['/explore']"
-                routerLinkActive="active"
-                [queryParams]="{
-                  section: parentId,
-                  category: item?.id
-                }"
-                class="nav__item d-flex align-items-center rounded-0"
-              >
-                <span class="svg-icon">
-                  <img
-                    class="img-fluid h-100"
-                    [src]="first ? item?.icon1 : item?.imagePath2"
-                    alt="Nav Icon"
-                  />
-                  <img
-                    class="img-fluid h-100 svg-icon__active-img"
-                    [src]="first ? item?.icon2 : item?.imagePath3"
-                    alt="Nav Icon"
-                  />
-                </span>
-                <small
-                  class="nav-txt animate__animated animate__fadeIn ltr:ms-3 rtl:ms-3 animate__animated animate__fadeIn text-truncate"
-                  >{{ item?.name }}</small
-                >
-              </a>
-            </ng-container>
-
-            <!-- begin:: submenu  -->
-            <ng-container *ngIf="item?.categories?.length">
-              <mat-expansion-panel
-                class="px-0 rounded-0"
-                [expanded]="
-                  item?.id == selectedSectionId &&
-                  routerService.hasRoute('explore')
-                "
-              >
-                <mat-expansion-panel-header
-                  [routerLink]="['/explore']"
-                  routerLinkActive="active"
-                  [queryParams]="{ section: item?.id }"
-                  class="nav__item rounded-0"
-                  mat-button
-                >
-                  <mat-panel-title class="d-flex align-items-center px-0">
-                    <span class="svg-icon">
-                      <img
-                        class="img-fluid h-100"
-                        [src]="item?.icon1"
-                        alt="Nav Icon"
-                      />
-                      <img
-                        class="img-fluid h-100 svg-icon__active-img"
-                        [src]="item?.icon2"
-                        alt="Nav Icon"
-                      />
-                    </span>
-                    <small
-                      class="nav-txt animate__animated animate__fadeIn ltr:ms-3 rtl:ms-3 animate__animated animate__fadeIn text-truncate"
-                      >{{ item?.name }}</small
-                    >
-                  </mat-panel-title>
-                </mat-expansion-panel-header>
-
-                <ng-container
-                  *ngTemplateOutlet="
-                    infiniteSide;
-                    context: {
-                      list: item?.categories,
-                      first: false,
-                      parentId: item?.id
-                    }
-                  "
-                ></ng-container>
-              </mat-expansion-panel>
-            </ng-container>
-            <!-- end:: submenu  -->
-          </li>
-        </ul>
-      </nav>
-    </mat-accordion>
-  </ng-template>
-
-  <ng-container
-    *ngTemplateOutlet="infiniteSide; context: { list: sections, first: true }"
-  ></ng-container>
-  <!-- end:: nav 2  -->
+    <button
+      type="button"
+      (click)="openLogoutConfirmationDialog()"
+      class="d-flex items-center text-primary justify-start text-sm px-0 icon"
+      ngbDropdownItem
+    >
+      <span
+        class="svg-icon bg-primary me-2 w-4"
+        [ngStyle]="bindSvgIcon('assets/media/profile/icons/logout.svg')"
+      >
+      </span>
+      <span class="fw-500"> {{ "header.logout" | translate }} </span>
+    </button>
+  </div>
+  <!-- end logout btn  -->
 
   <!-- begin ad section  -->
-  <sidebar-ad class="px-4 d-block mt-auto mb-1"></sidebar-ad>
+  <sidebar-ad class="px-4 d-block mb-1 mt-14"></sidebar-ad>
   <!-- end ad section  -->
+
+  <ng-template #notAuthenticated>
+    <div class="p-3 mb-4">
+      <app-button
+        [label]="'auth.login' | translate"
+        (click)="openAuthDialog(authComponents.Login)"
+        panelclass="max-w-100 w-100 lh-normal !py-[.65rem] rounded-7px text-[.85rem]"
+      ></app-button>
+
+      <hr class="my-3 border-[#8D92B54D]" />
+
+      <p class="text-blue-500/50 text-lg text-center mb-3">
+        {{ "auth.dont-have-an-account" | translate }}
+      </p>
+
+      <app-button
+        [stroked]="true"
+        [label]="'auth.register' | translate"
+        (click)="openAuthDialog(authComponents.SignUp)"
+        panelclass="max-w-100 w-100 lh-normal !py-[.65rem] rounded-7px text-[.85rem]"
+      ></app-button>
+    </div>
+  </ng-template>
 </aside>

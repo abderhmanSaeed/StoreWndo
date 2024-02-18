@@ -18,8 +18,9 @@ export class ResponsiveService {
   }
 
   private checkWidth() {
-    const mobileWidth = 768; // Example breakpoint for mobile devices
+    const mobileWidth = 768; //   breakpoint  mobile devices
+    const tabletWidth = 990; //   breakpoint  mobile devices
     const screenWidth = window.innerWidth;
-    this.isMobile.next(screenWidth < mobileWidth);
+    this.isMobile.next(screenWidth < tabletWidth);
   }
 }

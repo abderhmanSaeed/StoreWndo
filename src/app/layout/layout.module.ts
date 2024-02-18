@@ -22,6 +22,11 @@ import { AukVideoModule } from '../shared-modules/auk-video/auk-video.module';
 import { FormsModule } from '@angular/forms';
 import { MobileSidebarComponent } from './components/responsive/mobile-sidebar/mobile-sidebar.component';
 import { MobileHeaderComponent } from './components/responsive/mobile-header/mobile-header.component';
+import { HelpSectionComponent } from './components/responsive/mobile-sidebar/components/help-section/help-section.component';
+import { SectionsComponent } from './components/responsive/mobile-sidebar/components/sections/sections.component';
+import { ChangeLanguageSectionComponent } from './components/responsive/mobile-sidebar/components/change-language-section/change-language-section.component';
+import { UserSectionComponent } from './components/responsive/mobile-sidebar/components/user-section/user-section.component';
+
 
 @NgModule({
   declarations: [
@@ -38,7 +43,11 @@ import { MobileHeaderComponent } from './components/responsive/mobile-header/mob
     SellDialogComponent,
     HelpComponent,
     MobileSidebarComponent,
-    MobileHeaderComponent
+    MobileHeaderComponent,
+    SectionsComponent,
+    HelpSectionComponent,
+    ChangeLanguageSectionComponent,
+    UserSectionComponent
   ],
   imports: [
     FormsModule,

@@ -24,8 +24,8 @@ export class BreakpointsService {
     /* Storing user's device details in a variable*/
     let details = navigator.userAgent;
 
-    /* Creating a regular expression 
-    containing some mobile devices keywords 
+    /* Creating a regular expression
+    containing some mobile devices keywords
     to search it in details string*/
     let regexp = /android|iphone|kindle|ipad/i;
 

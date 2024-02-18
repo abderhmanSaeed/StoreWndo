@@ -1,6 +1,7 @@
 <mat-drawer-container
   [class.drawer-opened]="isOpening"
-  class="example-container h-100 overflow-visible"
+  class="example-container h-100 overflow-visible bg-white md:bg-gray-50"
+  [class.desktop-drawer-container]="!isMobile"
   autosize
 >
   <!-- [mode]=" isBpMax1200px ? 'over': 'side'" -->
@@ -16,6 +17,7 @@
     (closedStart)="closedStart()"
     (openedStart)="openedStart()"
     (openedChange)="openedChange($event)"
+    *ngIf="!isMobile"
   >
     <sidebar
       (toggleDrawer)="drawer.toggle()"

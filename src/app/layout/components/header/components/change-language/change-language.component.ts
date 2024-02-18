@@ -12,8 +12,6 @@ import { NgxSpinnerService } from 'ngx-spinner';
   styleUrls: ['./change-language.component.scss']
 })
 export class ChangeLanguageComponent implements OnInit {
-
-
   languageEnu = Languages;
   languages: Language[] = [
     {
@@ -45,7 +43,7 @@ export class ChangeLanguageComponent implements OnInit {
     let lang = this.languages.filter( lang => lang.key ==  this._BrowserService.getItem(Constant.locale))[0]
     this.selectedLanguage =  lang ? lang : this.languages[0];
   }
-  
+
 
   onLangChange( lang: Language): void {
     this._NgxSpinnerService.show();

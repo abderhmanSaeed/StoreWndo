@@ -1,5 +1,5 @@
 <section class="settings animate__animated animate__fadeIn pb-4 flex flex-col flex-grow-1">
-    
+
 
     <header class="mb-3">
         <span class="fw-600 text-[1rem] text-[#011447]">
@@ -18,15 +18,15 @@
             <mat-card-subtitle class="!text-[#0D1863] fw-bolder text-[1.2rem] mb-4">
                 {{ userWalletBalance?.walletBalance }} <sub class="mx-1 text-[#BFBFBF] fw-normal">{{ 'shared.EGP' | translate }}</sub>
             </mat-card-subtitle>
-           
-            <mat-card-content class="mb-0">	
+
+            <mat-card-content class="mb-0">
                 <div class="flex justify-content-between">
                     <div class="start w-[55%]">
                         <div class="progresses relative">
                             <ngb-progressbar dir="ltr" [showValue]="true" type="success" [value]="userWalletBalance.walletPercentages.topUps"></ngb-progressbar>
                             <ngb-progressbar
                                 class="absolute left-0 top-0 right-0 bg-transparent"
-                                dir="rtl" [showValue]="true" type="warning" [value]="userWalletBalance.walletPercentages.sales"></ngb-progressbar>
+                                 [showValue]="true" type="warning" [value]="userWalletBalance.walletPercentages.sales"></ngb-progressbar>
                         </div>
                     </div>
                     <div class="end fw-600">
@@ -48,4 +48,3 @@
         <wallet-navs class="block pt-2" [data]="userWalletBalance"></wallet-navs>
     </div>
 </section>
-

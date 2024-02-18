@@ -14,7 +14,9 @@
     "my-orders": "طلباتي",
     "my-wish-list": "قائمة مفضلاتي",
     "setting": "الاعدادت",
-    "logout": "تسجيل خروج"
+    "logout": "تسجيل خروج",
+    "explore": "إستكشف",
+    "changeLanguage": "تغير اللغة"
   },
 
   "sidebar": {
@@ -22,7 +24,10 @@
     "knowledge-gate": "الموقع التعريفى",
     "sections": "الأقسام",
     "watch": "شاهد",
-    "demo": "النسخة تجريبية"
+    "demo": "النسخة تجريبية",
+    "help": "مساعدة",
+    "settings": "الإعدادات",
+    "language": "اللغة"
   },
 
   "footer": {
@@ -117,6 +122,7 @@
   },
 
   "shared": {
+    "flash-sale": "تخفيضات خاطفة",
     "add-rate-title": "نتمنى أن يعجبك منتجنا",
     "items": "عناصر",
     "comments": "التعليقات",
@@ -226,5 +232,11 @@
     "verified-ratings": "التقييمات التي تم التحقق منها",
     "verified-customer-reviews": "التحقق من آراء العملاء",
     "no-reviews": "لا يوجد تقييمات لهذا المنتج"
+  },
+
+  "help": {
+    "faq": "الأسئلة الشائعة",
+    "helpCenter": "مركز المساعدة",
+    "contactUs": "اتصل بنا"
   }
 }
