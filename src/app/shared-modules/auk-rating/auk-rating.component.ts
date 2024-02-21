@@ -7,11 +7,13 @@ import { faStar } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./auk-rating.component.scss']
 })
 export class AukRatingComponent implements OnInit {
-  
+
   @Input() theme: number = 1;
   @Input() data: number | undefined = 0
   @Input() textPanelClass: string = ''
-  
+  @Input() iconClass?: string;
+  @Input() panelClass?: string;
+
   faStar = faStar;
 
   constructor() { }

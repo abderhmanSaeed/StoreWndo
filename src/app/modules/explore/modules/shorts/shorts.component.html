@@ -1,6 +1,7 @@
-<section class="shorts mb-3 pt-3 h-full">
-  <div [class.main-container]="!isMobile" class="d-flex flex-col mx-auto h-full">
+<section class="shorts xl:mb-3 xl:pt-3 h-full">
+  <div [class.main-container]="!isMobile" class="flex flex-col mx-auto h-full">
     <div
+      *ngIf="!isMobile"
       class="section__actions d-flex items-center pb-1"
       ngClass="{{ isMobile ? 'justify-center' : 'justify-between' }}"
     >
@@ -32,6 +33,7 @@
         <shorts-slider
           *ngSwitchCase="ExploreView.Shorts"
           class="d-block h-full w-100 animate__animated animate__fadeIn"
+          [class.h-auto]="isMobile"
         ></shorts-slider>
         <!-- end:: shorts slider -->
 

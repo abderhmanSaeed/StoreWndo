@@ -37,9 +37,9 @@ export class ShortsComponent extends ComponentBase implements OnInit {
     }
 
   ngOnInit(): void {
-    this.subscription = this.responsiveService.isMobile$.subscribe(isMobile => {
-      this.isMobile = isMobile;
-    });
+      this.responsiveService.isMobile$.subscribe(isMobile => {
+        this.isMobile = isMobile;
+      });
   }
 
 

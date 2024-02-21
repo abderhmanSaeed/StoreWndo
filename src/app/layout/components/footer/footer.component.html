@@ -1,17 +1,17 @@
-<footer [class.footer--float]="showFloatingFooter" class="footer py-1 position-relative d-flex flex-center">
+<footer [class.footer--float]="showFloatingFooter" class="footer py-1 hidden xl:flex position-relative flex-center">
 
     <button (mouseover)="showFloatingFooter = true" class="rounded-circle p-0 btn expand-footer-btn d-flex border flex-column flex-center main-transition">
         <fa-icon class="d-flex" [icon]="faChevronUp"></fa-icon>
     </button>
 
     <div class="w-100 py-1 footer__cont">
-       
+
         <!-- <ng-container *ngIf="showFloatingFooter"> -->
             <div (mouseover)="showFloatingFooter = true" (mouseout)="showFloatingFooter = false" class="footer__top border-start border-top d-flex align-items-center justify-content-between px-lg-4 main-transition">
-           
+
                 <!-- begin:: footer links  -->
                 <div class="footer__top__start">
-               
+
                     <!-- list 1  -->
                     <ul class="list-unstyled d-flex footer__links-list mb-3 flex-wrap">
                         <ng-container *ngFor="let item of footerLinks">
@@ -22,7 +22,7 @@
                         </li>
                         </ng-container>
                     </ul>
-    
+
                     <!-- list 2 -->
                     <ul class="list-unstyled d-flex footer__links-list mb-0 flex-wrap">
                         <ng-container *ngFor="let item of footerLinksL2">
@@ -33,10 +33,10 @@
                             </li>
                         </ng-container>
                     </ul>
-                    
+
                 </div>
                 <!-- end:: footer links  -->
-                
+
                 <!-- begin:: app list  -->
                 <div class="footer__top__end">
                     <small class="mb-2 d-block">{{ 'footer.download-now' | translate }}</small>
@@ -51,13 +51,13 @@
                     </ul>
                 </div>
                 <!-- end:: app list  -->
-    
+
             </div>
         <!-- </ng-container> -->
-        
+
 
         <div class="footer__bottom d-flex justify-content-between px-lg-4 align-items-center py-1 row w-100">
-            
+
             <!-- begin:: copyright -->
             <div class="start col-lg-4">
                 <small class="text-muted">&copy; {{ currentYear }} {{ 'footer.copyright' | translate }}</small>

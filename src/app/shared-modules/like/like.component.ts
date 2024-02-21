@@ -15,14 +15,15 @@ import { HResponse } from 'src/app/shared/models/http-response/http-response';
 export class LikeComponent implements OnInit, OnDestroy {
 
 
-  // inputs props 
+  // inputs props
   @Input() panelClass: any;
   @Input() panelStyle: object = {};
   @Input() isliked: boolean | undefined = false;
   @Input() LikesCount: number | undefined = 0;
   @Input() productId: string | undefined = undefined;
+  @Input() isDefaultIcon: boolean  = true;
 
-  // outputs props 
+  // outputs props
   @Output() onProductLikeChange: EventEmitter<boolean> = new EventEmitter();
   @Output() onProductLikesCountChange: EventEmitter<number> = new EventEmitter();
 
@@ -51,7 +52,7 @@ export class LikeComponent implements OnInit, OnDestroy {
       this.openAuthDialog();
       return
     }
-    
+
 
     if (this.productId) {
       this.addUpdateLike(this.productId);

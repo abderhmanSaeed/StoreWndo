@@ -53,4 +53,12 @@ html, body { height: 100%; }
   .dir-rtl {
     direction: rtl;
   }
+
+  .w-fit{
+    width: fit-content;
+  }
+
+  .lh-0 {
+    line-height: 0;
+  }
 }

@@ -1,49 +1,49 @@
 <section class="px-0">
+  <ng-container *ngIf="items.length > 1; else banners">
+    <header>
+      <div
+        class="section__title mb-2 d-flex align-items-center justify-content-between"
+      >
+        <div class="start">
+          <span class="ltr:me-1 rtl:me-1">⚡</span>
+          <strong>{{ "explore.flash-sale" | translate }}</strong>
+        </div>
+      </div>
+    </header>
 
+    <swiper
+      (swiper)="onSwiper($event)"
+      [config]="swiperConfig"
+      class="mySwiper"
+    >
+      <ng-container *ngFor="let item of items | slice : 0 : 10">
 
-    <ng-container *ngIf="items.length > 1 else banners">
-        <header>
-            <div class="section__title mb-2 d-flex align-items-center justify-content-between">
-                <div class="start">
-                    <span class="ltr:me-1 rtl:me-1">⚡</span>
-                    <strong>{{ 'explore.flash-sale' | translate }}</strong>
-                </div>
-            </div>
-        </header>
-
-
-        <swiper
-            (swiper)="onSwiper($event)"
-            [config]="swiperConfig"
-            class="mySwiper"
-        >
-
-            <ng-container *ngFor="let item of items | slice: 0: 10"> -->
-                <ng-template swiperSlide>
-                    <auk-card-b 
-                        [data]="item"
-                        class="d-block w-100 swiper-lazy"
-                        (addedToCart)="item.isInCart = $event"
-                        (onProductWishChange)="onProductWishChange($event, item)"
-                    ></auk-card-b>
-                </ng-template>      
-            </ng-container>
-
-
-        </swiper>
-
-    </ng-container>
+        <ng-template swiperSlide>
+          <auk-card-b
+            [data]="item"
+            class="d-block w-100 swiper-lazy"
+            (addedToCart)="handleAddToCart($event, item)"
+            (onProductWishChange)="onProductWishChange($event, item)"
+          ></auk-card-b>
+        </ng-template>
+      </ng-container>
+    </swiper>
+  </ng-container>
 </section>
-
-
 
 <!-- begin:: banner section  -->
 <ng-template #banners>
-    <section 
-        matRipple 
-        [matRippleColor]="mainRippleColor"
-        class="banner h-[230px] flex items-center justify-center bg-[#FFF5F5] fw-bold">
-        <img class="main-rounded img-fluid max-h-100 fit-img w-100 h-100" [src]="bannerUrl" alt="Ad">
-    </section>
+  <section
+    matRipple
+    [matRippleColor]="mainRippleColor"
+    class="banner h-3.8 items-center justify-center bg-[#FFF5F5] fw-bold hidden tablet:flex"
+
+  >
+    <img
+      class="main-rounded img-fluid max-h-100 fit-img w-100 h-100"
+      [src]="bannerUrl"
+      alt="Ad"
+    />
+  </section>
 </ng-template>
 <!-- end:: banner section  -->

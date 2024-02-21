@@ -34,6 +34,7 @@ import { HttpClient } from '@angular/common/http';
 import { createTranslateExploreLoader } from 'src/app/core/config/translate-loaders';
 import { environment } from 'src/environments/environment';
 import { ProductDetailsDialogModule } from 'src/app/shared-modules/product-details-dialog/product-details-dialog.module';
+import { MobileShortsSliderComponent } from './components/responsive/mobile-shorts-slider/mobile-shorts-slider.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { ProductDetailsDialogModule } from 'src/app/shared-modules/product-detai
     ShortsSliderComponent,
     GridViewCardComponent,
     GridViewSliderComponent,
-    SectionsComponent
+    SectionsComponent,
+    MobileShortsSliderComponent
   ],
   imports: [
     LikeModule,

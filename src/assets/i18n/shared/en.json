@@ -123,6 +123,8 @@
   },
 
   "shared": {
+    "pause": "Pause",
+    "auto": "AUTO",
     "flash-sale": "Flash Sale",
     "add-rate-title": "We Wish You Liked Our Product",
     "comments": "Comments",
@@ -172,7 +174,11 @@
     "offers": "Offers",
     "live": "Live",
     "out-of-stock": "Out of Stock",
-    "share-your-request-seller": "Share your request with the seller"
+    "share-your-request-seller": "Share your request with the seller",
+    "clickOn": "Click on",
+    "to-be-notified-when-available": "to be notified when available",
+    "maximize": "Maximize",
+    "like": "Like"
   },
 
   "breadcrumb": {

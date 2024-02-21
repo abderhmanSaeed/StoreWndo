@@ -1,88 +1,86 @@
 :host {
-    ::ng-deep {
+  .products {
+    height: calc(100vh - 137px);
+    scroll-snap-type: y mandatory;
+    // margin-top: 1rem;
 
-        // Structure Block 
-        
-        height: calc(100vh - 185px) !important;
-        @media (max-height: 780px) {
-            height: 650px !important
-        }
+    overflow-y: auto;
+  }
+  ::ng-deep {
+    // Structure Block
 
-        overflow: visible !important;
+    height: calc(100vh - 185px);
 
-        .swiper-slide {
-
-            // Structure Block 
-            height: 100% !important;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-        }
-
-      
+    @media (max-height: 780px) {
+      height: 650px;
     }
+
+    .mobile-shorts-slider {
+      height: auto !important;
+    }
+
+    overflow: visible !important;
+
+    .swiper-slide {
+      // Structure Block
+      height: 100% !important;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
 }
 
-
 .video-wrapper {
-    background-image: url(../../../../../../../assets/media/logos/wndo-pattern.svg);
-    background-repeat: repeat;
-    background-attachment: fixed;
+  background-image: url(../../../../../../../assets/media/logos/wndo-pattern.svg);
+  background-repeat: repeat;
+  background-attachment: fixed;
 }
 
 video {
-    &::-webkit-media-controls-panel {
+  &::-webkit-media-controls-panel {
+    // Structure Block
+    display: flex !important;
+    opacity: 1 !important;
+  }
 
-        // Structure Block 
-        display: flex !important;
-        opacity: 1 !important;
-    }
-
-    &:fullscreen {
-
-        // Structure Block  
-        object-fit: none;
-    }
+  &:fullscreen {
+    // Structure Block
+    object-fit: none;
+  }
 }
 
 .swiper__auto-play {
-    // Positioning Block 
-    position: absolute;
-    z-index: 1;
-    top: 0;
-    left: 0;
+  // Positioning Block
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
 
-
-    ::ng-deep {
-        .mat-slide-toggle {
-
-            // Modifire Block 
-            transform: scale(.75);
-        }
-
-        .mat-slide-toggle-ripple {
-
-            // Structure Block 
-            display: none;
-        }
-
-        .auk-slide__label{
-
-            // Structure Block 
-            margin-right: 0.2rem !important;
-        }
-
-        .mat-slide-toggle-bar {
-            // Structure Block 
-            background-color: rgba(242, 242, 242, .8);
-        }
+  ::ng-deep {
+    .mat-slide-toggle {
+      // Modifire Block
+      transform: scale(0.75);
     }
+
+    .mat-slide-toggle-ripple {
+      // Structure Block
+      display: none;
+    }
+
+    .auk-slide__label {
+      // Structure Block
+      margin-right: 0.2rem !important;
+    }
+
+    .mat-slide-toggle-bar {
+      // Structure Block
+      background-color: rgba(242, 242, 242, 0.8);
+    }
+  }
 }
 
-
 wndo-loader {
-
-    // Structure Block 
-    width: calc(100% - 108px);
+  // Structure Block
+  width: calc(100% - 108px);
 }

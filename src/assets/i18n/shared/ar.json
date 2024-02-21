@@ -122,6 +122,8 @@
   },
 
   "shared": {
+    "pause": "توقف",
+    "auto": "تشغيل تلقائي",
     "flash-sale": "تخفيضات خاطفة",
     "add-rate-title": "نتمنى أن يعجبك منتجنا",
     "items": "عناصر",
@@ -171,7 +173,11 @@
     "offers": "عروض",
     "live": "لايف",
     "out-of-stock": "إنتهى من المخزن",
-    "share-your-request-seller": "شارك طلبك مع البائع"
+    "share-your-request-seller": "شارك طلبك مع البائع",
+    "clickOn": "انقر على",
+    "to-be-notified-when-available": "ليتم إخطارك عند التوفر",
+    "maximize": "تكبير",
+    "like": "اعجبني"
   },
 
   "breadcrumb": {

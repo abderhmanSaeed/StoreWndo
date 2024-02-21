@@ -1,26 +1,43 @@
-import { Injectable, HostListener } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { Constant } from 'src/app/core/config/constant';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ResponsiveService {
+  private defaultMobileWidth = Constant.laptopWidth;; // Default breakpoint
+  private overrideMobileWidth: number | null = null;
   private isMobile = new BehaviorSubject<boolean>(false);
   public isMobile$ = this.isMobile.asObservable();
 
   constructor() {
     this.checkWidth();
-  }
-
-  @HostListener('window:resize', ['$event'])
-  onResize(event:any) {
-    this.checkWidth();
+    this.onResize();
   }
 
   private checkWidth() {
-    const mobileWidth = 768; //   breakpoint  mobile devices
-    const tabletWidth = 990; //   breakpoint  mobile devices
     const screenWidth = window.innerWidth;
-    this.isMobile.next(screenWidth < tabletWidth);
+    const breakpoint = this.overrideMobileWidth ?? this.defaultMobileWidth;
+    this.isMobile.next(screenWidth <= breakpoint);
+  }
+
+  public onResize() {
+    window.addEventListener('resize', () => this.checkWidth());
+  }
+
+  public updateDefaultMobileWidth(newWidth: number) {
+    this.defaultMobileWidth = newWidth;
+    this.checkWidth();
+  }
+
+  public overrideBreakpoint(newWidth: number) {
+    this.overrideMobileWidth = newWidth;
+    this.checkWidth();
+  }
+
+  public clearOverride() {
+    this.overrideMobileWidth = null;
+    this.checkWidth();
   }
 }
