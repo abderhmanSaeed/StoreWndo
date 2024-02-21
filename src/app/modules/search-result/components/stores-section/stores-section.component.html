@@ -1,49 +1,44 @@
 <section>
-    <header class="mb-2 flex">
-        <h4 class="text-blue fw-600">{{ 'shared.store' | translate }}</h4>
-    </header>
-   
-    <ng-container *ngIf="sellers?.length else noData">
-        <div class="flex gap-4 flex-wrap justify-content-center">
-            <ng-container *ngFor="let item of sellers">
-                <search-result-store-card [seller]="item"></search-result-store-card>
-            </ng-container>
-        </div>
-    </ng-container>
-    
+  <header class="mb-2 flex">
+    <h4 class="text-blue fw-600">{{ "shared.store" | translate }}</h4>
+  </header>
 
+  <ng-container *ngIf="sellers?.length; else noData">
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:flex gap-4 xl:flex-wrap lg:justify-center">
+      <ng-container *ngFor="let item of sellers">
+        <search-result-store-card [seller]="item"></search-result-store-card>
+      </ng-container>
+    </div>
+  </ng-container>
 
-      <!-- begin:: paginator  -->
-      <ng-container *ngIf="sellersCount > perPage">
-        <div class="flex justify-center mt-4">
-            <ngb-pagination
-                [(page)]="page"
-                [pageSize]="perPage"
-                (pageChange)="onPageChange($event)"
-                [collectionSize]="sellersCount"
-                aria-label="Default pagination"
-            >
-                <ng-template ngbPaginationPrevious>
-                    <mat-icon>keyboard_backspace</mat-icon>
-                </ng-template>
-                <ng-template ngbPaginationNext>
-                    <mat-icon class="rotate-180">keyboard_backspace</mat-icon>
-                </ng-template>
-            </ngb-pagination>
-        </div>
-    </ng-container>
-    <!-- end:: paginator  -->
-
+  <!-- begin:: paginator  -->
+  <ng-container *ngIf="sellersCount > perPage">
+    <div class="flex justify-center mt-4">
+      <ngb-pagination
+        [(page)]="page"
+        [pageSize]="perPage"
+        (pageChange)="onPageChange($event)"
+        [collectionSize]="sellersCount"
+        aria-label="Default pagination"
+      >
+        <ng-template ngbPaginationPrevious>
+          <mat-icon>keyboard_backspace</mat-icon>
+        </ng-template>
+        <ng-template ngbPaginationNext>
+          <mat-icon class="rotate-180">keyboard_backspace</mat-icon>
+        </ng-template>
+      </ngb-pagination>
+    </div>
+  </ng-container>
+  <!-- end:: paginator  -->
 </section>
-
-
 
 <!-- begin no data templete  -->
 <ng-template #noData>
-    <no-data
-        size="xl"
-        class="block"
-        [message]="'shared.no-results-found' | translate"
-    ></no-data>
+  <no-data
+    size="xl"
+    class="block"
+    [message]="'shared.no-results-found' | translate"
+  ></no-data>
 </ng-template>
 <!-- end no data templete  -->
