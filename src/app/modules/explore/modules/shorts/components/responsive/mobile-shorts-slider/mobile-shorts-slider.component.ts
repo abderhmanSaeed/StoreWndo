@@ -16,6 +16,16 @@ import { MessagesService } from 'src/app/shared/services/messages/messages.servi
 import { HelperFunctionsService } from 'src/app/shared/services/helper-funcctions/helper-functions.service';
 import { TranslateService } from '@ngx-translate/core';
 import { environment } from 'src/environments/environment';
+import { APIs } from 'src/app/core/config/apis';
+import { HttpService } from 'src/app/core/services/http/http.service';
+import { Subscription } from 'rxjs';
+import { HResponse } from 'src/app/shared/models/http-response/http-response';
+import { MatDialog } from '@angular/material/dialog';
+import { ProductDetailsDialogComponent } from 'src/app/shared-modules/product-details-dialog/product-details-dialog.component';
+import { Languages } from 'src/app/shared/enums/languages/languages';
+import { Constant } from 'src/app/core/config/constant';
+import { BrowserService } from 'src/app/shared/services/browser-db/browser.service';
+import { MobileProductDetailsDialogComponent } from 'src/app/shared-modules/product-details-dialog/components/responsive/mobile-product-details-dialog/mobile-product-details-dialog.component';
 
 @Component({
   selector: 'app-mobile-shorts-slider',
@@ -45,17 +55,30 @@ export class MobileShortsSliderComponent implements OnInit {
   @Input() productIndex?:number;
   @Input() index?:number;
 
+  subscription: Subscription = new Subscription();
+
+  lang: Languages = Languages.AR;
+
   constructor(
     private matIconRegistry: MatIconRegistry,
     private domSanitizer: DomSanitizer,
     private _MessagesService: MessagesService,
     private _TranslateService: TranslateService,
-    private _HelperFunctionsService: HelperFunctionsService
+    private _HelperFunctionsService: HelperFunctionsService,
+    private _HttpService: HttpService,
+    private _MatDialog: MatDialog,
+    private _BrowserService: BrowserService,
   ) {
     this.initializeIcons();
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.lang = this._BrowserService.getItem(Constant.locale);
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
 
   initializeIcons() {
     this.matIconRegistry.addSvgIcon(
@@ -145,6 +168,29 @@ export class MobileShortsSliderComponent implements OnInit {
   onImgError(event: any){
     event.target.src = 'assets/media/logos/smile.svg'
   }
+
+  openGridCardPerviewDialog(data: any): void {
+    this._MatDialog.open(MobileProductDetailsDialogComponent, {
+      width: '100%',
+      // maxWidth: '100%',
+      data,
+      direction: this.lang == Languages.AR ? 'rtl' : 'ltr',
+      panelClass: "product-details-dialog"
+    });
+  }
+
+  getProductDetails(productId: any): void {
+    this.subscription.add( this._HttpService.get(`${APIs.getProductDetails}/${productId}`)
+    .subscribe((res: HResponse) => {
+      this.openGridCardPerviewDialog(res.responseData);
+    }))
+  }
+
+  onExpandClick(productId: any): void {
+    if (productId) {
+      this.getProductDetails(productId)
+    }
+   }
 
 
 }

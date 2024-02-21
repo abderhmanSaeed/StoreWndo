@@ -1,0 +1,10 @@
+::ng-deep {
+  .product-details-dialog {
+    .mat-dialog-container {
+      @apply p-2.5;
+      scroll-snap-type: y mandatory;
+      overflow-y: auto;
+      height: 98vh;
+    }
+  }
+}

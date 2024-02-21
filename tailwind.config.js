@@ -66,10 +66,18 @@ module.exports = {
       },
       screens: {
         tablet: "990px",
+
+        portrait: {
+          raw: "(orientation: portrait)",
+        },
+
+        landscape: {
+          raw: "(orientation: landscape)",
+        },
       },
       width: {
-        fit: "fit-content"
-      }
+        fit: "fit-content",
+      },
     },
   },
   variants: {
