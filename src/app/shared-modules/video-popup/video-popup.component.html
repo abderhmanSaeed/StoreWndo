@@ -1,7 +1,7 @@
 <section class="grid-card-preview text-[#97979d]">
     <div class="grid-card-preview__content main-rounded gradient-border">
         <div class="position-relative z-[1]">
-       
+
             <!-- begin:: closer  -->
             <div class="dialog__closer position-relative z-[2] flex justify-end mb-4">
                 <button mat-dialog-close color="bg-gray-700" class="bg-gray-700 text-white shadow-xl !w-[32px] !h-[32px] d-flex items-center justify-center lh-normal" mat-mini-fab aria-label="Example icon button with a home icon">
@@ -10,12 +10,12 @@
             </div>
             <!-- end:: closer  -->
 
-            <div mat-dialog-content class="mx-0">
-                <div class="w-[400px] max-w-100 main-rounded video-col h-auto flex items-center mx-auto">
+            <div mat-dialog-content class="mx-0 p-0">
+                <div class="w-full xl:w-[400px] max-w-100 main-rounded video-col h-auto flex items-center mx-auto">
                     <div class="video-wrapper relative w-100 h-1000">
                         <wndo-loader bdColor="transparent" *ngIf="isVideoLoading" class="block h-100 w-100 main-rounded--force absolute z-[2]"></wndo-loader>
                         <vg-player [hidden]="isVideoLoading" class="h-auto bg-transparent" *ngIf="source" (onPlayerReady)="onPlayerReady($event)">
-                            <video class="max-h-[560px] main-rounded--force object-cover" width="100%" [vgMedia]="$any(media)" [vgMaster]="true" preload="auto" #media controls>
+                            <video class="max-h-[560px]  main-rounded--force object-cover" width="100%" [vgMedia]="$any(media)" [vgMaster]="true" preload="auto" #media controls>
                                 <source [src]="source" type="video/mp4">
                             </video>
                         </vg-player>
@@ -24,4 +24,4 @@
             </div>
         </div>
     </div>
-</section> 
+</section>

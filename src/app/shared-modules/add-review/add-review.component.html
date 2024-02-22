@@ -1,9 +1,9 @@
 <section class="product-features text-[#97979d] w-100">
     <div class="product-features__content main-rounded gradient-border bg-white h-100">
         <div class="position-relative z-[1] pt-5 pb-4 px-4 flex flex-col h-100 justify-between">
-       
+
             <!-- begin:: closer  -->
-            <div class="dialog__closer w-[fit-content] position-absolute z-[2] flex justify-end mb-4 right-0 top-0 translate-y-[-150%] translate-x-[200%]">
+            <div class="dialog__closer w-[fit-content] position-absolute z-[2] flex justify-end mb-4 right-5 xl:right-0 top-0 translate-y-[-150%] xl:translate-x-[200%]">
                 <button mat-dialog-close color="bg-gray-700" class="bg-gray-700 text-white shadow-xl !w-[32px] !h-[32px] d-flex items-center justify-center lh-normal" mat-mini-fab aria-label="Example icon button with a home icon">
                     <mat-icon>close</mat-icon>
                 </button>
@@ -26,7 +26,7 @@
                     </div>
                 </div>
 
-                
+
                 <form class="relative" [formGroup]="form">
                     <app-textarea
                         rows="8"
@@ -35,14 +35,14 @@
                         formControlName="description"
                         [control]="form | getControl: 'description'"
                     ></app-textarea>
-                    <label 
-                        matRipple 
+                    <label
+                        matRipple
                         for="formFile"
                         *ngIf="!mediaPath"
                         [matRippleColor]="mainRippleColor"
                         class="btn absolute top-[10px] ltr:right-[10px] rtl:left-[10px] p-0 bg-white rounded-full w-[25px] h-[25px] shadow flex items-center justify-center ltr:ml-[-12px] rtl:mr-[-12px]">
                         <fa-icon class="d-flex text-[.8rem] text-[#82819f] pr-0" [icon]="faCamera"></fa-icon>
-                        <input 
+                        <input
                             type="file"
                             id="formFile"
                             accept="image/*"
@@ -52,7 +52,7 @@
                     </label>
                 </form>
             </div>
-      
+
             <mat-dialog-actions align="center" class="flex flex-col items-center">
                 <app-button
                     (click)="submit()"
@@ -69,4 +69,4 @@
             </mat-dialog-actions>
         </div>
     </div>
-</section> 
+</section>

@@ -1,20 +1,34 @@
-<a 
-    (click)="$event.stopPropagation()"
-    [routerLink]="['/seller', ownerId]"
-    class="btn d-inline-flex p-0 align-items-center justify-content-start text-[#9599B3] max-w-[100%]"
+<a
+  (click)="$event.stopPropagation()"
+  [routerLink]="['/seller', ownerId]"
+  class="btn d-inline-flex p-0 align-items-center justify-content-start text-[#9599B3] max-w-[100%]"
 >
-    <div class="start ltr:me-2 rtl:me-2">
-        <div [class]="imgBoxPanelClass" class="owner__img-box rounded-circle d-flex flex-center w-[23px] h-[23px]">
-            <img (error)="onImgError($event)" *ngIf="imagePath else imgPlaceholder" class="img-fluid rounded-circle fit-img w-100 h-100" [src]="imagePath" alt="User Image">
-        </div>
+  <div class="start ltr:me-2 rtl:me-2">
+    <div
+      [class]="imgBoxPanelClass"
+      class="owner__img-box rounded-circle d-flex flex-center w-[23px] h-[23px]"
+    >
+      <img
+        (error)="onImgError($event)"
+        *ngIf="imagePath; else imgPlaceholder"
+        class="img-fluid rounded-circle fit-img w-100 h-100"
+        [src]="imagePath"
+        alt="User Image"
+      />
     </div>
+  </div>
 
-    <div class="end ltr:pe-2 rtl:pe-2 text-truncate">
-        <small [class]="txtPanelClass" class="owner__name lh-normal">{{ name }}</small>
-    </div>
-
+  <div class="end ltr:pe-2 rtl:pe-2 text-truncate">
+    <small [class]="txtPanelClass" class="owner__name lh-normal">{{
+      name
+    }}</small>
+  </div>
 </a>
 
 <ng-template #imgPlaceholder>
-    <img class="img-fluid rounded-circle fit-img w-100 h-100" src="assets/media/users/user-placeholder.png" alt="User Image">
+  <img
+    class="img-fluid rounded-circle fit-img w-100 h-100"
+    src="assets/media/users/user-placeholder.png"
+    alt="User Image"
+  />
 </ng-template>

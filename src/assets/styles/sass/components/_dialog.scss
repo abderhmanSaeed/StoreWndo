@@ -11,11 +11,11 @@
     padding: 5rem 0px 1rem 0;
 
     // Medium devices (tablets, 768px and up)
-    @media (min-width: 768px) { 
+    @media (min-width: 768px) {
 
         // Structure Block
         max-width: 544px !important;
-    }  
+    }
 
     .mat-dialog-container {
 
@@ -25,9 +25,9 @@
         border-radius: var(--main-rounded) !important;
 
 
-        // Modfire Block 
+        // Modfire Block
         overflow: visible;
-        
+
         .close-btn {
 
             // Structure Block
@@ -62,7 +62,7 @@
             &::-webkit-scrollbar-track {
                 background: 0 0;
             }
-            
+
             /* Handle */
             &::-webkit-scrollbar-thumb {
                 background-image: linear-gradient(transparent, #aeaeae);
@@ -77,7 +77,7 @@
             // Structure Block
             background: none !important;
 
-            // Positioning Block 
+            // Positioning Block
             position: relative;
 
 
@@ -92,7 +92,7 @@
     // X-Small devices (portrait phones, less than 576px)
     @include bp-max-ex-576 {
         // Structure Block
-        width: 100% !important;
+        width: 90% !important;
     }
 
     &.confirmation-dialog {
@@ -103,25 +103,25 @@
         }
         @include bp-max-ex-576 {
             // Structure Block
-            width: 100% !important;
+            width: 90% !important;
         }
 
         .mat-dialog-content {
-            // Modfire Block 
+            // Modfire Block
             overflow: hidden;
         }
-    
+
     }
 }
 
 .mat-dialog-actions {
-    // Structure Block 
+    // Structure Block
     min-height: auto !important;
     margin-bottom: 0 !important;
 }
 
 .cdk-overlay-dark-backdrop {
-    // Structure Block 
+    // Structure Block
     background: rgba(0, 0, 0, 0.91);
 }
 
@@ -131,32 +131,32 @@
 
     .mat-dialog-content {
 
-        // Modifire Block 
+        // Modifire Block
         overflow: visible;
 
     }
-    
-    
+
+
     .cdk-overlay-dark-backdrop {
-        // Structure Block 
+        // Structure Block
         background: rgba(0, 0, 0, 0.91);
     }
-    
+
     .mat-dialog-container {
-        // Structure Block 
+        // Structure Block
         background: transparent !important;
         padding: 1rem 0px 1rem 0;
-    
-        // Positioning Block 
+
+        // Positioning Block
         position: relative;
-    
-        // Modifire Block 
+
+        // Modifire Block
         overflow: visible;
-    
+
     }
-    
+
     .mat-dialog-actions {
-        // Structure Block 
+        // Structure Block
         margin-bottom: 0;
     }
 }
@@ -164,73 +164,73 @@
 
 
 
-// begin:: gradient-dialog 
+// begin:: gradient-dialog
 .gradient-dialog {
 
     .dialog__content {
 
         .mat-dialog-content {
-    
-            // Modifire Block 
+
+            // Modifire Block
             overflow: visible;
 
             // Structure Block
-            max-height: 100% !important; 
-    
+            max-height: 100% !important;
+
         }
     }
-    
+
     .mat-dialog-container {
-        // Structure Block 
+        // Structure Block
         background: transparent !important;
         padding: 5rem 0px 1rem 0;
-    
-        // Positioning Block 
+
+        // Positioning Block
         position: relative;
-    
-        // Modifire Block 
+
+        // Modifire Block
         overflow: visible;
-    
+
     }
-    
+
     .mat-dialog-actions {
-        // Structure Block 
+        // Structure Block
         margin-bottom: 0;
     }
-    
+
     .gradient-border {
-    
-        // Positioning Block 
+
+        // Positioning Block
         position: relative;
-    
-        
+
+
         &::after {
-    
-            // Structure Block 
+
+            // Structure Block
             content: '';
             width: calc(100% + 10px * 2);
             height: calc(100% + 10px * 2);
             background: var(--main-gradient);
             border-radius: 8px;
             background-size: 300% 300%;
-    
-            // Positioning Block 
+
+            // Positioning Block
             position: absolute;
             top: calc(-1 * 10px);
             left: calc(-1 * 10px);
-    
-            // Modifire Block 
+
+            // Modifire Block
             animation: gradient 3s ease alternate infinite;
             opacity: .7;
         }
     }
-    
+
     .logo {
-        // Positioning Block 
+        // Positioning Block
         position: absolute;
         left: 0;
-    
-        // Modifire Block 
+
+        // Modifire Block
         transform: translate(-150%, -116%);
     }
 

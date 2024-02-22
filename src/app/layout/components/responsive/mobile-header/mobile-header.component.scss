@@ -81,3 +81,14 @@
     }
   }
 }
+
+.active-link {
+  font-size: 10rem;
+  .svg-icon {
+    font-size: 20rem;
+    &__icon {
+      font-size: 30rem;
+      @apply text-primary;
+    }
+  }
+}

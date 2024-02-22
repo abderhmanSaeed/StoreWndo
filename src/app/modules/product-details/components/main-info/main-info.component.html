@@ -1,10 +1,10 @@
 <mat-card class="main-rounded--forced p-3">
 
    <div class="row">
-        
+
         <div class="col-lg flex-grow-0 ltr:me-5 rtl:me-5">
            <div class="flex flex-col h-100  bg-wndo-watermark main-rounded border px-3 !border-[#eee]">
-                
+
                 <!-- begin:: product gallery -->
                 <div class="flex-grow-1 mb-4">
                     <product-gallery [videos]="producData?.videos" [images]="producData?.images"></product-gallery>
@@ -22,8 +22,8 @@
         </div>
 
 
-        <div class="col-lg flex-grow-2">
-           
+        <div class="col-lg flex-grow-2 mt-3 xl:mt-0">
+
             <!-- begin:: header  -->
             <div class="header flex items-center justify-between mb-4">
                 <div class="start">
@@ -31,9 +31,9 @@
                         {{ producData?.name }}
                     </mat-card-title>
                 </div>
-        
+
                 <div class="end">
-                    <add-to-fav 
+                    <add-to-fav
                         class="ltr:ms-2 rtl:ms-2"
                         [productId]="producData?.id"
                         [isFavorite]="producData?.isInWishList"
@@ -45,7 +45,7 @@
                     ></add-to-fav>
                 </div>
             </div>
-            <!-- end:: header  -->       
+            <!-- end:: header  -->
 
             <mat-card-content>
 
@@ -54,7 +54,7 @@
                 <!-- end:: seller info  -->
 
                 <!-- begin:: rate and type info  -->
-                <div class="rate-type flex items-center justify-between lg:w-[75%] text-[#524C72] mb-3">
+                <div class="rate-type flex-wrap flex items-center justify-between lg:w-[75%] text-[#524C72] mb-3">
                     <div class="start">
                         <!-- brgin:: rating  -->
                         <div class="rating flex items-center">
@@ -78,7 +78,7 @@
                 ></auk-price>
                 <!-- end:: price  -->
 
-                
+
                 <!-- begin:: product description  -->
                 <div class="prod-desc text-[#524C72] ltr:xl:pr-[5rem] rtl:xl:pl-[5rem] mb-3">
                     <p>
@@ -110,7 +110,7 @@
                             panelclass="max-w-100 w-[250px] mx-3 !rounded-full lh-normal !py-[.65rem] uppercase"
                         ></app-button>
                     </ng-container>
-                    
+
                     <ng-container *ngIf="!producData?.isInCart">
                             <app-button
                             [disabled]="producData?.isOutOfStock"
@@ -119,7 +119,7 @@
                             panelclass="max-w-100 w-[250px] mx-3 !rounded-full lh-normal !py-[.65rem] uppercase"
                         ></app-button>
                     </ng-container>
-                  
+
                 </div>
                 <!-- begin:: product actions  -->
                 <div class="text-center mt-4">

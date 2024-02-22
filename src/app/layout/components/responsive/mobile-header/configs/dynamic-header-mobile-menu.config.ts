@@ -7,14 +7,14 @@ export const DynamicHeaderMobileMenuConfig = {
       title: 'explore',
       className: 'explore',
       actionType: ActionTypes.Link,
-      imgPath: './assets/media/svg/discovery.svg',
+      imgPath: './assets/media/svg/discovery-2.svg',
     },
     {
       page: '/cart',
       title: 'cart',
       className: 'cart',
       actionType: ActionTypes.Link,
-      imgPath: './assets/media/svg/cart.svg',
+      imgPath: './assets/media/svg/cart-2.svg',
     },
     {
       page: '/buyer-profile/wallet',
@@ -28,7 +28,7 @@ export const DynamicHeaderMobileMenuConfig = {
       className: 'fav',
       title: 'favorites',
       actionType: ActionTypes.Link,
-      imgPath: './assets/media/svg/love.svg',
+      imgPath: './assets/media/svg/love-2.svg',
     },
     {
       page: '/notifications',

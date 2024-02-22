@@ -1,29 +1,26 @@
 <div class="recent-viewd-slider">
-   <ng-container *ngIf="alsoLikeItems.length else noData">
+  <ng-container *ngIf="alsoLikeItems.length; else noData">
     <swiper
-        (swiper)="onSwiper($event)"
-        [config]="swiperConfig"
-        class="mySwiper"
+      (swiper)="onSwiper($event)"
+      [config]="swiperConfig"
+      class="mySwiper"
     >
+      <ng-container *ngFor="let item of alsoLikeItems">
 
-    <ng-container *ngFor="let item of alsoLikeItems"> -->
         <ng-template swiperSlide>
-            <auk-card-c [data]="item"></auk-card-c>
-        </ng-template>      
-    </ng-container>
-
+          <auk-card-c [data]="item"></auk-card-c>
+        </ng-template>
+      </ng-container>
     </swiper>
-   </ng-container>
-   
+  </ng-container>
 </div>
-
 
 <!-- begin no data templete  -->
 <ng-template #noData>
-    <no-data
-        size="xl"
-        class="block py-5"
-        message="No result in You may also like"
-    ></no-data>
+  <no-data
+    size="xl"
+    class="block py-5"
+    message="No result in You may also like"
+  ></no-data>
 </ng-template>
 <!-- end no data templete  -->

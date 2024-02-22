@@ -12,38 +12,35 @@
 // ng-selec styles
 @import "~@ng-select/ng-select/themes/default.theme.css";
 
-
-
-
-
-
 :root {
+  // begin:: colors
+  --bs-primary: #ff002a;
+  --bs-secondary: #f8f8f8;
+  --third: #0d1863;
+  --bs-success: #198754;
+  --bs-success-light: #02a707;
+  --bs-info: #0dcaf0;
+  --bs-warning: #ffc107;
+  --main-gradient: linear-gradient(
+    90deg,
+    rgba(13, 24, 99, 1) 0%,
+    rgba(197, 1, 35, 1) 50%,
+    rgba(13, 24, 99, 1) 100%
+  );
 
-    // begin:: colors
-    --bs-primary: #FF002A;
-    --bs-secondary: #F8F8F8;
-    --third: #0D1863;
-    --bs-success: #198754;
-    --bs-success-light: #02A707;
-    --bs-info: #0dcaf0;
-    --bs-warning: #ffc107;
-    --main-gradient: linear-gradient(90deg, rgba(13,24,99,1) 0%, rgba(197,1,35,1) 50%, rgba(13,24,99,1) 100%);
-
-    // begin:: borders
-    --main-rounded: 9px
+  // begin:: borders
+  --main-rounded: 9px;
 }
 
-
-html, body { height: 100%; }
-
-
-
+html,
+body {
+  height: 100%;
+}
 
 // video[controls]::-webkit-media-controls-panel {
 //   display: d-flex !important;
 //   opacity: 1 !important;
 // }
-
 
 @layer components {
   .dir-ltr {
@@ -54,11 +51,17 @@ html, body { height: 100%; }
     direction: rtl;
   }
 
-  .w-fit{
+  .w-fit {
     width: fit-content;
   }
 
   .lh-0 {
     line-height: 0;
+  }
+
+  .text-truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 }

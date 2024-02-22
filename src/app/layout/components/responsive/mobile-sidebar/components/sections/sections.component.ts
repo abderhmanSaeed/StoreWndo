@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Section } from 'aws-sdk/clients/gamesparks';
 import { ShortsService } from 'src/app/modules/explore/modules/shorts/services/shorts/shorts.service';
 import { Subscription } from 'rxjs';
 import { RouterService } from 'src/app/shared/services/router/router.service';
-
-
 import { APIs } from 'src/app/core/config/apis';
 import { HttpService } from 'src/app/core/services/http/http.service';
  import { HResponse } from 'src/app/shared/models/http-response/http-response';
+import { Section } from 'src/app/shared/models/section/section';
+
 
 
 @Component({

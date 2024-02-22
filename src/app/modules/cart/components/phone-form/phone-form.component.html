@@ -1,22 +1,22 @@
 <section class="form-wrapper text-[#97979d] position-relative">
-   
+
     <!-- begin:: closer  -->
-    <div class="dialog__closer w-[fit-content] position-absolute z-[2] flex justify-end mb-4 right-0 top-0 translate-y-[-150%] translate-x-[200%]">
+    <div class="dialog__closer w-[fit-content] position-absolute z-[2] flex justify-end mb-4 right-5 xl:right-0 top-0 translate-y-[-150%] xl:translate-x-[200%]">
         <button mat-dialog-close color="bg-gray-700" class="bg-gray-700 text-white shadow-xl !w-[32px] !h-[32px] d-flex items-center justify-center lh-normal" mat-mini-fab aria-label="Example icon button with a home icon">
             <mat-icon>close</mat-icon>
         </button>
     </div>
     <!-- end:: closer  -->
-   
+
     <div *ngIf="!showOTP" class="main-rounded gradient-border bg-white">
         <form [formGroup]="form" class="z-[1] p-4" (ngSubmit)="submit()">
-       
+
             <div class="text-center">
                 <h2 mat-dialog-title class="text-blue fw-600">{{ 'checkout.edit-phone-number' | translate }}</h2>
             </div>
 
             <div mat-dialog-content class="mx-0 my-5">
-                
+
 
                 <div class="row">
 
@@ -37,17 +37,17 @@
                     </div>
 
                 </div>
-            
+
 
             </div>
-      
+
             <mat-dialog-actions align="center">
                 <app-button
                     [label]="'checkout.save' | translate"
                     [panelclass]="'w-100 py-1 rounded-pill !px-[7rem]'"
                 ></app-button>
             </mat-dialog-actions>
-      
+
         </form>
     </div>
 
@@ -63,4 +63,4 @@
     <!-- end:: otp-validator  -->
 
 
-</section> 
+</section>

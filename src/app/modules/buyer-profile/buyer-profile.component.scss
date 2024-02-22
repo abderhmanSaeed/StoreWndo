@@ -1,7 +1,13 @@
-.buyer-profile {
-    &__content {
+@import "~tailwindcss/components";
 
-        // Structure Block 
-        max-width: calc(100% - 314px);
+
+  .buyer-profile {
+    &__content {
+      // Structure Block
+      max-width: calc(100% - 314px);
+
+      @media screen and (width < theme("screens.xl")) {
+        max-width: 100%;
+      }
     }
-}
+  }

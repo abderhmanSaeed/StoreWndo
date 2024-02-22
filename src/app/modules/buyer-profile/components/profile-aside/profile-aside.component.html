@@ -1,17 +1,50 @@
-<aside>
-    <mat-card class="main-rounded--force h-100 border-l border-[#ffedca]">
+<aside [class.aside]="!isMobile">
+  <mat-card
+    class="px-0 xl:px-4 main-rounded--force xl:h-100 xl:rtl:border-l xl:ltr:border-r justify-between xl:border-[#ffedca] !flex items-center  gap-3 xl:!block"
+  >
+    <!-- begin:: user main info card  -->
+    <user-main-info-card></user-main-info-card>
+    <!-- end:: user main info card  -->
 
-        <!-- begin:: user main info card  -->
-        <user-main-info-card></user-main-info-card>
-        <!-- end:: user main info card  -->
-
-        <!-- begin:: separator  -->
-        <hr class="my-4 bg-[#ffdcdc]">
-        <!-- end:: separator  -->
-
-        <!-- begin:: aside nav  -->
+    <!-- begin:: aside nav  -->
+    <div
+      [dir]="lang == LanguagesEnum.AR ? 'rtl' : 'ltr'"
+      *ngIf="isMobile; else desktopView"
+    >
+      <button [matMenuTriggerFor]="menu">
+        <mat-icon
+          [svgIcon]="'my-profile-menu'"
+          class="text-blue-700/60 !w-4 !h-3"
+        ></mat-icon>
+        <span class="font-bold text-sm text-blue-700/60 mx-1">{{
+          "buyer-profile.sidemenu.my-profile" | translate
+        }}</span>
+        <mat-icon
+          class="text-sm text-blue-700/70"
+          *ngIf="lang == LanguagesEnum.AR"
+          >arrow_back_ios</mat-icon
+        >
+        <mat-icon
+          class="text-sm text-blue-700/70"
+          *ngIf="lang == LanguagesEnum.EN"
+          >arrow_forward_ios
+        </mat-icon>
+      </button>
+      <mat-menu
+        #menu="matMenu"
+        backdropClass="my-profile__menu"
+        class="!min-w-full !max-w-full !rounded-tr-xl !rounded-tl-xl !rounded-br-none !rounded-bl-none"
+      >
         <profile-aside-nav></profile-aside-nav>
-        <!-- end:: aside nav  -->
+      </mat-menu>
+    </div>
 
-    </mat-card>
+    <ng-template #desktopView>
+      <!-- begin:: separator  -->
+      <hr class="my-4 bg-[#ffdcdc]" />
+      <!-- end:: separator  -->
+      <profile-aside-nav></profile-aside-nav>
+    </ng-template>
+    <!-- end:: aside nav  -->
+  </mat-card>
 </aside>

@@ -53,6 +53,7 @@ module.exports = {
           100: "#AAB2B7",
           200: "#969EB2",
           300: "#96A1AB",
+          400: "#9599B3",
         },
       },
       spacing: {
@@ -78,10 +79,13 @@ module.exports = {
       width: {
         fit: "fit-content",
       },
+      flex: {
+       0 : "1 0 0%"
+      }
     },
   },
   variants: {
-    extend: {},
+    extend: { lineClamp: ["responsive", "hover"] },
   },
-  plugins: [require("tailwindcss-rtl")],
+  plugins: [require("tailwindcss-rtl"), require("@tailwindcss/line-clamp")],
 };
