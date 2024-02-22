@@ -1,42 +1,4 @@
 .aside {
-  &__header {
-    // Structure Block
-    height: 78px;
-
-    .logo {
-      // Structure Block
-      width: 119px;
-
-      // Modifire Block
-      transition: all 0.3s ease-in-out;
-    }
-  }
-
-  &-minimize {
-    .logo-box {
-      // Modifire Block
-      transition: all 0.3s ease-in-out;
-
-      .logo {
-        // Structure Block
-        width: 0;
-
-        // Modifire Block
-        transition: all 0.3s ease-in-out;
-      }
-    }
-
-    .nav__item {
-      // Structure Block
-      justify-content: center;
-    }
-
-    .menu-btn {
-      // Structure Block
-      margin-inline-start: 0 !important;
-    }
-  }
-
   &__section {
     // Structure Block
     padding: 0.1rem 0.5rem;
@@ -111,6 +73,12 @@
       }
     }
 
+    ::ng-deep {
+      .mat-expansion-panel-body {
+        padding: 0 1.5reem 0;
+      }
+    }
+
     .nav__item {
       .svg-icon {
         // Structure Block
@@ -152,7 +120,9 @@
 
     &__sub {
       // Structure Block
-      padding: 0 1.5rem;
+      // padding: 0 1.5rem;
+      padding: 0 0 0;
+      margin-top: 1rem;
 
       .nav__item {
         padding: 1rem 0;
@@ -173,11 +143,6 @@
           // Structure Block
           border-bottom: 1px solid #d9d9e0;
         }
-      }
-
-      .nav__item {
-        // Typography Block
-        line-height: 31px;
       }
     }
   }

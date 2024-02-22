@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 
@@ -28,6 +28,8 @@ export class HelpSectionComponent implements OnInit {
 
   subscription: Subscription = new Subscription();
 
+  @Output() closeDrawer: EventEmitter<boolean> = new EventEmitter(false);
+
   constructor() {}
 
   ngOnInit(): void {}
@@ -46,5 +48,9 @@ export class HelpSectionComponent implements OnInit {
       '-webkit-mask-image': `url(${svgURL})`,
       'mask-image': `url(${svgURL})`,
     };
+  }
+
+  closeSidebar() {
+    this.closeDrawer.emit(true);
   }
 }

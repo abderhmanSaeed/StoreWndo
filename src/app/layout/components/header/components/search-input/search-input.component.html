@@ -1,133 +1,152 @@
-<div (clickOutside)="closeSearchDropdown()" class="search relative"
-    [ngClass]="{'search--focused': isFocused}"
-
+<div
+  (clickOutside)="closeSearchDropdown()"
+  class="search relative"
+  [ngClass]="{ 'search--focused': isFocused }"
 >
-    <div class="input-group relative">
-        <div class="spinner absolute ltr:right-[58px] rtl:left-[58px] z-10 top-[50%] translate-y-[-50%]">
-            <spinner [hidden]="!searching"></spinner>
+  <div class="input-group relative">
+    <div
+      class="spinner absolute ltr:right-[58px] rtl:left-[58px] z-10 top-[50%] translate-y-[-50%]"
+    >
+      <spinner [hidden]="!searching"></spinner>
+    </div>
+
+    <input
+      (focus)="onSearchFocus()"
+      type="text"
+      aria-label="Search"
+      id="typeahead-http"
+      [editable]="true"
+      [(ngModel)]="model"
+      [ngbTypeahead]="search"
+      aria-describedby="button-addon2"
+      [class.is-invalid]="searchFailed"
+      [placeholder]="'header.search' | translate"
+      class="!z-0 form-control border-0 bg-secondary main-rounded--force ltr:!pr-[2.5rem] rtl:!pl-[2.5rem]"
+    />
+    <a
+      [routerLink]="['search-results']"
+      [queryParams]="{
+        text: model
+      }"
+      class="btn btn-primary main-rounded py-0 d-flex flex-center border-0 relative z-10"
+      type="button"
+      id="button-addon2"
+    >
+      <mat-icon class="text-white">search</mat-icon>
+    </a>
+  </div>
+
+  <div
+    class="search__dropdown z-[2] absolute p-2 bg-[#F8F8F8] main-rounded top-[44px] border !border-[#FF4B4633] right-0 left-0"
+  >
+    <ng-container *ngIf="searchResults?.length">
+      <div class="search__result pt-1">
+        <ul class="list-unstyled px-[1rem] text-[#011447]">
+          <ng-container
+            *ngFor="let item of searchResults | slice : 0 : searchResultCount"
+          >
+            <li class="mb-1">
+              <a
+                (click)="closeSearchDropdown(item)"
+                routerLink="/search-results"
+                [queryParams]="{
+                  text: item
+                }"
+                class="search__result__item py-1 px-2 rounded block text-truncate break-all"
+              >
+                <small>{{ item }}</small>
+              </a>
+            </li>
+          </ng-container>
+        </ul>
+
+        <!-- <ng-container *ngIf="searchResults.length > searchResultCount"> -->
+        <div
+          class="px-[1.1rem] pb-1"
+          [hidden]="searchResults.length <= searchResultCount"
+        >
+          <app-button
+            (click)="seeAll()"
+            [stroked]="true"
+            [label]="'shared.see-all' | translate"
+            panelclass="max-w-100 w-100 mt-2 px-5 lh-normal text-[.75rem] !py-[.5rem] rounded"
+          ></app-button>
+        </div>
+        <!-- </ng-container> -->
+      </div>
+    </ng-container>
+
+    <!-- begin:: recent  -->
+    <ng-container *ngIf="!searchResults?.length">
+      <div class="recent px-1">
+        <div class="seach__placeholde mb-2 mt-1">
+          <div class="flex items-center">
+            <mat-icon class="text-blue ltr:me-2 rtl:ms-2">search</mat-icon>
+            <small class="text-[#0D186380]">
+              {{ "shared.enter-your-search-term" | translate }}
+            </small>
+          </div>
         </div>
 
-        <input 
-            (focus)="onSearchFocus()"
-            type="text"
-            aria-label="Search"
-            id="typeahead-http"
-            [editable]="true"
-            [(ngModel)]="model" 
-            [ngbTypeahead]="search"
-            aria-describedby="button-addon2"
-            [class.is-invalid]="searchFailed"
-            [placeholder]="'header.search' | translate"
-            class="!z-0 form-control border-0 bg-secondary main-rounded--force ltr:!pr-[2.5rem] rtl:!pl-[2.5rem]"
-        >
-        <a [routerLink]="['search-results']"
-           [queryParams]="{
-                text: model
-            }" class="btn btn-primary main-rounded py-0 d-flex flex-center border-0 relative z-10" type="button" id="button-addon2">
-            <mat-icon class="text-white">search</mat-icon>
-        </a>
+        <hr class="mb-2 bg-[#aeaed3]" />
+
+        <div class="recent__items">
+          <div
+            class="header flex justify-content-between items-center pt-1 pb-2"
+          >
+            <div class="start text-[#4E4E78] flex items-center">
+              <mat-icon class="ltr:me-1 rtl:ms-1 w-auto h-auto text-[1.25rem]"
+                >access_time</mat-icon
+              >
+              <span class="fw-500 text-[.78rem]">
+                {{ "shared.recent-search" | translate }}
+              </span>
+            </div>
+            <div *ngIf="recentSearch?.length" class="end">
+              <button
+                (click)="clearRecentSearch()"
+                class="btn text-blue underline fw-500 text-[.78rem] p-0"
+              >
+                <span>
+                  {{ "actions.clear-all" | translate }}
+                </span>
+              </button>
+            </div>
+          </div>
+
+          <ul
+            *ngIf="recentSearch?.length"
+            class="list-unstyled ltr:pl-[1.6rem] rtl:pr-[1.6rem]"
+          >
+            <ng-container *ngFor="let item of recentSearch; let i = index">
+              <li
+                class="flex items-center mb-1 justify-content-between text-[#AAB2B7]"
+              >
+                <button
+                  (click)="onRecentTermClick(item)"
+                  class="inline-block text-truncate pe-2"
+                >
+                  <small class="break-all">{{ item }}</small>
+                </button>
+                <button (click)="deletRecentSearchTxt(item, i)" class="btn p-0">
+                  <mat-icon class="text-[#AAB2B7] text-[.95rem] w-auto h-auto"
+                    >close</mat-icon
+                  >
+                </button>
+              </li>
+            </ng-container>
+          </ul>
+
+          <!-- begin:: if no data option  -->
+          <no-data
+            class="block py-5"
+            [message]="'shared.no-recent-searches' | translate"
+            *ngIf="!searchResults?.length && !recentSearch?.length"
+          ></no-data>
+          <!-- end:: if no data option  -->
+        </div>
       </div>
-
-
-      <div class="search__dropdown absolute p-2 bg-[#F8F8F8] main-rounded top-[44px] border !border-[#FF4B4633] right-0 left-0"> 
-       
-        
-        <ng-container *ngIf="searchResults?.length">
-            <div class="search__result pt-1">
-               
-                <ul class="list-unstyled px-[1rem] text-[#011447]">
-                   
-                    <ng-container *ngFor="let item of searchResults | slice: 0: searchResultCount">
-                        <li class="mb-1">
-                            <a
-                                (click)="closeSearchDropdown(item)"
-                                routerLink="/search-results"
-                                [queryParams]="{
-                                    text: item
-                                }"
-                                class="search__result__item py-1 px-2 rounded block text-truncate break-all">
-                                <small>{{ item }}</small>
-                            </a>
-                        </li>  
-                    </ng-container>
-
-                </ul>
-
-                <!-- <ng-container *ngIf="searchResults.length > searchResultCount"> -->
-                    <div class="px-[1.1rem] pb-1" [hidden]="searchResults.length <= searchResultCount">
-                        <app-button
-                            (click)="seeAll()"
-                            [stroked]="true"
-                            [label]="'shared.see-all' | translate"
-                            panelclass="max-w-100 w-100 mt-2 px-5 lh-normal text-[.75rem] !py-[.5rem] rounded"
-                        ></app-button>
-                    </div>
-                <!-- </ng-container> -->
-                
-            </div>
-        </ng-container>
-              
-      
-        <!-- begin:: recent  -->
-        <ng-container *ngIf="!searchResults?.length">
-            <div class="recent px-1">
-          
-                <div class="seach__placeholde mb-2 mt-1">
-                    <div class="flex items-center">
-                        <mat-icon class="text-blue ltr:me-2 rtl:ms-2">search</mat-icon>
-                        <small class="text-[#0D186380]">
-                            {{ 'shared.enter-your-search-term' | translate }}
-                        </small>
-                    </div>
-                </div>
-    
-                <hr class="mb-2 bg-[#aeaed3]">
-    
-    
-                <div class="recent__items">
-    
-                    <div class="header flex justify-content-between items-center pt-1 pb-2">
-                        <div class="start text-[#4E4E78] flex items-center">
-                            <mat-icon class="ltr:me-1 rtl:ms-1 w-auto h-auto text-[1.25rem]">access_time</mat-icon>
-                            <span class="fw-500 text-[.78rem]">
-                                {{ 'shared.recent-search' | translate }}
-                                
-                            </span>
-                        </div>
-                        <div *ngIf="recentSearch?.length" class="end">
-                            <button (click)="clearRecentSearch()" class="btn text-blue underline fw-500 text-[.78rem] p-0">
-                                <span>
-                                    {{ 'actions.clear-all' | translate }}
-                                </span>
-                            </button>
-                        </div>
-                    </div>
-    
-                    <ul *ngIf="recentSearch?.length" class="list-unstyled ltr:pl-[1.6rem] rtl:pr-[1.6rem]">
-                        <ng-container *ngFor="let item of recentSearch; let i = index">
-                            <li class="flex items-center mb-1 justify-content-between text-[#AAB2B7]">
-                                <button (click)="onRecentTermClick(item)" class="inline-block text-truncate pe-2"><small class="break-all">{{ item }}</small></button>
-                                <button (click)="deletRecentSearchTxt(item, i)" class="btn p-0">
-                                    <mat-icon class="text-[#AAB2B7] text-[.95rem] w-auto h-auto">close</mat-icon>
-                                </button>
-                            </li>
-                        </ng-container>
-                    </ul>
-
-                    <!-- begin:: if no data option  -->
-                    <no-data
-                        class="block py-5"
-                        [message]="'shared.no-recent-searches' | translate"
-                        *ngIf="!searchResults?.length && !recentSearch?.length"
-                    ></no-data>
-                    <!-- end:: if no data option  -->
-
-                </div>
-    
-            </div>
-        </ng-container>
-        <!-- end:: recent  -->
-        
-
-    </div>
+    </ng-container>
+    <!-- end:: recent  -->
+  </div>
 </div>

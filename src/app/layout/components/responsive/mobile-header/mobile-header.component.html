@@ -12,7 +12,7 @@
     </button>
   </div>
 
-  <app-mobile-sidebar></app-mobile-sidebar>
+  <app-mobile-sidebar (closeDrawer)="drawer.close()"></app-mobile-sidebar>
 </mat-drawer>
 
 <div class="example-sidenav-content mt-2">
@@ -25,21 +25,46 @@
         <span class="menu-toggle"></span>
         <span class="sr-only">Toggle sidenav</span>
       </button> -->
-      <ul role="list" class="flex items-center gap-3 justify-between" [class.show]="isCollapsed">
+      <ul
+        role="list"
+        class="flex items-center justify-between gap-2"
+        [class.show]="isCollapsed"
+      >
+        <li class="text-blue-700 flex-auto">
+          <button mat-icon-button type="button" (click)="toggleSearch()">
+            <mat-icon class="text-2xl">search</mat-icon>
+            <span class="sr-only">Open Search</span>
+          </button>
+        </li>
+        <li *ngIf="!authService.isAuthenticated" class="text-blue-700 flex-auto">
+          <button mat-icon-button type="button" (click)="openAuthDialog(authComponents.Login)">
+            <mat-icon class="text-3xl">person_outline</mat-icon>
+            <span class="sr-only">{{ "auth.login" | translate }}</span>
+          </button>
+        </li>
         <li
-          class="bg-gray-200 w-10 h-10 flex items-center justify-center rounded-full text-blue-700"
+          class="text-blue-700 flex-auto"
         >
           <button
+            mat-icon-button
             class="flex items-center justify-center"
             (click)="drawer.toggle()"
             type="button"
           >
-            <mat-icon> menu </mat-icon>
+            <mat-icon class="text-3xl"> menu </mat-icon>
           </button>
         </li>
       </ul>
     </div>
-    <ul role="list" class="flex items-center gap-3 justify-center bg-gray-100 py-2 px-4">
+    <!-- Search Input -->
+    <div *ngIf="isOpenSearchInput" @fadeInGrow class="mx-4">
+    <!-- <div *ngIf="isOpenSearchInput" @compositeAnimation class="mx-4"> -->
+      <search-input></search-input>
+    </div>
+    <ul
+      role="list"
+      class="flex items-center gap-3 justify-center bg-gray-100 py-2 px-4"
+    >
       <!-- begin:: dynamic links  -->
       <ng-container *ngFor="let item of menus; let index = index">
         <li
@@ -61,8 +86,7 @@
                 <!-- <img [src]="item?.imgPath" alt="Icon" /> -->
                 <mat-icon
                   [svgIcon]="item.title"
-                  class="text-xs text-blue-700/70 !w-5 !h-5 svg-icon__icon "
-
+                  class="text-xs text-blue-700/70 !w-5 !h-5 svg-icon__icon"
                 ></mat-icon>
               </span>
 

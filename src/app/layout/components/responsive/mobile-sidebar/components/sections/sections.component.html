@@ -33,8 +33,11 @@
                   section: parentId,
                   category: item?.id
                 }"
-                 [ngClass]="{ 'border-gray-400 bg-gray-100/20 py-2 px-3': first }"
+                [ngClass]="{
+                  'border-gray-400 bg-gray-100/20 py-2 px-3': first
+                }"
                 class="nav__item d-flex align-items-center"
+                (click)="closeSidebar()"
               >
                 <span class="svg-icon">
                   <img
@@ -70,8 +73,11 @@
                   routerLinkActive="active"
                   [queryParams]="{ section: item?.id }"
                   class="nav__item"
-                  [ngClass]="{ 'border border-gray-400 bg-gray-100/30 !py-2 px-3': first }"
+                  [ngClass]="{
+                    'border border-gray-400 bg-gray-100/30 !py-[.9rem] px-3': first
+                  }"
                   mat-button
+
                 >
                   <mat-panel-title class="d-flex align-items-center px-0">
                     <span class="svg-icon">
@@ -114,10 +120,7 @@
   </ng-template>
 
   <ng-container
-    *ngTemplateOutlet="
-      infiniteSide;
-      context: { list: sections, first: true }
-    "
+    *ngTemplateOutlet="infiniteSide; context: { list: sections, first: true }"
   ></ng-container>
   <!-- end:: nav 2  -->
 </mat-expansion-panel>

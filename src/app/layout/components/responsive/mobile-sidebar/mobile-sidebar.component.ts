@@ -31,7 +31,7 @@ export class MobileSidebarComponent implements OnInit {
   // inputs props
   @Input() draweState: boolean = false;
   @Input() openedStart: boolean = false;
-  @Output() toggleDrawer: EventEmitter<boolean> = new EventEmitter(false);
+  @Output() closeDrawer: EventEmitter<boolean> = new EventEmitter(false);
   @Input() lang: Languages = Languages.AR;
 
   // props
@@ -127,6 +127,7 @@ export class MobileSidebarComponent implements OnInit {
           this._TranslateService.instant('meassges.loged-out'),
           3000
         );
+        this.closeDrawer.emit()
         this._Router.navigate(['/explore']);
       })
     );
@@ -144,17 +145,7 @@ export class MobileSidebarComponent implements OnInit {
     );
   }
 
-  // Auth Modal
-  openAuthDialog(authComponent: AuthComponents): void {
-    this._MatDialog.open(AuthComponent, {
-      width: '550px',
-      panelClass: 'auth-dialog',
-      direction: this.lang == this.LanguagesEnum.EN ? 'ltr' : 'rtl',
-      data: {
-        authComponent,
-      },
-    });
-  }
+
 
   ifIsAuthenticated(): void {
     if (this.authService.isAuthenticated) {
@@ -178,6 +169,10 @@ export class MobileSidebarComponent implements OnInit {
     this.lang = langCode === 'en' ? Languages.EN : Languages.AR;
     this._BrowserService.setItem(Constant.locale, this.lang);
     window.location.reload();
+  }
+
+  closeSidebar() {
+    this.closeDrawer.emit(true);
   }
 
 }

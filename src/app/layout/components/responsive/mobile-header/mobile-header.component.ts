@@ -11,11 +11,36 @@ import { SellDialogComponent } from '../../header/components/sell-dialog/sell-di
 import { DynamicHeaderMobileMenuConfig } from './configs/dynamic-header-mobile-menu.config';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from "@angular/platform-browser";
+import { AuthComponents } from 'src/app/modules/auth/enums/auth-components';
+import { AuthComponent } from 'src/app/modules/auth/auth.component';
+import { trigger, state, style, transition, animate } from '@angular/animations';
+
 
 @Component({
   selector: 'app-mobile-header',
   templateUrl: './mobile-header.component.html',
   styleUrls: ['./mobile-header.component.scss'],
+  animations: [
+    trigger('fadeInGrow', [
+      transition(':enter', [
+        style({ height: '0px', opacity: 0 }), // ابدأ بارتفاع 0 وشفافية 0
+        animate('0.5s ease-in-out', style({ height: '*', opacity: 1 })) // انتقل إلى الارتفاع الطبيعي وشفافية 1
+      ]),
+      transition(':leave', [
+        animate('0.5s ease-in-out', style({ height: '0px', opacity: 0 })) // عند الخروج، عُد إلى ارتفاع 0 وشفافية 0
+      ])
+    ]),
+    trigger('compositeAnimation', [
+      transition(':enter', [
+        style({ opacity: 0, height: '0px', transform: 'translateX(-100%)' }), // البداية من شفافية 0، ارتفاع 0، ومتحرك من اليسار
+        animate('0.5s ease-in-out', style({ opacity: 1, height: '*', transform: 'translateX(0)' })) // النهاية بشفافية كاملة، ارتفاع طبيعي، وموقعه الأصلي
+      ]),
+      transition(':leave', [
+        animate('0.5s ease-in-out', style({ opacity: 0, height: '0px', transform: 'translateX(100%)' })) // عند الخروج، يعود إلى اليمين
+      ])
+    ])
+  ]
+
 })
 export class MobileHeaderComponent implements OnInit {
   faTimesCircle = faTimesCircle;
@@ -36,6 +61,10 @@ export class MobileHeaderComponent implements OnInit {
   LanguagesEnum = Languages;
   lang: Languages = (this._TranslateService.currentLang as Languages);
   languagesEnum = Languages;
+
+  authComponents = AuthComponents;
+
+  isOpenSearchInput = false;
 
 
   constructor(
@@ -84,5 +113,21 @@ export class MobileHeaderComponent implements OnInit {
       default:
         break;
     }
+  }
+
+  // Auth Modal
+  openAuthDialog(authComponent: AuthComponents): void {
+    this._MatDialog.open(AuthComponent, {
+      width: '550px',
+      panelClass: 'auth-dialog',
+      direction: this.lang == this.LanguagesEnum.EN ? 'ltr' : 'rtl',
+      data: {
+        authComponent,
+      },
+    });
+  }
+
+  toggleSearch(): void {
+    this.isOpenSearchInput = !this.isOpenSearchInput;
   }
 }
