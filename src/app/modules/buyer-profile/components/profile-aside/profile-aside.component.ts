@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { ResponsiveService } from 'src/app/shared/services/responsive/responsive.service';
+
 import { TranslateService } from '@ngx-translate/core';
 import { Languages } from 'src/app/shared/enums/languages/languages';
 import { LocalizationService } from 'src/app/shared/services/localization/localization.service';
@@ -8,6 +8,8 @@ import { RouterService } from 'src/app/shared/services/router/router.service';
 import { ComponentBase } from 'src/app/shared/helpers/component-base.directive';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
+import { MatMenuTrigger } from '@angular/material/menu';
+import { ResponsiveService } from 'src/app/shared/services/responsive/responsive.service';
 
 @Component({
   selector: 'profile-aside',
@@ -25,6 +27,9 @@ export class ProfileAsideComponent extends ComponentBase implements OnInit {
 
   isOpening: boolean = true;
 
+  @ViewChild(MatMenuTrigger) trigger!: MatMenuTrigger;
+  icon = 'expand_more';
+
   constructor(
     TranslateService: TranslateService,
     LocalizationService: LocalizationService,
@@ -39,6 +44,14 @@ export class ProfileAsideComponent extends ComponentBase implements OnInit {
     );
   }
 
+
+
+  changeIcon() {
+    this.trigger.menuClosed.subscribe(() => this.icon = 'expand_more');
+    this.trigger.menuOpened.subscribe(() => this.icon = 'expand_less');
+
+  }
+
   ngOnInit(): void {
     this.subscription = this.responsiveService.isMobile$.subscribe(
       (isMobile) => {
@@ -47,6 +60,7 @@ export class ProfileAsideComponent extends ComponentBase implements OnInit {
     );
 
     this.onLangChange();
+    this.changeIcon()
   }
 
   override ngOnDestroy(): void {

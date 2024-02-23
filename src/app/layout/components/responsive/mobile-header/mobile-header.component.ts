@@ -10,11 +10,19 @@ import { TranslateService } from '@ngx-translate/core';
 import { SellDialogComponent } from '../../header/components/sell-dialog/sell-dialog.component';
 import { DynamicHeaderMobileMenuConfig } from './configs/dynamic-header-mobile-menu.config';
 import { MatIconRegistry } from '@angular/material/icon';
-import { DomSanitizer } from "@angular/platform-browser";
+import { DomSanitizer } from '@angular/platform-browser';
 import { AuthComponents } from 'src/app/modules/auth/enums/auth-components';
 import { AuthComponent } from 'src/app/modules/auth/auth.component';
-import { trigger, state, style, transition, animate } from '@angular/animations';
-
+import {
+  trigger,
+  state,
+  style,
+  transition,
+  animate,
+} from '@angular/animations';
+import { ExploreView } from 'src/app/modules/explore/enums/explore-view';
+import { ViewModeService } from 'src/app/shared/services/view-mode/view-mode.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-mobile-header',
@@ -23,24 +31,29 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
   animations: [
     trigger('fadeInGrow', [
       transition(':enter', [
-        style({ height: '0px', opacity: 0 }), // ابدأ بارتفاع 0 وشفافية 0
-        animate('0.5s ease-in-out', style({ height: '*', opacity: 1 })) // انتقل إلى الارتفاع الطبيعي وشفافية 1
+        style({ height: '0px', opacity: 0 }),
+        animate('0.5s ease-in-out', style({ height: '*', opacity: 1 })),
       ]),
       transition(':leave', [
-        animate('0.5s ease-in-out', style({ height: '0px', opacity: 0 })) // عند الخروج، عُد إلى ارتفاع 0 وشفافية 0
-      ])
+        animate('0.5s ease-in-out', style({ height: '0px', opacity: 0 })),
+      ]),
     ]),
     trigger('compositeAnimation', [
       transition(':enter', [
-        style({ opacity: 0, height: '0px', transform: 'translateX(-100%)' }), // البداية من شفافية 0، ارتفاع 0، ومتحرك من اليسار
-        animate('0.5s ease-in-out', style({ opacity: 1, height: '*', transform: 'translateX(0)' })) // النهاية بشفافية كاملة، ارتفاع طبيعي، وموقعه الأصلي
+        style({ opacity: 0, height: '0px', transform: 'translateX(-100%)' }),
+        animate(
+          '0.5s ease-in-out',
+          style({ opacity: 1, height: '*', transform: 'translateX(0)' })
+        ),
       ]),
       transition(':leave', [
-        animate('0.5s ease-in-out', style({ opacity: 0, height: '0px', transform: 'translateX(100%)' })) // عند الخروج، يعود إلى اليمين
-      ])
-    ])
-  ]
-
+        animate(
+          '0.5s ease-in-out',
+          style({ opacity: 0, height: '0px', transform: 'translateX(100%)' })
+        ),
+      ]),
+    ]),
+  ],
 })
 export class MobileHeaderComponent implements OnInit {
   faTimesCircle = faTimesCircle;
@@ -53,19 +66,19 @@ export class MobileHeaderComponent implements OnInit {
   // Cart
   cartItemsCount: number = 0;
   subscription: Subscription = new Subscription();
+  queryParamsSubscription: Subscription = new Subscription();
 
-// notifications
+  // notifications
   notificationsCount: any = 0;
 
   // Lang
   LanguagesEnum = Languages;
-  lang: Languages = (this._TranslateService.currentLang as Languages);
+  lang: Languages = this._TranslateService.currentLang as Languages;
   languagesEnum = Languages;
 
   authComponents = AuthComponents;
 
   isOpenSearchInput = false;
-
 
   constructor(
     public authService: AuthService,
@@ -73,9 +86,11 @@ export class MobileHeaderComponent implements OnInit {
     private _MatDialog: MatDialog,
     private _TranslateService: TranslateService,
     private matIconRegistry: MatIconRegistry,
-    private domSanitizer: DomSanitizer
+    private domSanitizer: DomSanitizer,
+    private viewModeService: ViewModeService,
+    private activatedRoute: ActivatedRoute
   ) {
-    this.menus.forEach(menu => {
+    this.menus.forEach((menu) => {
       this.matIconRegistry.addSvgIcon(
         menu.title,
         this.domSanitizer.bypassSecurityTrustResourceUrl(menu.imgPath)
@@ -83,9 +98,21 @@ export class MobileHeaderComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
 
-  showFiller = false;
+  ngOnInit(): void {
+    this.queryParamsSubscription = this.activatedRoute.queryParams.subscribe(params => {
+      const isOffersView = params['offers'] === 'true';
+      if (isOffersView) {
+        this.viewModeService.changeView(ExploreView.Grid);
+      } else {
+        this.viewModeService.changeView(ExploreView.Shorts);
+      }
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
 
   onCartItemsCountChange(): void {
     this,
@@ -96,24 +123,21 @@ export class MobileHeaderComponent implements OnInit {
       );
   }
 
-  openSellDialog(): void {
-    this._MatDialog.open(SellDialogComponent, {
-      width: '550px',
-      direction: this.lang == this.LanguagesEnum.EN ? 'ltr' : 'rtl',
-      panelClass: 'gradient-dialog',
-    });
-  }
+  // changeToExploreView(): void {
+  //   console.log('change view');
+  //   this.viewModeService.changeView(ExploreView.Shorts);
+  // }
 
-  onNavItemClick(naveName: string): void {
-    switch (naveName) {
-      case 'sell':
-        this.openSellDialog();
-        break;
+  // onNavItemClick(naveName: string): void {
+  //   switch (naveName) {
+  //     case 'explore':
+  //       this.changeToExploreView();
+  //       break;
 
-      default:
-        break;
-    }
-  }
+  //     default:
+  //       break;
+  //   }
+  // }
 
   // Auth Modal
   openAuthDialog(authComponent: AuthComponents): void {

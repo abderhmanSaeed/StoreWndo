@@ -16,58 +16,57 @@
   </div>
   <!-- end section btn  -->
 
-    <!-- begin Offers btn  -->
-    <div class="px-3 mb-3 aside__section-wrap">
-      <button
-        type="button"
-        routerLinkActive="active"
-        routerLink="/buyer-profile/setting"
-        [routerLinkActiveOptions]="{ exact: true }"
-        class="icon rounded-[10px] justify-between bg-gray-300 !py-6 !px-5 text-gray-900 flex items-center"
-        ngbDropdownItem
-        (click)="closeSidebar()"
+  <!-- begin Offers btn  -->
+  <div class="px-3 mb-3 aside__section-wrap">
+    <button
+    routerLink="/explore"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+    [queryParams]="{ offers: 'true' }"
+    type="button"
+    class="icon rounded-[10px] justify-between bg-gray-300 !py-6 !px-5 text-gray-900 flex items-center"
+    ngbDropdownItem
+    (click)="closeSidebar()"
+  >
+    <div class="flex items-center">
+      <span
+        class="svg-icon me-2"
+        [ngStyle]="bindSvgIcon('assets/media/svg/discount.svg')"
       >
-        <div class="flex items-center">
-          <span
-            class="svg-icon me-2"
-            [ngStyle]="bindSvgIcon('assets/media/svg/discount.svg')"
-          >
-          </span>
-
-          <span> {{ "shared.offers" | translate }} </span>
-        </div>
-
-        <fa-icon class="rtl:rotate-180" [icon]="faChevronRight"></fa-icon>
-      </button>
+      </span>
+      <span> {{ "shared.offers" | translate }} </span>
     </div>
-    <!-- end Offers btn  -->
+    <fa-icon class="rtl:rotate-180" [icon]="faChevronRight"></fa-icon>
+  </button>
 
-     <!-- begin flash sale btn  -->
-     <div class="px-3 mb-3 aside__section-wrap">
-      <button
-        type="button"
-        routerLinkActive="active"
-        routerLink="/buyer-profile/setting"
-        [routerLinkActiveOptions]="{ exact: true }"
-        class="icon rounded-[10px] justify-between bg-gray-300 !py-6 !px-5 text-gray-900 flex items-center"
-        ngbDropdownItem
-        (click)="closeSidebar()"
-      >
-        <div class="flex items-center">
-          <span
-            class="svg-icon me-2"
-            [ngStyle]="bindSvgIcon('assets/media/svg/flash-sale.svg')"
-          >
-          </span>
+  </div>
+  <!-- end Offers btn  -->
 
-          <span> {{ 'shared.flash-sale' | translate }} </span>
-        </div>
+  <!-- begin flash sale btn  -->
+  <div class="px-3 mb-3 aside__section-wrap">
+    <button
+      type="button"
+      routerLinkActive="active"
+      routerLink="/buyer-profile/setting"
+      [routerLinkActiveOptions]="{ exact: true }"
+      class="icon rounded-[10px] justify-between bg-gray-300 !py-6 !px-5 text-gray-900 flex items-center"
+      ngbDropdownItem
+      (click)="closeSidebar()"
+    >
+      <div class="flex items-center">
+        <span
+          class="svg-icon me-2"
+          [ngStyle]="bindSvgIcon('assets/media/svg/flash-sale.svg')"
+        >
+        </span>
 
-        <fa-icon class="rtl:rotate-180" [icon]="faChevronRight"></fa-icon>
-      </button>
-    </div>
-    <!-- end flash sale btn  -->
+        <span> {{ "shared.flash-sale" | translate }} </span>
+      </div>
 
+      <fa-icon class="rtl:rotate-180" [icon]="faChevronRight"></fa-icon>
+    </button>
+  </div>
+  <!-- end flash sale btn  -->
 
   <!-- begin help btn  -->
   <div class="px-3 mb-3 aside__section-wrap">
@@ -119,7 +118,9 @@
         class="block"
         [value]="true"
         panelClass="!p-0 !py-0 border-0 justify-start"
-        (onChange)="onToggleLangChange(lang === 'en' ? 'ar' : 'en'); closeSidebar()"
+        (onChange)="
+          onToggleLangChange(lang === 'en' ? 'ar' : 'en'); closeSidebar()
+        "
         [label]="
           lang === 'en'
             ? ('header.english' | translate)
@@ -156,5 +157,4 @@
   <!-- begin ad section  -->
   <sidebar-ad class="px-4 d-block mb-1 mt-14"></sidebar-ad>
   <!-- end ad section  -->
-
 </aside>

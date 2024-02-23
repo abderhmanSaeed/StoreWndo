@@ -22,13 +22,14 @@
     position: relative;
 
     // Modifire Block
-    // z-index: 2;
+    z-index: 2;
   }
 
-  &::before {
+  &::after {
     // Positioning block
     position: absolute;
     inset: 0;
+    z-index: 1;
 
     // Structure Block
     content: "";

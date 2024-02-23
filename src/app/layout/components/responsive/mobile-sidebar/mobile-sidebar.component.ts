@@ -20,7 +20,9 @@ import { BuyerProfile } from 'src/app/shared/models/buyer-profile/buyer-profile'
 import { BuyerProfileService } from 'src/app/modules/buyer-profile/servises/buyer-profile/buyer-profile.service';
 import { User } from 'src/app/modules/auth/models/user/user';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
-import { MatSlideToggleChange } from '@angular/material/slide-toggle';
+
+import { ExploreView } from 'src/app/modules/explore/enums/explore-view';
+import { ViewModeService } from 'src/app/shared/services/view-mode/view-mode.service';
 
 @Component({
   selector: 'app-mobile-sidebar',
@@ -51,6 +53,9 @@ export class MobileSidebarComponent implements OnInit {
 
   faChevronRight = faChevronRight;
 
+  ExploreView = ExploreView;
+  currentView: ExploreView = ExploreView.Shorts;
+
   constructor(
     public authService: AuthService,
     private _HttpService: HttpService,
@@ -61,7 +66,8 @@ export class MobileSidebarComponent implements OnInit {
     private _ConfirmationService: ConfirmationService,
     private _Router: Router,
     private _MatDialog: MatDialog,
-    private _BuyerProfileService: BuyerProfileService
+    private _BuyerProfileService: BuyerProfileService,
+    private viewModeService: ViewModeService
   ) {}
 
   ngOnInit(): void {
@@ -173,6 +179,11 @@ export class MobileSidebarComponent implements OnInit {
 
   closeSidebar() {
     this.closeDrawer.emit(true);
+  }
+
+
+  changeToOffersView(): void {
+    this.viewModeService.changeView(ExploreView.Grid);
   }
 
 }

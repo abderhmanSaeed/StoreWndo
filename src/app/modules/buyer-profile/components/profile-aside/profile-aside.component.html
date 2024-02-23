@@ -1,6 +1,6 @@
 <aside [class.aside]="!isMobile">
   <mat-card
-    class="px-0 xl:px-4 main-rounded--force xl:h-100 xl:rtl:border-l xl:ltr:border-r justify-between xl:border-[#ffedca] !flex items-center  gap-3 xl:!block"
+    class="px-0 xl:px-4 main-rounded--force xl:h-100 xl:rtl:border-l xl:ltr:border-r justify-between xl:border-[#ffedca] !flex items-center gap-3 xl:!block"
   >
     <!-- begin:: user main info card  -->
     <user-main-info-card></user-main-info-card>
@@ -11,23 +11,24 @@
       [dir]="lang == LanguagesEnum.AR ? 'rtl' : 'ltr'"
       *ngIf="isMobile; else desktopView"
     >
-      <button [matMenuTriggerFor]="menu">
-        <mat-icon
+      <button
+        [matMenuTriggerFor]="menu"
+        type="button"
+        class="flex items-center"
+        (click)="changeIcon()"
+        #menuTrigger="matMenuTrigger"
+      >
+        <!-- <mat-icon
           [svgIcon]="'my-profile-menu'"
-          class="text-blue-700/60 !w-4 !h-3"
-        ></mat-icon>
-        <span class="font-bold text-sm text-blue-700/60 mx-1">{{
-          "buyer-profile.sidemenu.my-profile" | translate
-        }}</span>
-        <mat-icon
-          class="text-sm text-blue-700/70"
-          *ngIf="lang == LanguagesEnum.AR"
-          >arrow_back_ios</mat-icon
-        >
-        <mat-icon
-          class="text-sm text-blue-700/70"
-          *ngIf="lang == LanguagesEnum.EN"
-          >arrow_forward_ios
+          class="text-blue-700/60 !w-8 !h-5"
+        ></mat-icon> -->
+
+        <span class="font-bold text-lg text-blue-700/60 mx-1">
+          {{ "buyer-profile.sidemenu.my-profile" | translate }}
+        </span>
+
+        <mat-icon class="text-2xl text-blue-700/70">
+          {{ icon }}
         </mat-icon>
       </button>
       <mat-menu

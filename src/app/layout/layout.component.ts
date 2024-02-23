@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { NavigationEnd } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Languages } from '../shared/enums/languages/languages';
-// import { BreakpointsService } from '../shared/services/breakpoints/breakpoints.service';
 import { RouterService } from '../shared/services/router/router.service';
 import { TranslateService } from '@ngx-translate/core';
 import { LocalizationService } from '../shared/services/localization/localization.service';
@@ -10,6 +9,7 @@ import { ComponentBase } from '../shared/helpers/component-base.directive';
 import { ResponsiveUCComponent } from '../shared/components/responsive-uc/responsive-uc.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ResponsiveService } from '../shared/services/responsive/responsive.service';
+
 
 @Component({
   selector: 'app-layout',

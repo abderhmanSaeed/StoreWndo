@@ -1,70 +1,87 @@
-<mat-card class="main-rounded--force px-4 pt-4 pb-5">
+<mat-card class="main-rounded--force px-2 xl:px-4 pt-4 pb-5">
+  <mat-card-title
+    class="!flex items-center border-b w-[fit-content] pb-[.6rem] pe-1"
+  >
+    <span class="icon ltr:me-3 rtl:me-3">
+      <img class="h-[22px]" src="assets/media/svg/trash.svg" alt="Trash Icon" />
+    </span>
+    <span class="text-[#96A1AB] fw-500 text-[14px] lh-normal">{{
+      "buyer-profile.delete-account" | translate
+    }}</span>
+  </mat-card-title>
 
-    <mat-card-title class="!flex items-center border-b w-[fit-content] pb-[.6rem] pe-1">
-        <span class="icon ltr:me-3 rtl:me-3">
-            <img class="h-[22px]" src="assets/media/svg/trash.svg" alt="Trash Icon">
-        </span>
-        <span class="text-[#96A1AB] fw-500 text-[14px] lh-normal">{{ 'buyer-profile.delete-account' | translate }}</span>
-    </mat-card-title>
-
-    <div class="container mt-3">
-        <div class="row px-lg-3">
-
-            <div class="col-lg-6">
-                <div class="col-box">
-                    <ul class="list-unstyled pt-2">
-                        <li class="flex items-center mb-3">
-                            <span class="icon w-[25px] ltr:me-3 rtl:me-3">
-                                <img class="h-[20px]" src="assets/media/svg/lamp.svg" alt="Lamp">
-                            </span>
-                            <span>
-                                {{ 'buyer-profile.what-happens-when-you-delete-your-account' | translate }}
-                            </span>
-                        </li>
-                        <li class="flex items-center mb-3">
-                            <span class="icon w-[25px] ltr:me-3 rtl:me-3 text-[.6rem] ltr:text-right rtl:text-left text-blue">
-                                ⬤
-                            </span>
-                            <span>
-                                {{ 'buyer-profile.profile-and-posts-wont-shown--wndo-anymore' | translate }}
-                            </span>
-                        </li>
-                        <li class="flex items-center">
-                            <span class="icon w-[25px] ltr:me-3 rtl:me-3 text-[.6rem] ltr:text-right rtl:text-left text-blue">
-                                ⬤
-                            </span>
-                            <span>
-                                {{ 'buyer-profile.won-tbe able-re-active-profile' | translate }}
-                            </span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="col-lg-6 flex justify-end">
-                <div class="col-box flex items-end flex-col">
-                    <auk-select
-                        [static]="true"
-                        class="mb-4 block"
-                        [items]="deleteAccountReasons"
-                        labelPanelclass="text-[#4E4E78]"
-                        (onChange)="selectedReason = $event"
-                        panelclass="main-rounded w-100 lg:!w-[400px]"
-                        [label]="'buyer-profile.choose-reason' | translate"
-                        [placeholder]="'buyer-profile.choose-reason' | translate"
-                    ></auk-select>
-                    <app-button
-                        (click)="deleteAccount()"
-                        [stroked]="true"
-                        [disabled]="!selectedReason"
-                        [label]="'buyer-profile.delete-account' | translate"
-                        panelclass="max-w-100 w-[250px] !rounded-full lh-normal !py-[.7rem] uppercase"
-                    ></app-button>  
-                </div>
-            </div>
-
+  <div class="xl:container mt-3">
+    <div class="xl:grid xl:grid-cols-2 xl:px-3 gap-4">
+      <div>
+        <div class="col-box">
+          <ul class="list-unstyled pt-2">
+            <li class="flex items-center mb-3">
+              <span class="icon w-[25px] ltr:me-3 rtl:me-3">
+                <img
+                  class="h-[20px]"
+                  src="assets/media/svg/lamp.svg"
+                  alt="Lamp"
+                />
+              </span>
+              <span>
+                {{
+                  "buyer-profile.what-happens-when-you-delete-your-account"
+                    | translate
+                }}
+              </span>
+            </li>
+            <li class="flex items-center mb-3">
+              <span
+                class="icon w-[25px] ltr:me-3 rtl:me-3 text-[.6rem] ltr:text-right rtl:text-left text-blue"
+              >
+                ⬤
+              </span>
+              <span>
+                {{
+                  "buyer-profile.profile-and-posts-wont-shown--wndo-anymore"
+                    | translate
+                }}
+              </span>
+            </li>
+            <li class="flex items-center">
+              <span
+                class="icon w-[25px] ltr:me-3 rtl:me-3 text-[.6rem] ltr:text-right rtl:text-left text-blue"
+              >
+                ⬤
+              </span>
+              <span>
+                {{ "buyer-profile.won-tbe able-re-active-profile" | translate }}
+              </span>
+            </li>
+          </ul>
         </div>
+      </div>
+
+      <div class="xl:flex xl:justify-end">
+        <div class="col-box flex xl:items-end flex-col mt-3 xl:mt-0">
+          <auk-select
+            [static]="true"
+            class="mb-4 block"
+            [items]="deleteAccountReasons"
+            labelPanelclass="text-[#4E4E78]"
+            (onChange)="selectedReason = $event"
+            panelclass="main-rounded w-100 lg:!w-[400px]"
+            [label]="'buyer-profile.choose-reason' | translate"
+            [placeholder]="'buyer-profile.choose-reason' | translate"
+          ></auk-select>
+          <button
+            type="button"
+            (click)="deleteAccount()"
+            [disabled]="!selectedReason"
+            [class.border-primary]="selectedReason"
+            [class.text-primary]="selectedReason"
+            class="max-w-100 !w-full xl:w-[250px] !rounded-full lh-normal !py-[.7rem] uppercase"
+            mat-stroked-button
+          >
+            {{ "buyer-profile.delete-account" | translate }}
+          </button>
+        </div>
+      </div>
     </div>
-    
-    
+  </div>
 </mat-card>

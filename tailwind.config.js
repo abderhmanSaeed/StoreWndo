@@ -56,32 +56,37 @@ module.exports = {
           400: "#9599B3",
         },
       },
+
       spacing: {
         4.5: "1.125rem",
       },
+
       leading: {
         0: 0,
       },
+
       height: {
         3.8: "14.375rem",
       },
-      screens: {
-        tablet: "990px",
 
+      screens: {
+        xl: "1025px",
+        tablet: "990px",
         portrait: {
           raw: "(orientation: portrait)",
         },
-
         landscape: {
           raw: "(orientation: landscape)",
         },
       },
+
       width: {
         fit: "fit-content",
       },
+
       flex: {
-       0 : "1 0 0%"
-      }
+        0: "1 0 0%",
+      },
     },
   },
   variants: {

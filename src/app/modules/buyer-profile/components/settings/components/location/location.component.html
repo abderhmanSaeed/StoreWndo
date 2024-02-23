@@ -1,16 +1,20 @@
-<mat-card class="main-rounded--force px-4 py-3 relative d-flex justify-between items-center">
-    <div class="start flex items-center">
-        <div class="key text-[#96A1AB] w-[150px] fw-500">{{ 'buyer-profile.location' | translate }}</div>
-        <div class="val w-[200px]">
-            <auk-select 
-                [items]="cities"
-                ngDefaultControl
-                [selectedValue]="city?.id"
-                [loading]="cityLoading"
-                panelclass="main-rounded"
-                (onChange)="onCityChange($event)"
-                [placeholder]="'buyer-profile.enter-your-city' | translate"
-            ></auk-select>
-        </div>
+<!-- <mat-card
+  class="main-rounded--force px-2 xl:px-4 py-3 relative d-flex justify-between items-center"
+> -->
+  <div class="start flex items-center gap-3 xl:gap-0">
+    <div class="key text-[#96A1AB] xl:w-[150px] fw-500">
+      {{ "buyer-profile.location" | translate }}
     </div>
-</mat-card>
+    <div class="val xl:w-[200px] flex-grow xl:flex-grow-0">
+      <auk-select
+        [items]="cities"
+        ngDefaultControl
+        [selectedValue]="city?.id"
+        [loading]="cityLoading"
+        panelclass="main-rounded"
+        (onChange)="onCityChange($event)"
+        [placeholder]="'buyer-profile.enter-your-city' | translate"
+      ></auk-select>
+    </div>
+  </div>
+<!-- </mat-card> -->
