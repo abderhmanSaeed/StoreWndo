@@ -29,6 +29,8 @@ export class LayoutComponent extends ComponentBase implements OnInit {
   lang: Languages = (this._TranslateService.currentLang as Languages);
   subscription: Subscription = new Subscription();
 
+  subscriptionMobile: Subscription = new Subscription();
+
   constructor(
     private _MatDialog: MatDialog,
     public routerService: RouterService,
@@ -46,7 +48,7 @@ export class LayoutComponent extends ComponentBase implements OnInit {
     this.onLangChange();
     this.checkRoute();
 
-    this.subscription = this.responsiveService.isMobile$.subscribe(isMobile => {
+    this.subscriptionMobile = this.responsiveService.isMobile$.subscribe(isMobile => {
       this.isMobile = isMobile;
     });
   }

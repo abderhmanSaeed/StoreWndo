@@ -17,6 +17,7 @@
 
           <!-- begin:: cart actions -->
           <div
+            *ngIf="!isMobile"
             class="cart-actions flex items-center justify-center pt-[1.5rem] flex-col xl:flex-row gap-y-3"
           >
             <app-button
@@ -32,7 +33,6 @@
               [label]="'checkout.check-out' | translate"
               panelclass="max-w-100 w-[250px] flex-auto mx-3 !rounded-full lh-normal !py-[.65rem] uppercase"
             ></app-button>
-
           </div>
           <!-- end:: cart actions -->
         </div>
@@ -44,6 +44,27 @@
       <order-summary [cart]="cart"></order-summary>
       <!-- end:: order summary -->
     </div>
+
+    <!-- begin:: cart actions -->
+    <div
+      *ngIf="isMobile"
+      class="cart-actions flex items-center justify-center pt-[1.5rem] flex-col xl:flex-row gap-y-3"
+    >
+      <app-button
+        routerLink="/explore"
+        [stroked]="true"
+        [label]="'checkout.continue-shopping' | translate"
+        panelclass="max-w-100  w-[250px] flex-auto mx-3 !rounded-full lh-normal !py-[.65rem]"
+      ></app-button>
+      <!--  -->
+
+      <app-button
+        routerLink="../shipping-payment"
+        [label]="'checkout.check-out' | translate"
+        panelclass="max-w-100 w-[250px] flex-auto mx-3 !rounded-full lh-normal !py-[.65rem] uppercase"
+      ></app-button>
+    </div>
+    <!-- end:: cart actions -->
   </div>
 </section>
 

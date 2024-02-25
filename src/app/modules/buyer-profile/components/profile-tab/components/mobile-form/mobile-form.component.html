@@ -1,31 +1,36 @@
-<mat-card class="main-rounded--force p-4">
-    <form class="form" [formGroup]="form" (ngSubmit)="submit()">
+<mat-card class="main-rounded--force !p-2 xl:!p-4">
+  <form class="form" [formGroup]="form" (ngSubmit)="submit()">
+    <div class="row items-end">
+      <div class="col-lg-5 mb-4">
+        <intl-tel-input
+          type="number"
+          ngDefaultControl
+          [isMatrial]="true"
+          formControlName="phone"
+          [showValidations]="formError"
+          [countriesCodes]="countriesCode"
+          (onChange)="onPhoneChange($event)"
+          [control]="form | getControl : 'phone'"
+          placeholder="You Didn't Add Your Phone Number"
+          [label]="'buyer-profile.phone-number' | translate"
+          [placeholder]="
+            'buyer-profile.you-didnt-add-your-phone-number' | translate
+          "
+          [panelclass]="
+            'py-[.7rem] rounded-0 border-0 !border-solid !border-b !border-[#E5E6E8] px-0'
+          "
+        ></intl-tel-input>
+      </div>
 
-        <div class="row items-end">
-            <div class="col-lg-5">
-                <intl-tel-input
-                    type="number"
-                    ngDefaultControl
-                    [isMatrial]="true"
-                    formControlName="phone"
-                    [showValidations]="formError"
-                    [countriesCodes]="countriesCode"
-                    (onChange)="onPhoneChange($event)"
-                    [control]="form | getControl: 'phone'"
-                    placeholder="You Didn't Add Your Phone Number"
-                    [label]="'buyer-profile.phone-number' | translate"
-                    [placeholder]="'buyer-profile.you-didnt-add-your-phone-number' | translate"
-                    [panelclass]="'py-[.7rem] rounded-0 border-0 !border-solid !border-b !border-[#E5E6E8] px-0'"
-                ></intl-tel-input>
-            </div>
-
-            <div class="col form-actions ltr:text-right rtl:text-left">
-                <app-button
-                    [stroked]="true"
-                    [label]="'actions.save' | translate"
-                    panelclass="max-w-100 px-5 lh-normal !py-[.6rem] main-rounded--force"
-                ></app-button>
-            </div>
-        </div>
-    </form>
+      <div class="col form-actions ltr:text-right rtl:text-left">
+        <button
+          mat-stroked-button
+          type="button"
+          class="border-primary text-primary max-w-100 px-5 lh-normal !py-[.6rem] main-rounded--force w-full xl:w-auto"
+        >
+          {{ "actions.save" | translate }}
+        </button>
+      </div>
+    </div>
+  </form>
 </mat-card>

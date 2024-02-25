@@ -1,103 +1,136 @@
 <section *ngIf="!showAddressForm" class="address text-[#97979d]">
-    <div class="address__content main-rounded gradient-border bg-white">
-        <form class="position-relative z-[1] p-4">
+  <div
+    class="address__content main-rounded gradient-border bg-white scroll-snap--y h-[90vh] xl:h-auto"
+  >
+    <form class="position-relative z-[1] p-2 xl:p-4">
+      <!-- begin:: closer  -->
+      <div
+        class="dialog__closer w-[fit-content] position-absolute z-[2] flex justify-end mb-4 right-5 xl:right-0 top-0 translate-y-[-150%] xl:translate-x-[200%]"
+      >
+        <button
+          mat-dialog-close
+          color="bg-gray-700"
+          class="bg-gray-700 text-white shadow-xl !w-[32px] !h-[32px] d-flex items-center justify-center lh-normal"
+          mat-mini-fab
+          aria-label="Example icon button with a home icon"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+      <!-- end:: closer  -->
 
-            <!-- begin:: closer  -->
-            <div class="dialog__closer w-[fit-content] position-absolute z-[2] flex justify-end mb-4 right-5 xl:right-0 top-0 translate-y-[-150%] xl:translate-x-[200%]">
-                <button mat-dialog-close color="bg-gray-700" class="bg-gray-700 text-white shadow-xl !w-[32px] !h-[32px] d-flex items-center justify-center lh-normal" mat-mini-fab aria-label="Example icon button with a home icon">
-                    <mat-icon>close</mat-icon>
+      <div class="text-center">
+        <h2 mat-dialog-title class="text-blue fw-600">
+          {{ "checkout.edit-shipping-address-payment-method" | translate }}
+        </h2>
+      </div>
+
+      <div mat-dialog-content class="mx-0 my-4 xl:my-5 !p-2.5 xl:!p-6">
+        <!-- begin:: Shipping Address & Shipping Time -->
+        <div class="p-4 border main-rounded mb-4">
+          <!-- begin:: sipping address -->
+          <div class="mb-4">
+            <mat-card-title class="text-[.9rem] fw-500 mb-2 text-blue">{{
+              "checkout.shipping-address" | translate
+            }}</mat-card-title>
+            <div class="grid xl:grid-cols-12 gap-1 xl:gap-4 items-end">
+              <div class="xl:col-span-8 mb-2 xl:m-0">
+                <auk-select
+                  bindValue=""
+                  [items]="addresses"
+                  [control]="address"
+                  panelclass="main-rounded"
+                  [formControl]="address"
+                  [showValidations]="saveError"
+                  [placeholder]="'checkout.select-shipping-address' | translate"
+                ></auk-select>
+              </div>
+              <div class="xl:col-span-4 justify-self-end">
+                <button
+                  (click)="openAddressForm()"
+                  class="btn p-0 underline text-blue text-[.8rem] fw-500"
+                >
+                  {{ "checkout.add-new-address" | translate }}
                 </button>
+              </div>
             </div>
-            <!-- end:: closer  -->
+          </div>
+          <!-- end:: sipping address -->
 
-            <div class="text-center">
-                <h2 mat-dialog-title class="text-blue fw-600">{{ 'checkout.edit-shipping-address-payment-method' | translate }}</h2>
+          <!-- begin:: sipping time -->
+          <div>
+            <h4 class="text-[.9rem] fw-500 text-dark mb-2 text-blue">
+              {{ "checkout.shipping-time" | translate }}
+            </h4>
+            <div
+              class="times flex flex-col md:flex-row gap-y-4 xl:gap-y-0 items-start xl:items-center"
+            >
+              <ng-container
+                *ngFor="
+                  let item of shippingTimes;
+                  let first = first;
+                  let i = index
+                "
+              >
+                <radio-btn
+                  class="ltr:me-5 rtl:me-5"
+                  [id]="item?.id"
+                  name="pickUpTime"
+                  [value]="item?.id"
+                  [label]="item.label"
+                  (onChange)="pickUpTime = $event"
+                  [checked]="
+                    pickUpTime ? shippingTimes[i].id == pickUpTime : first
+                  "
+                ></radio-btn>
+              </ng-container>
             </div>
+          </div>
+          <!-- begin:: sipping time -->
+        </div>
+        <!-- end:: Shipping Address & Shipping Time -->
 
-            <div mat-dialog-content class="mx-0 my-5">
+        <!-- begin:: payment Methods -->
+        <div class="p-4 border main-rounded">
+          <payment-methods
+            *ngIf="!isHybridPayment"
+            [isEdit]="true"
+            [initValue]="order?.paymentMethod"
+            (onChange)="paymentMethod = $event.paymentMethod"
+          ></payment-methods>
 
-                <!-- begin:: Shipping Address & Shipping Time -->
-                <div class="p-4 border main-rounded mb-4">
-                    <!-- begin:: sipping address -->
-                    <div class="mb-4">
-                        <mat-card-title class="text-[.9rem] fw-500 mb-2 text-blue">{{ 'checkout.shipping-address' | translate }}</mat-card-title>
-                        <div class="row align-items-end">
-                            <div class="col-lg-8">
-                                <auk-select
-                                    bindValue=""
-                                    [items]="addresses"
-                                    [control]="address"
-                                    panelclass="main-rounded"
-                                    [formControl]="address"
-                                    [showValidations]="saveError"
-                                    [placeholder]="'checkout.select-shipping-address' | translate"
-                                ></auk-select>
-                            </div>
-                            <div class="col-lg-4">
-                                <button (click)="openAddressForm()" class="btn p-0 underline text-blue text-[.8rem] fw-500">
-                                    {{ 'checkout.add-new-address' | translate }}
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end:: sipping address -->
+          <hybrid-payment-methods
+            *ngIf="isHybridPayment"
+            [initValue]="order?.paymentMethod"
+            (onChange)="paymentMethod = $event.paymentMethod"
+          ></hybrid-payment-methods>
+        </div>
+        <!-- end:: payment Methods -->
+        <button
+        type="button"
+        (click)="save()"
+        class="w-100 xl:w-auto py-1 rounded-pill !px-[7rem] bg-primary text-white leading-9 my-4"
+      >
+        {{ "checkout.save" | translate }}
+      </button>
+      </div>
 
-                    <!-- begin:: sipping time -->
-                    <div>
-                        <h4 class="text-[.9rem] fw-500 text-dark mb-2 text-blue">{{ 'checkout.shipping-time' | translate }}</h4>
-                        <div class="times flex items-center">
-                            <ng-container *ngFor="let item of shippingTimes; let first = first; let i = index">
-                                <radio-btn
-                                    class="ltr:me-5 rtl:me-5"
-                                    [id]="item?.id"
-                                    name="pickUpTime"
-                                    [value]="item?.id"
-                                    [label]="item.label"
-                                    (onChange)="pickUpTime = $event"
-                                    [checked]="pickUpTime ? shippingTimes[i].id == pickUpTime : first"
-                                ></radio-btn>
-                            </ng-container>
-                        </div>
-                    </div>
-                    <!-- begin:: sipping time -->
-                </div>
-                <!-- end:: Shipping Address & Shipping Time -->
+      <mat-dialog-actions align="center">
+        <!-- <app-button
+          (click)="save()"
+          [label]="'checkout.save' | translate"
+          [panelclass]="'w-100 py-1 rounded-pill !px-[7rem]'"
+        ></app-button> -->
 
 
-                <!-- begin:: payment Methods -->
-                <div class="p-4 border main-rounded">
-
-                    <payment-methods
-                        *ngIf="!isHybridPayment"
-                        [isEdit]="true"
-                        [initValue]="order?.paymentMethod"
-                        (onChange)="paymentMethod = $event.paymentMethod"
-                    ></payment-methods>
-
-                    <hybrid-payment-methods
-                        *ngIf="isHybridPayment"
-                        [initValue]="order?.paymentMethod"
-                        (onChange)="paymentMethod = $event.paymentMethod"
-                    ></hybrid-payment-methods>
-
-                </div>
-                <!-- end:: payment Methods -->
-
-            </div>
-
-            <mat-dialog-actions align="center">
-                <app-button
-                    (click)="save()"
-                    [label]="'checkout.save' | translate"
-                    [panelclass]="'w-100 py-1 rounded-pill !px-[7rem]'"
-                ></app-button>
-            </mat-dialog-actions>
-
-        </form>
-    </div>
+      </mat-dialog-actions>
+    </form>
+  </div>
 </section>
 
-
 <ng-container *ngIf="showAddressForm">
-    <app-address-form (onBack)="showAddressForm = false" [back]="true"></app-address-form>
+  <app-address-form
+    (onBack)="showAddressForm = false"
+    [back]="true"
+  ></app-address-form>
 </ng-container>

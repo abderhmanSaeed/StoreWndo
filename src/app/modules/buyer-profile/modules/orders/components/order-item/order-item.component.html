@@ -1,167 +1,238 @@
-
 <div class="order-item__rate bg-[#eeeeef] inline-block">
-    
-    <app-button
-        *ngIf="item?.orderItemState == orderItemStatsObject.delivered.key && !item.isRated"
-        [icon]="faStar"
-        (click)="openAddRateDialog()"
-        iconPanelclass="text-[#96a1ab]"
-        [label]="'actions.add-rate' | translate"
-        panelclass="max-w-100 lh-normal bg-transparent !py-[.6rem] px-[1.3rem] !text-[#000] border-0 text-[.7rem]"
-    ></app-button>
+  <app-button
+    *ngIf="
+      item?.orderItemState == orderItemStatsObject.delivered.key &&
+      !item.isRated
+    "
+    [icon]="faStar"
+    (click)="openAddRateDialog()"
+    iconPanelclass="text-[#96a1ab]"
+    [label]="'actions.add-rate' | translate"
+    panelclass="max-w-100 lh-normal bg-transparent !py-[.6rem] px-[1.3rem] !text-[#000] border-0 text-[.7rem]"
+  ></app-button>
 
-    <div *ngIf="item?.rate" class="py-[.25rem] px-[.4rem]">
-        <bar-rating [readOnly]="true" *ngIf="true" [(rate)]="item.rate" [max]="5"></bar-rating>
-    </div>
-
+  <div *ngIf="item?.rate" class="py-[.25rem] px-[.4rem]">
+    <bar-rating
+      [readOnly]="true"
+      *ngIf="true"
+      [(rate)]="item.rate"
+      [max]="5"
+    ></bar-rating>
+  </div>
 </div>
-<mat-card 
-    class="border-[#ffa803] border-b-[3px] rounded-0 d-flex p-0 relative"
-    [ngClass]="{
-        'border-[#4EA3F8]': item?.orderItemState == orderItemStatsObject.ordered.key,
-        'border-[#FA0029]': item?.orderItemState == orderItemStatsObject.cancelled.key,
-        'border-[#fca908]': item?.orderItemState == orderItemStatsObject.shipping.key,
-        'border-[#F4D014]': item?.orderItemState == orderItemStatsObject.returned.key,
-        'border-[#02A207]': item?.orderItemState == orderItemStatsObject.delivered.key
-    }"  
+<mat-card
+  class="border-[#ffa803] border-b-[3px] rounded-0 !flex flex-col xl:flex-row p-0 relative"
+  [ngClass]="{
+    'border-[#4EA3F8]':
+      item?.orderItemState == orderItemStatsObject.ordered.key,
+    'border-[#FA0029]':
+      item?.orderItemState == orderItemStatsObject.cancelled.key,
+    'border-[#fca908]':
+      item?.orderItemState == orderItemStatsObject.shipping.key,
+    'border-[#F4D014]':
+      item?.orderItemState == orderItemStatsObject.returned.key,
+    'border-[#02A207]':
+      item?.orderItemState == orderItemStatsObject.delivered.key
+  }"
 >
+  <div
+    class="img-box main-rounded mx-auto xl:mx-0 p-3 d-flex flex-center position-relative w-[170px] min-w-[170px] h-[170px]"
+  >
+    <ng-container *ngIf="item?.discount">
+      <small
+        class="position-absolute badge bg-primary px-2 fw-400 auk-card-a__discount ltr:right-0 rtl:left-0 top-0 translate-y-full"
+      >
+        {{ item?.discount }}%
+      </small>
+    </ng-container>
 
-    <div class="img-box main-rounded p-3 d-flex flex-center position-relative w-[170px] min-w-[170px] h-[170px]">
-        <ng-container *ngIf="item?.discount">
-            <small class="position-absolute badge bg-primary px-2 fw-400 auk-card-a__discount ltr:right-0 rtl:left-0 top-0 translate-y-full">
-                {{ item?.discount }}%
-            </small>
-        </ng-container>
-        
-        <img *ngIf="item?.image?.urlThumbnail else imgPlaceholder" class="img-fluid max-h-100 fit-img main-rounded" [src]="item?.image?.urlThumbnail" alt="Product Image">
+    <img
+      *ngIf="item?.image?.urlThumbnail; else imgPlaceholder"
+      class="img-fluid max-h-100 fit-img main-rounded"
+      [src]="item?.image?.urlThumbnail"
+      alt="Product Image"
+    />
+  </div>
+
+  <mat-card-content class="p-3 flex-grow-1 text-truncate">
+    <mat-card-header
+      class="mx-0 flex justify-between items-center mb-3 text-truncate"
+    >
+      <mat-card-title class="mx-0 !text-[.9rem] text-truncate mb-0">{{
+        item?.name
+      }}</mat-card-title>
+      <small
+        class="badge px-2 fw-400"
+        [ngClass]="{
+          'bg-[#4EA3F8]':
+            item.orderItemState == orderItemStatsObject.ordered.key,
+          'bg-[#FA0029]':
+            item.orderItemState == orderItemStatsObject.cancelled.key,
+          'bg-[#fca908]':
+            item.orderItemState == orderItemStatsObject.shipping.key,
+          'bg-[#F4D014]':
+            item.orderItemState == orderItemStatsObject.returned.key,
+          'bg-[#02A207]':
+            item.orderItemState == orderItemStatsObject.delivered.key
+        }"
+      >
+        {{
+          item.orderItemState == orderItemStatsObject.cancelled.key
+            ? (orderItemStatsObject.cancelled.label | translate)
+            : null
+        }}
+        {{
+          item.orderItemState == orderItemStatsObject.shipping.key
+            ? (orderItemStatsObject.shipping.label | translate)
+            : null
+        }}
+        {{
+          item.orderItemState == orderItemStatsObject.returned.key
+            ? (orderItemStatsObject.returned.label | translate)
+            : null
+        }}
+        {{
+          item.orderItemState == orderItemStatsObject.delivered.key
+            ? (orderItemStatsObject.delivered.label | translate)
+            : null
+        }}
+        {{
+          item.orderItemState == orderItemStatsObject.ordered.key
+            ? (orderItemStatsObject.ordered.label | translate)
+            : null
+        }}
+        {{
+          item.orderItemState == orderItemStatsObject.refund.key
+            ? (orderItemStatsObject.refund.label | translate)
+            : null
+        }}
+      </small>
+    </mat-card-header>
+
+    <div class="card-info mb-3">
+      <ul
+        class="mb-0 inline-flex items-center p-1 bg-[#f8f8f8] text-[#8D8D8D] rounded"
+      >
+        <!-- begin:: color  -->
+        <li
+          *ngIf="item?.colorHexaCode"
+          class="px-2 inline-flex items-center ltr:border-r-[1px] rtl:border-l-[1px] border-[#d4d6d7]"
+        >
+          <small class="key ltr:me-1 rtl:me-1"
+            >{{ "my-orders.color" | translate }}:</small
+          >
+          <small
+            [style.backgroundColor]="'#' + item?.colorHexaCode"
+            class="val w-[8px] h-[8px] inline-block rounded-full"
+          ></small>
+        </li>
+
+        <!-- begin:: size  -->
+        <li
+          *ngIf="item?.sizeName"
+          class="px-2 inline-flex items-center ltr:border-r-[1px] rtl:border-l-[1px] border-[#d4d6d7]"
+        >
+          <small class="key ltr:me-1 rtl:me-1"
+            >{{ "my-orders.size" | translate }}:</small
+          >
+          <small class="val">{{ item?.sizeName }}</small>
+        </li>
+
+        <!-- begin:: QTY  -->
+        <li
+          *ngIf="item?.quantity"
+          class="px-2 inline-flex items-center border-[#d4d6d7]"
+        >
+          <small class="key ltr:me-1 rtl:me-1"
+            >{{ "my-orders.QTY" | translate }}:</small
+          >
+          <small class="val">{{ item?.quantity }}</small>
+        </li>
+      </ul>
     </div>
-    
 
-    <mat-card-content class="p-3 flex-grow-1 text-truncate">
-     
-        <mat-card-header class="mx-0 flex justify-between items-center mb-3 text-truncate">
-            <mat-card-title class="mx-0 !text-[.9rem] text-truncate mb-0">{{ item?.name }}</mat-card-title>
-            <small class="badge px-2 fw-400"
-                [ngClass]="{
-                    'bg-[#4EA3F8]': item.orderItemState == orderItemStatsObject.ordered.key,
-                    'bg-[#FA0029]': item.orderItemState == orderItemStatsObject.cancelled.key,
-                    'bg-[#fca908]': item.orderItemState == orderItemStatsObject.shipping.key,
-                    'bg-[#F4D014]': item.orderItemState == orderItemStatsObject.returned.key,
-                    'bg-[#02A207]': item.orderItemState == orderItemStatsObject.delivered.key
-                }"
+    <mat-card-actions class="d-flex justify-between mx-0">
+      <ng-container *ngIf="item?.seller?.id">
+        <div class="start">
+          <!-- begin:: owner small card  -->
+          <owner-small-card
+            [name]="item?.seller?.name"
+            [imagePath]="item?.seller?.imagePath"
+          ></owner-small-card>
+          <!-- end:: owner small card  -->
+        </div>
+      </ng-container>
+
+      <div class="end flex items-center">
+        <div class="card-price fw-400 d-flex">
+          <ng-container *ngIf="!item?.priceAfterOffer; else prices">
+            <span class="text-primary fw-500 fw-500">
+              <span class="price d-inline-block ltr:me-1 rtl:me-1">{{
+                item?.price
+              }}</span>
+              <span class="currency">{{ "shared.EGP" | translate }}</span>
+            </span>
+          </ng-container>
+
+          <ng-template #prices>
+            <span class="text-primary ltr:me-2 rtl:me-2 fw-500 fw-500">
+              <span class="price d-inline-block ltr:me-1 rtl:me-1">{{
+                item?.priceAfterOffer
+              }}</span>
+              <span class="currency">{{ "shared.EGP" | translate }}</span>
+            </span>
+            <span
+              class="auk-card-b__price__old text-gray--dark text-decoration-line-through"
             >
-                {{ item.orderItemState == orderItemStatsObject.cancelled.key ? ( orderItemStatsObject.cancelled.label | translate ) : null }}
-                {{ item.orderItemState == orderItemStatsObject.shipping.key ? ( orderItemStatsObject.shipping.label | translate ) : null }}
-                {{ item.orderItemState == orderItemStatsObject.returned.key ? ( orderItemStatsObject.returned.label | translate ) : null }}
-                {{ item.orderItemState == orderItemStatsObject.delivered.key ? ( orderItemStatsObject.delivered.label | translate ) : null }}
-                {{ item.orderItemState == orderItemStatsObject.ordered.key ? ( orderItemStatsObject.ordered.label | translate ) : null }}
-                {{ item.orderItemState == orderItemStatsObject.refund.key ? ( orderItemStatsObject.refund.label | translate ) : null }}
-            </small>
-        </mat-card-header>
-
-
-        <div class="card-info mb-3">
-
-            <ul class="mb-0 inline-flex items-center p-1 bg-[#f8f8f8] text-[#8D8D8D] rounded">
-
-                <!-- begin:: color  -->
-                <li *ngIf="item?.colorHexaCode" class="px-2 inline-flex items-center ltr:border-r-[1px] rtl:border-l-[1px] border-[#d4d6d7]">
-                    <small class="key ltr:me-1 rtl:me-1">{{ 'my-orders.color' | translate }}:</small>
-                    <small [style.backgroundColor]="'#'+item?.colorHexaCode" class="val w-[8px] h-[8px] inline-block rounded-full"></small>
-                </li>
-                
-                <!-- begin:: size  -->
-                <li *ngIf="item?.sizeName" class="px-2 inline-flex items-center ltr:border-r-[1px] rtl:border-l-[1px] border-[#d4d6d7]">
-                    <small class="key ltr:me-1 rtl:me-1">{{ 'my-orders.size' | translate }}:</small>
-                    <small class="val">{{ item?.sizeName }}</small>
-                </li>
-
-                <!-- begin:: QTY  -->
-                <li *ngIf="item?.quantity" class="px-2 inline-flex items-center border-[#d4d6d7]">
-                    <small class="key ltr:me-1 rtl:me-1">{{ 'my-orders.QTY' | translate }}:</small>
-                    <small class="val">{{ item?.quantity }}</small>
-                </li>
-            </ul>
-
+              <span class="old-price__price ltr:me-1 rtl:me-1">{{
+                item?.price
+              }}</span>
+              <span class="old-price__currency">{{
+                "shared.EGP" | translate
+              }}</span>
+            </span>
+          </ng-template>
         </div>
 
-      
-        
-        <mat-card-actions class="d-flex justify-between mx-0">
-          
-            
-           <ng-container *ngIf="item?.seller?.id">
-                <div class="start">
-                    <!-- begin:: owner small card  -->
-                    <owner-small-card [name]="item?.seller?.name" [imagePath]="item?.seller?.imagePath"></owner-small-card>
-                    <!-- end:: owner small card  -->
-                </div>
-           </ng-container>
-           
+        <app-button
+          class="ltr:ms-4 rtl:ms-4"
+          [stroked]="true"
+          [label]="'actions.cancel' | translate"
+          (click)="cancelOrderItem(item?.orderItemNumber)"
+          *ngIf="item.orderItemState == orderItemStatsObject.ordered.key"
+          panelclass="max-w-100 lh-normal !py-[.4rem] px-[1.3rem] !text-[#c8cacb] !border-[#c8cacb] text-[.7rem] uppercase"
+        ></app-button>
 
-
-           <div class="end flex items-center">
-            
-                <div class="card-price fw-400 d-flex">
-
-                    <ng-container *ngIf="!item?.priceAfterOffer else prices">
-                        <span class="text-primary fw-500 fw-500">
-                            <span class="price d-inline-block ltr:me-1 rtl:me-1">{{ item?.price }}</span>
-                            <span class="currency">{{ 'checkout.EGP' | translate }}</span>
-                        </span>
-                    </ng-container>
-                    
-                    <ng-template #prices>
-                        <span class="text-primary ltr:me-2 rtl:me-2 fw-500 fw-500">
-                            <span class="price d-inline-block ltr:me-1 rtl:me-1">{{ item?.priceAfterOffer }}</span>
-                            <span class="currency">{{ 'checkout.EGP' | translate }}</span>
-                        </span>
-                        <span class="auk-card-b__price__old text-gray--dark text-decoration-line-through">
-                            <span class="old-price__price ltr:me-1 rtl:me-1">{{ item?.price }}</span>
-                            <span class="old-price__currency">{{ 'checkout.EGP' | translate }}</span>
-                        </span>
-                    </ng-template>
-
-                </div>      
-                
-                <app-button
-                    class="ltr:ms-4 rtl:ms-4"
-                    [stroked]="true"
-                    [label]="'actions.cancel' | translate"
-                    (click)="cancelOrderItem(item?.orderItemNumber)"
-                    *ngIf="item.orderItemState == orderItemStatsObject.ordered.key"
-                    panelclass="max-w-100 lh-normal !py-[.4rem] px-[1.3rem] !text-[#c8cacb] !border-[#c8cacb] text-[.7rem] uppercase"
-                ></app-button>
-
-                  
-                <app-button
-                    class="ltr:ms-4 rtl:ms-4"
-                    [stroked]="true"
-                    [label]="'actions.refund' | translate"
-                    (click)="refundItem(item?.orderItemNumber)"
-                    *ngIf="item.orderItemState == orderItemStatsObject.delivered.key"
-                    panelclass="max-w-100 lh-normal !py-[.4rem] px-[1.3rem] !text-[#c8cacb] !border-[#c8cacb] text-[.7rem] uppercase"
-                ></app-button>
-
-           </div>
-
-
-        </mat-card-actions>
-
-
-    </mat-card-content>
-
+        <app-button
+          class="ltr:ms-4 rtl:ms-4"
+          [stroked]="true"
+          [label]="'actions.refund' | translate"
+          (click)="refundItem(item?.orderItemNumber)"
+          *ngIf="item.orderItemState == orderItemStatsObject.delivered.key"
+          panelclass="max-w-100 lh-normal !py-[.4rem] px-[1.3rem] !text-[#c8cacb] !border-[#c8cacb] text-[.7rem] uppercase"
+        ></app-button>
+      </div>
+    </mat-card-actions>
+  </mat-card-content>
 </mat-card>
 
- 
 <!-- brgin:: hint  -->
-<div *ngIf="item.orderItemState == orderItemStatsObject?.shipping?.key" class="hint flex items-center p-3 text-blue mb-3 justify-end">
-    <img class="ltr:me-2 rtl:me-2" width="15" src="assets/media/svg/info.svg" alt="Info Icon">
-    <small class="lh-normal">{{ 'my-orders.can-t-cancel-the-order' | translate }}.</small>
+<div
+  *ngIf="item.orderItemState == orderItemStatsObject?.shipping?.key"
+  class="hint flex items-center p-3 text-blue mb-3 justify-end"
+>
+  <img
+    class="ltr:me-2 rtl:me-2"
+    width="15"
+    src="assets/media/svg/info.svg"
+    alt="Info Icon"
+  />
+  <small class="lh-normal"
+    >{{ "my-orders.can-t-cancel-the-order" | translate }}.</small
+  >
 </div>
 <!-- end:: hint  -->
 
-
 <ng-template #imgPlaceholder>
-    <img-placeholder></img-placeholder>
+  <img-placeholder></img-placeholder>
 </ng-template>

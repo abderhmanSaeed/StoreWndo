@@ -27,7 +27,7 @@ export class GridViewSliderComponent implements OnInit,  OnDestroy {
 
   @ViewChild('swiper', { static: false }) swiper!: SwiperComponent;
 
-  // props 
+  // props
   page: number = 0;
   pageSize: number = 10;
   totalCount: number = 0;
@@ -79,7 +79,7 @@ export class GridViewSliderComponent implements OnInit,  OnDestroy {
   onQueryParamsChange(): void {
     this.subscription.add(
       this._ActivatedRoute.queryParams.subscribe((queryParams:any) => {
-       
+
         this.page = 0
         this.items = [];
         this.slidesCount = 0
@@ -109,7 +109,7 @@ export class GridViewSliderComponent implements OnInit,  OnDestroy {
         this.totalCount = responseData?.totalCount;
         this.slidesCount = Math.ceil(responseData?.totalCount / this.pageSize);
         console.log(this.slidesCount, 'this.slidesCount');
-        
+
         this.getItemsSlider(this.page, this.pageSize);
         this.fetchCriteria.skipCount += this.fetchCriteria.maxResultCount;
       }
@@ -119,12 +119,12 @@ export class GridViewSliderComponent implements OnInit,  OnDestroy {
 
   setSwiperConfig(): void {
     this.swiperConfig = {
-      virtual: true,  
+      virtual: true,
       spaceBetween: 0,
       allowTouchMove: false,
       slidesPerView: 1,
       pagination: {
-        // el: ".xx",   //페이징 태그 클래스 설정 
+        // el: ".xx",   //페이징 태그 클래스 설정
         type: 'progressbar'
       },
       navigation:true,
@@ -142,10 +142,10 @@ export class GridViewSliderComponent implements OnInit,  OnDestroy {
 
 
   slideNext(){
-    this.swiper.swiperRef.slideNext(600);    
+    this.swiper.swiperRef.slideNext(600);
     if ((this.page+1) < this.slidesCount) {
       this.page +=1
-      this.getItemsSlider(this.page, this.pageSize);   
+      this.getItemsSlider(this.page, this.pageSize);
 
       if (this.fetchCriteria.skipCount < this.totalCount) {
 
@@ -158,10 +158,10 @@ export class GridViewSliderComponent implements OnInit,  OnDestroy {
           this.fetchCriteria.skipCount = this.items.length
           this.getGridPreview(this.fetchCriteria);
         }
-      } 
+      }
     }
   }
-  
+
 
   slidePrev(){
     this.swiper.swiperRef.slidePrev(600);
@@ -183,7 +183,7 @@ export class GridViewSliderComponent implements OnInit,  OnDestroy {
 
   onProductLikeChange(data: any): void {
     const productId = data.product.productId
-    //Find index of specific object using findIndex method.    
+    //Find index of specific object using findIndex method.
     const objIndex = this.filterdItems.findIndex(((obj: GridCard) => obj.productId == productId));
     //Update object's isLiked property.
     this.filterdItems[objIndex].isLiked = data.isLiked;
@@ -192,7 +192,7 @@ export class GridViewSliderComponent implements OnInit,  OnDestroy {
 
   onProductWishChange(data: any): void {
     const productId = data.product.productId
-    //Find index of specific object using findIndex method.    
+    //Find index of specific object using findIndex method.
     const objIndex = this.filterdItems.findIndex(((obj: GridCard) => obj.productId == productId));
     //Update object's isLiked property.
     this.filterdItems[objIndex].isInWishList = data.isInWishList;

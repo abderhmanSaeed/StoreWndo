@@ -11,6 +11,9 @@ export class HelpComponent implements OnInit {
   isMobile: boolean = false;
 
   subscription: Subscription = new Subscription();
+  subscriptionMobile: Subscription = new Subscription();
+
+
 
   helpNavList: any[] = [
     {
@@ -33,7 +36,7 @@ export class HelpComponent implements OnInit {
   constructor(private responsiveService: ResponsiveService) { }
 
   ngOnInit(): void {
-    this.subscription = this.responsiveService.isMobile$.subscribe(isMobile => {
+    this.subscriptionMobile = this.responsiveService.isMobile$.subscribe(isMobile => {
       this.isMobile = isMobile;
     });
   }

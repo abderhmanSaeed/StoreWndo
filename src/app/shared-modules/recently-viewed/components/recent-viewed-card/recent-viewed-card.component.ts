@@ -22,11 +22,11 @@ import { AukVideogularService } from 'src/app/shared/services/auk-videogular/auk
 })
 export class RecentViewedCardComponent implements OnInit {
 
- 
-  // begin:: inputs props 
+
+  // begin:: inputs props
   @Input() data: RecentViewed = {};
 
-  // props 
+  // props
   faVideo = faVideo;
   faExpand = faExpand;
   languagesEnum = Languages;
@@ -35,7 +35,7 @@ export class RecentViewedCardComponent implements OnInit {
   subscription: Subscription = new Subscription();
 
 
-  // Booleans 
+  // Booleans
   showVideo: boolean = false;
   isLoading: boolean = false;
 
@@ -48,7 +48,7 @@ export class RecentViewedCardComponent implements OnInit {
     private _AukVideogularService: AukVideogularService,
   ) { }
 
-  
+
   ngOnInit(): void {
     this.lang = this._BrowserService.getItem(Constant.locale);
   }
@@ -64,11 +64,11 @@ export class RecentViewedCardComponent implements OnInit {
   }
 
 
-  
+
   onExpandClick(productId: any): void {
     if (productId) {
       this.getProductDetails(productId)
-    }    
+    }
    }
 
 
@@ -79,41 +79,42 @@ export class RecentViewedCardComponent implements OnInit {
     }))
   }
 
-  
-  openGridCardPerviewDialog(data: any): void {    
+
+  openGridCardPerviewDialog(data: any): void {
     this._MatDialog.open(ProductDetailsDialogComponent, {
       width: '100%',
       maxWidth: '100%',
+      panelClass:"product-details-modal",
       data,
       direction: this.lang == Languages.AR ? 'rtl' : 'ltr'
     });
   }
 
 
-  
+
   playVideo(): void {
-    this.isLoading = true;  
-    this.showVideo = true;  
+    this.isLoading = true;
+    this.showVideo = true;
   }
 
 
-  
+
   onPlayerReady(api: VgApiService) {
     this.vgApiService = api;
-    this.subscription.add( this.vgApiService.subscriptions.canPlay.subscribe( (res: any) => {  
-      this._AukVideogularService.addVideo(api), 
+    this.subscription.add( this.vgApiService.subscriptions.canPlay.subscribe( (res: any) => {
+      this._AukVideogularService.addVideo(api),
       this.isLoading = false;
       this.playVdo();
     }))
   }
 
-  
+
   playVdo() {
     this._AukVideogularService.pauseAllVideos();
     this.vgApiService.play();
   }
 
-  
+
   onLeaveonCard(): void {
     this.isLoading = false;
     this.showVideo = false;

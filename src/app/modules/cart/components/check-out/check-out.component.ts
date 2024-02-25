@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 import { BreadcrumbService } from 'src/app/shared/services/breadcrumb/breadcrumb.service';
 import { Cart } from '../../models/cart/cart';
 import { CartService } from '../../services/cart/cart.service';
+import { ResponsiveService } from 'src/app/shared/services/responsive/responsive.service';
 
 @Component({
   selector: 'app-check-out',
@@ -10,16 +11,18 @@ import { CartService } from '../../services/cart/cart.service';
   styleUrls: ['./check-out.component.scss']
 })
 export class CheckOutComponent implements OnInit, OnDestroy {
-
-
   cart: Cart = {
     carts: []
   };
   subscription: Subscription = new Subscription();
 
+  subscriptionMobile: Subscription = new Subscription();
+  isMobile: boolean = false;
+
   constructor(
     private _CartService: CartService,
-    private _BreadcrumbService: BreadcrumbService
+    private _BreadcrumbService: BreadcrumbService,
+    private responsiveService: ResponsiveService,
   ) { }
 
 
@@ -27,6 +30,11 @@ export class CheckOutComponent implements OnInit, OnDestroy {
     this.getCart();
     this.setBreadcrumb();
     this.increaseProgressbarValue();
+    this.subscriptionMobile = this.responsiveService.isMobile$.subscribe(
+      (isMobile) => {
+        this.isMobile = isMobile;
+      }
+    );
   }
 
 
@@ -38,7 +46,7 @@ export class CheckOutComponent implements OnInit, OnDestroy {
   getCart(): void {
     this.subscription.add(
       this._CartService.cart.subscribe( (cart: Cart) => {
-        if (cart) {          
+        if (cart) {
           this.cart = cart;
         }
       })

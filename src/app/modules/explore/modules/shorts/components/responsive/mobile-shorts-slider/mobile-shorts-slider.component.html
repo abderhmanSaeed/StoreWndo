@@ -25,7 +25,7 @@
     </div>
     <add-to-cart
       [isLabel]="false"
-      panelClass="absolute -right-6 !min-w-[2rem] rtl:-left-4 rtl:right-auto !w-8 !h-8 bg-primary flex items-center justify-center !rounded-full text-white !p-0"
+      panelClass="absolute -right-6 !min-w-[2rem] rtl:-left-6 rtl:right-auto !w-8 !h-8 bg-primary flex items-center justify-center !rounded-full text-white !p-0"
       [productId]="product?.id"
       [isInCart]="product?.isInCart"
       *ngIf="!product?.isOutOfStock"
@@ -69,7 +69,7 @@
               <button
                 type="button"
                 mat-raised-button
-                class="dropdown-item text-start text-xs !text-blueGray-300 !bg-white !rounded-md border border-gray-350 py-1 px-2"
+                class="dropdown-item !text-start text-xs !text-blueGray-300 !bg-white !rounded-md border border-gray-350 py-1 px-2"
                 ngbDropdownItem
                 (click)="onExpandClick(product?.id)"
               >
@@ -79,7 +79,7 @@
               <button
                 type="button"
                 mat-raised-button
-                class="dropdown-item mb-2 text-start text-xs !text-blueGray-300 !bg-white !rounded-md border border-gray-350 py-1 px-2"
+                class="dropdown-item mb-2 !text-start text-xs !text-blueGray-300 !bg-white !rounded-md border border-gray-350 py-1 px-2"
                 ngbDropdownItem
               >
                 <mat-icon>person</mat-icon>
@@ -132,13 +132,13 @@
           }}</span>
         </button>
 
-        <button
+        <!-- <button
           type="button"
           class="flex flex-col justify-center gap-1 px-2 py-1 bg-black/30 items-center rounded-lg"
         >
           <mat-icon svgIcon="offers" class="text-white w-5"></mat-icon>
           <span class="text-white">{{ "shared.offers" | translate }}</span>
-        </button>
+        </button> -->
       </div>
 
       <vg-player
@@ -169,7 +169,7 @@
 
   <!-- Product Info -->
   <div
-    class="flex gap-4 bg-gradient-to-r from-black/0 to-black/40 absolute bottom-16 landscape:bottom-[29px] landscape:lg:bottom-16 w-full z-10 py-3 px-4 landscape:!py-[5px] landscape:!px-2.5 landscape:lg:!py-3 landscape:lg:!px-4"
+    class="flex gap-4 bg-gradient-to-r from-black/0 to-black/40 absolute bottom-10 landscape:bottom-[29px] landscape:lg:bottom-10 w-full z-10 py-3 px-4 landscape:!py-[5px] landscape:!px-2.5 landscape:lg:!py-3 landscape:lg:!px-4"
   >
     <div
       class="p-1 flex flex-center bg-black/30 py-1 px-2 relative rounded-lg h-[100px] landscape:h-[70px] landscape:lg:h-[100px] w-[70px]"

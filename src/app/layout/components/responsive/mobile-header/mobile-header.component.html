@@ -72,7 +72,7 @@
           placement="bottom"
           [ngbTooltip]="'header.' + item?.title | translate"
           [class]="item?.className"
-          class="bg-gray-200 w-10 h-10 flex items-center justify-center rounded-full text-blue-700"
+          class="bg-gray-200 w-10 h-10 flex items-center justify-center rounded-full text-blue-700 relative"
 
         >
           <!-- if link -->
@@ -94,19 +94,22 @@
                 <!-- begin:: cart items count -->
                 <small
                   *ngIf="item?.className == 'cart' && cartItemsCount > 0"
-                  class="cart-items-count bg-primary text-white rounded-circle position-absolute"
+                  class="cart-items-count bg-primary text-white rounded-circle position-absolute cart-count"
                   >{{ cartItemsCount }}</small
                 >
                 <!-- end:: cart items count -->
 
-                <!-- begin:: cart items count -->
-                <small
-                  *ngIf="
-                    item?.className == 'notification' && notificationsCount > 0
-                  "
-                  class="notification-dot bg-primary text-white rounded-circle position-absolute"
-                ></small>
-                <!-- end:: cart items count -->
+
+                 <!-- begin:: cart items count -->
+                 <small
+                 *ngIf="
+                   item?.className == 'notification' &&
+                   notificationsCount > 0
+                 "
+                 class="notification-dot bg-primary text-white rounded-circle position-absolute cart-count"
+               ></small>
+               <!-- end:: cart items count -->
+
               </ng-container>
             </a>
           </ng-container>

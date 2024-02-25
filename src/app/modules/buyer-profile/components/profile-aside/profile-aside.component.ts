@@ -21,6 +21,7 @@ export class ProfileAsideComponent extends ComponentBase implements OnInit {
 
   isMobile: boolean = false;
   subscription: Subscription = new Subscription();
+  subscriptionMobile: Subscription = new Subscription();
 
   LanguagesEnum = Languages;
   lang: Languages = this._TranslateService.currentLang as Languages;
@@ -53,7 +54,7 @@ export class ProfileAsideComponent extends ComponentBase implements OnInit {
   }
 
   ngOnInit(): void {
-    this.subscription = this.responsiveService.isMobile$.subscribe(
+    this.subscriptionMobile = this.responsiveService.isMobile$.subscribe(
       (isMobile) => {
         this.isMobile = isMobile;
       }

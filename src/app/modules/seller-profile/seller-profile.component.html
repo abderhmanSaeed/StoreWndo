@@ -1,23 +1,24 @@
 <main class="seller-profile">
-    <div class="m-2">
-        <div class="row w-100">
-            <div class="w-[314px]">
-                <seller-aside [data]="sellerProfile" class="block sticky top-[70px]"></seller-aside>
-            </div>
-            <div class="col-lg flex flex-col">
+  <div class="m-2">
+    <div class="flex w-100 md:gap-y-4 xl:gap-x-4 flex-col xl:flex-row">
+      <breadcrumb *ngIf="isMobile" class="d-block my-4"></breadcrumb>
+      <div class="xl:w-[314px]">
+        <seller-aside
+          [data]="sellerProfile"
+          class="block sticky top-[70px]"
+        ></seller-aside>
+      </div>
+      <div class="flex flex-col flex-grow">
+        <!-- begin:: breadcrumb -->
+        <breadcrumb *ngIf="!isMobile" class="d-block my-4"></breadcrumb>
+        <!-- end:: breadcrumb -->
 
-                <!-- begin:: breadcrumb -->
-                <breadcrumb class="d-block my-4"></breadcrumb>
-                <!-- end:: breadcrumb -->
+        <!-- begin:: stats -->
+        <seller-stats [data]="sellerProfile" class="mb-4 block"></seller-stats>
+        <!-- end:: stats -->
 
-
-                <!-- begin:: stats -->
-                <seller-stats [data]="sellerProfile" class="mb-4 block"></seller-stats>
-                <!-- end:: stats -->
-
-
-                <router-outlet></router-outlet>
-            </div>
-        </div>
+        <router-outlet></router-outlet>
+      </div>
     </div>
+  </div>
 </main>

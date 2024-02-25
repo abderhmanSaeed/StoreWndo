@@ -1,130 +1,197 @@
 <section>
+  <!-- begin:: progress -->
+  <track-order-progress
+    [stateOfSellerOrder]="data?.stateOfSellerOrder"
+  ></track-order-progress>
+  <!-- end:: progress -->
 
-    <!-- begin:: progress -->
-    <track-order-progress [stateOfSellerOrder]="data?.stateOfSellerOrder"></track-order-progress>
-    <!-- end:: progress -->
+  <!-- begin:: store  -->
+  <mat-card
+    class="main-rounded--force !flex justify-between border-l-4 mt-[3rem] flex-col xl:flex-row"
+    [ngClass]="{
+      'border-[#4EA3F8]':
+        data.stateOfSellerOrder == orderItemStatsObject.ordered.key,
+      'border-[#FA0029]':
+        data.stateOfSellerOrder == orderItemStatsObject.cancelled.key,
+      'border-[#fca908]':
+        data.stateOfSellerOrder == orderItemStatsObject.shipping.key,
+      'border-[#F4D014]':
+        data.stateOfSellerOrder == orderItemStatsObject.returned.key ||
+        data.stateOfSellerOrder == orderItemStatsObject.refund.key,
+      'border-[#02A207]':
+        data.stateOfSellerOrder == orderItemStatsObject.delivered.key
+    }"
+  >
+    <div class="start flex-grow-1">
+      <div class="xl:grid xl:grid-cols-12">
+        <div class="xl:col-span-4 prod-info flex flex-col">
+          <div
+            class="text-blue mb-2 order-info__txt flex flex-col text-truncate"
+          >
+            <span class="fw-600 text-[.87rem] mb-2 text-[#7A8D9C]">
+              {{ "my-orders.order-no" | translate }} {{ data?.orderNumber }}
+            </span>
+          </div>
 
+          <div class="order-imgs">
+            <owner-small-card
+              [name]="data?.userName"
+              [ownerId]="data?.sellerId"
+              class="max-w-[100%] block"
+              [imagePath]="data?.imagePath"
+              txtPanelClass="text-[.87rem] text-black fw-600"
+              imgBoxPanelClass="w-[40px] h-[40px]"
+            ></owner-small-card>
+          </div>
+        </div>
 
-    <!-- begin:: store  -->
-    <mat-card class="main-rounded--force !flex justify-between border-l-4 mt-[3rem]"
-        [ngClass]="{
-            'border-[#4EA3F8]': data.stateOfSellerOrder == orderItemStatsObject.ordered.key,
-            'border-[#FA0029]': data.stateOfSellerOrder == orderItemStatsObject.cancelled.key,
-            'border-[#fca908]': data.stateOfSellerOrder == orderItemStatsObject.shipping.key,
-            'border-[#F4D014]': data.stateOfSellerOrder == orderItemStatsObject.returned.key || data.stateOfSellerOrder == orderItemStatsObject.refund.key,
-            'border-[#02A207]': data.stateOfSellerOrder == orderItemStatsObject.delivered.key
-        }"                                                  
-    >
-            
-            
-        <div class="start flex-grow-1">
+        <div class="xl:col-span-8">
+          <div class="text-blue order-items flex flex-col text-truncate">
+            <span class="fw-600 text-[.87rem] mb-2 mt-4 xl:mt-0">
+              {{ "my-orders.items" | translate }}:{{ data?.products?.length }}
+            </span>
 
-            <div class="row">
-                <div class="col-lg-4 prod-info flex flex-col">
-            
-                    <div class="text-blue mb-2 order-info__txt flex flex-col text-truncate">
-                        <span class="fw-600 text-[.87rem] mb-2 text-[#7A8D9C]">
-                            {{ 'my-orders.order-no' | translate }} {{ data?.orderNumber }}
-                        </span>
+            <div class="items bg-[#eeeff4] p-2 xl:w-max rounded">
+              <ul>
+                <ng-container
+                  *ngFor="let item of data?.products; let index = index"
+                >
+                  <li
+                    class="flex items-center justify-between"
+                    *ngIf="index <= 2"
+                    [ngClass]="{
+                      'text-[#4EA3F8]':
+                        item?.orderItemState ==
+                        orderItemStatsObject.ordered.key,
+                      'text-[#FA0029]':
+                        item?.orderItemState ==
+                        orderItemStatsObject.cancelled.key,
+                      'text-[#fca908]':
+                        item?.orderItemState ==
+                        orderItemStatsObject.shipping.key,
+                      'text-[#F4D014]':
+                        item?.orderItemState ==
+                        orderItemStatsObject.returned.key,
+                      'text-[#02A207]':
+                        item?.orderItemState ==
+                        orderItemStatsObject.delivered.key
+                    }"
+                  >
+                    <div
+                      class="start flex items-center w-[220px] ltr:me-3 rtl:me-3"
+                    >
+                      <span class="ltr:me-2 rtl:me-2">&diams;</span>
+                      <span class="inline-block text-truncate text-[#011447]">
+                        {{ item?.name }}
+                      </span>
+                      <small
+                        *ngIf="data?.items?.length > 3 && index == 2"
+                        class="is-more ms-1 fw-bold"
+                      >
+                        +{{ data?.items?.length - 3 }}
+                      </small>
                     </div>
-
-                    <div class="order-imgs">
-                        <owner-small-card
-                            [name]="data?.userName"
-                            [ownerId]="data?.sellerId"
-                            class=" max-w-[100%] block"
-                            [imagePath]="data?.imagePath"
-                            txtPanelClass="text-[.87rem] text-black fw-600"
-                            imgBoxPanelClass="w-[40px] h-[40px]"
-                        ></owner-small-card>
+                    <div class="end">
+                      <span class="text-[.8rem]">
+                        (
+                        {{
+                          item?.orderItemState ==
+                          orderItemStatsObject.cancelled.key
+                            ? (orderItemStatsObject.cancelled.label | translate)
+                            : null
+                        }}
+                        {{
+                          item?.orderItemState ==
+                          orderItemStatsObject.shipping.key
+                            ? (orderItemStatsObject.shipping.label | translate)
+                            : null
+                        }}
+                        {{
+                          item?.orderItemState ==
+                          orderItemStatsObject.returned.key
+                            ? (orderItemStatsObject.returned.label | translate)
+                            : null
+                        }}
+                        {{
+                          item?.orderItemState ==
+                          orderItemStatsObject.delivered.key
+                            ? (orderItemStatsObject.delivered.label | translate)
+                            : null
+                        }}
+                        {{
+                          item?.orderItemState ==
+                          orderItemStatsObject.ordered.key
+                            ? (orderItemStatsObject.ordered.label | translate)
+                            : null
+                        }}
+                        )
+                      </span>
                     </div>
-
-                </div>
-
-                <div class="col-lg-8">
-                    <div class="text-blue order-items flex flex-col text-truncate">
-                        <span class="fw-600 text-[.87rem] mb-2">
-                            {{ 'my-orders.items' | translate }}:{{ data?.products?.length }}
-                        </span>
-                        
-                        <div class="items bg-[#eeeff4] p-2 w-max rounded">
-                            <ul>
-                                <ng-container *ngFor="let item of data?.products; let index = index">
-                                    <li class="flex items-center justify-between" *ngIf="index <= 2"
-                                    [ngClass]="{
-                                        'text-[#4EA3F8]': item?.orderItemState == orderItemStatsObject.ordered.key,
-                                        'text-[#FA0029]': item?.orderItemState == orderItemStatsObject.cancelled.key,
-                                        'text-[#fca908]': item?.orderItemState == orderItemStatsObject.shipping.key,
-                                        'text-[#F4D014]': item?.orderItemState == orderItemStatsObject.returned.key,
-                                        'text-[#02A207]': item?.orderItemState == orderItemStatsObject.delivered.key
-                                    }"
-                                    >
-                                        <div class="start flex items-center w-[220px] ltr:me-3 rtl:me-3">
-                                                <span class="ltr:me-2 rtl:me-2">&diams;</span> 
-                                                <span class="inline-block text-truncate text-[#011447]">
-                                                    {{ item?.name }}    
-                                                </span> 
-                                                <small 
-                                                    *ngIf="data?.items?.length > 3 && index == 2"
-                                                    class="is-more ms-1 fw-bold">
-                                                    +{{ data?.items?.length - 3 }}
-                                                </small>
-                                        </div>
-                                        <div class="end">
-                                            <span
-                                                class="text-[.8rem]">
-                                                (
-                                                    {{ item?.orderItemState == orderItemStatsObject.cancelled.key ? ( orderItemStatsObject.cancelled.label | translate ) : null }}
-                                                    {{ item?.orderItemState == orderItemStatsObject.shipping.key ? ( orderItemStatsObject.shipping.label | translate ) : null }}
-                                                    {{ item?.orderItemState == orderItemStatsObject.returned.key ? ( orderItemStatsObject.returned.label | translate ) : null }}
-                                                    {{ item?.orderItemState == orderItemStatsObject.delivered.key ? ( orderItemStatsObject.delivered.label | translate ) : null }}
-                                                    {{ item?.orderItemState == orderItemStatsObject.ordered.key ? ( orderItemStatsObject.ordered.label | translate ) : null }}
-                                                )
-                                            </span>
-                                        </div>
-                                    </li>
-                                </ng-container>
-                            </ul> 
-                        </div>
-                    </div>
-                </div>
+                  </li>
+                </ng-container>
+              </ul>
             </div>
-
+          </div>
         </div>
+      </div>
+    </div>
 
-
-
-        <!-- begin:: end content  -->
-        <div class="end flex flex-col items-end justify-between w-[150px]">
-            <small class="badge px-2 fw-400 lh-normal"
-                [ngClass]="{
-                    'bg-[#4EA3F8]': data?.stateOfSellerOrder == orderItemStatsObject.ordered.key,
-                    'bg-[#FA0029]': data?.stateOfSellerOrder == orderItemStatsObject.cancelled.key,
-                    'bg-[#fca908]': data?.stateOfSellerOrder == orderItemStatsObject.shipping.key,
-                    'bg-[#F4D014]': data?.stateOfSellerOrder == orderItemStatsObject.returned.key || data.stateOfSellerOrder == orderItemStatsObject.refund.key,
-                    'bg-[#02A207]': data?.stateOfSellerOrder == orderItemStatsObject.delivered.key
-                }"
-            >
-                {{ data?.stateOfSellerOrder == orderItemStatsObject.cancelled.key ? ( orderItemStatsObject.cancelled.label | translate ) : null }}
-                {{ data?.stateOfSellerOrder == orderItemStatsObject.shipping.key ? ( orderItemStatsObject.shipping.label | translate ) : null }}
-                {{ data?.stateOfSellerOrder == orderItemStatsObject.returned.key ? ( orderItemStatsObject.returned.label | translate ) : null }}
-                {{ data?.stateOfSellerOrder == orderItemStatsObject.refund.key ? ( orderItemStatsObject.returned.label | translate ) : null }}
-                {{ data?.stateOfSellerOrder == orderItemStatsObject.delivered.key ? ( orderItemStatsObject.delivered.label | translate ) : null }}
-                {{ data?.stateOfSellerOrder == orderItemStatsObject.ordered.key ? ( orderItemStatsObject.ordered.label | translate ) : null }}
-            </small>
-            <span class="date text-[#4E4E78] text-end">{{ data?.deliveryDate }}</span>
-        </div>
-        <!-- end:: end content  -->
-
-
-    </mat-card>
-    <!-- end:: store  -->
-
+    <!-- begin:: end content  -->
+    <div class="end flex xl:flex-col items-end justify-between xl:w-[150px] mt-4 xl:mt-0">
+      <small
+        class="badge px-2 fw-400 lh-normal"
+        [ngClass]="{
+          'bg-[#4EA3F8]':
+            data?.stateOfSellerOrder == orderItemStatsObject.ordered.key,
+          'bg-[#FA0029]':
+            data?.stateOfSellerOrder == orderItemStatsObject.cancelled.key,
+          'bg-[#fca908]':
+            data?.stateOfSellerOrder == orderItemStatsObject.shipping.key,
+          'bg-[#F4D014]':
+            data?.stateOfSellerOrder == orderItemStatsObject.returned.key ||
+            data.stateOfSellerOrder == orderItemStatsObject.refund.key,
+          'bg-[#02A207]':
+            data?.stateOfSellerOrder == orderItemStatsObject.delivered.key
+        }"
+      >
+        {{
+          data?.stateOfSellerOrder == orderItemStatsObject.cancelled.key
+            ? (orderItemStatsObject.cancelled.label | translate)
+            : null
+        }}
+        {{
+          data?.stateOfSellerOrder == orderItemStatsObject.shipping.key
+            ? (orderItemStatsObject.shipping.label | translate)
+            : null
+        }}
+        {{
+          data?.stateOfSellerOrder == orderItemStatsObject.returned.key
+            ? (orderItemStatsObject.returned.label | translate)
+            : null
+        }}
+        {{
+          data?.stateOfSellerOrder == orderItemStatsObject.refund.key
+            ? (orderItemStatsObject.returned.label | translate)
+            : null
+        }}
+        {{
+          data?.stateOfSellerOrder == orderItemStatsObject.delivered.key
+            ? (orderItemStatsObject.delivered.label | translate)
+            : null
+        }}
+        {{
+          data?.stateOfSellerOrder == orderItemStatsObject.ordered.key
+            ? (orderItemStatsObject.ordered.label | translate)
+            : null
+        }}
+      </small>
+      <span class="date text-[#4E4E78] text-end">{{ data?.deliveryDate }}</span>
+    </div>
+    <!-- end:: end content  -->
+  </mat-card>
+  <!-- end:: store  -->
 </section>
 
-
-
-
 <ng-template #imgPlaceholder>
-    <img-placeholder></img-placeholder>
+  <img-placeholder></img-placeholder>
 </ng-template>

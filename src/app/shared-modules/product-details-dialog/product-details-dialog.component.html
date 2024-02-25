@@ -1,11 +1,11 @@
 <section
-  class="grid-card-preview text-[#97979d]"
+  class="grid-card-preview w-full xl:w-[750px] xl:m-auto text-[#97979d]"
   [class.show-sizes-colors-col]="showSizesColors"
 >
   <div class="grid-card-preview__content main-rounded gradient-border">
-    <div class="position-relative z-[1]">
+    <div class="relative z-[1]">
       <!-- begin:: closer  -->
-      <div class="dialog__closer position-relative z-[2] flex justify-end mb-4">
+      <div class="dialog__closer relative z-[2] flex justify-start xl:justify-end m-2 xl:mb-4">
         <button
           mat-dialog-close
           color="bg-gray-700"
@@ -34,7 +34,7 @@
                 (onPlayerReady)="onPlayerReady($event)"
               >
                 <video
-                  class="max-h-[560px] main-rounded--force object-cover"
+                  class="landscape:max-h-[77vh] landscape:lg:max-h-[440px] max-h-[440px] xl:max-h-[560px] main-rounded--force object-cover"
                   width="100%"
                   [vgMedia]="$any(media)"
                   [vgMaster]="true"
@@ -51,7 +51,7 @@
             </div>
           </div>
 
-          <div class="col-lg info-col">
+          <div class="col-lg info-col pb-2 xl:pb-0">
             <product-details-dialog-main-info
               (onAddToCart)="onAddToCart($event)"
               class="d-block h-100"

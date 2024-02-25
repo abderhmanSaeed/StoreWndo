@@ -23,6 +23,12 @@ import {
 import { ExploreView } from 'src/app/modules/explore/enums/explore-view';
 import { ViewModeService } from 'src/app/shared/services/view-mode/view-mode.service';
 import { ActivatedRoute } from '@angular/router';
+import { HResponse } from 'src/app/shared/models/http-response/http-response';
+import { APIs } from 'src/app/core/config/apis';
+import { HttpService } from 'src/app/core/services/http/http.service';
+import { BuyerProfileService } from 'src/app/modules/buyer-profile/servises/buyer-profile/buyer-profile.service';
+import { BuyerProfile } from 'src/app/shared/models/buyer-profile/buyer-profile';
+import { User } from 'src/app/modules/auth/models/user/user';
 
 @Component({
   selector: 'app-mobile-header',
@@ -65,6 +71,7 @@ export class MobileHeaderComponent implements OnInit {
 
   // Cart
   cartItemsCount: number = 0;
+  profileData: BuyerProfile | null = {};
   subscription: Subscription = new Subscription();
   queryParamsSubscription: Subscription = new Subscription();
 
@@ -80,6 +87,8 @@ export class MobileHeaderComponent implements OnInit {
 
   isOpenSearchInput = false;
 
+  user: User | null = {};
+
   constructor(
     public authService: AuthService,
     private _CartService: CartService,
@@ -88,7 +97,9 @@ export class MobileHeaderComponent implements OnInit {
     private matIconRegistry: MatIconRegistry,
     private domSanitizer: DomSanitizer,
     private viewModeService: ViewModeService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private _HttpService: HttpService,
+    private _BuyerProfileService: BuyerProfileService,
   ) {
     this.menus.forEach((menu) => {
       this.matIconRegistry.addSvgIcon(
@@ -108,6 +119,10 @@ export class MobileHeaderComponent implements OnInit {
         this.viewModeService.changeView(ExploreView.Shorts);
       }
     });
+
+    this.onAuthChange();
+    this.onProfileDataChange();
+    this.onCartItemsCountChange();
   }
 
   ngOnDestroy(): void {
@@ -153,5 +168,57 @@ export class MobileHeaderComponent implements OnInit {
 
   toggleSearch(): void {
     this.isOpenSearchInput = !this.isOpenSearchInput;
+  }
+
+  onProfileDataChange(): void {
+    this.subscription.add(
+      this._BuyerProfileService.profileData$.subscribe(
+        (profileData: BuyerProfile) => {
+          this.profileData = profileData;
+          this.notificationsCount = profileData?.notificationsCount;
+        }
+      )
+    );
+  }
+
+  getBuyerProfile(): void {
+    this.subscription.add(
+      this._HttpService
+        .get(APIs.getBuyerProfile)
+        .subscribe(({ responseData }: HResponse) => {
+          this.profileData = responseData;
+          this.notificationsCount = responseData.notificationsCount;
+          this._BuyerProfileService.profileData$.next(responseData);
+        })
+    );
+  }
+
+  getCartItemsCount(): void {
+    this,
+      this.subscription.add(
+        this._HttpService
+          .get(APIs.getCartItemsCount)
+          .subscribe((res: HResponse) => {
+            this._CartService.onCartItemsCountChange$.next(res.responseData);
+          })
+      );
+  }
+
+  ifIsAuthenticated(): void {
+    if (this.authService.isAuthenticated) {
+      this.getCartItemsCount();
+      this.getBuyerProfile();
+    } else {
+      this.profileData = null;
+    }
+  }
+
+  onAuthChange(): void {
+    this.subscription.add(
+      this.authService.authChange$.subscribe((data: User | null) => {
+        this.user = data;
+        this.ifIsAuthenticated();
+      })
+    );
   }
 }

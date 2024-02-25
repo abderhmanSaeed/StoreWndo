@@ -59,10 +59,12 @@ module.exports = {
 
       spacing: {
         4.5: "1.125rem",
+        32: "7rem"
       },
 
       leading: {
         0: 0,
+        9: "2.25rem"
       },
 
       height: {

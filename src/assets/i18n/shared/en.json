@@ -123,6 +123,7 @@
   },
 
   "shared": {
+    "reviews": "reviews",
     "pause": "Pause",
     "auto": "AUTO",
     "flash-sale": "Flash Sale",
