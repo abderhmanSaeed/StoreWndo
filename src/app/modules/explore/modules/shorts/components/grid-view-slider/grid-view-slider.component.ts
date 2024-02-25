@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { SwiperComponent } from "swiper/angular";
 import { faLongArrowAltRight, faLongArrowAltLeft } from '@fortawesome/free-solid-svg-icons';
 
@@ -14,6 +14,7 @@ import { ShortsService } from '../../services/shorts/shorts.service';
 import { TranslateService } from '@ngx-translate/core';
 import { Languages } from 'src/app/shared/enums/languages/languages';
 import { LocalizationService } from 'src/app/shared/services/localization/localization.service';
+import { ResponsiveService } from 'src/app/shared/services/responsive/responsive.service';
 
 // install Swiper modules
 SwiperCore.use([Pagination, Navigation]);
@@ -26,6 +27,8 @@ SwiperCore.use([Pagination, Navigation]);
 export class GridViewSliderComponent implements OnInit,  OnDestroy {
 
   @ViewChild('swiper', { static: false }) swiper!: SwiperComponent;
+  @ViewChild('swiperWrapper') swiperWrapper?: ElementRef;
+
 
   // props
   page: number = 0;
@@ -48,19 +51,38 @@ export class GridViewSliderComponent implements OnInit,  OnDestroy {
     skipCount: 0,
   }
 
+  isMobile: boolean = false;
+  subscriptionMobile: Subscription = new Subscription();
+
 
   constructor(
     private _HttpService: HttpService,
     private _ShortsService: ShortsService,
     private _ActivatedRoute: ActivatedRoute,
     private _TranslateService: TranslateService,
+    private responsiveService: ResponsiveService,
+    private renderer: Renderer2
   ) { }
+
+
+  ngAfterViewInit(): void {
+    if (this.isMobile && this.LanguagesEnum.AR) { // Assuming 'ar' is your language code for Arabic
+      this.renderer.setAttribute(this.swiperWrapper?.nativeElement.childNodes[0], 'dir', 'ltr');
+    }
+    console.log(this.swiperWrapper)
+
+  }
 
 
   ngOnInit(): void {
     this.onLangChange();
     this.setSwiperConfig();
     this.onQueryParamsChange();
+    this.subscriptionMobile = this.responsiveService.isMobile$.subscribe(
+      (isMobile) => {
+        this.isMobile = isMobile;
+      }
+    );
   }
 
 
@@ -142,7 +164,7 @@ export class GridViewSliderComponent implements OnInit,  OnDestroy {
 
 
   slideNext(){
-    this.swiper.swiperRef.slideNext(600);
+    this.swiper.swiperRef.slideNext(-600);
     if ((this.page+1) < this.slidesCount) {
       this.page +=1
       this.getItemsSlider(this.page, this.pageSize);
