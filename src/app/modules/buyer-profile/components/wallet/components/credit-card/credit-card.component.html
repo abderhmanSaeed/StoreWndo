@@ -1,55 +1,63 @@
-<mat-card 
-    class="main-rounded--force !py-[.7rem] !flex justify-between items-center border-l-4"
-    [ngClass]="{
-        'border-[#CF2935]': trans?.transactionTypeE == transactionTypeEnum.Debit,
-        'border-[#02A707]': trans?.transactionTypeE != transactionTypeEnum.Debit
-    }"
-    >
+<mat-card
+  class="main-rounded--force !py-[.7rem] !flex justify-between items-center border-l-4"
+  [ngClass]="{
+    'border-[#CF2935]': trans?.transactionTypeE == transactionTypeEnum.Debit,
+    'border-[#02A707]': trans?.transactionTypeE != transactionTypeEnum.Debit
+  }"
+>
+  <div class="row start flex-grow-1 items-center">
+    <div class="col-lg-5 flex items-center">
+      <img
+        height="17px"
+        class="img-fluid fit-img ltr:me-3 rtl:me-3"
+        [src]="'assets/media/profile/icons/wallet/master-card.svg'"
+        alt="Card"
+      />
 
-
-    <div class="row start flex-grow-1 items-center">
-
-        <div class="col-lg-5 flex items-center">
-        
-            <img
-                height="17px"
-                class="img-fluid fit-img ltr:me-3 rtl:me-3"
-                [src]="'assets/media/profile/icons/wallet/master-card.svg'"
-                alt="Card"
-            >
-
-            <div class="flex flex-col text-truncate">
-                <span class="text-blue fw-600 text-[.82rem] text-[#4E4E78]">
-                    {{ trans?.actionType }}
-                </span>
-            </div>
-
-        </div>
-
-        <div class="col text-[#4E4E78]">
-            <span class="text-[.82rem]">{{ trans?.date }}</span>
-        </div>
-        
-    </div>
-
-
-
-    <!-- begin:: card actions  -->
-    <div class="end flex items-center text-[#011447] font-semibold">
-        <span class="text-[.72rem] pay-status inline-flex items-center border border-[#E0E0E0] rounded-full ltr:me-3 rtl:me-3 bg-[#f8f8f8] py-1 px-3">
-            <span 
-                class="ltr:me-2 rtl:me-2"
-                [ngClass]="{
-                    'text-[#CF2935]': trans?.transactionTypeE == transactionTypeEnum.Debit,
-                    'text-[#02A707]': trans?.transactionTypeE != transactionTypeEnum.Debit
-                }"
-            >{{ trans?.transactionTypeE == transactionTypeEnum.Debit ? ('wallet.debite' | translate) : ('wallet.credit' | translate) }}</span>
-            <img *ngIf="trans?.transactionTypeE == transactionTypeEnum.Debit" height="5" src="assets/media/profile/icons/wallet/debite.svg" alt="state">
-            <img *ngIf="trans?.transactionTypeE != transactionTypeEnum.Debit" height="5" src="assets/media/profile/icons/wallet/credit.svg" alt="state">
+      <div class="flex flex-col text-truncate">
+        <span class="text-blue fw-600 text-[.82rem] text-[#4E4E78]">
+          {{ trans?.actionType }}
         </span>
-        <span>{{ 'shared.EGP' | translate }} {{ trans?.amount }}</span>
+      </div>
     </div>
-    <!-- end:: card actions  -->
 
+    <div class="col text-[#4E4E78]">
+      <span class="text-[.82rem] mt-1 xl:mt-0">{{ trans?.date }}</span>
+    </div>
+  </div>
 
+  <!-- begin:: card actions  -->
+  <div class="end flex flex-col xl:flex-row gap-y-1 xl:gap-y-0 items-center text-[#011447] font-semibold">
+    <span
+      class="text-[.72rem] pay-status inline-flex items-center border border-[#E0E0E0] rounded-full ltr:me-3 rtl:me-3 bg-[#f8f8f8] py-1 px-3"
+    >
+      <span
+        class="ltr:me-2 rtl:me-2"
+        [ngClass]="{
+          'text-[#CF2935]':
+            trans?.transactionTypeE == transactionTypeEnum.Debit,
+          'text-[#02A707]': trans?.transactionTypeE != transactionTypeEnum.Debit
+        }"
+        >{{
+          trans?.transactionTypeE == transactionTypeEnum.Debit
+            ? ("wallet.debite" | translate)
+            : ("wallet.credit" | translate)
+        }}</span
+      >
+      <img
+        *ngIf="trans?.transactionTypeE == transactionTypeEnum.Debit"
+        height="5"
+        src="assets/media/profile/icons/wallet/debite.svg"
+        alt="state"
+      />
+      <img
+        *ngIf="trans?.transactionTypeE != transactionTypeEnum.Debit"
+        height="5"
+        src="assets/media/profile/icons/wallet/credit.svg"
+        alt="state"
+      />
+    </span>
+    <span>{{ "shared.EGP" | translate }} {{ trans?.amount }}</span>
+  </div>
+  <!-- end:: card actions  -->
 </mat-card>

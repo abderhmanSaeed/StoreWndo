@@ -2,7 +2,7 @@
   <div class="address__content main-rounded gradient-border bg-white">
     <form
       [formGroup]="form"
-      class="position-relative z-[1] p-2 xl:p-4 h-[80vh] xl:h-full scroll-snap--y xl:overflow-y-visible"
+      class="xl:relative z-[1] p-2 xl:p-4 h-[80vh] xl:h-full scroll-snap--y xl:overflow-y-visible"
       (ngSubmit)="submit()"
     >
       <!-- begin:: closer  -->
@@ -45,9 +45,9 @@
         </h2>
       </div>
 
-      <div mat-dialog-content class="mx-0 my-5 !p-2.5 xl:!p-6 px-0 xl:px-4">
-        <div class="row">
-          <div class="col-lg-6 mb-4">
+      <div mat-dialog-content class="mx-0 !mt-8 !mb-44 xl:!mt-12 xl:!mb-12 !p-2.5 xl:!p-6 px-0 xl:px-4">
+        <div class="grid grid-cols-1 xl:grid-cols-2 items-end gap-4">
+          <div class="">
             <field
               type="text"
               ngDefaultControl
@@ -62,7 +62,7 @@
             ></field>
           </div>
 
-          <div class="col-lg-6 mb-4">
+          <div class="">
             <div class="h-100 border-b border-[#E5E6E8]">
               <label class="text-[.9rem] fw-500 text-blue mb-2 fw-600">
                 <span>{{ "address-form.address-icon" | translate }} </span>
@@ -117,7 +117,7 @@
             </div>
           </div>
 
-          <div class="col-lg-6 mb-4">
+          <div class="">
             <field
               type="text"
               ngDefaultControl
@@ -134,7 +134,7 @@
             ></field>
           </div>
 
-          <div class="col-lg-6 mb-4">
+          <div class="">
             <auk-select
               [items]="cities"
               ngDefaultControl
@@ -149,7 +149,7 @@
             ></auk-select>
           </div>
 
-          <div class="col-lg-6 mb-4">
+          <div class="">
             <auk-select
               ngDefaultControl
               formControlName="zoneId"
@@ -163,7 +163,7 @@
             ></auk-select>
           </div>
 
-          <div class="col-lg-6 mb-4">
+          <div class="">
             <auk-select
               ngDefaultControl
               formControlName="districtId"
@@ -179,7 +179,7 @@
             ></auk-select>
           </div>
 
-          <div class="col-lg-6 mb-4">
+          <div class="">
             <field
               type="number"
               ngDefaultControl
@@ -196,7 +196,7 @@
             ></field>
           </div>
 
-          <div class="col-lg-6 mb-4">
+          <div class="">
             <field
               type="text"
               ngDefaultControl

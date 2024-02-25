@@ -1,50 +1,75 @@
-<section class="settings animate__animated animate__fadeIn pb-4 flex flex-col flex-grow-1">
+<section
+  class="settings animate__animated animate__fadeIn pb-4 flex flex-col flex-grow-1"
+>
+  <header class="mb-3">
+    <span class="fw-600 text-[1rem] text-[#011447]">
+      {{ "wallet.your-wallet" | translate }}
+    </span>
+  </header>
 
+  <div class="body flex-grow-1 flex flex-column">
+    <!-- begin:: choose payment methods  -->
+    <mat-card
+      class="main-rounded--force p-4 mb-4 !bg-gradient-to-r from-blue-1000 via-blue-800/90 to-blue-900 xl:!bg-white xl:from-white xl:via-white xl:to-white"
+    >
+      <mat-card-title class="xl:!text-[#4E4E78] text-white text-base mb-4">
+        {{ "wallet.wallet-balance" | translate }}
+      </mat-card-title>
+      <mat-card-subtitle
+        class="xl:!text-blue-500 !text-white fw-bolder text-[1.2rem] mb-4"
+      >
+        {{ userWalletBalance?.walletBalance }}
+        <sub class="mx-1 text-[#BFBFBF] fw-normal">{{
+          "shared.EGP" | translate
+        }}</sub>
+      </mat-card-subtitle>
 
-    <header class="mb-3">
-        <span class="fw-600 text-[1rem] text-[#011447]">
-            {{ 'wallet.your-wallet' | translate }}
-        </span>
-    </header>
-
-    <div class="body flex-grow-1 flex flex-column">
-
-
-        <!-- begin:: choose payment methods  -->
-        <mat-card class="main-rounded--force p-4 mb-4">
-            <mat-card-title class="text-[#4E4E78] text-[1rem] mb-4">
-                {{ 'wallet.wallet-balance' | translate }}
-            </mat-card-title>
-            <mat-card-subtitle class="!text-[#0D1863] fw-bolder text-[1.2rem] mb-4">
-                {{ userWalletBalance?.walletBalance }} <sub class="mx-1 text-[#BFBFBF] fw-normal">{{ 'shared.EGP' | translate }}</sub>
-            </mat-card-subtitle>
-
-            <mat-card-content class="mb-0">
-                <div class="flex justify-content-between">
-                    <div class="start w-[55%]">
-                        <div class="progresses relative">
-                            <ngb-progressbar dir="ltr" [showValue]="true" type="success" [value]="userWalletBalance.walletPercentages.topUps"></ngb-progressbar>
-                            <ngb-progressbar
-                                class="absolute left-0 top-0 right-0 bg-transparent"
-                                 [showValue]="true" type="warning" [value]="userWalletBalance.walletPercentages.sales"></ngb-progressbar>
-                        </div>
-                    </div>
-                    <div class="end fw-600">
-                        <span class="text-[#0D18637F] ltr:ms-3 rtl:ms-3 text-[.8rem]">{{ 'wallet.source' | translate }}</span>
-                        <span class="text-warning ltr:ms-3 rtl:ms-3 text-[.8rem]"><span class="text-[1.1rem] ltr:me-1 rtl:me-1">&#9679;</span>{{ 'wallet.sales' | translate }}</span>
-                        <span class="text-success ltr:ms-3 rtl:ms-3 text-[.8rem]"><span class="text-[1.1rem] ltr:me-1 rtl:me-1">&#9679;</span>{{ 'wallet.topup' | translate }}</span>
-                    </div>
-                </div>
-            </mat-card-content>
-
-            <div class="favicon absolute ltr:right-[10px] rtl:left-[10px] top-[10px]">
-                <img src="assets/media/logos/logo-fav.svg" alt="">
+      <mat-card-content class="mb-0">
+        <div
+          class="flex justify-content-between flex-col xl:flex-row gap-y-5 xl:gap-y-0"
+        >
+          <div class="start xl:w-[55%]">
+            <div class="progresses relative">
+              <ngb-progressbar
+                dir="ltr"
+                [showValue]="true"
+                type="success"
+                [value]="userWalletBalance.walletPercentages.topUps"
+              ></ngb-progressbar>
+              <ngb-progressbar
+                class="absolute left-0 top-0 right-0 bg-transparent"
+                [showValue]="true"
+                type="warning"
+                [value]="userWalletBalance.walletPercentages.sales"
+              ></ngb-progressbar>
             </div>
+          </div>
+          <div class="end fw-600 flex justify-between items-center">
+            <span
+              class="xl:!text-blue-500/50 text-white xl:ltr:ms-3 xl:rtl:ms-3 text-[.8rem]"
+              >{{ "wallet.source" | translate }}</span
+            >
+            <span
+              class="xl:!text-warning text-white ltr:ms-3 rtl:ms-3 text-[.8rem]"
+              >
+              <span class="text-[1.1rem] ltr:me-1 rtl:me-1 text-warning">&#9679;</span
+              >
+              {{ "wallet.sales" | translate }}
+              </span>
+            <span class="xl:!text-success text-white ltr:ms-3 rtl:ms-3 text-[.8rem]"
+              ><span class="text-[1.1rem] ltr:me-1 rtl:me-1 text-success">&#9679;</span
+              >{{ "wallet.topup" | translate }}</span
+            >
+          </div>
+        </div>
+      </mat-card-content>
 
-        </mat-card>
-        <!-- begin:: choose payment methods  -->
+      <div class="favicon absolute ltr:right-[10px] rtl:left-[10px] top-[10px]">
+        <img src="assets/media/logos/logo-fav.svg" alt="" />
+      </div>
+    </mat-card>
+    <!-- begin:: choose payment methods  -->
 
-
-        <wallet-navs class="block pt-2" [data]="userWalletBalance"></wallet-navs>
-    </div>
+    <wallet-navs class="block pt-2" [data]="userWalletBalance"></wallet-navs>
+  </div>
 </section>

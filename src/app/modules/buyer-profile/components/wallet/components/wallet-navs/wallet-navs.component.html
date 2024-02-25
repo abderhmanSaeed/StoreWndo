@@ -1,76 +1,110 @@
-
-
-<nav ngbNav #nav="ngbNav" class="nav-tabs bg-[#E9E7F8] main-rounded border-0 overflow-hidden">
-	<ng-container ngbNavItem>
-		<a class="rounded-0 m-0 border-0 flex-auto font-medium" ngbNavLink>
-            <div class="flex items-center justify-center">
-                <div class="icon w-[35px] h-[35px] bg-white rounded-full ltr:me-2 rtl:me-2 flex items-center justify-center">
-                    <img class="active" src="assets/media/profile/icons/wallet/credit-debit.svg" alt="Icon">
-                </div>
-                <span class="text-[#FE4F60]">{{ 'wallet.credit-debit' | translate }}</span>
-            </div>
-        </a>
-		<ng-template ngbNavContent>
-			<cd-cards
-                [currentMonthTrans]="userWalletBalance?.currentMonthTrans"
-                [monthWithYearList]="userWalletBalance?.monthWithYearList"
-            ></cd-cards>
-		</ng-template>
-	</ng-container>
-    <ng-container ngbNavItem>
-		<a class="rounded-0 m-0 border-0 flex-auto font-medium" ngbNavLink>
-            <div class="flex items-center justify-center">
-                <div class="icon w-[35px] h-[35px] bg-white rounded-full ltr:me-2 rtl:me-2 flex items-center justify-center">
-                    <img class="active" src="assets/media/profile/icons/wallet/transfer.svg" alt="Icon">
-                </div>
-                <span class="text-[#011447]">{{ 'wallet.transfer' | translate }}</span>
-            </div>
-        </a>
-		<ng-template ngbNavContent>
-			<transfers></transfers>
-		</ng-template>
-	</ng-container>
-    <ng-container ngbNavItem>
-		<a class="rounded-0 m-0 border-0 flex-auto font-medium" ngbNavLink>
-            <div class="flex items-center justify-center">
-                <div class="icon w-[35px] h-[35px] bg-white rounded-full ltr:me-2 rtl:me-2 flex items-center justify-center">
-                    <img class="active w-[55%]" src="assets/media/profile/icons/wallet/top-up.svg" alt="Icon">
-                </div>
-                <span class="text-[#02A707]">{{ 'wallet.top-up' | translate }}</span>
-            </div>
-        </a>
-		<ng-template ngbNavContent>
-			<top-up></top-up>
-		</ng-template>
-	</ng-container>
-    <ng-container ngbNavItem>
-		<a class="rounded-0 m-0 border-0 flex-auto font-medium" ngbNavLink>
-            <div class="flex items-center justify-center">
-                <div class="icon w-[35px] h-[35px] bg-white rounded-full ltr:me-2 rtl:me-2 flex items-center justify-center">
-                    <img class="active w-[55%]" src="assets/media/profile/icons/wallet/vouchers.svg" alt="Icon">
-                </div>
-                <span class="text-[#CF2935]">{{ 'wallet.vouchers' | translate }}</span>
-            </div>
-        </a>
-		<ng-template ngbNavContent>
-            <div class="p-3 bg-white main-rounded h-100">
-                <vouchers-navs></vouchers-navs>
-            </div>
-		</ng-template>
-	</ng-container>
-    <ng-container ngbNavItem>
-		<a class="rounded-0 m-0 border-0 flex-auto font-medium" ngbNavLink>
-            <div class="flex items-center justify-center">
-                <div class="icon w-[35px] h-[35px] bg-white rounded-full ltr:me-2 rtl:me-2 flex items-center justify-center">
-                    <img class="active w-[55%]" src="assets/media/profile/icons/wallet/methods.svg" alt="Icon">
-                </div>
-                <span class="text-[#524C72]">{{ 'wallet.methods' | translate }}</span>
-            </div>
-        </a>
-		<ng-template ngbNavContent>
-            <payment-methods-tab class="block h-100"></payment-methods-tab>
-        </ng-template>
-	</ng-container>
+<nav
+  ngbNav
+  #nav="ngbNav"
+  class="nav-tabs xl:bg-[#E9E7F8] main-rounded border-0 overflow-hidden"
+>
+  <ng-container ngbNavItem>
+    <a class="rounded-0 m-0 border-0 flex-auto font-medium p-0 xl:!py-2 xl:!px-4" ngbNavLink>
+      <div class="flex items-center justify-center flex-col xl:flex-row gap-y-2 xl:gap-y-0">
+        <div
+          class="icon w-[35px] h-[35px] xl:bg-white border border-gray-60 xl:border-0 rounded-lg xl:rounded-full ltr:me-2 rtl:me-2 flex items-center justify-center wallet-icon"
+        >
+          <img
+            class="active"
+            src="assets/media/profile/icons/wallet/credit-debit.svg"
+            alt="Icon"
+          />
+        </div>
+        <span class="text-[#FE4F60] text-[10px] xl:text-sm">{{
+          "wallet.credit-debit" | translate
+        }}</span>
+      </div>
+    </a>
+    <ng-template ngbNavContent>
+      <cd-cards
+        [currentMonthTrans]="userWalletBalance?.currentMonthTrans"
+        [monthWithYearList]="userWalletBalance?.monthWithYearList"
+      ></cd-cards>
+    </ng-template>
+  </ng-container>
+  <ng-container ngbNavItem>
+    <a class="rounded-0 m-0 border-0 flex-auto font-medium p-0 xl:!py-2 xl:!px-4" ngbNavLink>
+      <div class="flex items-center justify-center flex-col xl:flex-row gap-y-2 xl:gap-y-0">
+        <div
+          class="icon w-[35px] h-[35px] xl:bg-white border border-gray-60 xl:border-0 rounded-lg xl:rounded-full ltr:me-2 rtl:me-2 flex items-center justify-center wallet-icon"
+        >
+          <img
+            class="active"
+            src="assets/media/profile/icons/wallet/transfer.svg"
+            alt="Icon"
+          />
+        </div>
+        <span class="text-[#011447] text-[10px] xl:text-sm">{{ "wallet.transfer" | translate }}</span>
+      </div>
+    </a>
+    <ng-template ngbNavContent>
+      <transfers></transfers>
+    </ng-template>
+  </ng-container>
+  <ng-container ngbNavItem>
+    <a class="rounded-0 m-0 border-0 flex-auto font-medium p-0 xl:!py-2 xl:!px-4" ngbNavLink>
+      <div class="flex items-center justify-center flex-col xl:flex-row gap-y-2 xl:gap-y-0">
+        <div
+          class="icon w-[35px] h-[35px] xl:bg-white border border-gray-60 xl:border-0 rounded-lg xl:rounded-full ltr:me-2 rtl:me-2 flex items-center justify-center wallet-icon"
+        >
+          <img
+            class="active w-[55%]"
+            src="assets/media/profile/icons/wallet/top-up.svg"
+            alt="Icon"
+          />
+        </div>
+        <span class="text-[#02A707] text-[10px] xl:text-sm">{{ "wallet.top-up" | translate }}</span>
+      </div>
+    </a>
+    <ng-template ngbNavContent>
+      <top-up></top-up>
+    </ng-template>
+  </ng-container>
+  <ng-container ngbNavItem>
+    <a class="rounded-0 m-0 border-0 flex-auto font-medium p-0 xl:!py-2 xl:!px-4" ngbNavLink>
+      <div class="flex items-center justify-center flex-col xl:flex-row gap-y-2 xl:gap-y-0">
+        <div
+          class="icon w-[35px] h-[35px] xl:bg-white border border-gray-60 xl:border-0 rounded-lg xl:rounded-full ltr:me-2 rtl:me-2 flex items-center justify-center wallet-icon"
+        >
+          <img
+            class="active w-[55%]"
+            src="assets/media/profile/icons/wallet/vouchers.svg"
+            alt="Icon"
+          />
+        </div>
+        <span class="text-[#CF2935] text-[10px] xl:text-sm">{{ "wallet.vouchers" | translate }}</span>
+      </div>
+    </a>
+    <ng-template ngbNavContent>
+      <div class="p-3 bg-white main-rounded h-100">
+        <vouchers-navs></vouchers-navs>
+      </div>
+    </ng-template>
+  </ng-container>
+  <ng-container ngbNavItem>
+    <a class="rounded-0 m-0 border-0 flex-auto font-medium p-0 xl:!py-2 xl:!px-4" ngbNavLink>
+      <div class="flex items-center justify-center flex-col xl:flex-row gap-y-2 xl:gap-y-0">
+        <div
+          class="icon w-[35px] h-[35px] xl:bg-white border border-gray-60 xl:border-0 rounded-lg xl:rounded-full ltr:me-2 rtl:me-2 flex items-center justify-center wallet-icon"
+        >
+          <img
+            class="active w-[55%]"
+            src="assets/media/profile/icons/wallet/methods.svg"
+            alt="Icon"
+          />
+        </div>
+        <span class="text-[#524C72] text-[10px] xl:text-sm">{{ "wallet.methods" | translate }}</span>
+      </div>
+    </a>
+    <ng-template ngbNavContent>
+      <payment-methods-tab class="block h-100"></payment-methods-tab>
+    </ng-template>
+  </ng-container>
 </nav>
 
 <div [ngbNavOutlet]="nav" class="mt-4 flex-grow-1"></div>
