@@ -123,6 +123,7 @@
   },
 
   "shared": {
+    "no-flash-sale": "Not found flash sale",
     "reviews": "reviews",
     "pause": "Pause",
     "auto": "AUTO",

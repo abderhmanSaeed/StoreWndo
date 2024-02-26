@@ -16,15 +16,16 @@ import { BrowserService } from 'src/app/shared/services/browser-db/browser.servi
 })
 export class FollowComponent implements OnInit, OnDestroy {
 
-  // inputs props 
-  @Input() panelclass: string = '';
+  // inputs props
+  @Input() panelclass?: string;
   @Input() isMine: boolean | undefined = false;
   @Input() userId: string | undefined = undefined;
   @Input() isFollowed: boolean | undefined = false;
-  
+  @Input() isLabel: boolean | undefined = true;
 
 
-  // outputs props 
+
+  // outputs props
   @Output() onFollowingChange: EventEmitter<boolean> = new EventEmitter();
 
   // props
@@ -37,7 +38,7 @@ export class FollowComponent implements OnInit, OnDestroy {
     public authService: AuthService,
     private _HttpService: HttpService,
     private _BrowserService: BrowserService,
-  ) { 
+  ) {
   }
 
 
@@ -68,7 +69,7 @@ export class FollowComponent implements OnInit, OnDestroy {
 
     this.isFollowed = !this.isFollowed;
     this.onFollowingChange.emit(this.isFollowed);
-   
+
     const payload = {
       userId
     }

@@ -50,10 +50,11 @@ export class MobileShortsSliderComponent implements OnInit {
   @Output() onProductWishChange: EventEmitter<any> = new EventEmitter();
   @Output() onProductWishCountChange: EventEmitter<any> = new EventEmitter();
   @Output() onProductLikeChange: EventEmitter<boolean> = new EventEmitter();
-  @Output() onProductLikesCountChange: EventEmitter<number> = new EventEmitter();
+  @Output() onProductLikesCountChange: EventEmitter<number> =
+    new EventEmitter();
 
-  @Input() productIndex?:number;
-  @Input() index?:number;
+  @Input() productIndex?: number;
+  @Input() index?: number;
 
   subscription: Subscription = new Subscription();
 
@@ -67,7 +68,7 @@ export class MobileShortsSliderComponent implements OnInit {
     private _HelperFunctionsService: HelperFunctionsService,
     private _HttpService: HttpService,
     private _MatDialog: MatDialog,
-    private _BrowserService: BrowserService,
+    private _BrowserService: BrowserService
   ) {
     this.initializeIcons();
   }
@@ -130,8 +131,6 @@ export class MobileShortsSliderComponent implements OnInit {
     );
   }
 
-
-
   toggleVideoPlayback() {
     const video: HTMLVideoElement = this.mediaElementRef.nativeElement;
 
@@ -157,16 +156,19 @@ export class MobileShortsSliderComponent implements OnInit {
   }
 
   copyProductDetailsLink(id: any): void {
-    console.log("share")
-    this._HelperFunctionsService.copy(environment.routes.productDetails + id).then( () => {
-      this._MessagesService.openSuccessSnackBar(
-        this._TranslateService.instant('shared.copied')
-      , 3000)
-    })
+    console.log('share');
+    this._HelperFunctionsService
+      .copy(environment.routes.productDetails + id)
+      .then(() => {
+        this._MessagesService.openSuccessSnackBar(
+          this._TranslateService.instant('shared.copied'),
+          3000
+        );
+      });
   }
 
-  onImgError(event: any){
-    event.target.src = 'assets/media/logos/smile.svg'
+  onImgError(event: any) {
+    event.target.src = 'assets/media/logos/smile.svg';
   }
 
   openGridCardPerviewDialog(data: any): void {
@@ -175,22 +177,23 @@ export class MobileShortsSliderComponent implements OnInit {
       // maxWidth: '100%',
       data,
       direction: this.lang == Languages.AR ? 'rtl' : 'ltr',
-      panelClass: "product-details-dialog"
+      panelClass: 'product-details-dialog',
     });
   }
 
   getProductDetails(productId: any): void {
-    this.subscription.add( this._HttpService.get(`${APIs.getProductDetails}/${productId}`)
-    .subscribe((res: HResponse) => {
-      this.openGridCardPerviewDialog(res.responseData);
-    }))
+    this.subscription.add(
+      this._HttpService
+        .get(`${APIs.getProductDetails}/${productId}`)
+        .subscribe((res: HResponse) => {
+          this.openGridCardPerviewDialog(res.responseData);
+        })
+    );
   }
 
   onExpandClick(productId: any): void {
     if (productId) {
-      this.getProductDetails(productId)
+      this.getProductDetails(productId);
     }
-   }
-
-
+  }
 }

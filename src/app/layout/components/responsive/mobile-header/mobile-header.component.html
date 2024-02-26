@@ -15,7 +15,7 @@
   <app-mobile-sidebar (closeDrawer)="drawer.close()"></app-mobile-sidebar>
 </mat-drawer>
 
-<div class="example-sidenav-content mt-2">
+<div class="example-sidenav-content fixed top-[-1px] left-0 right-0 z-10 bg-white">
   <div class="flex justify-center flex-col gap-2">
     <div class="flex items-center justify-between py-2 px-4">
       <a routerLink="/" class="logo-box flex align-items-center w-24">
@@ -63,7 +63,7 @@
     </div>
     <ul
       role="list"
-      class="flex items-center gap-3 justify-center bg-gray-100 py-2 px-4"
+      class="flex items-center gap-4 justify-center bg-gray-100 py-2 px-4"
     >
       <!-- begin:: dynamic links  -->
       <ng-container *ngFor="let item of menus; let index = index">
@@ -72,7 +72,7 @@
           placement="bottom"
           [ngbTooltip]="'header.' + item?.title | translate"
           [class]="item?.className"
-          class="bg-gray-200 w-10 h-10 flex items-center justify-center rounded-full text-blue-700 relative"
+          class="bg-gray-200 w-12 h-12 flex items-center justify-center rounded-full text-blue-700 relative"
 
         >
           <!-- if link -->
@@ -86,7 +86,7 @@
                 <!-- <img [src]="item?.imgPath" alt="Icon" /> -->
                 <mat-icon
                   [svgIcon]="item.title"
-                  class="text-xs text-blue-700/70 !w-5 !h-5 svg-icon__icon"
+                  class="text-xs text-blue-700/70 !w-7 !h-7 svg-icon__icon"
                 ></mat-icon>
               </span>
 
@@ -106,7 +106,7 @@
                    item?.className == 'notification' &&
                    notificationsCount > 0
                  "
-                 class="notification-dot bg-primary text-white rounded-circle position-absolute cart-count"
+                 class="notification-dot bg-primary text-white rounded-circle position-absolute top-0 rtl:right-[3px] ltr:left-3 !w-2.5 !h-2.5"
                ></small>
                <!-- end:: cart items count -->
 

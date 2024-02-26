@@ -23,17 +23,20 @@
         }}</span>
       </span>
     </div>
-    <add-to-cart
+
+    <follow
       [isLabel]="false"
-      panelClass="absolute -right-6 !min-w-[2rem] rtl:-left-6 rtl:right-auto !w-8 !h-8 bg-primary flex items-center justify-center !rounded-full text-white !p-0"
-      [productId]="product?.id"
-      [isInCart]="product?.isInCart"
-      *ngIf="!product?.isOutOfStock"
-      (addedToCart)="onAddedToCart(product, $event)"
+      panelclass="absolute -right-6 !min-w-[2rem] rtl:-left-6 rtl:right-auto !w-8 !h-8 bg-primary flex items-center justify-center !rounded-full text-white !p-0"
+      [isFollowed]="product?.seller?.isFollowed"
+      [userId]="product?.seller?.id"
     >
-      <fa-icon [icon]="faPlus" class="!lh-0 font-bold text-lg"></fa-icon>
-      <span class="sr-only">{{ "actions.add-to-cart" | translate }}</span>
-    </add-to-cart>
+      <fa-icon
+        follow-content
+        [icon]="faPlus"
+        class="!lh-0 font-bold text-lg"
+      ></fa-icon>
+      <mat-icon unfollow-content class="!lh-0 font-bold text-lg !flex !items-center !justify-center"> person_remove </mat-icon>
+    </follow>
   </div>
 
   <!-- video Section -->
@@ -169,7 +172,7 @@
 
   <!-- Product Info -->
   <div
-    class="flex gap-4 bg-gradient-to-r from-black/0 to-black/40 absolute bottom-10 landscape:bottom-[29px] landscape:lg:bottom-10 w-full z-10 py-3 px-4 landscape:!py-[5px] landscape:!px-2.5 landscape:lg:!py-3 landscape:lg:!px-4"
+    class="flex gap-4 bg-gradient-to-r from-black/0 to-black/40 absolute bottom-10 landscape:bottom-[29px] landscape:lg:bottom-10 w-full z-10 py-3 px-4 landscape:!py-[5px] landscape:!px-2.5 landscape:lg:!py-3 landscape:lg:!px-4 !pb-8"
   >
     <div
       class="p-1 flex flex-center bg-black/30 py-1 px-2 relative rounded-lg h-[100px] landscape:h-[70px] landscape:lg:h-[100px] w-[70px]"
@@ -189,7 +192,9 @@
       />
     </div>
 
-    <div class="flex-grow flex portrait:flex-col landscape:lg:flex-col landscape:lg:items-start landscape:items-center justify-between">
+    <div
+      class="flex-grow flex portrait:flex-col landscape:lg:flex-col landscape:lg:items-start landscape:items-center justify-between"
+    >
       <h4 class="mb-0 text-white text-base">{{ product?.name }}</h4>
       <p class="mb-0 text-white text-xs">{{ product?.category?.name }}</p>
       <p class="flex items-center gap-2 mb-0">

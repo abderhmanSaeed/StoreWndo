@@ -221,4 +221,6 @@ export class MobileHeaderComponent implements OnInit {
       })
     );
   }
+
+
 }

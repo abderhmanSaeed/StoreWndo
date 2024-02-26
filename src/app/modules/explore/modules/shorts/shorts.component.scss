@@ -4,13 +4,15 @@
 
 
 .shorts {
+  &__slider {
+    // Structure Block
+    min-height: calc(100vh - 200px);
+    display: flex;
+    align-items: center;
+  }
 
-    &__slider  {
+  @media screen and (width <= theme('screens.lg')) {
+    margin-top: calc(100% - 264px);
 
-        // Structure Block 
-        min-height: calc(100vh - 200px);
-        display: flex;
-        align-items: center;
-
-    }
+  }
 }

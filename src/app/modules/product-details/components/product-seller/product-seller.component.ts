@@ -8,17 +8,12 @@ import { faUser } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./product-seller.component.scss']
 })
 export class ProductSellerComponent implements OnInit {
-
-
-  // inputs 
+  // inputs
   @Input() data: Seller | undefined = {};
   @Input() followersCount: number | undefined = 0;
   @Input() isFollowed: boolean | undefined = false;
 
-
-  
-
-  // props 
+  // props
   faUser = faUser;
   imgPlaceholder: string = 'assets/media/users/user-placeholder.png'
 

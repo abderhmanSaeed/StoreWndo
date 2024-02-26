@@ -11,7 +11,7 @@ import { FlashSaleComponent } from './components/flash-sale/flash-sale.component
 import { SwiperModule } from 'swiper/angular';
 import { ItemStatsComponent } from './components/item-stats/item-stats.component';
 
-// Vediogular 
+// Vediogular
 import { BarRatingModule } from "ngx-bar-rating";
 import { VgCoreModule } from '@videogular/ngx-videogular/core';
 import { VgControlsModule } from '@videogular/ngx-videogular/controls';
@@ -35,6 +35,8 @@ import { createTranslateExploreLoader } from 'src/app/core/config/translate-load
 import { environment } from 'src/environments/environment';
 import { ProductDetailsDialogModule } from 'src/app/shared-modules/product-details-dialog/product-details-dialog.module';
 import { MobileShortsSliderComponent } from './components/responsive/mobile-shorts-slider/mobile-shorts-slider.component';
+import { FollowComponent } from 'src/app/shared-modules/follow/follow.component';
+import { FollowModule } from 'src/app/shared-modules/follow/follow.module';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,7 @@ import { MobileShortsSliderComponent } from './components/responsive/mobile-shor
     GridViewCardComponent,
     GridViewSliderComponent,
     SectionsComponent,
-    MobileShortsSliderComponent
+    MobileShortsSliderComponent,
   ],
   imports: [
     LikeModule,
@@ -54,6 +56,7 @@ import { MobileShortsSliderComponent } from './components/responsive/mobile-shor
     CommonModule,
     SwiperModule,
     SharedModule,
+    FollowModule,
     AukCardAModule,
     AukRatingModule,
     MatDialogModule,
