@@ -133,18 +133,18 @@
       <!-- end:: voucher -->
 
          <!-- begin:: Mobile cart actions -->
-         <div class="cart-actions  items-center justify-center pt-[2rem] flex flex-col gap-4 xl:hidden">
+         <div class="cart-actions  items-center justify-center pt-[2rem] flex flex-col lg:flex-row gap-4 lg:gap-0 xl:hidden">
           <app-button
             routerLink="/cart"
             [stroked]="true"
             [label]="'checkout.back-to-cart' | translate"
-            panelclass="max-w-100 w-[250px] mx-3 !rounded-full lh-normal !py-[.65rem]"
+            panelclass="max-w-100 w-[250px] !rounded-full lh-normal !py-[.65rem]"
           ></app-button>
 
           <app-button
             (click)="submitOrder()"
             [label]="'checkout.pay-now' | translate"
-            panelclass="max-w-100 w-[250px] mx-3 !rounded-full lh-normal !py-[.65rem]"
+            panelclass="max-w-100 w-[250px] !rounded-full lh-normal !py-[.65rem]"
           ></app-button>
         </div>
         <!-- end:: Mobile cart actions -->
@@ -154,5 +154,5 @@
 
 <!-- if the cart is empaty  -->
 <ng-template #isEmpty>
-  <is-empty class="xl:mr-[8rem] block"></is-empty>
+  <is-empty class="xl:ltr:mr-[8rem] xl:rtl:ml-[8rem] block"></is-empty>
 </ng-template>
