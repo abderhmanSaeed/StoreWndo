@@ -1,11 +1,14 @@
 import {
+  ChangeDetectorRef,
   Component,
   ElementRef,
   EventEmitter,
   Input,
   OnInit,
   Output,
+  QueryList,
   ViewChild,
+  ViewChildren,
 } from '@angular/core';
 import { ExploreProduct } from '../../../models/explore-product/explore-product';
 import { VgApiService } from '@videogular/ngx-videogular/core';
@@ -33,32 +36,27 @@ import { MobileProductDetailsDialogComponent } from 'src/app/shared-modules/prod
   styleUrls: ['./mobile-shorts-slider.component.scss'],
 })
 export class MobileShortsSliderComponent implements OnInit {
-  @Input() exploreProducts: ExploreProduct[] = [];
-  @Input() product: ExploreProduct | undefined;
-  @Input() isVideoLoading: boolean = true;
-  @Input() isPlaying: boolean = false;
-  @Input() isAutoplay: boolean = false;
-  @Output() onPlayVideo: EventEmitter<void> = new EventEmitter();
-  @Output() onPlayerReady: EventEmitter<VgApiService> =
-    new EventEmitter<VgApiService>();
-  @Output() addedToCart: EventEmitter<boolean> = new EventEmitter();
-
   @ViewChild('media', { static: false }) mediaElementRef!: ElementRef;
 
-  faPlus = faPlus;
+  @Input() product: ExploreProduct | undefined;
 
+  @Output() addedToCart: EventEmitter<boolean> = new EventEmitter();
   @Output() onProductWishChange: EventEmitter<any> = new EventEmitter();
   @Output() onProductWishCountChange: EventEmitter<any> = new EventEmitter();
-  @Output() onProductLikeChange: EventEmitter<boolean> = new EventEmitter();
   @Output() onProductLikesCountChange: EventEmitter<number> =
     new EventEmitter();
+  @Output() onProductLikeChange: EventEmitter<boolean> = new EventEmitter();
 
-  @Input() productIndex?: number;
-  @Input() index?: number;
+  // Icon
+  faPlus = faPlus;
 
   subscription: Subscription = new Subscription();
 
   lang: Languages = Languages.AR;
+
+  isVideoLoading: boolean = true;
+  vgApiService!: VgApiService;
+  toggleVideoPlay: string = 'shared.auto';
 
   constructor(
     private matIconRegistry: MatIconRegistry,
@@ -68,7 +66,8 @@ export class MobileShortsSliderComponent implements OnInit {
     private _HelperFunctionsService: HelperFunctionsService,
     private _HttpService: HttpService,
     private _MatDialog: MatDialog,
-    private _BrowserService: BrowserService
+    private _BrowserService: BrowserService,
+    private _ChangeDetectorRef: ChangeDetectorRef
   ) {
     this.initializeIcons();
   }
@@ -131,20 +130,31 @@ export class MobileShortsSliderComponent implements OnInit {
     );
   }
 
-  toggleVideoPlayback() {
+  toggleVideoPlayback(): void {
     const video: HTMLVideoElement = this.mediaElementRef.nativeElement;
-
     if (video.paused) {
       video.play();
-      this.isPlaying = true;
+      this.toggleVideoPlay = 'shared.pause';
     } else {
       video.pause();
-      this.isPlaying = false;
+      console.log('stop');
+      this.toggleVideoPlay = 'shared.auto';
     }
   }
 
-  playerReadyClick(api: VgApiService) {
-    this.onPlayerReady.emit(api);
+  onPlayerReady(api: any) {
+    this.vgApiService = api;
+
+    this.subscription.add(
+      this.vgApiService.subscriptions.canPlay.subscribe((res: any) => {
+        if (this.vgApiService.getMediaById(this.product?.id)) {
+          this.vgApiService.play();
+        }
+
+        this.isVideoLoading = false;
+        this._ChangeDetectorRef.detectChanges();
+      })
+    );
   }
 
   onOffers() {

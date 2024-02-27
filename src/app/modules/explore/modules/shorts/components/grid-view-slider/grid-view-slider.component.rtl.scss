@@ -3,6 +3,12 @@
     ::ng-deep {
       .swiper {
         &__controllers {
+          @media screen and (width <= theme("screens.lg")) {
+            transform: rotate(180deg);
+            bottom: 17px;
+            inset-inline-start: 1rem;
+            inset-inline-end: auto;
+          }
           fa-icon {
             transform: rotate(180deg);
           }

@@ -35,7 +35,12 @@
         [icon]="faPlus"
         class="!lh-0 font-bold text-lg"
       ></fa-icon>
-      <mat-icon unfollow-content class="!lh-0 font-bold text-lg !flex !items-center !justify-center"> person_remove </mat-icon>
+      <mat-icon
+        unfollow-content
+        class="!lh-0 font-bold text-lg !flex !items-center !justify-center"
+      >
+        person_remove
+      </mat-icon>
     </follow>
   </div>
 
@@ -127,12 +132,10 @@
           (click)="toggleVideoPlayback()"
         >
           <mat-icon svgIcon="pause" class="text-white w-5"></mat-icon>
-          <span *ngIf="isPlaying" class="text-white">{{
-            "shared.pause" | translate
-          }}</span>
-          <span *ngIf="!isPlaying" class="text-white">{{
-            "shared.auto" | translate
-          }}</span>
+          <span class="text-white">
+          {{toggleVideoPlay | translate}}
+        </span>
+
         </button>
 
         <!-- <button
@@ -147,26 +150,28 @@
       <vg-player
         class="flex items-center bg-transparent video-item"
         *ngIf="product?.video?.urlPreview"
-        (onPlayerReady)="playerReadyClick($event)"
+        (onPlayerReady)="onPlayerReady($event)"
       >
         <video
           class="max-h-screen"
           controlslist="nodownload noplaybackrate noremoteplayback"
           [controls]="false"
           disablepictureinpicture
-          oncanplay="playerReadyClick()"
           width="100%"
           class="object-cover h-full"
           [vgMedia]="$any(media)"
           [vgMaster]="true"
           preload="metadata"
-          [autoplay]="isAutoplay"
           [loop]="true"
           #media
+          oncanplay=""
+          [attr.id]="product?.id"
+          [poster]="product?.video?.urlThumbnail"
         >
           <source [src]="product?.video?.urlPreview" type="video/mp4" />
         </video>
       </vg-player>
+
     </div>
   </div>
 

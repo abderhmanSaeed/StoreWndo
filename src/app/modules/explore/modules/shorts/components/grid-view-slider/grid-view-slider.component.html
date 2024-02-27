@@ -9,7 +9,7 @@
           (swiper)="onSwiper($event)"
           [config]="swiperConfig"
           #swiper
-          class="swiper flex flex-col"
+          class="swiper swiper--hols flex flex-col"
 
 
         >
@@ -23,7 +23,7 @@
                 >
                   <div
                     [class.grid-card-wrapper--bottom]="index > 4"
-                    class="grid-card-wrapper relative h-[255px]"
+                    class="grid-card-wrapper relative h-[255px] landscape:h-[180px] landscape:lg:h-[255px]"
                   >
                     <grid-view-card
                       [lang]="lang"

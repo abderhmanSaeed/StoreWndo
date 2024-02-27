@@ -54,7 +54,7 @@
     <!-- steps -->
     <div class="steps flex justify-between mt-[30px]">
       <mat-card
-        class="steps__step steps__step--active xl:!shadow-sm !flex items-center xl:!px-4 px-0 xl:min-w-[230px] py-[.2rem] justify-center xl:ltr:translate-x-[-50%] xl:rtl:translate-x-[50%]"
+        class="steps__step bg-transparent xl:!bg-white steps__step--active xl:!shadow-sm !flex items-center xl:!px-4 px-0 xl:min-w-[230px] py-[.2rem] justify-center xl:ltr:translate-x-[-50%] xl:rtl:translate-x-[50%]"
       >
         <div class="steps__step-icon hidden xl:inline-flex">
           <img
@@ -64,13 +64,13 @@
             alt="Icon"
           />
         </div>
-        <span class="xl:text-[.9rem] text-xs fw-500">{{
+        <span class="xl:text-[.9rem] text-xs lg:text-[0.9rem]  fw-500">{{
           "checkout.check-out" | translate
         }}</span>
       </mat-card>
 
       <mat-card
-        class="steps__step !flex items-center xl:!shadow-sm xl:!px-4 px-0 xl:min-w-[230px] py-[.2rem] justify-center"
+        class="steps__step bg-transparent xl:!bg-white !flex items-center xl:!shadow-sm xl:!px-4 px-0 xl:min-w-[230px] py-[.2rem] justify-center !bg-transparent xl:!bg-white"
         [ngClass]="{
           'steps__step--active': progressbarValue >= 50
         }"
@@ -89,13 +89,13 @@
             alt="Icon"
           />
         </div>
-        <span class="xl:text-[.9rem] text-xs fw-500">{{
+        <span class="xl:text-[.9rem] text-xs lg:text-[0.9rem]  fw-500">{{
           "checkout.shipping-payment" | translate
         }}</span>
       </mat-card>
 
       <mat-card
-        class="steps__step !flex items-center xl:!shadow-sm xl:!px-4 px-0 xl:min-w-[230px] py-[.2rem] justify-center xl:ltr:translate-x-[50%] xl:rtl:translate-x-[-50%]"
+        class="steps__step bg-transparent xl:!bg-white !flex items-center xl:!shadow-sm xl:!px-4 px-0 xl:min-w-[230px] py-[.2rem] justify-center xl:ltr:translate-x-[50%] xl:rtl:translate-x-[-50%]"
         [ngClass]="{
           'steps__step--active': progressbarValue > 50
         }"
@@ -114,7 +114,7 @@
             alt="Icon"
           />
         </div>
-        <span class="xl:text-[.9rem] text-xs fw-500">{{
+        <span class="xl:text-[.9rem] text-xs lg:text-[0.9rem]  fw-500">{{
           "checkout.confirmation" | translate
         }}</span>
       </mat-card>

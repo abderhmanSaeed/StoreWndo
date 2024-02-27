@@ -2,16 +2,10 @@
   <div class="products mt-2" #scrollableElement >
 
     <ng-container
-      *ngFor="let item of exploreProducts; let i = index; let first = first"
+      *ngFor="let item of exploreProducts; let i = index;"
     >
-
       <app-mobile-shorts-slider
         [product]="item"
-        [exploreProducts]="exploreProducts"
-        (onPlayerReady)="onPlayerReady($event)"
-        [isVideoLoading]="isVideoLoading"
-        [isPlaying]="isPlaying"
-        [isAutoplay]="isAutoplay"
         (onProductWishChange)="onProductWishChange($event, item)"
         (onProductWishCountChange)="onProductWishCountChange(item, $event)"
         (onProductLikesCountChange)="onProductLikesCountChange(item, $event)"

@@ -66,11 +66,9 @@ export class GridViewSliderComponent implements OnInit,  OnDestroy {
 
 
   ngAfterViewInit(): void {
-    if (this.isMobile && this.LanguagesEnum.AR) { // Assuming 'ar' is your language code for Arabic
-      this.renderer.setAttribute(this.swiperWrapper?.nativeElement.childNodes[0], 'dir', 'ltr');
+    if (this.isMobile && this.lang === this.LanguagesEnum.AR) { // Assuming 'ar' is your language code for Arabic
+      this.renderer.setAttribute(this.swiperWrapper?.nativeElement.childNodes[0], 'dir', 'auto');
     }
-    console.log(this.swiperWrapper)
-
   }
 
 

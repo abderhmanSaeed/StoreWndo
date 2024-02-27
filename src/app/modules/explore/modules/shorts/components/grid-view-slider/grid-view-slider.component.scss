@@ -42,6 +42,10 @@
 
         // Positioing Block
         position: absolute;
+
+        @media screen and (width <= theme('screens.lg')) {
+          inset-inline-end: 1rem;
+        }
       }
     }
   }

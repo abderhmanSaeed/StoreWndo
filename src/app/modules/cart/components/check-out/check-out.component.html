@@ -5,10 +5,10 @@
     >
   </header>
 
-  <div class="xl:grid grid-cols-12">
-    <div class="xl:col-span-9 mb-4">
+  <div class="xl:grid 2xl:grid-cols-12">
+    <div class="2xl:col-span-9 mb-4">
       <ng-container *ngIf="cart?.carts?.length; else isEmpty">
-        <div class="col-box xl:ltr:mr-[8rem] xl:rtl:ml-[8rem]">
+        <div class="col-box 2xl:ltr:mr-[8rem] 2xl:rtl:ml-[8rem]">
           <ng-container *ngFor="let item of cart?.carts">
             <!-- begin:: cart items -->
             <cart-item [item]="item" class="mb-3 block"></cart-item>
@@ -39,7 +39,7 @@
       </ng-container>
     </div>
 
-    <div class="xl:col-span-3">
+    <div class="2xl:col-span-3">
       <!-- begin:: order summary -->
       <order-summary [cart]="cart"></order-summary>
       <!-- end:: order summary -->
@@ -48,7 +48,7 @@
     <!-- begin:: cart actions -->
     <div
       *ngIf="isMobile"
-      class="cart-actions flex items-center justify-center pt-[1.5rem] flex-col xl:flex-row gap-y-3"
+      class="cart-actions flex items-center justify-center pt-[1.5rem] flex-col lg:flex-row gap-y-3"
     >
       <app-button
         routerLink="/explore"
@@ -70,5 +70,5 @@
 
 <!-- if the cart is empaty  -->
 <ng-template #isEmpty>
-  <is-empty class="xl:mr-[8rem] block"></is-empty>
+  <is-empty class="2xl:ltr:mr-[8rem] 2xl:rtl:ml-[8rem] block"></is-empty>
 </ng-template>

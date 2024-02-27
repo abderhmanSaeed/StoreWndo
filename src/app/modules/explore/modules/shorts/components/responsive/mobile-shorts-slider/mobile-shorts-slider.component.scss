@@ -6,8 +6,8 @@
   }
 }
 
-:host{
-  ::ng-deep{
+:host {
+  ::ng-deep {
     vg-player.video-item {
       position: relative;
       &::after {
@@ -24,4 +24,9 @@
       }
     }
   }
+}
+
+video[poster] {
+  height: 100%;
+  width: 100%;
 }

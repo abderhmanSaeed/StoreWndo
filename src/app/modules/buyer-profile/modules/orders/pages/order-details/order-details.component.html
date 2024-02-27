@@ -183,12 +183,12 @@
       <app-order-summary [order]="order"></app-order-summary>
 
        <!-- begin::mobile order actions -->
-       <div class="order-actions flex-col gap-4 items-center justify-center pt-[2rem] flex xl:hidden">
+       <div class="order-actions flex-col md:flex-row gap-3 items-center justify-center pt-[2rem] flex xl:hidden">
         <app-button
           [stroked]="true"
           [label]="'actions.cancel-all' | translate"
           (click)="cancelAll(order?.orderNumber)"
-          panelclass="max-w-100 w-[250px] mx-3 !rounded-full lh-normal !py-[.65rem] uppercase"
+          panelclass="max-w-100 w-[250px] !rounded-full lh-normal !py-[.65rem] uppercase"
           *ngIf="
             order?.orderItems?.length > 1 &&
             order?.orderState == orderStatsObject.ordered.key
@@ -199,7 +199,7 @@
           (click)="refundAll(order?.orderNumber)"
           [stroked]="true"
           [label]="'actions.refund-all' | translate"
-          panelclass="max-w-100 w-[250px] mx-3 !rounded-full lh-normal !py-[.65rem] uppercase"
+          panelclass="max-w-100 w-[250px] !rounded-full lh-normal !py-[.65rem] uppercase"
           *ngIf="
             order?.orderItems?.length > 1 &&
             order?.orderState == orderStatsObject.delivered.key

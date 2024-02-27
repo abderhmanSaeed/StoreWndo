@@ -1,144 +1,174 @@
 <mat-card class="main-rounded--forced p-3">
+  <div class="flex flex-col xl:flex-row">
+    <div class="flex-grow-0 xl:flex-grow ltr:me-5 rtl:me-5">
+      <div
+        class="flex flex-col h-100 bg-wndo-watermark main-rounded border px-3 !border-[#eee]"
+      >
+        <!-- begin:: product gallery -->
+        <div class="flex-grow-1 mb-4">
+          <product-gallery
+            [videos]="producData?.videos"
+            [images]="producData?.images"
+          ></product-gallery>
+        </div>
+        <!-- end:: product gallery -->
 
-   <div class="row">
+        <!-- begin:: product videos -->
+        <div class="bottom">
+          <product-videos
+            [videos]="producData?.videos"
+            [seller]="producData?.seller"
+          ></product-videos>
+        </div>
+        <!-- end:: product videos -->
+      </div>
+    </div>
 
-        <div class="col-lg flex-grow-0 ltr:me-5 rtl:me-5">
-           <div class="flex flex-col h-100  bg-wndo-watermark main-rounded border px-3 !border-[#eee]">
-
-                <!-- begin:: product gallery -->
-                <div class="flex-grow-1 mb-4">
-                    <product-gallery [videos]="producData?.videos" [images]="producData?.images"></product-gallery>
-                </div>
-                <!-- end:: product gallery -->
-
-
-                <!-- begin:: product videos -->
-                <div class="bottom">
-                    <product-videos [videos]="producData?.videos" [seller]="producData?.seller"></product-videos>
-                </div>
-                <!-- end:: product videos -->
-
-           </div>
+    <div class="col-lg flex-grow-2 mt-3 xl:mt-0">
+      <!-- begin:: header  -->
+      <div class="header flex items-center justify-between mb-4">
+        <div class="start">
+          <mat-card-title class="text-blue h3 fw-bold mb-0 lh-normal">
+            {{ producData?.name }}
+          </mat-card-title>
         </div>
 
+        <div class="end">
+          <add-to-fav
+            class="ltr:ms-2 rtl:ms-2"
+            [productId]="producData?.id"
+            [isFavorite]="producData?.isInWishList"
+            [panelStyle]="{
+              width: '32px',
+              height: '32px',
+              'font-size': '1.3rem'
+            }"
+          ></add-to-fav>
+        </div>
+      </div>
+      <!-- end:: header  -->
 
-        <div class="col-lg flex-grow-2 mt-3 xl:mt-0">
+      <mat-card-content>
+        <!-- begin:: seller info  -->
+        <product-seller
+          [data]="producData?.seller"
+          [isFollowed]="producData?.isFollowed"
+          [followersCount]="producData?.followersCount"
+          class="block lg:w-[75%] mb-4"
+        ></product-seller>
+        <!-- end:: seller info  -->
 
-            <!-- begin:: header  -->
-            <div class="header flex items-center justify-between mb-4">
-                <div class="start">
-                    <mat-card-title class="text-blue h3 fw-bold mb-0 lh-normal">
-                        {{ producData?.name }}
-                    </mat-card-title>
-                </div>
-
-                <div class="end">
-                    <add-to-fav
-                        class="ltr:ms-2 rtl:ms-2"
-                        [productId]="producData?.id"
-                        [isFavorite]="producData?.isInWishList"
-                        [panelStyle]="{
-                            'width': '32px',
-                            'height': '32px',
-                            'font-size': '1.3rem'
-                        }"
-                    ></add-to-fav>
-                </div>
+        <!-- begin:: rate and type info  -->
+        <div
+          class="rate-type flex-wrap flex items-center justify-between lg:w-[75%] text-[#524C72] mb-3"
+        >
+          <div class="start">
+            <!-- brgin:: rating  -->
+            <div class="rating flex items-center">
+              <bar-rating
+                [readOnly]="true"
+                [(rate)]="producData.rate"
+                [max]="5"
+              ></bar-rating>
+              <a
+                routerLink="./reviews"
+                class="btn px-0 pb-0 underline inline-block ltr:ms-2 rtl:ms-2 text-[#787878] fw-500 pt-[2px]"
+                >{{ producData?.reviewCount }}
+                {{ "product-details.reviews" | translate }}</a
+              >
             </div>
-            <!-- end:: header  -->
-
-            <mat-card-content>
-
-                <!-- begin:: seller info  -->
-                <product-seller [data]="producData?.seller" [isFollowed]="producData?.isFollowed" [followersCount]="producData?.followersCount" class="block lg:w-[75%] mb-4"></product-seller>
-                <!-- end:: seller info  -->
-
-                <!-- begin:: rate and type info  -->
-                <div class="rate-type flex-wrap flex items-center justify-between lg:w-[75%] text-[#524C72] mb-3">
-                    <div class="start">
-                        <!-- brgin:: rating  -->
-                        <div class="rating flex items-center">
-                            <bar-rating [readOnly]="true" [(rate)]="producData.rate" [max]="5"></bar-rating>
-                            <a routerLink="./reviews" class="btn px-0 pb-0 underline inline-block ltr:ms-2 rtl:ms-2 text-[#787878] fw-500 pt-[2px]">{{ producData?.reviewCount }} {{ 'product-details.reviews' | translate }}</a>
-                        </div>
-                        <!-- end:: rating  -->
-                    </div>
-                    <div class="end fw-500">
-                        <span>{{ producData?.section?.name }} / {{ producData?.category?.name }}</span>
-                    </div>
-                </div>
-                <!-- end:: rate and type info  -->
-
-                <!-- begin:: price  -->
-                <auk-price
-                    class="block mb-3"
-                    [price]="producData?.price?.price"
-                    [priceAfterOffer]="producData?.price?.priceAfterOffer"
-                    panelClass="text-[1.2rem]"
-                ></auk-price>
-                <!-- end:: price  -->
-
-
-                <!-- begin:: product description  -->
-                <div class="prod-desc text-[#524C72] ltr:xl:pr-[5rem] rtl:xl:pl-[5rem] mb-3">
-                    <p>
-                        {{ producData?.description }}
-                    </p>
-                </div>
-                <!-- end:: product description  -->
-
-
-
-                <!-- begin:: product lookups  -->
-                <product-lookups [lookups]="producData?.lookups" class="block ltr:xl:pr-[6.5rem] rtl:xl:pl-[6.5rem]"></product-lookups>
-                <!-- end:: product lookups  -->
-
-
-                <!-- begin:: product featurs  -->
-                <product-featurs (onChange)="onProductFeatursChange($event)" [producData]="producData" class="mt-4 block"></product-featurs>
-                <!-- end:: product featurs  -->
-
-
-                <!-- begin:: product actions  -->
-                <div class="product__actions mt-5 flex items-center justify-center">
-
-                    <ng-container *ngIf="producData?.isInCart">
-                        <app-button
-                            routerLink="/cart"
-                            [stroked]="false"
-                            [label]="'actions.buy-now' | translate"
-                            panelclass="max-w-100 w-[250px] mx-3 !rounded-full lh-normal !py-[.65rem] uppercase"
-                        ></app-button>
-                    </ng-container>
-
-                    <ng-container *ngIf="!producData?.isInCart">
-                            <app-button
-                            [disabled]="producData?.isOutOfStock"
-                            (click)="addToCart()"
-                            [label]="'actions.add-to-cart' | translate"
-                            panelclass="max-w-100 w-[250px] mx-3 !rounded-full lh-normal !py-[.65rem] uppercase"
-                        ></app-button>
-                    </ng-container>
-
-                </div>
-                <!-- begin:: product actions  -->
-                <div class="text-center mt-4">
-                    <button *ngIf="!isRequestSent && producData?.isOutOfStock" (click)="shareToSeller($event, producData?.id)" class="text-primary fw-500 p-0 underline">{{ 'shared.share-your-request-seller' | translate }}</button>
-                </div>
-
-
-
-                <!-- begin:: delivered via  -->
-                <div class="xdelivered-by flex items-center justify-center mt-4 fw-500">
-                    <div class="icon ltr:me-3 rtl:me-3">
-                        <img src="assets/media/svg/shipping-by.svg" alt="Icon">
-                    </div>
-                    <span>{{ 'product-details.delivered-by' | translate }}  {{ producData?.deliveryMethods == deliveryMethods.ShippingCarrier  ? 'Carrier' : 'Wndo' }}</span>
-                </div>
-                <!-- begin:: delivered via  -->
-
-
-            </mat-card-content>
+            <!-- end:: rating  -->
+          </div>
+          <div class="end fw-500">
+            <span
+              >{{ producData?.section?.name }} /
+              {{ producData?.category?.name }}</span
+            >
+          </div>
         </div>
-   </div>
+        <!-- end:: rate and type info  -->
+
+        <!-- begin:: price  -->
+        <auk-price
+          class="block mb-3"
+          [price]="producData?.price?.price"
+          [priceAfterOffer]="producData?.price?.priceAfterOffer"
+          panelClass="text-[1.2rem]"
+        ></auk-price>
+        <!-- end:: price  -->
+
+        <!-- begin:: product description  -->
+        <div
+          class="prod-desc text-[#524C72] ltr:xl:pr-[5rem] rtl:xl:pl-[5rem] mb-3"
+        >
+          <p>
+            {{ producData?.description }}
+          </p>
+        </div>
+        <!-- end:: product description  -->
+
+        <!-- begin:: product lookups  -->
+        <product-lookups
+          [lookups]="producData?.lookups"
+          class="block ltr:xl:pr-[6.5rem] rtl:xl:pl-[6.5rem]"
+        ></product-lookups>
+        <!-- end:: product lookups  -->
+
+        <!-- begin:: product featurs  -->
+        <product-featurs
+          (onChange)="onProductFeatursChange($event)"
+          [producData]="producData"
+          class="mt-4 block"
+        ></product-featurs>
+        <!-- end:: product featurs  -->
+
+        <!-- begin:: product actions  -->
+        <div class="product__actions mt-5 flex items-center justify-center">
+          <ng-container *ngIf="producData?.isInCart">
+            <app-button
+              routerLink="/cart"
+              [stroked]="false"
+              [label]="'actions.buy-now' | translate"
+              panelclass="max-w-100 w-[250px] mx-3 !rounded-full lh-normal !py-[.65rem] uppercase"
+            ></app-button>
+          </ng-container>
+
+          <ng-container *ngIf="!producData?.isInCart">
+            <app-button
+              [disabled]="producData?.isOutOfStock"
+              (click)="addToCart()"
+              [label]="'actions.add-to-cart' | translate"
+              panelclass="max-w-100 w-[250px] mx-3 !rounded-full lh-normal !py-[.65rem] uppercase"
+            ></app-button>
+          </ng-container>
+        </div>
+        <!-- begin:: product actions  -->
+        <div class="text-center mt-4">
+          <button
+            *ngIf="!isRequestSent && producData?.isOutOfStock"
+            (click)="shareToSeller($event, producData?.id)"
+            class="text-primary fw-500 p-0 underline"
+          >
+            {{ "shared.share-your-request-seller" | translate }}
+          </button>
+        </div>
+
+        <!-- begin:: delivered via  -->
+        <div class="xdelivered-by flex items-center justify-center mt-4 fw-500">
+          <div class="icon ltr:me-3 rtl:me-3">
+            <img src="assets/media/svg/shipping-by.svg" alt="Icon" />
+          </div>
+          <span
+            >{{ "product-details.delivered-by" | translate }}
+            {{
+              producData?.deliveryMethods == deliveryMethods.ShippingCarrier
+                ? "Carrier"
+                : "Wndo"
+            }}</span
+          >
+        </div>
+        <!-- begin:: delivered via  -->
+      </mat-card-content>
+    </div>
+  </div>
 </mat-card>

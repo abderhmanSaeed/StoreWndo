@@ -191,18 +191,18 @@
 
 
        <!-- begin:: Mobile cart actions -->
-       <div class="cart-actions items-center justify-center pt-[1.5rem] flex flex-col gap-4 xl:hidden">
+       <div class="cart-actions items-center justify-center pt-[1.5rem] flex flex-col lg:flex-row gap-4 lg:gap-0 xl:hidden">
         <app-button
           routerLink="/cart"
           [stroked]="true"
           [label]="'checkout.back-to-cart' | translate"
-          panelclass="max-w-100 w-[250px] mx-3 !rounded-full lh-normal !py-[.65rem]"
+          panelclass="max-w-100 w-[250px] !rounded-full lh-normal !py-[.65rem]"
         ></app-button>
         <!-- routerLink="../confirmation" -->
         <app-button
           (click)="onSaveClick()"
           [label]="'checkout.save-continue' | translate"
-          panelclass="max-w-100 w-[250px] mx-3 !rounded-full lh-normal !py-[.65rem]"
+          panelclass="max-w-100 w-[250px] !rounded-full lh-normal !py-[.65rem]"
         ></app-button>
       </div>
       <!-- end:: Mobile cart actions -->
