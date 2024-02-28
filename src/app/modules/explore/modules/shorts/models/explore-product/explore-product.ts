@@ -22,6 +22,7 @@ export interface ExploreProduct {
     followersCount?: number,
     flashSales?: FlashSale[],
     wishListData: WishListData,
+    shareCount?: number
 }
 
 
@@ -63,7 +64,8 @@ export interface Seller {
     isFollowing?: boolean,
     picture?: string,
     userId?: string,
-    isFollow?: boolean
+    isFollow?: boolean,
+    numberOfItems?: number
 }
 
 

@@ -1,65 +1,73 @@
 <section class="check-out animate__animated animate__fadeIn">
+  <header class="mb-3 text-[.9rem]">
+    <strong>
+      {{ "checkout.your-cart" | translate }} ({{ cart?.carts?.length }})</strong
+    >
+  </header>
 
-    <header class="mb-3 text-[.9rem]">
-        <strong> {{ 'checkout.your-cart' | translate }} ({{ cart?.carts?.length }})</strong>
-    </header>
-    
-    <div class="row">
-        
-        <div class="col-lg-9 mb-4">
-            <ng-container *ngIf="cart?.carts?.length else isEmpty">
+  <div class="xl:grid xl:grid-cols-12 xl:gap-4 2xl:gap-0">
+    <div class="xl:col-span-9 mb-4">
+      <ng-container *ngIf="cart?.carts?.length; else isEmpty">
+        <div class="col-box 2xl:ltr:mr-[8rem] 2xl:rtl:ml-[8rem]">
+          <ng-container *ngFor="let item of cart?.carts">
+            <!-- begin:: cart items -->
+            <cart-item [item]="item" class="mb-3 block"></cart-item>
+            <!-- end:: cart items -->
+          </ng-container>
 
-                <div class="col-box ltr:mr-[8rem] rtl:ml-[8rem]">
+          <!-- begin:: cart actions -->
+          <div
+            class="cart-actions items-center justify-center pt-[1.5rem]  2xl:flex-row gap-y-3 hidden xl:flex"
+          >
+            <app-button
+              routerLink="/explore"
+              [stroked]="true"
+              [label]="'checkout.continue-shopping' | translate"
+              panelclass="max-w-100  w-[250px] flex-auto mx-3 !rounded-full lh-normal !py-[.65rem]"
+            ></app-button>
+            <!--  -->
 
-                    <ng-container *ngFor="let item of cart?.carts">
-                        <!-- begin:: cart items -->
-                        <cart-item [item]="item" class="mb-3 block"></cart-item>
-                        <!-- end:: cart items -->
-                    </ng-container>
-                    
-
-
-                    <!-- begin:: cart actions -->
-                    <div class="cart-actions flex items-center justify-center pt-[1.5rem]">
-                        
-                        <app-button
-                            routerLink="/explore"
-                            [stroked]="true"
-                            [label]="'checkout.continue-shopping' | translate"
-                            panelclass="max-w-100 w-[250px] mx-3 !rounded-full lh-normal !py-[.65rem]"
-                        ></app-button>
-
-                        <app-button
-                            routerLink="../shipping-payment"
-                            [label]="'checkout.check-out' | translate"
-                            panelclass="max-w-100 w-[250px] mx-3 !rounded-full lh-normal !py-[.65rem] uppercase"
-                        ></app-button>
-                        
-                    </div>
-                    <!-- end:: cart actions -->
-                </div>
-
-            </ng-container>
+            <app-button
+              routerLink="../shipping-payment"
+              [label]="'checkout.check-out' | translate"
+              panelclass="max-w-100 w-[250px] flex-auto mx-3 !rounded-full lh-normal !py-[.65rem] uppercase"
+            ></app-button>
+          </div>
+          <!-- end:: cart actions -->
         </div>
-
-        <div class="col-lg-3">
-
-            <!-- begin:: order summary -->
-            <order-summary [cart]="cart"></order-summary>
-            <!-- end:: order summary -->
-        </div>
-
-
+      </ng-container>
     </div>
-   
+
+    <div class="xl:col-span-3">
+      <!-- begin:: order summary -->
+      <order-summary [cart]="cart"></order-summary>
+      <!-- end:: order summary -->
+    </div>
+
+    <!-- begin:: cart actions -->
+    <div
+      *ngIf="cart?.carts?.length"
+      class="cart-actions items-center justify-center pt-[1.5rem] flex-col sm:flex-row gap-y-3 flex xl:hidden"
+    >
+      <app-button
+        routerLink="/explore"
+        [stroked]="true"
+        [label]="'checkout.continue-shopping' | translate"
+        panelclass="max-w-100  w-[250px] flex-auto mx-3 !rounded-full lh-normal !py-[.65rem]"
+      ></app-button>
+      <!--  -->
+
+      <app-button
+        routerLink="../shipping-payment"
+        [label]="'checkout.check-out' | translate"
+        panelclass="max-w-100 w-[250px] flex-auto mx-3 !rounded-full lh-normal !py-[.65rem] uppercase"
+      ></app-button>
+    </div>
+    <!-- end:: cart actions -->
+  </div>
 </section>
-
-
-
-
-
 
 <!-- if the cart is empaty  -->
 <ng-template #isEmpty>
-    <is-empty class="mr-[8rem] block"></is-empty>
+  <is-empty class="2xl:ltr:mr-[8rem] 2xl:rtl:ml-[8rem] block"></is-empty>
 </ng-template>

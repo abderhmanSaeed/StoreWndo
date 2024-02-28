@@ -15,18 +15,19 @@ import { HResponse } from 'src/app/shared/models/http-response/http-response';
 export class AddToFavComponent implements OnInit, OnDestroy {
 
 
-  // inputs props 
+  // inputs props
   @Input() panelClass: any;
   @Input() panelStyle: object = {};
   @Input() isFavorite: boolean | undefined = true;
   @Input() wishListCount: number | undefined = 0;
   @Input() productId: string | undefined = undefined;
+  @Input() iconClass?: string;
 
 
-  // outputs props 
+  // outputs props
   @Output() onProductWishChange: EventEmitter<boolean> = new EventEmitter();
   @Output() onProductWishCountChange: EventEmitter<number> = new EventEmitter();
-  
+
   // props
   subscription: Subscription = new Subscription();
 
@@ -92,8 +93,3 @@ export class AddToFavComponent implements OnInit, OnDestroy {
   }
 
 }
-
-
-
-
-

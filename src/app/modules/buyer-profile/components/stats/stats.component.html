@@ -1,42 +1,60 @@
 <section class="stats">
-    <div class="row">
-        <ng-container *ngFor="let item of stats">
-            <div class="col-lg-4">
-                <div class="col-box">
-                    <mat-card class="!flex justify-between main-rounded--force"
+  <div class="grid 2xl:grid-cols-12 gap-y-3 2xl:gap-y-0 2xl:gap-x-4">
+    <ng-container *ngFor="let item of stats">
+      <div class="2xl:col-span-4">
+        <div class="col-box">
+          <mat-card
+            class="!flex justify-between main-rounded--force !p-2 2xl:!p-4"
+            [style.color]="item?.color"
+          >
+            <div class="start flex justify-between flex-col">
+              <span class="fw-500 flex-grow-1">
+                {{ item?.name | translate }}
+              </span>
+
+              <div class="users flex items-center pl-[12px]">
+                <ng-container
+                  *ngFor="let user of randomUsers | slice : 0 : item?.count"
+                >
+                  <img
+                    class="img-fluid fit-img rounded-full w-[25px] h-[25px] ml-[-12px]"
+                    [src]="user"
+                    alt="User Img"
+                  />
+                </ng-container>
+                <button
+                  type="button"
+                  matRipple
+                  *ngIf="item?.count"
+                  (click)="onStatsClick(item?.type)"
+                  [matRippleColor]="mainRippleColor"
+                  class="btn p-0 bg-white rounded-full w-[25px] h-[25px] shadow flex items-center justify-center ml-[-12px]"
+                >
+                  <fa-icon
                     [style.color]="item?.color"
-                    >
-                        <div class="start flex justify-between flex-col">
-
-                            <span class="fw-500 flex-grow-1">
-                                {{ item?.name | translate }}
-                            </span>
-
-                            <div class="users flex items-center pl-[12px]">
-                                <ng-container *ngFor="let user of randomUsers | slice: 0 : item?.count">
-                                    <img class="img-fluid fit-img rounded-full w-[25px] h-[25px] ml-[-12px]" [src]="user" alt="User Img">
-                                </ng-container>
-                                <button 
-                                    matRipple 
-                                    *ngIf="item?.count"
-                                    (click)="onStatsClick(item?.type)"
-                                    [matRippleColor]="mainRippleColor"
-                                    class="btn p-0 bg-white rounded-full w-[25px] h-[25px] shadow flex items-center justify-center ml-[-12px]">
-                                    <fa-icon [style.color]="item?.color" class="d-flex text-[.85rem]" [icon]="faEllipsis"></fa-icon>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="end relative">
-                            <div class="icon">
-                                <img width="70" [src]="item?.iconPath" class="img-fluid" alt="Icon">
-                            </div>
-                            <span class="absolute top-0 ltr:right-0 rtl:left-0 fw-500">
-                                {{ item?.count }}
-                            </span>
-                        </div>
-                    </mat-card>
-                </div>
+                    class="d-flex text-[.85rem]"
+                    [icon]="faEllipsis"
+                  ></fa-icon>
+                  <span class="sr-only">count</span>
+                </button>
+              </div>
             </div>
-        </ng-container>
-    </div>
+            <div class="end relative">
+              <div class="icon">
+                <img
+                  width="70"
+                  [src]="item?.iconPath"
+                  class="img-fluid"
+                  alt="Icon"
+                />
+              </div>
+              <span class="absolute top-0 ltr:right-0 rtl:left-0 fw-500">
+                {{ item?.count }}
+              </span>
+            </div>
+          </mat-card>
+        </div>
+      </div>
+    </ng-container>
+  </div>
 </section>

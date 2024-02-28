@@ -26,17 +26,16 @@ import { BuyerProfile } from 'src/app/shared/models/buyer-profile/buyer-profile'
 })
 export class UserMenuComponent implements OnInit, OnDestroy {
 
-  // Inputs 
+  // Inputs
   @Input() set buyerProfile(data: BuyerProfile | null) {
     this.ByerData = data;
     console.log(this.ByerData, 'this.ByerData');
-    
   }
   @Input() lang: Languages = Languages.AR;
 
 
 
-  // props 
+  // props
   LanguagesEnum = Languages;
   authComponents = AuthComponents;
   ByerData: BuyerProfile | null = {};
@@ -77,7 +76,7 @@ export class UserMenuComponent implements OnInit, OnDestroy {
     private _ConfirmationService: ConfirmationService,
   ) { }
 
-   
+
 
   ngOnInit(): void {
   }
@@ -115,6 +114,7 @@ export class UserMenuComponent implements OnInit, OnDestroy {
 
 
   openAuthDialog(authComponent: AuthComponents): void {
+
     this._MatDialog.open(AuthComponent, {
       width: '550px',
       panelClass: 'auth-dialog',
@@ -129,6 +129,4 @@ export class UserMenuComponent implements OnInit, OnDestroy {
   onImgError(event: any){
     event.target.src = 'assets/media/users/user-placeholder.png'
   }
-
-
 }

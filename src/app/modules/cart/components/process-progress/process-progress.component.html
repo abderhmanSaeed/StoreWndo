@@ -1,86 +1,123 @@
 <div class="row justify-center">
-    <div class="col-lg-8 col-xxl-7">
+  <div class="col-lg-8 col-xxl-7">
+    <div class="progress-wrapper relative flex justify-center items-center">
+      <!-- progressbar -->
+      <ngb-progressbar
+        class="w-100"
+        height="3px"
+        type="dark"
+        [value]="progressbarValue"
+      ></ngb-progressbar>
 
-        <div class="progress-wrapper relative flex justify-center items-center">
-            <!-- progressbar -->
-            <ngb-progressbar
-                class="w-100"
-                height="3px"
-                type="dark"
-                [value]="progressbarValue"
-            ></ngb-progressbar>
-           
-            <!-- progress circles -->
-            <div 
-                class="progress-circles flex justify-between absolute right-0 left-0"
-            >
-                <div class="progress-circles__circle-wrapper flex justify-center items-center progress-circles__circle-wrapper--active"
-                    [ngClass]="{
-                        'progress-circles__circle-wrapper--completed' : progressbarValue >= 50
-                    }"
-                >
-                    <span class="circle w-[20px] h-[20px] rounded-full border-2 border-[#9ba2b7] flex justify-center items-center"></span>
-                </div>
-                <div 
-                    class="progress-circles__circle-wrapper flex justify-center items-center"
-                    [ngClass]="{
-                        'progress-circles__circle-wrapper--active' : progressbarValue >= 50,
-                        'progress-circles__circle-wrapper--completed' : progressbarValue >= 99
-                    }"
-                >
-                    <span class="circle w-[20px] h-[20px] rounded-full border-2 border-[#9ba2b7] flex justify-center items-center"></span>
-                </div>
-                <div 
-                    class="progress-circles__circle-wrapper flex justify-center items-center"
-                    [ngClass]="{
-                        'progress-circles__circle-wrapper--active' : progressbarValue >= 99,
-                        'progress-circles__circle-wrapper--completed' : progressbarValue >= 100
-                    }"
-                >
-                    <span class="circle w-[20px] h-[20px] rounded-full border-2 border-[#9ba2b7] flex justify-center items-center"></span>
-                </div>
-            </div>
+      <!-- progress circles -->
+      <div
+        class="progress-circles flex justify-between absolute right-0 left-0"
+      >
+        <div
+          class="progress-circles__circle-wrapper flex justify-center items-center progress-circles__circle-wrapper--active"
+          [ngClass]="{
+            'progress-circles__circle-wrapper--completed':
+              progressbarValue >= 50
+          }"
+        >
+          <span
+            class="circle w-[20px] h-[20px] rounded-full border-2 border-[#9ba2b7] flex justify-center items-center"
+          ></span>
         </div>
-
-        <!-- steps -->
-        <div class="steps flex justify-between mt-[30px]">
-
-            <mat-card
-                class="steps__step steps__step--active shadow-sm d-flex items-center px-4 min-w-[230px] py-[.2rem] justify-center ltr:translate-x-[-50%] rtl:translate-x-[50%]"
-            >
-                <div class="steps__step-icon">
-                    <img class="ltr:me-2 rtl:me-2 active-icon" height="21" src="assets/media/modules/cart/icons/checkout.svg" alt="Icon">
-                </div>
-                <span class="text-[.9rem] fw-500">{{ 'checkout.check-out' | translate }}</span>
-            </mat-card>
-
-            <mat-card 
-                class="steps__step d-flex items-center shadow-sm px-4 min-w-[230px] py-[.2rem] justify-center"
-                [ngClass]="{
-                    'steps__step--active' : progressbarValue >= 50
-                }"
-            >
-                <div class="steps__step-icon">
-                    <img class="ltr:me-2 rtl:me-2" height="21" src="assets/media/modules/cart/icons/shipping.svg" alt="Icon">
-                    <img class="ltr:me-2 rtl:me-2 active-icon" height="21" src="assets/media/modules/cart/icons/shipping-active.svg" alt="Icon">
-                </div>
-                <span class="text-[.9rem] fw-500">{{ 'checkout.shipping-payment' | translate }}</span>
-            </mat-card>
-
-            <mat-card 
-                class="steps__step d-flex items-center shadow-sm px-4 min-w-[230px] py-[.2rem] justify-center ltr:translate-x-[50%] rtl:translate-x-[-50%]"
-                [ngClass]="{
-                    'steps__step--active' : progressbarValue > 50
-                }"
-            >
-                <div class="steps__step-icon">
-                    <img class="ltr:me-2 rtl:me-2" height="21" src="assets/media/modules/cart/icons/confirmation.svg" alt="Icon">
-                    <img class="ltr:me-2 rtl:me-2 active-icon" height="21" src="assets/media/modules/cart/icons/confirmation-active.svg" alt="Icon">
-                </div>
-                <span class="text-[.9rem] fw-500">{{ 'checkout.confirmation' | translate }}</span>
-            </mat-card>
-
+        <div
+          class="progress-circles__circle-wrapper flex justify-center items-center"
+          [ngClass]="{
+            'progress-circles__circle-wrapper--active': progressbarValue >= 50,
+            'progress-circles__circle-wrapper--completed':
+              progressbarValue >= 99
+          }"
+        >
+          <span
+            class="circle w-[20px] h-[20px] rounded-full border-2 border-[#9ba2b7] flex justify-center items-center"
+          ></span>
         </div>
-        
+        <div
+          class="progress-circles__circle-wrapper flex justify-center items-center"
+          [ngClass]="{
+            'progress-circles__circle-wrapper--active': progressbarValue >= 99,
+            'progress-circles__circle-wrapper--completed':
+              progressbarValue >= 100
+          }"
+        >
+          <span
+            class="circle w-[20px] h-[20px] rounded-full border-2 border-[#9ba2b7] flex justify-center items-center"
+          ></span>
+        </div>
+      </div>
     </div>
+
+    <!-- steps -->
+    <div class="steps flex justify-between mt-[30px]">
+      <mat-card
+        class="steps__step bg-transparent 2xl:!bg-white steps__step--active 2xl:!shadow-sm !flex items-center 2xl:!px-4 px-0 2xl:min-w-[230px] py-[.2rem] justify-center 2xl:ltr:translate-x-[-50%] 2xl:rtl:translate-x-[50%]"
+      >
+        <div class="steps__step-icon hidden 2xl:inline-flex">
+          <img
+            class="ltr:me-2 rtl:me-2 active-icon"
+            height="21"
+            src="assets/media/modules/cart/icons/checkout.svg"
+            alt="Icon"
+          />
+        </div>
+        <span class="2xl:text-[.9rem] text-xs lg:text-[0.9rem]  fw-500">{{
+          "checkout.check-out" | translate
+        }}</span>
+      </mat-card>
+
+      <mat-card
+        class="steps__step bg-transparent 2xl:!bg-white !flex items-center 2xl:!shadow-sm 2xl:!px-4 px-0 2xl:min-w-[230px] py-[.2rem] justify-center !bg-transparent 2xl:!bg-white"
+        [ngClass]="{
+          'steps__step--active': progressbarValue >= 50
+        }"
+      >
+        <div class="steps__step-icon hidden 2xl:inline-flex">
+          <img
+            class="ltr:me-2 rtl:me-2"
+            height="21"
+            src="assets/media/modules/cart/icons/shipping.svg"
+            alt="Icon"
+          />
+          <img
+            class="ltr:me-2 rtl:me-2 active-icon"
+            height="21"
+            src="assets/media/modules/cart/icons/shipping-active.svg"
+            alt="Icon"
+          />
+        </div>
+        <span class="2xl:text-[.9rem] text-xs lg:text-[0.9rem]  fw-500">{{
+          "checkout.shipping-payment" | translate
+        }}</span>
+      </mat-card>
+
+      <mat-card
+        class="steps__step bg-transparent 2xl:!bg-white !flex items-center 2xl:!shadow-sm 2xl:!px-4 px-0 2xl:min-w-[230px] py-[.2rem] justify-center 2xl:ltr:translate-x-[50%] 2xl:rtl:translate-x-[-50%]"
+        [ngClass]="{
+          'steps__step--active': progressbarValue > 50
+        }"
+      >
+        <div class="steps__step-icon hidden 2xl:inline-flex">
+          <img
+            class="ltr:me-2 rtl:me-2"
+            height="21"
+            src="assets/media/modules/cart/icons/confirmation.svg"
+            alt="Icon"
+          />
+          <img
+            class="ltr:me-2 rtl:me-2 active-icon"
+            height="21"
+            src="assets/media/modules/cart/icons/confirmation-active.svg"
+            alt="Icon"
+          />
+        </div>
+        <span class="2xl:text-[.9rem] text-xs lg:text-[0.9rem]  fw-500">{{
+          "checkout.confirmation" | translate
+        }}</span>
+      </mat-card>
+    </div>
+  </div>
 </div>

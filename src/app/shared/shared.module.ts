@@ -39,6 +39,7 @@ import { environment } from 'src/environments/environment';
 import { AukPlayIconComponent } from './components/auk-play-icon/auk-play-icon.component';
 import { ResponsiveUCComponent } from './components/responsive-uc/responsive-uc.component';
 import { NgPipesModule } from 'ngx-pipes';
+import { MobileSidebarComponent } from '../layout/components/responsive/mobile-sidebar/mobile-sidebar.component';
 
 
 
@@ -90,7 +91,7 @@ import { NgPipesModule } from 'ngx-pipes';
       },
       isolate: true,
     }),
-  ], 
+  ],
   exports: [
     NgbModule,
     PipesModule,

@@ -16,8 +16,8 @@
                                 <ng-container *ngFor="let user of randomUsers | slice: 0 : item?.count">
                                     <img class="img-fluid fit-img rounded-full w-[25px] h-[25px] ml-[-12px]" [src]="user" alt="User Img">
                                 </ng-container>
-                                <button 
-                                    matRipple 
+                                <button
+                                    matRipple
                                     *ngIf="item?.count"
                                     (click)="onStatsClick(item?.type)"
                                     [matRippleColor]="mainRippleColor"

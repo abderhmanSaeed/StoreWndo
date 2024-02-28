@@ -1,74 +1,80 @@
 // :host {
-    ::ng-deep {
+::ng-deep {
+  .grid-card-preview {
+    // Structure Block
+    // width: 750px;
+    // margin: auto;
 
-        .grid-card-preview {
-            // Structure Block 
-            width: 750px;
-            margin: auto;
+    // Modifire Block
+    // transition: all .3s ease-in-out;
 
-            // Modifire Block 
-            // transition: all .3s ease-in-out;
+    &.show-sizes-colors-col {
+      // Structure Block
+      width: 85%;
+      // max-width: 450px;
+      // margin-left: 0;
 
-            &.show-sizes-colors-col {
+      .info-col {
+        // Structure Block
+        flex: 0 0 400px;
+      }
 
-                // Structure Block 
-                width: 85%;
-                // max-width: 450px;
-                // margin-left: 0;
+      .video-col {
+        // Structure Block
+        flex: 0 0 fit-content;
+        max-width: 350px;
+      }
 
-                .info-col {
-
-                    // Structure Block 
-                    flex: 0 0 400px;
-                }
-
-                .video-col {
-                    // Structure Block 
-                    flex: 0 0 fit-content;
-                    max-width: 350px;
-                }
-
-                
-                .product-features-col {
-                    // Structure Block 
-                    max-width: 550px;
-                }
-            }
-        }
-
-        .grid-card-preview__content {
-
-            .mat-dialog-content {
-        
-                // Modifire Block 
-                overflow: visible;
-        
-            }
-        }
-        
-        
-        .cdk-overlay-dark-backdrop {
-            // Structure Block 
-            background: rgba(0, 0, 0, 0.91);
-        }
-        
-        .mat-dialog-container {
-            // Structure Block 
-            background: transparent !important;
-            padding: 5rem 0px 1rem 0;
-        
-            // Positioning Block 
-            position: relative;
-        
-            // Modifire Block 
-            overflow: visible;
-        
-        }
-        
-        .mat-dialog-actions {
-            // Structure Block 
-            margin-bottom: 0;
-        }
-                
+      .product-features-col {
+        // Structure Block
+        max-width: 550px;
+      }
     }
+  }
+
+
+
+  .grid-card-preview__content {
+    .mat-dialog-content {
+      // Modifire Block
+      overflow: visible;
+    }
+  }
+
+  .cdk-overlay-dark-backdrop {
+    // Structure Block
+    background: rgba(0, 0, 0, 0.91);
+  }
+  .cdk-global-overlay-wrapper {
+    @media screen and (width <= theme("screens.xl")) {
+      justify-content: center !important;
+    }
+  }
+
+  .mat-dialog-container {
+    // Structure Block
+    background: transparent !important;
+    padding: 5rem 0px 1rem 0;
+
+    @media screen and (width <= theme("screens.xl")) {
+      @apply p-2.5 rounded-lg;
+      background-color: #fff !important;
+      padding: 0;
+      scroll-snap-type: y mandatory;
+      overflow-y: auto;
+      height: 95vh;
+    }
+
+    // Positioning Block
+    position: relative;
+
+    // Modifire Block
+    overflow: visible;
+  }
+
+  .mat-dialog-actions {
+    // Structure Block
+    margin-bottom: 0;
+  }
+}
 // }

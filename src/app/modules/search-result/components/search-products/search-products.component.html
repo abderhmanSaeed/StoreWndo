@@ -1,9 +1,9 @@
 <section>
-    
+
     <header class="mb-2 flex justify-between items-center">
 
         <div class="start">
-           
+
             <ng-container *ngIf="!breadcrumb?.length">
                 <h4 class="text-blue fw-600">{{ 'shared.products' | translate }}</h4>
             </ng-container>
@@ -33,10 +33,10 @@
     </header>
 
 
- 
+
 
     <ng-container *ngIf="products.length else noData">
-        <div class="product-list grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4">
+        <div class="product-list grid gap-4 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-3 2xl:grid-cols-4">
             <ng-container *ngFor="let item of products | slice: 0: 8">
                 <div>
                     <auk-card-c [data]="item"></auk-card-c>
@@ -44,7 +44,7 @@
             </ng-container>
         </div>
     </ng-container>
-    
+
 
 
     <!-- begin:: paginator  -->

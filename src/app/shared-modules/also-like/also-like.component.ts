@@ -30,22 +30,26 @@ export class AlsoLikeComponent implements OnInit {
   ngOnInit(): void {
     this.setSwiperConfig();
     console.log(this.items, 'items');
-    
+
   }
 
 
   setSwiperConfig(): void {
     this.swiperConfig = {
-      virtual: true,  
-      slidesPerView: 6,
+      virtual: true,
+      // slidesPerView: 6,
       lazy: true,
       spaceBetween: 16,
       pagination: {
         clickable: true,
       },
       breakpoints: {
+        0: {
+          pagination: false,
+        },
         768: {
-          slidesPerView: 2
+          slidesPerView: 2,
+          pagination: false,
         },
         992: {
           slidesPerView: 3

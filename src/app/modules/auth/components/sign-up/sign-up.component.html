@@ -1,6 +1,6 @@
 <section class="auth__sign-up">
     <div class="auth__content main-rounded gradient-border">
-        <div class="position-relative z-[1] p-4 bg-[#353434e3]">
+        <div class="position-relative z-[1] p-2 2xl:p-4 bg-[#353434e3]">
 
             <!-- begin:: closer  -->
             <div class="dialog__closer absolute top-[13px] right-[13px]">
@@ -21,9 +21,9 @@
             </div>
             <!-- end:: header  -->
 
-            
+
             <div mat-dialog-content class="mx-0">
-                
+
 
                 <!-- begin:: login form  -->
                 <form [formGroup]="form" (ngSubmit)="submit()" class="auth__form">
@@ -121,7 +121,7 @@
 
         </div>
     </div>
-        
+
     <div mat-dialog-actions>
         <div class="auth-footer d-flex justify-center items-center w-100 pt-4">
             <span class="me-1 text-[.9rem] lh-normal">
@@ -133,5 +133,5 @@
                 {{ 'auth.log-in-now' | translate }}
             </button>
         </div>
-    </div> 
-</section>  
+    </div>
+</section>

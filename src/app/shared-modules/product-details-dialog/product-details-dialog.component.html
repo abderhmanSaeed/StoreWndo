@@ -1,45 +1,76 @@
-<section class="grid-card-preview text-[#97979d]" [class.show-sizes-colors-col]="showSizesColors">
-    <div class="grid-card-preview__content main-rounded gradient-border">
-        <div class="position-relative z-[1]">
-       
-            <!-- begin:: closer  -->
-            <div class="dialog__closer position-relative z-[2] flex justify-end mb-4">
-                <button mat-dialog-close color="bg-gray-700" class="bg-gray-700 text-white shadow-xl !w-[32px] !h-[32px] d-flex items-center justify-center lh-normal" mat-mini-fab aria-label="Example icon button with a home icon">
-                    <mat-icon>close</mat-icon>
-                </button>
+<section
+  class="grid-card-preview w-full 2xl:w-[750px] 2xl:m-auto text-[#97979d]"
+  [class.show-sizes-colors-col]="showSizesColors"
+>
+  <div class="grid-card-preview__content main-rounded gradient-border">
+    <div class="relative z-[1]">
+      <!-- begin:: closer  -->
+      <div class="dialog__closer relative z-[2] flex justify-start 2xl:justify-end m-2 2xl:mb-4">
+        <button
+          mat-dialog-close
+          color="bg-gray-700"
+          class="bg-gray-700 text-white shadow-xl !w-[32px] !h-[32px] d-flex items-center justify-center lh-normal"
+          mat-mini-fab
+          aria-label="Example icon button with a home icon"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+      <!-- end:: closer  -->
+
+      <div mat-dialog-content class="mx-0">
+        <div class="row justify-center">
+          <div class="col-lg main-rounded video-col h-auto flex items-center">
+            <div class="video-wrapper relative w-100 h-1000">
+              <wndo-loader
+                bdColor="transparent"
+                *ngIf="isVideoLoading"
+                class="block h-100 w-100 main-rounded--force absolute z-[2]"
+              ></wndo-loader>
+              <vg-player
+                [hidden]="isVideoLoading"
+                class="h-auto bg-transparent"
+                *ngIf="productDetails?.videos[0].urlPreview"
+                (onPlayerReady)="onPlayerReady($event)"
+              >
+                <video
+                  class="landscape:max-h-[77vh] landscape:lg:max-h-[440px] max-h-[440px] 2xl:max-h-[560px] main-rounded--force object-cover"
+                  width="100%"
+                  [vgMedia]="$any(media)"
+                  [vgMaster]="true"
+                  preload="auto"
+                  #media
+                  controls
+                >
+                  <source
+                    [src]="productDetails?.videos[0].urlPreview"
+                    type="video/mp4"
+                  />
+                </video>
+              </vg-player>
             </div>
-            <!-- end:: closer  -->
+          </div>
 
-            <div mat-dialog-content class="mx-0">
-                
+          <div class="col-lg info-col pb-2 2xl:pb-0">
+            <product-details-dialog-main-info
+              (onAddToCart)="onAddToCart($event)"
+              class="d-block h-100"
+              [data]="productDetails"
+            ></product-details-dialog-main-info>
+          </div>
 
-                <div class="row justify-center">
-                    <div class="col-lg main-rounded video-col h-auto flex items-center">
-                        <div class="video-wrapper relative w-100 h-1000">
-                            <wndo-loader bdColor="transparent" *ngIf="isVideoLoading" class="block h-100 w-100 main-rounded--force absolute z-[2]"></wndo-loader>
-                            <vg-player [hidden]="isVideoLoading" class="h-auto bg-transparent" *ngIf="productDetails?.videos[0].urlPreview" (onPlayerReady)="onPlayerReady($event)">
-                                <video class="max-h-[560px] main-rounded--force object-cover" width="100%" [vgMedia]="$any(media)" [vgMaster]="true" preload="auto" #media controls>
-                                    <source [src]="productDetails?.videos[0].urlPreview" type="video/mp4">
-                                </video>
-                            </vg-player>
-                        </div>
-                    </div>
-
-                    <div class="col-lg info-col">
-                        <product-details-dialog-main-info (onAddToCart)="onAddToCart($event)" class="d-block h-100" [data]="productDetails"></product-details-dialog-main-info>
-                    </div>
-
-                    <div class="col flex-grow-1 product-features-col" *ngIf="showSizesColors">
-                        <app-product-features
-                            [isInPopup]="true"
-                            class="flex h-100"
-                            (onSave)="onProductFeaturesSave($event)"
-                        ></app-product-features>
-                    </div>
-                </div>
-            
-
-            </div>
+          <div
+            class="col flex-grow-1 product-features-col"
+            *ngIf="showSizesColors"
+          >
+            <app-product-features
+              [isInPopup]="true"
+              class="flex h-100"
+              (onSave)="onProductFeaturesSave($event)"
+            ></app-product-features>
+          </div>
         </div>
+      </div>
     </div>
-</section> 
+  </div>
+</section>

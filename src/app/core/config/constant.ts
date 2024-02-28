@@ -1,7 +1,4 @@
-
 export class Constant {
-
-    
   // local storage keys
   public static order = 'order';
   public static sentTo = 'sentTo';
@@ -15,13 +12,13 @@ export class Constant {
   public static showHybridPayment = 'showHybridPayment';
   public static isNeededMultiplePayment = 'isNeededMultiplePayment';
 
-
-
-
   // regex
   public static complexPassword = RegExp(
     '^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})'
   );
 
-    
+  //Breakpoint
+  public static mobileWidth = 768; //   breakpoint  mobile devices
+  public static tabletWidth = 990; //   breakpoint  tablet devices
+  public static laptopWidth = 1199;// breakpoint  laptop devices
 }

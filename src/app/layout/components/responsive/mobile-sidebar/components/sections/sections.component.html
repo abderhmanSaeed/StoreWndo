@@ -1,0 +1,126 @@
+<mat-expansion-panel>
+  <mat-expansion-panel-header
+    class="aside__section !rounded-[10px] !bg-gray-300 !py-6 !px-5 !text-gray-900"
+  >
+    <mat-panel-title class="text-sm">
+      <span
+        class="svg-icon"
+        [ngStyle]="bindSvgIcon('assets/media/svg/sections.svg')"
+      >
+      </span>
+      {{ "sidebar.sections" | translate }}
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+  <!-- begin:: nav 2  -->
+  <ng-template
+    #infiniteSide
+    let-list="list"
+    let-first="first"
+    let-parentId="parentId"
+  >
+    <mat-accordion class="custom-scroll" [class.first]="first">
+      <nav class="aside__nav aside__nav--2">
+        <ul
+          [class.aside__nav__sub]="!first"
+          [ngClass]="{ 'space-y-4 px-2 mt-3': first }"
+        >
+          <li *ngFor="let item of list">
+            <ng-container *ngIf="!item?.categories?.length">
+              <a
+                [routerLink]="['/explore']"
+                routerLinkActive="active"
+                [queryParams]="{
+                  section: parentId,
+                  category: item?.id
+                }"
+                [ngClass]="{
+                  'border-gray-400 bg-gray-100/20 py-2 px-3': first
+                }"
+                class="nav__item d-flex align-items-center"
+                (click)="closeSidebar()"
+              >
+                <span class="svg-icon">
+                  <img
+                    class="img-fluid h-100"
+                    [src]="first ? item?.icon1 : item?.imagePath2"
+                    alt="Nav Icon"
+                  />
+                  <img
+                    class="img-fluid h-100 svg-icon__active-img"
+                    [src]="first ? item?.icon2 : item?.imagePath3"
+                    alt="Nav Icon"
+                  />
+                </span>
+                <small
+                  class="animate__animated animate__fadeIn ms-3 animate__animated animate__fadeIn text-truncate text-sm mb-0"
+                >
+                  {{ item?.name }}
+                </small>
+              </a>
+            </ng-container>
+
+            <!-- begin:: submenu  -->
+            <ng-container *ngIf="item?.categories?.length">
+              <mat-expansion-panel
+                class="px-0"
+                [expanded]="
+                  item?.id == selectedSectionId &&
+                  routerService.hasRoute('explore')
+                "
+              >
+                <mat-expansion-panel-header
+                  [routerLink]="['/explore']"
+                  routerLinkActive="active"
+                  [queryParams]="{ section: item?.id }"
+                  class="nav__item"
+                  [ngClass]="{
+                    'border border-gray-400 bg-gray-100/30 !py-[.9rem] px-3': first
+                  }"
+                  mat-button
+
+                >
+                  <mat-panel-title class="d-flex align-items-center px-0">
+                    <span class="svg-icon">
+                      <img
+                        class="img-fluid h-100"
+                        [src]="item?.icon1"
+                        alt="Nav Icon"
+                      />
+                      <img
+                        class="img-fluid h-100 svg-icon__active-img"
+                        [src]="item?.icon2"
+                        alt="Nav Icon"
+                      />
+                    </span>
+                    <small
+                      class="animate__animated animate__fadeIn ms-3 animate__animated animate__fadeIn text-truncate text-sm mb-0"
+                    >
+                      {{ item?.name }}
+                    </small>
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+
+                <ng-container
+                  *ngTemplateOutlet="
+                    infiniteSide;
+                    context: {
+                      list: item?.categories,
+                      first: false,
+                      parentId: item?.id
+                    }
+                  "
+                ></ng-container>
+              </mat-expansion-panel>
+            </ng-container>
+            <!-- end:: submenu  -->
+          </li>
+        </ul>
+      </nav>
+    </mat-accordion>
+  </ng-template>
+
+  <ng-container
+    *ngTemplateOutlet="infiniteSide; context: { list: sections, first: true }"
+  ></ng-container>
+  <!-- end:: nav 2  -->
+</mat-expansion-panel>

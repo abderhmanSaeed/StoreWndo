@@ -1,0 +1,160 @@
+<aside
+  class="animate__animated animate__fadeIn flex-col justify-between flex pb-4 mobile-sidebar"
+>
+  <!-- begin user   -->
+  <div
+    *ngIf="authService.isAuthenticated"
+    class="px-3 mb-3 aside__section-wrap"
+  >
+    <app-user-section [buyerProfile]="profileData"></app-user-section>
+  </div>
+  <!-- end user   -->
+
+  <!-- begin section btn  -->
+  <div class="px-3 mb-3 aside__section-wrap">
+    <app-sections (closeDrawer)="closeSidebar()"></app-sections>
+  </div>
+  <!-- end section btn  -->
+
+  <!-- begin Offers btn  -->
+  <div class="px-3 mb-3 aside__section-wrap">
+    <button
+    routerLink="/explore"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+    [queryParams]="{ offers: 'true' }"
+    type="button"
+    class="icon rounded-[10px] justify-between bg-gray-300 !py-6 !px-5 text-gray-900 flex items-center"
+    ngbDropdownItem
+    (click)="closeSidebar()"
+  >
+    <div class="flex items-center">
+      <span
+        class="svg-icon me-2"
+        [ngStyle]="bindSvgIcon('assets/media/svg/discount.svg')"
+      >
+      </span>
+      <span> {{ "shared.offers" | translate }} </span>
+    </div>
+    <fa-icon class="rtl:rotate-180" [icon]="faChevronRight"></fa-icon>
+  </button>
+
+  </div>
+  <!-- end Offers btn  -->
+
+  <!-- begin flash sale btn  -->
+  <div class="px-3 mb-3 aside__section-wrap">
+    <button
+      type="button"
+      routerLinkActive="active"
+      routerLink="/flash-sale"
+      [routerLinkActiveOptions]="{ exact: true }"
+      class="icon rounded-[10px] justify-between bg-gray-300 !py-6 !px-5 text-gray-900 flex items-center"
+      ngbDropdownItem
+      (click)="closeSidebar()"
+    >
+      <div class="flex items-center">
+        <span
+          class="svg-icon me-2"
+          [ngStyle]="bindSvgIcon('assets/media/svg/flash-sale.svg')"
+        >
+        </span>
+
+        <span> {{ "shared.flash-sale" | translate }} </span>
+      </div>
+
+      <fa-icon class="rtl:rotate-180" [icon]="faChevronRight"></fa-icon>
+    </button>
+  </div>
+  <!-- end flash sale btn  -->
+
+  <!-- begin help btn  -->
+  <div class="px-3 mb-3 aside__section-wrap">
+    <app-help-section (closeDrawer)="closeSidebar()"></app-help-section>
+  </div>
+  <!-- end help btn  -->
+
+  <!-- begin settings btn  -->
+  <div class="px-3 mb-3 aside__section-wrap">
+    <button
+      type="button"
+      routerLinkActive="active"
+      routerLink="/buyer-profile/setting"
+      [routerLinkActiveOptions]="{ exact: true }"
+      class="icon rounded-[10px] justify-between bg-gray-300 !py-6 !px-5 text-gray-900 flex items-center"
+      ngbDropdownItem
+      (click)="closeSidebar()"
+    >
+      <div class="flex items-center">
+        <span
+          class="svg-icon me-2"
+          [ngStyle]="bindSvgIcon('assets/media/profile/icons/menu.svg')"
+        >
+        </span>
+
+        <span> {{ "sidebar.settings" | translate }} </span>
+      </div>
+
+      <fa-icon class="rtl:rotate-180" [icon]="faChevronRight"></fa-icon>
+    </button>
+  </div>
+  <!-- end settings btn  -->
+
+  <!-- begin change-language    -->
+  <div class="mx-3 mb-4 aside__section-wrap pt-4">
+    <div class="space-y-3">
+      <span class="icon flex items-center">
+        <span
+          class="svg-icon ltr:me-3 rtl:me-3 bg-blueGray-100"
+          [ngStyle]="bindSvgIcon('assets/media/svg/lang.svg')"
+        >
+        </span>
+        <span class="text-blueGray-100 text-md fw-500">{{
+          "sidebar.language" | translate
+        }}</span>
+      </span>
+
+      <auk-slide-toggle
+        class="block"
+        [value]="true"
+        panelClass="!p-0 !py-0 border-0 justify-start"
+        (onChange)="
+          onToggleLangChange(lang === 'en' ? 'ar' : 'en'); closeSidebar()
+        "
+        [label]="
+          lang === 'en'
+            ? ('header.english' | translate)
+            : ('header.arabic' | translate)
+        "
+      >
+        ></auk-slide-toggle
+      >
+    </div>
+  </div>
+  <!-- end change-language    -->
+
+  <!-- begin logout btn  -->
+  <div
+    *ngIf="authService.isAuthenticated"
+    class="mx-3 mb-4 aside__section-wrap border-t border-black/10 pt-4"
+  >
+    <button
+      type="button"
+      (click)="openLogoutConfirmationDialog()"
+      class="d-flex items-center text-primary justify-start text-sm px-0 icon"
+      ngbDropdownItem
+    >
+      <span
+        class="svg-icon bg-primary me-2 w-4"
+        [ngStyle]="bindSvgIcon('assets/media/profile/icons/logout.svg')"
+      >
+      </span>
+      <span class="fw-500"> {{ "header.logout" | translate }} </span>
+    </button>
+  </div>
+  <!-- end logout btn  -->
+
+  <!-- begin ad section  -->
+  <sidebar-ad class="px-4 d-block mb-1 mt-14"></sidebar-ad>
+  <!-- end ad section  -->
+</aside>

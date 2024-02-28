@@ -1,13 +1,22 @@
 .form-control {
-    // Structure Block 
+    // Structure Block
     width: 315px;
     font-size: .8rem;
     padding: 0.53rem 1.2rem;
 
     &::placeholder {
-        // Typography Block 
+        // Typography Block
         color: #ADB8D4;
     }
+
+  @media (max-width: 1199px) {
+    // width: 750px;
+    width: 240px;
+  }
+
+  @media (max-width: 1093px) {
+    width: 150px;
+  }
 
 }
 
@@ -19,7 +28,7 @@
     &--focused {
 
         .search__dropdown {
-            // Modifire Block 
+            // Modifire Block
             opacity: 1;
             transform: none;
             visibility: visible;
@@ -30,7 +39,7 @@
 
 
     &__dropdown {
-        // Modifire Block 
+        // Modifire Block
         opacity: 0;
         visibility: hidden;
         transform: translateY(-8px);
@@ -38,7 +47,7 @@
         overflow: auto;
 
 
-        // Structure Block 
+        // Structure Block
         max-height: 357px;
 
         &::-webkit-scrollbar {
@@ -57,14 +66,14 @@
 
     &__result {
 
-    
+
 
 
         &__item {
 
             &:hover {
 
-                // Structure Block 
+                // Structure Block
                 background-color: #fff;
 
             }

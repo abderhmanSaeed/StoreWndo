@@ -1,7 +1,7 @@
-<div class="rating d-flex align-items-center"
+<div class="rating flex items-center {{panelClass}}"
     [ngClass]="{'rating--2': theme == 2}"
 >
-    <fa-icon class="d-flex icon ltr:me-2 rtl:me-2" [icon]="faStar"></fa-icon>
+    <fa-icon class="d-flex icon ltr:me-2 rtl:me-2 {{iconClass}}" [icon]="faStar"></fa-icon>
     <span [class]="textPanelClass">
        <span class="bracket">(</span>{{data | number: '1.0' }}<span class="bracket">)</span>
     </span>

@@ -1,28 +1,26 @@
 html, body { height: 100%; }
-  
+
 html {
 
     // Small devices (landscape phones, less than 768px)
-    @media (max-width: 767.98px) { 
-      // Structure Block              
-      font-size: 87%;
-    }
+    // @media (max-width: 767.98px) {
+    //   // Structure Block
+    //   font-size: 87%;
+    // }
 
 }
-  
+
 body {
 
-  // Typography Block 
+  // Typography Block
   font-family: 'Rubik', sans-serif;
 
   [dir=rtl] & {
     font-family: 'El Messiri', sans-serif;
     .mat-typography,
     &.mat-typography {
-      // Typography Block 
+      // Typography Block
       font-family: 'El Messiri', sans-serif;
     }
   }
 }
-
-

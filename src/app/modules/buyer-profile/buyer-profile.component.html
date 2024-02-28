@@ -1,27 +1,22 @@
-<main class="buyer-profile">
-    <div class="m-2">
-        <div class="row w-100 flex-nowrap">
-            <div class="w-[314px]">
-                <profile-aside class="block sticky top-[70px]"></profile-aside>
-            </div>
-            <div class="col-lg flex flex-col buyer-profile__content">
+<main class="buyer-profile mt-[9rem] 2xl:mt-0">
+  <div class="m-2">
+    <div class="row flex-col 2xl:flex-row w-100 flex-nowrap mx-0 2xl:mx-6">
+      <div class="2xl:w-[314px]">
+        <profile-aside class="block sticky top-[70px]"></profile-aside>
+      </div>
+      <div class="col-lg flex flex-col buyer-profile__content mins-z-index">
+        <!-- begin:: breadcrumb -->
+        <breadcrumb class="d-block my-4"></breadcrumb>
+        <!-- end:: breadcrumb -->
 
-                <!-- begin:: breadcrumb -->
-                <breadcrumb class="d-block my-4"></breadcrumb>
-                <!-- end:: breadcrumb -->
+        <!-- begin:: stats -->
+        <ng-container *ngIf="!routerService.hasRoute('buyer-profile/orders/')">
+          <stats [data]="profileData" class="mb-4 block"></stats>
+        </ng-container>
+        <!-- end:: stats -->
 
-
-                <!-- begin:: stats -->
-                <ng-container
-                    *ngIf="!routerService.hasRoute('buyer-profile/orders/')"
-                >
-                    <stats [data]="profileData" class="mb-4 block"></stats>
-                </ng-container>
-                <!-- end:: stats -->
-
-
-                <router-outlet></router-outlet>
-            </div>
-        </div>
+        <router-outlet></router-outlet>
+      </div>
     </div>
+  </div>
 </main>

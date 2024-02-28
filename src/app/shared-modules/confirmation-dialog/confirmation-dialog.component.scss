@@ -3,34 +3,33 @@
         .confirm__content {
 
             .mat-dialog-content {
-        
-                // Modifire Block 
+
+                // Modifire Block
                 overflow: visible;
-        
+
             }
         }
-        
-        
+
+
         .cdk-overlay-dark-backdrop {
-            // Structure Block 
+            // Structure Block
             background: rgba(0, 0, 0, 0.91);
         }
-        
+
         .mat-dialog-container {
-            // Structure Block 
+          @apply landscape:pt-0 landscape:pb-0 pt-20 pb-4 landscape:lg:pt-20 landscape:lg:pb-4;            // Structure Block
             background: transparent !important;
-            padding: 5rem 0px 1rem 0;
-        
-            // Positioning Block 
+
+            // Positioning Block
             position: relative;
-        
-            // Modifire Block 
+
+            // Modifire Block
             overflow: visible;
-        
+
         }
-        
+
         .mat-dialog-actions {
-            // Structure Block 
+            // Structure Block
             margin-bottom: 0;
         }
     }

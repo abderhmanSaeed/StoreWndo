@@ -1,0 +1,50 @@
+:host {
+  ::ng-deep {
+    .mat-expanded,
+    .mat-expansion-panel-header {
+      // Structure Block
+      height: auto !important;
+      border-radius: 10px;
+
+      .mat-expansion-indicator {
+        // Structure Block
+        display: flex;
+        align-items: center;
+
+        &::after {
+          @apply border-gray-900;
+        }
+      }
+    }
+
+    .mobile-sidebar {
+      .auk-slide__label {
+        color: #000 !important;
+        font-size: 0.875rem;
+      }
+    }
+  }
+}
+
+.icon {
+  .svg-icon {
+    @apply bg-gray-900;
+    // Structure Block
+    width: 25px;
+    height: 20px;
+    max-width: 100%;
+    display: inline-block;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    mask-size: auto 100%;
+    // Modifire Block
+    transition: all 0.3s ease-in-out;
+  }
+
+  &.active {
+    @apply text-primary bg-primary/5;
+    .svg-icon {
+      @apply bg-primary;
+    }
+  }
+}

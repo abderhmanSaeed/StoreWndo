@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { ComponentBase } from 'src/app/shared/helpers/component-base.directive';
 import { BreadcrumbService } from 'src/app/shared/services/breadcrumb/breadcrumb.service';
 import { LocalizationService } from '../../shared/services/localization/localization.service';
+import { ResponsiveService } from 'src/app/shared/services/responsive/responsive.service';
 
 @Component({
   selector: 'app-seller-profile',
@@ -13,15 +14,19 @@ import { LocalizationService } from '../../shared/services/localization/localiza
 })
 export class SellerProfileComponent extends ComponentBase implements OnInit, OnDestroy {
 
-  // props 
+  // props
   sellerProfile: any = {};
   subscription: Subscription = new Subscription();
+
+  subscriptionMobile: Subscription = new Subscription();
+  isMobile: boolean = false;
 
   constructor(
     translateService: TranslateService,
     private _ActivatedRoute: ActivatedRoute,
     LocalizationService: LocalizationService,
     private _BreadcrumbService: BreadcrumbService,
+    private responsiveService: ResponsiveService,
   ) {
     super( LocalizationService, translateService );
    }
@@ -29,6 +34,11 @@ export class SellerProfileComponent extends ComponentBase implements OnInit, OnD
 
   ngOnInit(): void {
     this.getSeller();
+    this.subscriptionMobile = this.responsiveService.isMobile$.subscribe(
+      (isMobile) => {
+        this.isMobile = isMobile;
+      }
+    );
   }
 
 
@@ -54,8 +64,8 @@ export class SellerProfileComponent extends ComponentBase implements OnInit, OnD
 
   getSeller(): void {
     this.subscription.add( this._ActivatedRoute.data.subscribe((data: any) => {
-      //...Do something with your data here...      
-      this.sellerProfile = data?.sellerProfile?.responseData;   
+      //...Do something with your data here...
+      this.sellerProfile = data?.sellerProfile?.responseData;
       this.setBreadcrumb(this.sellerProfile?.name);
     }))
   }

@@ -1,0 +1,298 @@
+<div class="products__item relative">
+  <!-- Seller Section -->
+  <div
+    class="inline-flex items-center bg-black/30 rounded-full ltr:pe-4 rtl:pe-4 absolute top-4 z-10 start-4"
+  >
+    <img
+      [src]="product?.seller?.imagePath"
+      alt="{{ product?.seller?.name }}"
+      width="50"
+      height="50"
+      class="rounded-full"
+    />
+    <div class="rtl:ps-2 ltr:ps-2 rtl:pe-4 ltr:pe-4">
+      <h4 class="mb-0 font-semibold text-xs text-white">
+        {{ product?.seller?.name }}
+      </h4>
+      <span class="flex items-center gap-2">
+        <mat-icon svgIcon="open-box" class="text-white w-3.5"></mat-icon>
+        <span class="text-white text-xs text-bold">{{
+          product?.seller?.numberOfItems === null
+            ? 0
+            : (product?.seller?.numberOfItems | shortNumbers)
+        }}</span>
+      </span>
+    </div>
+
+    <follow
+      [isLabel]="false"
+      panelclass="absolute -right-6 !min-w-[2rem] rtl:-left-6 rtl:right-auto !w-8 !h-8 bg-primary flex items-center justify-center !rounded-full text-white !p-0"
+      [isFollowed]="product?.seller?.isFollowed"
+      [userId]="product?.seller?.id"
+    >
+      <fa-icon
+        follow-content
+        [icon]="faPlus"
+        class="!lh-0 font-bold text-lg"
+      ></fa-icon>
+      <mat-icon
+        unfollow-content
+        class="!lh-0 font-bold text-lg !flex !items-center !justify-center"
+      >
+        person_remove
+      </mat-icon>
+    </follow>
+  </div>
+
+  <!-- video Section -->
+  <div class="video-wrapper">
+    <wndo-loader
+      *ngIf="isVideoLoading"
+      class="block h-100 w-100 border !border-[#fff] absolute z-[2]"
+    >
+    </wndo-loader>
+
+    <div class="">
+      <div
+        class="flex flex-col landscape:flex-row landscape:lg:flex-col items-center justify-center gap-2 absolute top-4 z-20 ltr:right-4 rtl:left-4 rtl:right-auto"
+      >
+        <div class="">
+          <div class="" ngbDropdown display="dynamic" class="d-inline-block">
+            <button
+              mat-stroked-button
+              type="button"
+              class="btn flex items-center justify-center arrow-none px-2 border-0 !p-0 text-2xl"
+              id="moreDetails"
+              ngbDropdownToggle
+            >
+              <div class="icon">
+                <mat-icon class="text-white w-5"> more_vert </mat-icon>
+              </div>
+            </button>
+            <div
+              ngbDropdownMenu
+              aria-labelledby="moreDetails"
+              class="border-0 shadow mt-2 dropdown--arrow p-2 min-w-[200px] landscape:h-[100px] landscape:overflow-y-auto landscape:lg:h-auto landscape:overflow-visible"
+            >
+              <button
+                type="button"
+                mat-raised-button
+                class="dropdown-item !text-start text-xs !text-blueGray-300 !bg-white !rounded-md border border-gray-350 py-1 px-2"
+                ngbDropdownItem
+                (click)="onExpandClick(product?.id)"
+              >
+                <mat-icon>fullscreen</mat-icon>
+                <span> {{ "shared.maximize" | translate }} </span>
+              </button>
+              <button
+                type="button"
+                mat-raised-button
+                class="dropdown-item mb-2 !text-start text-xs !text-blueGray-300 !bg-white !rounded-md border border-gray-350 py-1 px-2"
+                ngbDropdownItem
+              >
+                <mat-icon>person</mat-icon>
+                <span>
+                  {{ product?.followersCount }}
+                  {{ "shared.followers" | translate }}
+                </span>
+              </button>
+
+              <like
+                [productId]="product?.id"
+                [LikesCount]="product?.likes"
+                (onProductLikeChange)="onProductLikeChange.emit($event)"
+                (onProductLikesCountChange)="
+                  onProductLikesCountChange.emit($event)
+                "
+                [isliked]="product?.isLiked"
+                panelClass="!flex !w-full !h-auto dropdown-item !leading-9 justify-start text-xs !text-blueGray-300 !bg-white !rounded-md border !border-gray-350 py-1 px-2"
+                [isDefaultIcon]="false"
+              >
+                <mat-icon
+                  class="{{
+                    product?.isLiked ? 'text-blue-200' : 'text-blueGray-200'
+                  }} !w-4 !h-4 rtl:me-1 ltr:me-1"
+                  svgIcon="like"
+                ></mat-icon>
+                <span
+                  class="{{
+                    product?.isLiked ? 'text-blue-200' : 'text-blueGray-200'
+                  }}"
+                >
+                  {{ "shared.like" | translate }}
+                </span>
+              </like>
+            </div>
+          </div>
+        </div>
+
+        <button
+          type="button"
+          class="flex flex-col justify-center gap-1 px-2 py-1 bg-black/30 items-center rounded-lg"
+          (click)="toggleVideoPlayback()"
+        >
+          <mat-icon svgIcon="pause" class="text-white w-5"></mat-icon>
+          <span class="text-white">
+          {{toggleVideoPlay | translate}}
+        </span>
+
+        </button>
+
+        <!-- <button
+          type="button"
+          class="flex flex-col justify-center gap-1 px-2 py-1 bg-black/30 items-center rounded-lg"
+        >
+          <mat-icon svgIcon="offers" class="text-white w-5"></mat-icon>
+          <span class="text-white">{{ "shared.offers" | translate }}</span>
+        </button> -->
+      </div>
+
+      <vg-player
+        class="flex items-center bg-transparent video-item"
+        *ngIf="product?.video?.urlPreview"
+        (onPlayerReady)="onPlayerReady($event)"
+      >
+        <video
+          class="max-h-screen"
+          controlslist="nodownload noplaybackrate noremoteplayback"
+          [controls]="false"
+          disablepictureinpicture
+          width="100%"
+          class="object-cover h-full"
+          [vgMedia]="$any(media)"
+          [vgMaster]="true"
+          preload="metadata"
+          [loop]="true"
+          #media
+          oncanplay=""
+          [attr.id]="product?.id"
+          [poster]="product?.video?.urlThumbnail"
+        >
+          <source [src]="product?.video?.urlPreview" type="video/mp4" />
+        </video>
+      </vg-player>
+
+    </div>
+  </div>
+
+  <!-- Product Info -->
+  <div
+    class="flex gap-4 bg-gradient-to-r from-black/0 to-black/40 absolute bottom-10 landscape:bottom-[29px] landscape:lg:bottom-10 w-full z-10 py-3 px-4 landscape:!py-[5px] landscape:!px-2.5 landscape:lg:!py-3 landscape:lg:!px-4 !pb-8"
+  >
+    <div
+      class="p-1 flex flex-center bg-black/30 py-1 px-2 relative rounded-lg h-[100px] landscape:h-[70px] landscape:lg:h-[100px] w-[70px]"
+    >
+      <ng-container *ngIf="product?.discount">
+        <small
+          class="absolute badge bg-[#fe4b46] px-2 fw-400 top-0 ltr:right-0 rtl:left-0 rtl:right-auto"
+          >{{ product?.discount }} %</small
+        >
+      </ng-container>
+      <img
+        (error)="onImgError($event)"
+        *ngIf="product?.image?.urlPreview; else imgPlaceholder"
+        class="rounded object-contain"
+        [src]="product?.image?.urlPreview"
+        alt="Product Photo"
+      />
+    </div>
+
+    <div
+      class="flex-grow flex portrait:flex-col landscape:lg:flex-col landscape:lg:items-start landscape:items-center justify-between"
+    >
+      <h4 class="mb-0 text-white text-base">{{ product?.name }}</h4>
+      <p class="mb-0 text-white text-xs">{{ product?.category?.name }}</p>
+      <p class="flex items-center gap-2 mb-0">
+        <span class="text-xs text-gray-400"
+          >{{ product?.price }} {{ "shared.EGP" | translate }}</span
+        >
+        <span *ngIf="product?.priceAfterOffer" class="text-primary-500 text-lg"
+          >{{ product?.priceAfterOffer }} {{ "shared.EGP" | translate }}</span
+        >
+      </p>
+      <p *ngIf="product?.isOutOfStock" class="mb-0 text-[#FFA90A] fw-500">
+        {{ "shared.out-of-stock" | translate }}
+      </p>
+
+      <div class="flex items-center gap-1">
+        <span class="text-[10px] text-white">{{
+          "shared.clickOn" | translate
+        }}</span>
+        <!-- <mat-icon svgIcon="feather-heart" class="text-white !w-4 !h-4"></mat-icon> -->
+        <add-to-fav
+          panelClass="border-0"
+          [productId]="product?.id"
+          [isFavorite]="product?.wishListData?.isInWishList"
+          [wishListCount]="product?.wishListData?.wishListCount"
+          (onProductWishChange)="onProductWishChange.emit($event)"
+          (onProductWishCountChange)="onProductWishCountChange.emit($event)"
+          iconClass="text-white !w-4 !h-4"
+        >
+        </add-to-fav>
+        <span class="text-[10px] text-white">{{
+          "shared.to-be-notified-when-available" | translate
+        }}</span>
+        <auk-rating
+          iconClass="rtl:!me-0 ltr:!me-0"
+          panelClass="gap-1"
+          [data]="product?.rate"
+          textPanelClass="text-white text-[10px]"
+        ></auk-rating>
+      </div>
+    </div>
+  </div>
+
+  <!-- Actions Section -->
+  <div
+    class="bg-gray-50 rounded-tr-lg rounded-tl-lg absolute bottom-0 w-full z-10 portrait:py-4 portrait:px-4.5 py-[3px] px-2.5 landscape:lg:py-4 landscape:lg:px-4.5"
+  >
+    <!-- <div class="border-b border-black/10 pb-4 flex items-center justify-between">
+          <p class="mb-0 text-black/30 text-sm font-bold rtl:ms-auto lt:ms-auto">
+            {{product?.commentsCount}} {{'shared.comments' | translate}}
+          </p>
+        </div> -->
+    <div class="">
+      <ul class="flex items-center justify-between">
+        <li class="flex items-center gap-2 text-blueGray-200 font-bold">
+          <mat-icon
+            class="text-blueGray-200 !w-4 !h-4"
+            svgIcon="like"
+          ></mat-icon>
+          {{ product?.likes | shortNumbers }}
+        </li>
+
+        <li class="flex items-center gap-2 font-bold text-blueGray-200">
+          <mat-icon
+            class="text-blueGray-200 !w-4 !h-4"
+            svgIcon="comment"
+          ></mat-icon>
+          {{ product?.commentsCount | shortNumbers }}
+        </li>
+
+        <li class="">
+          <button
+            type="button"
+            class="flex items-center gap-2 font-bold text-blueGray-200"
+            (click)="copyProductDetailsLink(product?.id)"
+          >
+            <mat-icon class="text-blueGray-200 text-base lh-0">share</mat-icon>
+            {{ product?.shareCount | shortNumbers }}
+          </button>
+        </li>
+
+        <li class="flex items-center gap-2 font-bold text-blueGray-200">
+          <mat-icon
+            class="text-blueGray-200 !w-4 !h-4 text-base lh-0"
+            svgIcon="feather-heart"
+          >
+          </mat-icon>
+          {{ product?.wishListData?.wishListCount | shortNumbers }}
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<ng-template #imgPlaceholder>
+  <img-placeholder></img-placeholder>
+</ng-template>

@@ -1,23 +1,28 @@
 <section class="search-types bg-[#E9E7F8] main-rounded">
-    <ul class="list-unstyled flex">
-       <ng-container *ngFor="let item of searchTypes">
-            <li class="flex-fill search-types__type">
-                <a  
-                    [ngClass]="{
-                        'active-filter' : (queryParams['section-name'] && item.typeId == searchTypesEnum.Section)
-                        || (queryParams['category-name'] && item.typeId == searchTypesEnum.Category && !queryParams['section-name'])
-                    }"
-                    [routerLink]="item.url"
-                    routerLinkActive="active"
-                    [queryParams]="{
-                        text: searchTerm,
-                        type: item?.typeId
-                    }"
-                    (click)="typesChange.emit(item?.typeId)"
-                    class="p-3 text-center block text-blue fw-600  main-rounded text-[.84rem]">
-                    {{ item.name | translate }}
-                </a>
-            </li>
-       </ng-container>
-    </ul>
+  <ul class="list-unstyled flex">
+    <ng-container *ngFor="let item of searchTypes">
+      <li class="flex-fill search-types__type">
+        <a
+          [ngClass]="{
+            'active-filter':
+              (queryParams['section-name'] &&
+                item.typeId == searchTypesEnum.Section) ||
+              (queryParams['category-name'] &&
+                item.typeId == searchTypesEnum.Category &&
+                !queryParams['section-name'])
+          }"
+          [routerLink]="item.url"
+          routerLinkActive="active"
+          [queryParams]="{
+            text: searchTerm,
+            type: item?.typeId
+          }"
+          (click)="typesChange.emit(item?.typeId)"
+          class="p-2 2xl:p-3 text-center block text-blue fw-600 main-rounded text-[10px] 2xl:text-[.84rem]"
+        >
+          {{ item.name | translate }}
+        </a>
+      </li>
+    </ng-container>
+  </ul>
 </section>

@@ -1,0 +1,15 @@
+.aside__help {
+  .svg-icon {
+    @apply bg-gray-900;
+    // Structure Block
+    width: 25px;
+    height: 20px;
+    max-width: 100%;
+    display: inline-block;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    mask-size: auto 100%;
+    // Modifire Block
+    transition: all 0.3s ease-in-out;
+  }
+}

@@ -1,6 +1,6 @@
 <div class="user-menu" ngbDropdown display="dynamic" class="d-inline-block" [placement]="lang == LanguagesEnum.AR ? 'bottom-start' : 'bottom-end'">
     <button type="button" class="btn d-flex align-items-center justify-start ltr:text-left rtl:text-right" id="dropdownBasic1" ngbDropdownToggle>
-      
+
         <div class="start ltr:me-2 rtl:me-2">
             <div class="user-menu__img-box rounded-circle d-flex flex-center">
                 <img (error)="onImgError($event)" class="img-fluid rounded-circle fit-img" [src]="ByerData?.profile" alt="User Image">
@@ -14,7 +14,7 @@
 
     </button>
     <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="border-0 shadow mt-2 dropdown--arrow p-2 w-[209px] max-w-100 main-rounded--force">
-     
+
        <ng-container *ngIf="authService?.isAuthenticated else notAuthenticated">
             <ng-container *ngFor="let item of navLinks">
                 <button routerLinkActive="active" [routerLink]="[item.route]" [routerLinkActiveOptions]="{exact: true}" class="dropdown-item flex items-center text-blue border rounded-md px-[.8rem] py-[.5rem] text-[.9rem]" ngbDropdownItem>
@@ -29,7 +29,7 @@
                 <!-- begin:: separator -->
                 <hr class="mt-3 mb-1 bg-[#0D1863] opacity-95">
                 <!-- end:: separator -->
-        
+
                 <button (click)="openLogoutConfirmationDialog()" class="dropdown-item flex items-center text-primary justify-center rounded-md px-[.8rem] py-[.5rem] text-[.9rem]" ngbDropdownItem>
                     <div class="icon ltr:me-2 rtl:me-2">
                         <img width="15" src="assets/media/profile/icons/logout.svg" alt="Logout Icon">
@@ -38,7 +38,7 @@
                 </button>
             </ng-container>
        </ng-container>
-       
+
     </div>
 </div>
 

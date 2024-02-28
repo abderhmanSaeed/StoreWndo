@@ -1,0 +1,52 @@
+<main class="flash-sales-page py-4 mt-[8rem] 2xl:mt-0">
+  <div class="container">
+    <!-- begin:: breadcrumb -->
+    <breadcrumb class="d-block mb-4"></breadcrumb>
+    <!-- end:: breadcrumb -->
+    <div>
+      <!-- begin:: flash-sales  -->
+      <ng-container *ngIf="exploreProducts.length; else noContent">
+        <div
+          class="flash-sales-wrapper grid grid-cols-1 lg:grid-cols-2 gap-4 bg-white main-rounded--force 2xl:ltr:ml-24 2xl:rtl:mr-24 2xl:w-3/5 p-6"
+        >
+          <ng-container *ngFor="let item of exploreProducts">
+            <ng-container *ngFor="let item of item?.flashSales">
+              <div class="">
+                <auk-card-b
+                  [data]="item"
+                  class="d-block w-100 swiper-lazy"
+                  (addedToCart)="handleAddToCart($event, item)"
+                  (onProductWishChange)="onProductWishChange($event, item)"
+                ></auk-card-b>
+              </div>
+            </ng-container>
+          </ng-container>
+        </div>
+      </ng-container>
+      <!-- end:: flash-sales  -->
+    </div>
+  </div>
+</main>
+
+<!-- begin no data templete  -->
+<ng-template #noContent>
+  <div class="noContent-wrapper flex items-center justify-center h-[85vh]">
+    <no-data
+      size="xl"
+      [isSorry]="true"
+      [message]="
+        'shared.no-flash-sale' | translate
+      "
+      class="flex justify-center items-center flex-grow-1"
+    ></no-data>
+  </div>
+</ng-template>
+<!-- end no data templete  -->
+
+<ng-template #imgPlaceholder>
+  <img
+    class="img-fluid max-h-100 fit-img"
+    src="assets/media/logos/smile.svg"
+    alt="Product Photo"
+  />
+</ng-template>

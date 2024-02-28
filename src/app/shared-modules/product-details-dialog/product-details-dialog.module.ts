@@ -17,13 +17,15 @@ import { AddToFavModule } from 'src/app/shared-modules/add-to-fav/add-to-fav.mod
 import { AddCommentComponent } from './components/add-comment/add-comment.component';
 import { FormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MobileProductDetailsDialogComponent } from './components/responsive/mobile-product-details-dialog/mobile-product-details-dialog.component';
 
 
 @NgModule({
   declarations: [
     AddCommentComponent,
     ProductDetailsDialogComponent,
-    ProductDetailsDialogMainInfoComponent
+    ProductDetailsDialogMainInfoComponent,
+    MobileProductDetailsDialogComponent
   ],
   imports: [
     LikeModule,

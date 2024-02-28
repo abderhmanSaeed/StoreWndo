@@ -1,9 +1,9 @@
 <section *ngIf="!showReportForm" class="address text-[#97979d]">
     <div class="address__content main-rounded">
         <div class="position-relative z-[1] p-0 pt-4 pb-3">
-       
+
             <!-- begin:: closer  -->
-            <div class="dialog__closer w-[fit-content] position-absolute z-[2] flex justify-end mb-4 right-0 top-0 translate-y-[-150%] translate-x-[200%]">
+            <div class="dialog__closer w-[fit-content] position-absolute z-[2] flex justify-end mb-4 right-5 2xl:right-0 top-0 translate-y-[-150%] 2xl:translate-x-[200%]">
                 <button mat-dialog-close color="bg-gray-700" class="bg-gray-700 text-white shadow-xl !w-[32px] !h-[32px] d-flex items-center justify-center lh-normal" mat-mini-fab aria-label="Example icon button with a home icon">
                     <mat-icon>close</mat-icon>
                 </button>
@@ -14,24 +14,24 @@
                 <h2 mat-dialog-title class="text-blue fw-600">
 
                    {{ 'shared.follwers' | translate }}
-                    
+
                 </h2>
             </div>
 
-            <div mat-dialog-content class="mx-0 my-0 px-4">
-                
+            <div mat-dialog-content class="mx-0 my-0 px-2 2xl:px-4">
+
                 <ng-container *ngIf="follwers?.length else noData">
                     <ng-container *ngFor="let item of follwers; let i = index">
                         <follwer-card (onAction)="onAction($event, item ,i)" [data]="item"></follwer-card>
                     </ng-container>
                 </ng-container>
-                
+
 
             </div>
-            
+
         </div>
     </div>
-</section> 
+</section>
 
 
 

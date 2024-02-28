@@ -1,43 +1,20 @@
-<div class="voucher text-black inline-flex main-rounded bg-[#E2E6EC] items-stretch opacity-50">
-    <div class="voucher__info flex items-center ltr:me-1 rtl:me-1 p-3">
-        <div class="end flex flex-col whitespace-nowrap">
-            <span>2 for 1</span>
-            <small class="text-[#394870]">
-                {{ 'wallet.used-on' | translate }} {{ voucher?.usedDate }}
-            </small>
-        </div>
+<div
+  class="voucher text-black w-full 2xl:w-auto inline-flex main-rounded bg-[#E2E6EC] items-stretch opacity-50"
+>
+  <div class="voucher__info flex items-center ltr:me-1 rtl:me-1 p-3">
+    <div class="end flex flex-col whitespace-nowrap">
+      <span>2 for 1</span>
+      <small class="text-[#394870]">
+        {{ "wallet.used-on" | translate }} {{ voucher?.usedDate }}
+      </small>
     </div>
-    <div
-        class="
-            p-3
-            ltr:ps-4
-            rtl:ps-4
-            relative
-            voucher__get
-            flex items-center
-            before:w-[10px]
-            before:h-[10px]
-            before:bg-[#fff]
-            before:block
-            before:absolute
-            before:bottom-[-5px]
-            before:ltr:left-0
-            before:rtl:right-0
-            before:rounded-full
-            after:w-[10px]
-            after:h-[10px]
-            after:bg-[#fff]
-            after:block
-            after:absolute
-            after:top-[-5px]
-            after:ltr:left-0
-            after:rtl:right-0
-            after:rounded-full
-            
-        "
-    >
-        <div class="start text-[1.3rem] ltr:me-2 rtl:me-2 flex flex-col">
-            {{ voucher?.amount }}   {{ voucher?.isPercentage ? '%' : 'shared.EGP' | translate }}
-        </div>
+  </div>
+  <div
+    class="p-3 ltr:ps-4 rtl:ps-4 relative voucher__get flex items-center before:w-[10px] before:h-[10px] before:bg-[#fff] before:block before:absolute before:bottom-[-5px] before:ltr:left-0 before:rtl:right-0 before:rounded-full after:w-[10px] after:h-[10px] after:bg-[#fff] after:block after:absolute after:top-[-5px] after:ltr:left-0 after:rtl:right-0 after:rounded-full"
+  >
+    <div class="start text-[1.3rem] ltr:me-2 rtl:me-2 flex flex-col">
+      {{ voucher?.amount }}
+      {{ voucher?.isPercentage ? "%" : ("shared.EGP" | translate) }}
     </div>
+  </div>
 </div>

@@ -53,6 +53,9 @@ import { PaymentMethodsTabComponent } from './components/wallet/components/payme
 import { FollowersModule } from 'src/app/shared-modules/followers/followers.module';
 import { FollowingModule } from 'src/app/shared-modules/following/following.module';
 import { LikesRecievedModule } from 'src/app/shared-modules/likes-recieved/likes-recieved.module';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatMenuModule } from '@angular/material/menu';
+
 
 
 @NgModule({
@@ -88,7 +91,7 @@ import { LikesRecievedModule } from 'src/app/shared-modules/likes-recieved/likes
     TransferFormComponent,
     TransferRequestDialogComponent,
     BalanceChargedDialogComponent,
-    PaymentMethodsTabComponent
+    PaymentMethodsTabComponent,
   ],
   imports: [
     FormsModule,
@@ -109,6 +112,8 @@ import { LikesRecievedModule } from 'src/app/shared-modules/likes-recieved/likes
     OwnerSmallCardModule,
     ReactiveFormsModule,
     BuyerProfileRoutingModule,
+    MatSidenavModule,
+    MatMenuModule,
     TranslateModule.forChild({
       defaultLanguage: environment.defaultLanguage,
       loader: {
@@ -118,6 +123,7 @@ import { LikesRecievedModule } from 'src/app/shared-modules/likes-recieved/likes
       },
       isolate: true,
     }),
-  ]
+  ],
+
 })
 export class BuyerProfileModule { }

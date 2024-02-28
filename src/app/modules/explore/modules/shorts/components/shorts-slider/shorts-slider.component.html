@@ -1,99 +1,175 @@
-<!-- begin:: swiper  -->
-<swiper
-*ngIf="exploreProducts.length"
-(swiper)="onSwiper($event)"
-[config]="swiperConfig"
-class="mySwiper w-100 h-100"
-(slideChange)="onSlideChange()"
-#swiper
->
-    <ng-container *ngFor="let item of exploreProducts; let i = index; let first = first">
-        <ng-template swiperSlide let-data>
+<div *ngIf="isMobile; else desktopView">
+  <div class="products mt-2" #scrollableElement >
 
-            <div class="my-3 shorts__item main-rounded d-flex align-items-center w-100">
-                <mat-card class="shorts__item__content p-3 w-100 main-rounded--force">
-                    <div class="row">
-                        
-                        <div class="col-lg-6">
-                            <auk-card-a
-                                [data]="item" class="d-block mb-3"
-                                (addedToCart)="item.isInCart = $event"
-                                (onProductLikesCountChange)="item.likes = $event;"
-                                (onFollowingChange)="onFollowingChange($event, item)"
-                                (onProductWishChange)="onProductWishChange($event, item)"
-                                (onProductLikeChange)="onProductLikeChange($event, item)"
-                                (onProductWishCountChange)="item.wishListData.wishListCount = $event;"
-                            ></auk-card-a>
-                            <flash-sale [items]="item.flashSales ? item.flashSales: []"></flash-sale>
-                        </div>
-
-                        <div class="col-lg-6 d-flex relative">
-                            <div class="video-wrapper h-100 flex relative flex-grow-1">
-                                <wndo-loader *ngIf="isVideoLoading" class="block h-100 w-100 border !border-[#fff] absolute z-[2]"></wndo-loader>
-                                <div class="h-fit w-100 m-auto video position-relative main-rounded overflow-hidden d-flex flex-center">
-                                    <mat-icon *ngIf="!data.isActive" class="fs-1">missed_video_call</mat-icon>
-                                    <auk-play-icon (click)="playVideo()" [hidden]="isPlaying || isVideoLoading" class="absolute z-10 cursor-pointer w-full bg-[#975f5f7a]"></auk-play-icon>
-                                    <vg-player class="max-h-100 flex items-center h-auto bg-transparent" *ngIf="data.isActive && item.video?.urlPreview" (onPlayerReady)="onPlayerReady($event)">
-                                        <!-- oncanplay="" -->
-                                        <video
-                                            controlslist="nodownload noplaybackrate noremoteplayback"
-                                            disablepictureinpicture [loop]="isloop" oncanplay=""
-                                            width="100%" class="max-h-[565px] bg-white main-rounded--force object-cover " [vgMedia]="$any(media)"
-                                            [vgMaster]="true" preload="metadata" #media controls="true"
-                                        >
-                                            <source [src]="item.video?.urlPreview" type="video/mp4">
-                                        </video>
-                                    </vg-player>
-                                </div>
-                            </div>
-
-
-                            <!-- crossorigin -->
-                            <div class="controls d-flex flex-column justify-content-between ltr:ps-4 rtl:ps-4 align-items-center">
-                                <div class="top">
-                                    <button
-                                        [class.opacity-50]="first"
-                                        (click)="slidePrev()" class="controls__btn text-gray--dark d-flex flex-column lh-normal px-3 py-2 main-rounded--force" mat-button>
-                                        <img class="img-fluid mx-auto pb-1" src="assets/media/svg/up-arrow.svg" alt="Next">
-                                        <small class="mt-2"> {{ 'explore.previous' | translate }} </small>
-                                    </button>
-                                </div>
-
-                                <div class="center">
-                                  
-                                    <div 
-                                        class="mb-[.6rem] bg-[#FF002A0D] d-flex flex-column flex-center main-rounded w-[70px] h-[52px]"
-                                        >
-                                        <auk-slide-toggle size="sm" [vertical]="true" [value]="isAutoplay" (onChange)="onAutoPlayChange($event)" [label]="'explore.autoplay' | translate" [panelClass]="'border-0 bg-transparent'"></auk-slide-toggle>
-                                    </div>
-
-                                    <item-stats
-                                        [productId]="item?.id"
-                                        [likes]=" item?.likes"
-                                        [commentsCount]=" item?.commentsCount"
-                                        [wishListCount]=" item?.wishListData?.wishListCount"
-                                    ></item-stats>
-
-
-
-                                </div>
-
-                                <div class="bottom">
-                                    <button (click)="slideNext()" class="controls__btn text-gray--dark d-flex flex-column lh-normal px-3 py-2 main-rounded--force" mat-button>
-                                        <small class="mb-2"> &nbsp; &nbsp; {{ 'explore.next' | translate }} &nbsp; &nbsp; </small>
-                                        <!-- <mat-icon class="d-flex mx-auto flex-center">arrow_downward</mat-icon> -->
-                                        <img class="img-fluid mx-auto pt-1" src="assets/media/svg/down-arrow.svg" alt="Next">
-                                    </button>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </mat-card>
-            </div>
-
-        </ng-template>
+    <ng-container
+      *ngFor="let item of exploreProducts; let i = index;"
+    >
+      <app-mobile-shorts-slider
+        [product]="item"
+        (onProductWishChange)="onProductWishChange($event, item)"
+        (onProductWishCountChange)="onProductWishCountChange(item, $event)"
+        (onProductLikesCountChange)="onProductLikesCountChange(item, $event)"
+        (onProductLikeChange)="onProductLikeChange($event, item)"
+      ></app-mobile-shorts-slider>
     </ng-container>
+  </div>
+</div>
 
-</swiper>
+<!-- begin:: swiper  -->
+<ng-template #desktopView>
+  <swiper
+    *ngIf="exploreProducts.length"
+    (swiper)="onSwiper($event)"
+    [config]="swiperConfig"
+    class="mySwiper w-full h-full"
+    (slideChange)="onSlideChange()"
+    #swiper
+  >
+    <ng-container
+      *ngFor="let item of exploreProducts; let i = index; let first = first"
+    >
+      <ng-template swiperSlide let-data>
+        <div
+          class="2xl:my-3 shorts__item main-rounded d-flex align-items-center w-full"
+        >
+          <mat-card
+            class="shorts__item__content p-3 w-full main-rounded--force"
+          >
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <auk-card-a
+                  [data]="item"
+                  class="d-block mb-3"
+                  (addedToCart)="onAddedToCart(item, $event)"
+                  (onProductLikesCountChange)="
+                    onProductLikesCountChange(item, $event)
+                  "
+                  (onFollowingChange)="onFollowingChange($event, item)"
+                  (onProductWishChange)="onProductWishChange($event, item)"
+                  (onProductLikeChange)="onProductLikeChange($event, item)"
+                  (onProductWishCountChange)="
+                    onProductWishCountChange(item, $event)
+                  "
+                ></auk-card-a>
+                <flash-sale
+                  [items]="item.flashSales ? item.flashSales : []"
+                ></flash-sale>
+              </div>
+
+              <div class="d-flex relative">
+                <div class="video-wrapper h-full flex relative flex-grow-1">
+                  <wndo-loader
+                    *ngIf="isVideoLoading"
+                    class="block h-full w-full border !border-[#fff] absolute z-[2]"
+                  ></wndo-loader>
+                  <div
+                    class="h-fit w-full m-auto video position-relative main-rounded overflow-hidden d-flex flex-center"
+                  >
+                    <mat-icon *ngIf="!data.isActive" class="fs-1"
+                      >missed_video_call</mat-icon
+                    >
+                    <auk-play-icon
+                      (click)="playVideo()"
+                      [hidden]="isPlaying || isVideoLoading"
+                      class="absolute z-10 cursor-pointer w-full bg-[#975f5f7a]"
+                    ></auk-play-icon>
+                    <vg-player
+                      class="max-h-full flex items-center h-auto bg-transparent"
+                      *ngIf="data.isActive && item.video?.urlPreview"
+                      (onPlayerReady)="onPlayerReady($event)"
+                    >
+                      <!-- oncanplay="" -->
+                      <video
+                        controlslist="nodownload noplaybackrate noremoteplayback"
+                        disablepictureinpicture
+                        [loop]="isloop"
+                        oncanplay=""
+                        width="100%"
+                        class="max-h-[565px] bg-white main-rounded--force object-cover"
+                        [vgMedia]="$any(media)"
+                        [vgMaster]="true"
+                        preload="metadata"
+                        #media
+                        controls="true"
+                      >
+                        <source
+                          [src]="item.video?.urlPreview"
+                          type="video/mp4"
+                        />
+                      </video>
+                    </vg-player>
+                  </div>
+                </div>
+
+                <!-- crossorigin -->
+                <div
+                  class="controls flex flex-col 2xl:justify-between ltr:ps-4 rtl:ps-4 items-center"
+                >
+                  <div class="top">
+                    <button
+                      [class.opacity-50]="first"
+                      (click)="slidePrev()"
+                      class="controls__btn text-gray--dark d-flex flex-column lh-normal px-3 py-2 main-rounded--force"
+                      mat-button
+                    >
+                      <img
+                        class="img-fluid mx-auto pb-1"
+                        src="assets/media/svg/up-arrow.svg"
+                        alt="Next"
+                      />
+                      <small class="mt-2">
+                        {{ "explore.previous" | translate }}
+                      </small>
+                    </button>
+                  </div>
+
+                  <div class="center">
+                    <div
+                      class="mb-[.6rem] bg-[#FF002A0D] d-flex flex-column flex-center main-rounded w-[70px] h-[52px]"
+                    >
+                      <auk-slide-toggle
+                        size="sm"
+                        [vertical]="true"
+                        [value]="isAutoplay"
+                        (onChange)="onAutoPlayChange($event)"
+                        [label]="'explore.autoplay' | translate"
+                        [panelClass]="'border-0 bg-transparent'"
+                      ></auk-slide-toggle>
+                    </div>
+
+                    <item-stats
+                      [productId]="item?.id"
+                      [likes]="item?.likes"
+                      [commentsCount]="item?.commentsCount"
+                      [wishListCount]="item?.wishListData?.wishListCount"
+                    ></item-stats>
+                  </div>
+
+                  <div class="bottom">
+                    <button
+                      (click)="slideNext()"
+                      class="controls__btn text-gray--dark d-flex flex-column lh-normal px-3 py-2 main-rounded--force"
+                      mat-button
+                    >
+                      <small class="mb-2">
+                        &nbsp; &nbsp; {{ "explore.next" | translate }} &nbsp;
+                        &nbsp;
+                      </small>
+                      <!-- <mat-icon class="d-flex mx-auto flex-center">arrow_downward</mat-icon> -->
+                      <img
+                        class="img-fluid mx-auto pt-1"
+                        src="assets/media/svg/down-arrow.svg"
+                        alt="Next"
+                      />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </mat-card>
+        </div>
+      </ng-template>
+    </ng-container>
+  </swiper>
+</ng-template>
 <!-- end:: swiper  -->

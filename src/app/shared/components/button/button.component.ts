@@ -15,6 +15,7 @@ export class ButtonComponent implements OnInit {
   @Input() label: string = '';
   @Input() type: string = 'text';
   @Input() panelclass: string = '';
+  @Input() customClass?: string;
   @Input() fill: string = 'primary';
   @Input() stroked: boolean = false;
   @Input() disabled: boolean = false;

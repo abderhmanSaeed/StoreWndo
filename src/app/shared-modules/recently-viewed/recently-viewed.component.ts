@@ -31,19 +31,24 @@ export class RecentlyViewedComponent implements OnInit {
 
   setSwiperConfig(): void {
     this.swiperConfig = {
-      virtual: true,  
-      slidesPerView: 6,
+      virtual: true,
+      // slidesPerView: 6,
       lazy: true,
       spaceBetween: 16,
       pagination: {
         clickable: true,
       },
       breakpoints: {
+        0:{
+          pagination: false
+        },
         768: {
-          slidesPerView: 2
+          slidesPerView: 2,
+          pagination: false,
         },
         992: {
-          slidesPerView: 4
+          slidesPerView: 4,
+          pagination: false,
         },
         1400: {
           slidesPerView: 5

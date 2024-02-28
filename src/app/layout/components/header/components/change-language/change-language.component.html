@@ -1,7 +1,7 @@
 <div class="user-menu" ngbDropdown display="dynamic" class="d-inline-block" placement="bottom-end">
     <button type="button" class="btn text-[.9rem] d-flex align-items-center justify-content-start text-start border rounded-full text-blue" id="dropdownBasic1" ngbDropdownToggle>
         <div class="icon me-1">
-            <img width="14" [src]="selectedLanguage?.imgPath" [alt]="selectedLanguage?.name">
+            <img width="14" [src]="selectedLanguage?.imgPath" alt="{{selectedLanguage?.name}}">
         </div>
         <span> {{ 'header.'+selectedLanguage?.name | translate }} </span>
     </button>

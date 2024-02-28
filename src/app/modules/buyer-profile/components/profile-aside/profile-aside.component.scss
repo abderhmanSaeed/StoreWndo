@@ -1,9 +1,24 @@
-aside {
-    // Structure Block 
-    height: calc(100vh - 124px);
-    max-height: calc(100vh - 124px);
+.aside {
+  // Structure Block
+  height: calc(100vh - 124px);
+  max-height: calc(100vh - 124px);
 
-    // Modifire Block 
-    overflow: auto;
+  // Modifire Block
+  overflow: auto;
+}
 
+::ng-deep {
+  .my-profile__menu {
+    @apply bg-black/60;
+  }
+  .my-profile__menu + * .cdk-overlay-pane {
+    max-width: 100% !important;
+  }
+
+  .my-profile__menu + *.cdk-overlay-connected-position-bounding-box {
+    width: 100% !important;
+    align-items: stretch !important;
+    justify-content: end !important;
+    left: 0 !important;
+  }
 }

@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { ResponsiveService } from 'src/app/shared/services/responsive/responsive.service';
 
 @Component({
   selector: 'seller-aside',
@@ -6,14 +8,20 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./seller-aside.component.scss']
 })
 export class SellerAsideComponent implements OnInit {
+  subscriptionMobile: Subscription = new Subscription();
+  isMobile: boolean = false;
 
-
-  // Inputs 
+  // Inputs
   @Input() data: any = {}
 
-  constructor() { }
+  constructor(private responsiveService: ResponsiveService,) { }
 
   ngOnInit(): void {
+    this.subscriptionMobile = this.responsiveService.isMobile$.subscribe(
+      (isMobile) => {
+        this.isMobile = isMobile;
+      }
+    );
   }
 
 }

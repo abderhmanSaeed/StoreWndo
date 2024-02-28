@@ -1,4 +1,11 @@
-import { Component, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { ActionTypes } from 'src/app/shared/enums/action-types/action-types';
 import { SettingsService } from 'src/app/shared/services/settings/settings.service';
 import { DynamicHeaderMenuConfig } from './configs/dynamic-header-menu.config';
@@ -15,19 +22,27 @@ import { TranslateService } from '@ngx-translate/core';
 import { Languages } from 'src/app/shared/enums/languages/languages';
 import { BuyerProfile } from 'src/app/shared/models/buyer-profile/buyer-profile';
 import { BuyerProfileService } from 'src/app/modules/buyer-profile/servises/buyer-profile/buyer-profile.service';
+import { MatIconRegistry } from '@angular/material/icon';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-  
   @Input() draweState: boolean = false;
   @Input() openedStart: boolean = false;
 
+  showFiller = false;
+  @Output() sidebarToggle = new EventEmitter<void>();
+  isMobileView: boolean = false; // Determine this based on screen size
 
-  // Props 
+  toggleSidebar() {
+    this.sidebarToggle.emit();
+  }
+
+  // Props
   user: User | null = {};
   LanguagesEnum = Languages;
   actionTypes = ActionTypes;
@@ -35,11 +50,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
   languagesEnum = Languages;
   notificationsCount: any = 0;
   profileData: BuyerProfile | null = {};
-  menue: any[] = DynamicHeaderMenuConfig.items
+  menue: any[] = DynamicHeaderMenuConfig.items;
   subscription: Subscription = new Subscription();
-  lang: Languages = (this._TranslateService.currentLang as Languages);
+  lang: Languages = this._TranslateService.currentLang as Languages;
 
-  // booleans 
+  // booleans
   isDark: boolean = false;
   public isCollapsed: boolean = true;
 
@@ -51,7 +66,16 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private _SettingsService: SettingsService,
     private _TranslateService: TranslateService,
     private _BuyerProfileService: BuyerProfileService,
-  ) { }
+    private matIconRegistry: MatIconRegistry,
+    private domSanitizer: DomSanitizer
+  ) {
+    this.menue.forEach((menu) => {
+      this.matIconRegistry.addSvgIcon(
+        menu.title,
+        this.domSanitizer.bypassSecurityTrustResourceUrl(menu.imgPath)
+      );
+    });
+  }
 
   ngOnInit(): void {
     this.onAuthChange();
@@ -60,26 +84,24 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.onCartItemsCountChange();
   }
 
-
   onLangChange(): void {
-    this.subscription.add( this._TranslateService.onLangChange.subscribe(({lang}: any) => {
-      this.lang = (lang as Languages);
-    }));
+    this.subscription.add(
+      this._TranslateService.onLangChange.subscribe(({ lang }: any) => {
+        this.lang = lang as Languages;
+      })
+    );
   }
 
-  
   ngOnDestroy(): void {
     //Called once, before the instance is destroyed.
     //Add 'implements OnDestroy' to the class.
     this.subscription.unsubscribe();
   }
 
-
   toggleTheme(): void {
     this.isDark = !this.isDark;
     this._SettingsService.onThemeChange.next(this.isDark);
   }
-
 
   ifIsAuthenticated(): void {
     if (this.authService.isAuthenticated) {
@@ -90,74 +112,76 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }
   }
 
-
   getBuyerProfile(): void {
-    this.subscription.add(this._HttpService.get(APIs.getBuyerProfile).subscribe(({responseData}: HResponse ) => {
-      this.profileData = responseData;
-      this.notificationsCount = responseData.notificationsCount;
-      this._BuyerProfileService.profileData$.next(responseData);
-    }));
+    this.subscription.add(
+      this._HttpService
+        .get(APIs.getBuyerProfile)
+        .subscribe(({ responseData }: HResponse) => {
+          this.profileData = responseData;
+          this.notificationsCount = responseData.notificationsCount;
+          this._BuyerProfileService.profileData$.next(responseData);
+        })
+    );
   }
-
 
   onProfileDataChange(): void {
-    this.subscription.add(this._BuyerProfileService.profileData$.subscribe( (profileData: BuyerProfile ) => {
-      this.profileData = profileData;
-      this.notificationsCount = profileData?.notificationsCount;
-    }))
+    this.subscription.add(
+      this._BuyerProfileService.profileData$.subscribe(
+        (profileData: BuyerProfile) => {
+          this.profileData = profileData;
+          this.notificationsCount = profileData?.notificationsCount;
+        }
+      )
+    );
   }
-
 
   onAuthChange(): void {
     this.subscription.add(
-      this.authService.authChange$.subscribe( (data: User | null) => {
-        this.user = data;       
-        this.ifIsAuthenticated(); 
+      this.authService.authChange$.subscribe((data: User | null) => {
+        this.user = data;
+        this.ifIsAuthenticated();
       })
-    )
+    );
   }
 
-
   onNavItemClick(naveName: string): void {
-
     switch (naveName) {
       case 'sell':
         this.openSellDialog();
         break;
-    
+
       default:
         break;
     }
   }
 
-
   // onaAthChange
-
 
   openSellDialog(): void {
     this._MatDialog.open(SellDialogComponent, {
       width: '550px',
-      direction: this.lang ==  this.LanguagesEnum.EN ? 'ltr' : 'rtl',
+      direction: this.lang == this.LanguagesEnum.EN ? 'ltr' : 'rtl',
       panelClass: 'gradient-dialog',
     });
   }
 
-
   onCartItemsCountChange(): void {
-    this,this.subscription.add(
-      this._CartService.onCartItemsCountChange$.subscribe( (res: number) => {
-        this.cartItemsCount = res;
-      })
-    )
+    this,
+      this.subscription.add(
+        this._CartService.onCartItemsCountChange$.subscribe((res: number) => {
+          this.cartItemsCount = res;
+        })
+      );
   }
-
 
   getCartItemsCount(): void {
-    this,this.subscription.add(
-      this._HttpService.get(APIs.getCartItemsCount).subscribe( (res: HResponse) => {
-        this._CartService.onCartItemsCountChange$.next(res.responseData);
-      })
-    )
+    this,
+      this.subscription.add(
+        this._HttpService
+          .get(APIs.getCartItemsCount)
+          .subscribe((res: HResponse) => {
+            this._CartService.onCartItemsCountChange$.next(res.responseData);
+          })
+      );
   }
-
 }

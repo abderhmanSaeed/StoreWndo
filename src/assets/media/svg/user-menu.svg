@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 2" viewBox="0 0 64 64" id="menu">
+  <path d="M42 32a16 16 0 1 0 16 16 16.021 16.021 0 0 0-16-16Zm7 26H35v-4h14Zm0-8H35v-4h14Zm0-8H35v-4h14Z"></path>
+  <path
+    d="M30 64H8.48A3.483 3.483 0 0 1 5 60.52V47.17A17.186 17.186 0 0 1 22.17 30h7.66a16.858 16.858 0 0 1 2.95.26A19.993 19.993 0 0 0 30 64Z">
+  </path>
+  <rect width="22" height="24" x="15" rx="10"></rect>
+</svg>

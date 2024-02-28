@@ -20,16 +20,17 @@ import { ProductFeaturesComponent } from '../product-features/product-features.c
 })
 export class AddToCartComponent implements OnInit {
 
-  // inputs props 
+  // inputs props
   @Input() panelClass: string = '';
   @Input() isInCart: boolean | undefined = false;
+  @Input() isLabel: boolean  = true;
   @Input() isIsolated: boolean | undefined = false;
   @Input() productId: string | undefined = undefined;
 
   // Outputs
   @Output() addedToCart: EventEmitter<boolean> = new EventEmitter();
 
-  
+
   // props
   languagesEnum = Languages;
   lang: Languages = Languages.AR;
@@ -45,7 +46,7 @@ export class AddToCartComponent implements OnInit {
   ) {}
 
 
-  ngOnInit(): void {   
+  ngOnInit(): void {
     this.lang = this._BrowserService.getItem(Constant.locale);
   }
 
@@ -100,8 +101,8 @@ export class AddToCartComponent implements OnInit {
           cartItemCount++
           this._CartService.onCartItemsCountChange$.next(cartItemCount);
           this.addedToCart.emit(true);
-        } 
-      })  
+        }
+      })
     );
   }
 

@@ -1,32 +1,32 @@
-:host-context(html[dir=rtl]) {
-
-    :host {
-        ::ng-deep {
-            .swiper {
-                &__controllers {
-        
-                    fa-icon {
-                        transform: rotate(180deg);
-                    }
-                }
-            }
+:host-context(html[dir="rtl"]) {
+  :host {
+    ::ng-deep {
+      .swiper {
+        &__controllers {
+          @media screen and (width < theme("screens.2xl")) {
+            transform: rotate(180deg);
+            bottom: 17px;
+            inset-inline-start: 1rem;
+            inset-inline-end: auto;
+          }
+          fa-icon {
+            transform: rotate(180deg);
+          }
         }
+      }
     }
+  }
 
-
-    .grid-card-wrapper {
- 
-        &:nth-of-type(10),
-        &:nth-of-type(5) {
-            &:hover {
-                grid-view-card {
-    
-                    // Positioning Block
-                    left: 0;
-                    right: calc(-100% - 1rem);
-                }
-            }
+  .grid-card-wrapper {
+    &:nth-of-type(10),
+    &:nth-of-type(5) {
+      &:hover {
+        grid-view-card {
+          // Positioning Block
+          left: 0;
+          right: calc(-100% - 1rem);
         }
-
+      }
     }
+  }
 }

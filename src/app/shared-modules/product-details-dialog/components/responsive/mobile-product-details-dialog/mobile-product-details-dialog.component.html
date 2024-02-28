@@ -1,0 +1,62 @@
+<div>
+  <!-- begin:: closer  -->
+  <div class="flex justify-end mb-2">
+    <button
+      type="button"
+      mat-dialog-close
+      color="bg-gray-700"
+      class="bg-gray-700 text-white shadow-xl flex items-center justify-center lh-normal"
+      mat-mini-fab
+      aria-label="Example icon button with a home icon"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <!-- end:: closer  -->
+  <div class="landscape:grid landscape:grid-cols-2 lg:grid lg:grid-cols-2 gap-4">
+    <div class="video-wrapper relative w-full h-full">
+      <wndo-loader
+        bdColor="transparent"
+        *ngIf="isVideoLoading"
+        class="block h-100 w-100 main-rounded--force absolute z-[2]"
+      ></wndo-loader>
+      <vg-player
+        [hidden]="isVideoLoading"
+        class="h-auto bg-transparent"
+        *ngIf="productDetails?.videos[0].urlPreview"
+        (onPlayerReady)="onPlayerReady($event)"
+      >
+        <video
+          class="landscape:max-h-[77vh] landscape:lg:max-h-[440px] max-h-[440px] main-rounded--force object-cover"
+          width="100%"
+          [vgMedia]="$any(media)"
+          [vgMaster]="true"
+          preload="auto"
+          #media
+          controls
+        >
+          <source
+            [src]="productDetails?.videos[0].urlPreview"
+            type="video/mp4"
+          />
+        </video>
+      </vg-player>
+    </div>
+
+      <product-details-dialog-main-info
+        (onAddToCart)="onAddToCart($event)"
+        class="d-block h-100"
+        [data]="productDetails"
+      ></product-details-dialog-main-info>
+      <div
+      class="col flex-grow-1 product-features-col"
+      *ngIf="showSizesColors"
+    >
+      <app-product-features
+        [isInPopup]="true"
+        class="flex h-100"
+        (onSave)="onProductFeaturesSave($event)"
+      ></app-product-features>
+  </div>
+</div>
+</div>

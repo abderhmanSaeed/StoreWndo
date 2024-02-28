@@ -65,12 +65,21 @@ const routes: Routes = [
         resolve: { productData : ProductDetailsResolver}
       },
       {
+        path: 'flash-sale',
+        canActivate: [AuthGuard],
+        loadChildren: () =>
+        import(
+          '../modules/flash-sale-page/flash-sale-page.module'
+        ).then((m) => m.FlashSalepageModule),
+
+      },
+      {
         path: '',
         redirectTo: 'explore'
       }
     ]
   },
-  
+
 ];
 
 @NgModule({

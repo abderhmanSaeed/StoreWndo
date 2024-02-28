@@ -9,7 +9,7 @@ import { OrderStatsObject } from '../../enums/order-stats-object';
 })
 export class TrackOrderItemComponent implements OnInit {
 
-  // Inputs 
+  // Inputs
   @Input() data: any = {};
 
   // props

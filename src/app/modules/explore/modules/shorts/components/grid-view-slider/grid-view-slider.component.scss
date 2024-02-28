@@ -1,92 +1,95 @@
 :host {
-    ::ng-deep {
-        .swiper {
-            // Structure Block 
-            width: 100%;
-            height: 100%;
-        
-        
-            .swiper-pagination {
-        
-                // Positioing Block 
-                position: static;
-        
-                // Structure Block 
-                order: 2;
-                width: calc(100% - 90px) !important;
-                margin-inline-start: auto;
-                margin-top: 1.8rem;
-        
-                &-progressbar-fill  {
-        
-                    // Structure Block 
-                    background: linear-gradient(90deg, rgba(13,24,99,1) 0%, rgba(197,1,35,1) 52%, rgba(197,1,35,1) 100%);
-                    background-size: 300% 300%;
-        
-        
-                    // Modifire Block 
-                    animation: gradient 3s ease alternate infinite;
-                }
-        
-            }
-        
-            &__controllers {
-        
-                // Modifire Block 
-                transform: translateY(calc(-50% - 2px));
-                z-index: 1;
-        
-        
-                // Positioing Block 
-                position: absolute;
-        
-        
-            }
+  ::ng-deep {
+    .swiper {
+      // Structure Block
+      width: 100%;
+      height: 100%;
+
+      .swiper-pagination {
+        // Positioing Block
+        position: static;
+
+        // Structure Block
+        order: 2;
+        width: calc(100% - 90px) !important;
+        margin-inline-start: auto;
+        margin-top: 1.8rem;
+
+        @media screen and (width < theme("screens.2xl")) {
+          margin-inline-end: auto;
+          margin-inline-start: 0;
         }
+
+        &-progressbar-fill {
+          // Structure Block
+          background: linear-gradient(
+            90deg,
+            rgba(13, 24, 99, 1) 0%,
+            rgba(197, 1, 35, 1) 52%,
+            rgba(197, 1, 35, 1) 100%
+          );
+          background-size: 300% 300%;
+
+          // Modifire Block
+          animation: gradient 3s ease alternate infinite;
+        }
+      }
+
+      &__controllers {
+        // Modifire Block
+        transform: translateY(calc(-50% - 2px));
+        z-index: 1;
+
+        // Positioing Block
+        position: absolute;
+
+        @media screen and (width <= theme('screens.xl')) {
+          inset-inline-end: 1rem;
+        }
+      }
     }
-    
+  }
 }
 
 .grid-card-wrapper {
+  grid-view-card {
+    // Positioning Block
+    position: absolute;
+  }
 
-    grid-view-card {
+  &:hover {
+    @media screen and (width >= theme("screens.2xl")) {
+      grid-view-card {
+        // Structure Block
+        width: calc(200% + 1rem);
+        height: calc(200% + 1rem) !important;
 
-        // Positioning Block 
-        position: absolute;
+        // Modifire Block
+        z-index: 2;
+      }
     }
-    
+  }
+
+  &:nth-of-type(10),
+  &:nth-of-type(5) {
     &:hover {
-
+      @media screen and (width >= theme("screens.2xl")) {
         grid-view-card {
-
-            // Structure Block 
-            width: calc(200% + 1rem);
-            height: calc(200% + 1rem ) !important;
-
-            // Modifire Block 
-            z-index: 2;
+          // Positioning Block
+          left: calc(-100% - 1rem);
         }
+      }
     }
+  }
 
-    &:nth-of-type(10),
-    &:nth-of-type(5) {
-        &:hover {
-            grid-view-card {
-
-                // Positioning Block
-                left: calc(-100% - 1rem);
-            }
+  &--bottom {
+    &:hover {
+      @media screen and (width >= theme("screens.2xl")) {
+        grid-view-card {
+          // Positioning Block
+          top: calc(-100% - 1rem);
         }
+      }
     }
-
-    &--bottom {
-        &:hover {
-            grid-view-card {
-
-                // Positioning Block
-                top: calc(-100% - 1rem);
-            }
-
-        }
-    }
+  }
 }

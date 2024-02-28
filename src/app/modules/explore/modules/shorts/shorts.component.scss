@@ -4,13 +4,14 @@
 
 
 .shorts {
+  &__slider {
+    // Structure Block
+    min-height: calc(100vh - 200px);
+    display: flex;
+    align-items: center;
+  }
 
-    &__slider  {
-
-        // Structure Block 
-        min-height: calc(100vh - 200px);
-        display: flex;
-        align-items: center;
-
-    }
+  @media screen and (width < theme('screens.2xl')) {
+    margin-top: 8rem;
+  }
 }

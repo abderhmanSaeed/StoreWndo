@@ -1,4 +1,4 @@
-<button 
+<button
     (click)="toggleFavorite(); $event.stopPropagation()"
     [class.fav-btn--favorite]="authService.isAuthenticated ? isFavorite : false"
     class="fav-btn lh-normal rounded-circle p-0 d-inline-flex flex-center"
@@ -6,5 +6,5 @@
     [ngStyle]="panelStyle"
     [class]="panelClass"
 >
-    <mat-icon>favorite</mat-icon>
+    <mat-icon [class]="iconClass">favorite</mat-icon>
 </button>

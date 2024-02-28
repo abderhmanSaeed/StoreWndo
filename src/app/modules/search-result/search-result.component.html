@@ -1,91 +1,81 @@
-<main class="search-result py-4">
-    <div class="container-fluid">
-        
-        <!-- begin:: breadcrumb -->
-        <breadcrumb class="d-block mb-4"></breadcrumb>
-        <!-- end:: breadcrumb -->
+<main class="search-result py-4 mt-[8rem] 2xl:mt-0">
+  <div class="container-fluid">
+    <!-- begin:: breadcrumb -->
+    <breadcrumb class="d-block mb-4"></breadcrumb>
+    <!-- end:: breadcrumb -->
 
+    <mat-card class="main-rounded--forced p-0 lg:p-5">
+      <mat-card-content>
+        <!-- begin:: search types  -->
+        <search-types
+          (typesChange)="onTypesChange($event)"
+          class="block mb-5"
+          [term]="term"
+        ></search-types>
+        <!-- end:: search types  -->
 
-        <mat-card class="main-rounded--forced p-5">
+        <router-outlet></router-outlet>
 
-            <mat-card-content>
-                
-                <!-- begin:: search types  -->
-                <search-types (typesChange)="onTypesChange($event)" class="block mb-5" [term]="term"></search-types>
-                <!-- end:: search types  -->
+        <ng-container *ngIf="selectedSearchType == null">
+          <!-- begin:: sctions  -->
+          <ng-container *ngIf="sections.length">
+            <sections-section [data]="sections"></sections-section>
+          </ng-container>
+          <!-- end:: sctions  -->
 
+          <!-- begin:: Categories  -->
+          <ng-container *ngIf="categories.length">
+            <categories-section [categories]="categories"></categories-section>
+          </ng-container>
+          <!-- end:: Categories  -->
 
-                <router-outlet></router-outlet>
+          <!-- begin:: Stores  -->
+          <ng-container *ngIf="sellers.length">
+            <stores-section
+              [term]="term"
+              [sellers]="sellers"
+              [sellersCount]="sellersCount"
+            ></stores-section>
+          </ng-container>
+          <!-- end:: Stores  -->
 
-                
-                <ng-container *ngIf="selectedSearchType == null">
-                    <!-- begin:: sctions  -->
-                    <ng-container *ngIf="sections.length">
-                        <sections-section [data]="sections"></sections-section>
-                    </ng-container>
-                    <!-- end:: sctions  -->
+          <!-- begin:: products section  -->
+          <ng-container *ngIf="products?.length">
+            <search-products
+              [term]="term"
+              [products]="products"
+              [productsCount]="productsCount"
+              class="pb-1 block"
+            ></search-products>
+          </ng-container>
+          <!-- begin:: products section  -->
+        </ng-container>
 
-                    <!-- begin:: Categories  -->
-                    <ng-container *ngIf="categories.length">
-                        <categories-section [categories]="categories"></categories-section>
-                    </ng-container>
-                    <!-- end:: Categories  -->
+        <!-- begin no data templete  -->
+        <no-data
+          *ngIf="isProductsSearch && !products?.length"
+          size="xl"
+          class="block py-5"
+          message="No result in Products"
+        ></no-data>
+        <!-- end no data templete  -->
+      </mat-card-content>
+    </mat-card>
 
-                    <!-- begin:: Stores  -->
-                    <ng-container *ngIf="sellers.length">
-                        <stores-section 
-                            [term]="term"
-                            [sellers]="sellers"
-                            [sellersCount]="sellersCount"
-                        ></stores-section>
-                    </ng-container>
-                    <!-- end:: Stores  -->
+    <!-- begin:: recently viewed section  -->
+    <section class="recently-viewed mt-5">
+      <header class="mb-2">
+        <h3 class="text-blue fw-600 !text-[1.1rem]">
+          {{ "shared.recently-viewed" | translate }}
+        </h3>
+      </header>
 
-                    <!-- begin:: products section  -->
-                    <ng-container *ngIf="products?.length">
-                        <search-products
-                            [term]="term"
-                            [products]="products"
-                            [productsCount]="productsCount"
-                            class="pb-1 block"
-                        ></search-products>
-                    </ng-container>
-                    <!-- begin:: products section  -->  
-                
-                </ng-container>
-
-                
-                <!-- begin no data templete  -->
-                <no-data
-                    *ngIf="isProductsSearch && !products?.length"
-                    size="xl"
-                    class="block py-5"
-                    message="No result in Products"
-                ></no-data>
-                <!-- end no data templete  -->
-
-            </mat-card-content>
-        
-        </mat-card>
-
-
-
-        <!-- begin:: recently viewed section  -->
-        <section class="recently-viewed mt-5">
-            <header class="mb-2">
-                <h3 class="text-blue fw-600 !text-[1.1rem]">{{ 'shared.recently-viewed' | translate }}</h3>
-            </header>
-
-            <mat-card class="main-rounded--forced p-3 pb-2">
-                <mat-card-content>
-                    <recently-viewed [items]="recentlyViewed"></recently-viewed>
-                </mat-card-content>
-            </mat-card>
-
-        </section>
-        <!-- end:: recently viewed section  -->
-
-
-
-    </div>
+      <mat-card class="main-rounded--forced p-3 pb-2">
+        <mat-card-content>
+          <recently-viewed [items]="recentlyViewed"></recently-viewed>
+        </mat-card-content>
+      </mat-card>
+    </section>
+    <!-- end:: recently viewed section  -->
+  </div>
 </main>

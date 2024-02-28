@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { ResponsiveService } from 'src/app/shared/services/responsive/responsive.service';
 
 @Component({
   selector: 'help',
@@ -6,6 +8,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./help.component.scss']
 })
 export class HelpComponent implements OnInit {
+  isMobile: boolean = false;
+
+  subscription: Subscription = new Subscription();
+  subscriptionMobile: Subscription = new Subscription();
+
 
 
   helpNavList: any[] = [
@@ -26,9 +33,12 @@ export class HelpComponent implements OnInit {
     },
   ]
 
-  constructor() { }
+  constructor(private responsiveService: ResponsiveService) { }
 
   ngOnInit(): void {
+    this.subscriptionMobile = this.responsiveService.isMobile$.subscribe(isMobile => {
+      this.isMobile = isMobile;
+    });
   }
 
 }
