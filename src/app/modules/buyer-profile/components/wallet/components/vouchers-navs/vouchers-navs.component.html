@@ -26,7 +26,7 @@
     <ng-template ngbNavContent>
       <div
         *ngIf="userVouchers?.used?.length; else noData"
-        class="flex gap-3 xl:flex-wrap flex-col xl:flex-row"
+        class="flex gap-3 2xl:flex-wrap flex-col 2xl:flex-row"
       >
         <ng-container *ngFor="let item of userVouchers?.used">
           <used-voucher [voucher]="item"></used-voucher>

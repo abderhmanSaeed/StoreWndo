@@ -77,7 +77,7 @@ module.exports = {
       },
 
       screens: {
-        // xl: "1025px",
+        // 2xl: "1025px",
         xl: "1025px",
         "2xl": "1200px",
         tablet: "990px",

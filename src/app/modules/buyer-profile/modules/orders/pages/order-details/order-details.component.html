@@ -6,9 +6,9 @@
     >
   </header>
 
-  <div class="xl:grid xl:grid-cols-12">
+  <div class="xl:grid xl:grid-cols-12 xl:gap-4 2xl:gap-0">
     <div class="xl:col-span-9 mb-4">
-      <div class="col-box xl:ltr:mr-[8rem] xl:rtl:ml-[8rem]">
+      <div class="col-box 2xl:ltr:mr-[8rem] 2xl:rtl:ml-[8rem]">
         <!-- begin:: order status  -->
         <div
           class="order-status flex items-center justify-between text-[#9599B3] mb-4 fw-500 pb-2 text-[.84rem]"
@@ -141,7 +141,7 @@
         <!-- end:: shipping address and payment summary -->
 
         <!-- begin:: order actions -->
-        <div class="order-actions  items-center justify-center pt-[2rem] hidden xl:flex">
+        <div class="order-actions items-center justify-center pt-[2rem] hidden xl:flex">
           <app-button
             [stroked]="true"
             [label]="'actions.cancel-all' | translate"
@@ -183,7 +183,7 @@
       <app-order-summary [order]="order"></app-order-summary>
 
        <!-- begin::mobile order actions -->
-       <div class="order-actions flex-col md:flex-row gap-3 items-center justify-center pt-[2rem] flex xl:hidden">
+       <div class="order-actions sm:flex-col md:flex-row gap-3 items-center justify-center pt-[2rem] flex xl:hidden">
         <app-button
           [stroked]="true"
           [label]="'actions.cancel-all' | translate"

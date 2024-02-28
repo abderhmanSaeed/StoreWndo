@@ -1,7 +1,7 @@
 <div class="">
   <div class="col-12">
     <div
-      class="progress-wrapper relative flex justify-center items-center xl:mx-auto"
+      class="progress-wrapper relative flex justify-center items-center 2xl:mx-auto"
     >
       <!-- progressbar -->
       <ngb-progressbar
@@ -66,11 +66,11 @@
     </div>
 
     <!-- steps -->
-    <div class="steps flex justify-between mt-[30px] xl:mx-auto">
+    <div class="steps flex justify-between mt-[30px] 2xl:mx-auto">
       <mat-card
-        class="steps__step steps__step--active xl:shadow-sm bg-transparent xl:bg-white d-flex items-center xl:!px-4 xl:min-w-[200px] px-0 py-[.2rem] justify-center xl:ltr:translate-x-[-95px] xl:rtl:translate-x-[95px]"
+        class="steps__step steps__step--active 2xl:shadow-sm bg-transparent 2xl:bg-white d-flex items-center 2xl:!px-4 2xl:min-w-[200px] px-0 py-[.2rem] justify-center 2xl:ltr:translate-x-[-95px] 2xl:rtl:translate-x-[95px]"
       >
-        <div class="steps__step-icon hidden xl:flex">
+        <div class="steps__step-icon hidden 2xl:flex">
           <img
             class="ltr:me-2 rtl:me-2 active-icon"
             height="21"
@@ -78,18 +78,18 @@
             alt="Icon"
           />
         </div>
-        <span class="fw-500 xl:text-[.9rem] text-xs">{{
+        <span class="fw-500 2xl:text-[.9rem] text-xs">{{
           "my-orders.order-placed" | translate
         }}</span>
       </mat-card>
 
       <mat-card
-        class="steps__step xl:shadow-sm bg-transparent xl:bg-white d-flex items-center xl:!px-4 xl:min-w-[200px] px-0 py-[.2rem] justify-center xl:xl:ltr:translate-x-[-10px] xl:xl:rtl:translate-x-[10px]"
+        class="steps__step 2xl:shadow-sm bg-transparent 2xl:bg-white d-flex items-center 2xl:!px-4 2xl:min-w-[200px] px-0 py-[.2rem] justify-center 2xl:2xl:ltr:translate-x-[-10px] 2xl:2xl:rtl:translate-x-[10px]"
         [ngClass]="{
           'steps__step--active': progressbarValue >= 100 / 3
         }"
       >
-        <div class="steps__step-icon hidden xl:flex">
+        <div class="steps__step-icon hidden 2xl:flex">
           <img
             class="ltr:me-2 rtl:me-2"
             height="21"
@@ -103,18 +103,18 @@
             alt="Icon"
           />
         </div>
-        <span class="text-[.9rem] fw-500 xl:text-[.9rem] text-xs">{{
+        <span class="text-[.9rem] fw-500 2xl:text-[.9rem] text-xs">{{
           "my-orders.picked-up" | translate
         }}</span>
       </mat-card>
 
       <mat-card
-        class="steps__step xl:shadow-sm bg-transparent xl:bg-white d-flex items-center xl:!px-4 xl:min-w-[200px] px-0 py-[.2rem] justify-center ltr:translate-x-4 rtl:-translate-x-4 xl:ltr:translate-x-[40px] xl:rtl:translate-x-[-40px]"
+        class="steps__step 2xl:shadow-sm bg-transparent 2xl:bg-white d-flex items-center 2xl:!px-4 2xl:min-w-[200px] px-0 py-[.2rem] justify-center ltr:translate-x-4 rtl:-translate-x-4 2xl:ltr:translate-x-[40px] 2xl:rtl:translate-x-[-40px]"
         [ngClass]="{
           'steps__step--active': progressbarValue >= 100 / 3 + 100 / 3
         }"
       >
-        <div class="steps__step-icon hidden xl:flex">
+        <div class="steps__step-icon hidden 2xl:flex">
           <img
             class="ltr:me-2 rtl:me-2"
             height="21"
@@ -128,18 +128,18 @@
             alt="Icon"
           />
         </div>
-        <span class="text-[.9rem] fw-500 xl:text-[.9rem] text-xs">{{
+        <span class="text-[.9rem] fw-500 2xl:text-[.9rem] text-xs">{{
           "my-orders.out-for-delivery" | translate
         }}</span>
       </mat-card>
 
       <mat-card
-        class="steps__step xl:shadow-sm bg-transparent xl:bg-white d-flex items-center xl:!px-4 xl:min-w-[200px] px-0 py-[.2rem] justify-center ltr:translate-x-4.5 rtl:-translate-x-4.5 xl:ltr:translate-x-[95px] xl:rtl:translate-x-[-95px]"
+        class="steps__step 2xl:shadow-sm bg-transparent 2xl:bg-white d-flex items-center 2xl:!px-4 2xl:min-w-[200px] px-0 py-[.2rem] justify-center ltr:translate-x-4.5 rtl:-translate-x-4.5 2xl:ltr:translate-x-[95px] 2xl:rtl:translate-x-[-95px]"
         [ngClass]="{
           'steps__step--active': progressbarValue == 100
         }"
       >
-        <div class="steps__step-icon hidden xl:flex">
+        <div class="steps__step-icon hidden 2xl:flex">
           <img
             class="ltr:me-2 rtl:me-2"
             height="21"
@@ -153,7 +153,7 @@
             alt="Icon"
           />
         </div>
-        <span class="text-[.9rem] fw-500 xl:text-[.9rem] text-xs">{{
+        <span class="text-[.9rem] fw-500 2xl:text-[.9rem] text-xs">{{
           "my-orders.delivered" | translate
         }}</span>
       </mat-card>

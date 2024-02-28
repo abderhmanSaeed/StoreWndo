@@ -27,11 +27,11 @@
   // Structure Block
   width: 950px;
 
-  // @media (max-width: theme("screens.lg")) {
+  // @media (max-width: theme("screens.xl")) {
   //   width: 764px;
   // }
 
-  @media (max-width: theme("screens.xl")) {
+  @media (max-width: theme("screens.2xl")) {
     width: 941px;
   }
 
@@ -44,7 +44,7 @@
     width: 700px;
   }
 
-  @media (max-width: theme("screens.lg")) {
+  @media (max-width: theme("screens.xl")) {
     width: 600px;
   }
 }

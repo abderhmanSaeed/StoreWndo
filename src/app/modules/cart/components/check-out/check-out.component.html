@@ -5,8 +5,8 @@
     >
   </header>
 
-  <div class="xl:grid 2xl:grid-cols-12">
-    <div class="2xl:col-span-9 mb-4">
+  <div class="xl:grid xl:grid-cols-12 xl:gap-4 2xl:gap-0">
+    <div class="xl:col-span-9 mb-4">
       <ng-container *ngIf="cart?.carts?.length; else isEmpty">
         <div class="col-box 2xl:ltr:mr-[8rem] 2xl:rtl:ml-[8rem]">
           <ng-container *ngFor="let item of cart?.carts">
@@ -17,8 +17,7 @@
 
           <!-- begin:: cart actions -->
           <div
-            *ngIf="!isMobile"
-            class="cart-actions flex items-center justify-center pt-[1.5rem] flex-col xl:flex-row gap-y-3"
+            class="cart-actions items-center justify-center pt-[1.5rem]  2xl:flex-row gap-y-3 hidden xl:flex"
           >
             <app-button
               routerLink="/explore"
@@ -39,7 +38,7 @@
       </ng-container>
     </div>
 
-    <div class="2xl:col-span-3">
+    <div class="xl:col-span-3">
       <!-- begin:: order summary -->
       <order-summary [cart]="cart"></order-summary>
       <!-- end:: order summary -->
@@ -47,8 +46,8 @@
 
     <!-- begin:: cart actions -->
     <div
-      *ngIf="isMobile"
-      class="cart-actions flex items-center justify-center pt-[1.5rem] flex-col lg:flex-row gap-y-3"
+      *ngIf="cart?.carts?.length"
+      class="cart-actions items-center justify-center pt-[1.5rem] flex-col sm:flex-row gap-y-3 flex xl:hidden"
     >
       <app-button
         routerLink="/explore"

@@ -38,6 +38,10 @@ $prgMainColor: #000f47;
   @media screen and (width <= theme("screens.lg")) {
     width:calc(100% - 1.25rem);
   }
+
+  @media screen and (width < theme("screens.2xl")) {
+    width:calc(100% - 1.5rem);
+  }
 }
 
 
@@ -49,7 +53,7 @@ $prgMainColor: #000f47;
     // background-color: #fff;
     flex: 0 0 calc(100% / 3);
 
-    // @media screen and (width <= theme("screens.lg")) {
+    // @media screen and (width <= theme("screens.xl")) {
     //   flex: 0 0 calc(100% / 3.2);
     // }
 

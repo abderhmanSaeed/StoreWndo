@@ -1,13 +1,13 @@
 <div class="py-5 animate__animated animate__fadeIn">
-  <div class="xl:grid xl:grid-cols-12 w-100">
-    <div class="xl:col-span-9 mb-4">
-      <div class="col-box xl:ltr:mr-[8rem] xl:rtl:ml-[8rem]">
+  <div class="2xl:grid 2xl:grid-cols-12 w-100">
+    <div class="2xl:col-span-9 mb-4">
+      <div class="col-box 2xl:ltr:mr-[8rem] 2xl:rtl:ml-[8rem]">
         <!-- begin:: base info card  -->
         <mat-card class="p-4">
           <mat-card-content class="mb-0">
             <!-- Shipping Address -->
             <div
-              class="grid grid-cols-1 xl:grid-cols-2 gap-y-3 xl:gap-y-0 xl:gap-x-4"
+              class="grid grid-cols-1 2xl:grid-cols-2 gap-y-3 2xl:gap-y-0 2xl:gap-x-4"
             >
               <div class="">
                 <div class="col-box relative">
@@ -100,8 +100,8 @@
               <mat-card-title class="text-[.9rem] fw-500 mb-2">{{
                 "checkout.shipping-address" | translate
               }}</mat-card-title>
-              <div class="grid xl:grid-cols-12 gap-1 xl:gap-4 items-end">
-                <div class="xl:col-span-8 mb-2 xl:m-0">
+              <div class="grid 2xl:grid-cols-12 gap-1 2xl:gap-4 items-end">
+                <div class="2xl:col-span-8 mb-2 2xl:m-0">
                   <auk-select
                     bindValue=""
                     [items]="addresses"
@@ -115,7 +115,7 @@
                     "
                   ></auk-select>
                 </div>
-                <div class="xl:col-span-4 justify-self-end">
+                <div class="2xl:col-span-4 justify-self-end">
                   <button
                     (click)="openAddressFormDialog()"
                     class="btn p-0 underline text-blue text-[.8rem] fw-500"
@@ -133,7 +133,7 @@
                 {{ "checkout.shipping-time" | translate }}
               </h4>
               <div
-                class="times flex flex-col md:flex-row items-start xl:items-center gap-y-4 xl:gap-y-0"
+                class="times flex flex-col md:flex-row items-start 2xl:items-center gap-y-4 2xl:gap-y-0"
               >
                 <ng-container
                   *ngFor="
@@ -162,7 +162,7 @@
         <!-- end:: base info card  -->
 
         <!-- begin:: cart actions -->
-        <div class="cart-actions items-center justify-center pt-[1.5rem] hidden xl:flex">
+        <div class="cart-actions items-center justify-center pt-[1.5rem] hidden 2xl:flex">
           <app-button
             routerLink="/cart"
             [stroked]="true"
@@ -180,7 +180,7 @@
       </div>
     </div>
 
-    <div class="xl:col-span-3">
+    <div class="2xl:col-span-3">
       <!-- begin:: payment-methods -->
       <payment-methods
         #paymentMethodsComponent
@@ -191,7 +191,7 @@
 
 
        <!-- begin:: Mobile cart actions -->
-       <div class="cart-actions items-center justify-center pt-[1.5rem] flex flex-col lg:flex-row gap-4 lg:gap-0 xl:hidden">
+       <div class="cart-actions items-center justify-center pt-[1.5rem] flex flex-col lg:flex-row gap-4 lg:gap-0 2xl:hidden">
         <app-button
           routerLink="/cart"
           [stroked]="true"

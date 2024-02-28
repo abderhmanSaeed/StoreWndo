@@ -1,6 +1,6 @@
 <section>
-  <div class="flex xl:flex-row flex-col gap-4">
-    <div class="xl:h-[600px] flex items-center justify-center xl:w-[353px]">
+  <div class="flex 2xl:flex-row flex-col gap-4">
+    <div class="2xl:h-[600px] flex items-center justify-center 2xl:w-[353px]">
       <ng-container *ngIf="!selectedMedia?.isMain">
         <img
           (error)="onImgError($event)"
@@ -23,7 +23,7 @@
       </ng-container>
     </div>
 
-    <div class="flex xl:flex-col xl:justify-end gap-y-4 gap-2 xl:gap-0 flex-wrap">
+    <div class="flex 2xl:flex-col 2xl:justify-end gap-y-4 gap-2 2xl:gap-0 flex-wrap">
       <ng-container *ngFor="let item of media | slice : 0 : 5">
         <!-- if video  -->
         <button
@@ -31,7 +31,7 @@
           *ngIf="item?.isMain"
           (click)="selectedMedia = item"
           [matRippleColor]="mainRippleColor"
-          class="btn p-0 row-span-2 border main-rounded overlay w-[100px] h-[100px] xl:h-[160px] flex justify-center items-center relative"
+          class="btn p-0 row-span-2 border main-rounded overlay w-[100px] h-[100px] 2xl:h-[160px] flex justify-center items-center relative"
         >
           <img
             *ngIf="item?.urlThumbnail; else imgPlaceholder"
@@ -51,7 +51,7 @@
           matRipple
           (click)="selectedMedia = item"
           [matRippleColor]="mainRippleColor"
-          class="btn p-0 border main-rounded w-[100px] h-[100px] xl:h-[80px] flex justify-center items-center"
+          class="btn p-0 border main-rounded w-[100px] h-[100px] 2xl:h-[80px] flex justify-center items-center"
         >
           <img
             *ngIf="item?.urlPreview; else imgPlaceholder"

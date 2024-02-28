@@ -7,10 +7,10 @@
     >
   </header>
 
-  <div class="xl:grid xl:grid-cols-12">
+  <div class="xl:grid xl:grid-cols-12 xl:gap-4 2xl:gap-0">
     <div class="xl:col-span-9 mb-4">
       <ng-container *ngIf="cart?.carts?.length; else isEmpty">
-        <div class="col-box xl:ltr:mr-[8rem] xl:rtl:ml-[8rem]">
+        <div class="col-box 2xl:ltr:mr-[8rem] 2xl:rtl:ml-[8rem]">
           <ng-container *ngFor="let item of cart?.carts">
             <!-- begin:: cart items -->
             <cart-item [item]="item" class="mb-3 block"></cart-item>
@@ -21,8 +21,8 @@
           <mat-card class="p-4 relative">
             <mat-card-content class="mb-0">
               <!-- Shipping Address -->
-              <div class="grid grid-cols-1 xl:grid-cols-2">
-                <div class="border-b pb-3 xl:pb-0 xl:border-b-0 xl:ltr:border-r xl:rtl:border-l">
+              <div class="grid grid-cols-1 2xl:grid-cols-2">
+                <div class="border-b pb-3 2xl:pb-0 2xl:border-b-0 2xl:ltr:border-r 2xl:rtl:border-l">
                   <div class="col-box">
                     <h4 class="fw-500 text-[.9rem] mb-2">
                       {{ "checkout.shipping-address" | translate }}
@@ -35,7 +35,7 @@
                 </div>
 
                 <!-- Payment -->
-                <div class="mt-3 xl:mt-0">
+                <div class="mt-3 2xl:mt-0">
                   <div class="col-box ltr:ps-3 rtl:ps-3">
                     <h4 class="fw-500 text-[.9rem] mb-2">
                       {{ "checkout.payment" | translate }}
@@ -83,7 +83,7 @@
             </mat-card-content>
 
             <mat-card-actions
-              class="d-flex justify-between absolute ltr:right-0 rtl:left-0 top-[50%] translate-y-[-49%] xl:translate-y-[-50%] translate-x-4 xl:ltr:translate-x-[50%] xl:rtl:translate-x-[-50%] m-0 pt-0"
+              class="d-flex justify-between absolute ltr:right-0 rtl:left-0 top-[50%] translate-y-[-49%] 2xl:translate-y-[-50%] translate-x-4 2xl:ltr:translate-x-[50%] 2xl:rtl:translate-x-[-50%] m-0 pt-0"
             >
               <button
                 (click)="openEditAddressAndPaymentMethodDialog()"
@@ -133,7 +133,8 @@
       <!-- end:: voucher -->
 
          <!-- begin:: Mobile cart actions -->
-         <div class="cart-actions  items-center justify-center pt-[2rem] flex flex-col lg:flex-row gap-4 lg:gap-0 xl:hidden">
+
+         <div class="cart-actions  items-center justify-center pt-[2rem] flex flex-col sm:flex-row gap-4 lg:gap-0 xl:hidden">
           <app-button
             routerLink="/cart"
             [stroked]="true"
@@ -154,5 +155,5 @@
 
 <!-- if the cart is empaty  -->
 <ng-template #isEmpty>
-  <is-empty class="xl:ltr:mr-[8rem] xl:rtl:ml-[8rem] block"></is-empty>
+  <is-empty class="2xl:ltr:mr-[8rem] 2xl:rtl:ml-[8rem] block"></is-empty>
 </ng-template>

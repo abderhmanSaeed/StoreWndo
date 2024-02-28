@@ -21,7 +21,7 @@
   </div>
 </div>
 <mat-card
-  class="border-[#ffa803] border-b-[3px] rounded-0 !flex flex-col xl:flex-row p-0 relative"
+  class="border-[#ffa803] border-b-[3px] rounded-0 !flex flex-col 2xl:flex-row p-0 relative"
   [ngClass]="{
     'border-[#4EA3F8]':
       item?.orderItemState == orderItemStatsObject.ordered.key,
@@ -36,7 +36,7 @@
   }"
 >
   <div
-    class="img-box main-rounded mx-auto xl:mx-0 p-3 d-flex flex-center position-relative w-[170px] min-w-[170px] h-[170px]"
+    class="img-box main-rounded mx-auto 2xl:mx-0 p-3 d-flex flex-center position-relative w-[170px] min-w-[170px] h-[170px]"
   >
     <ng-container *ngIf="item?.discount">
       <small

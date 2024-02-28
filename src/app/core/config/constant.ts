@@ -20,5 +20,5 @@ export class Constant {
   //Breakpoint
   public static mobileWidth = 768; //   breakpoint  mobile devices
   public static tabletWidth = 990; //   breakpoint  tablet devices
-  public static laptopWidth = 1024;// breakpoint  laptop devices
+  public static laptopWidth = 1199;// breakpoint  laptop devices
 }

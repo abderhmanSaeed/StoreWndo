@@ -54,9 +54,9 @@
     <!-- steps -->
     <div class="steps flex justify-between mt-[30px]">
       <mat-card
-        class="steps__step bg-transparent xl:!bg-white steps__step--active xl:!shadow-sm !flex items-center xl:!px-4 px-0 xl:min-w-[230px] py-[.2rem] justify-center xl:ltr:translate-x-[-50%] xl:rtl:translate-x-[50%]"
+        class="steps__step bg-transparent 2xl:!bg-white steps__step--active 2xl:!shadow-sm !flex items-center 2xl:!px-4 px-0 2xl:min-w-[230px] py-[.2rem] justify-center 2xl:ltr:translate-x-[-50%] 2xl:rtl:translate-x-[50%]"
       >
-        <div class="steps__step-icon hidden xl:inline-flex">
+        <div class="steps__step-icon hidden 2xl:inline-flex">
           <img
             class="ltr:me-2 rtl:me-2 active-icon"
             height="21"
@@ -64,18 +64,18 @@
             alt="Icon"
           />
         </div>
-        <span class="xl:text-[.9rem] text-xs lg:text-[0.9rem]  fw-500">{{
+        <span class="2xl:text-[.9rem] text-xs lg:text-[0.9rem]  fw-500">{{
           "checkout.check-out" | translate
         }}</span>
       </mat-card>
 
       <mat-card
-        class="steps__step bg-transparent xl:!bg-white !flex items-center xl:!shadow-sm xl:!px-4 px-0 xl:min-w-[230px] py-[.2rem] justify-center !bg-transparent xl:!bg-white"
+        class="steps__step bg-transparent 2xl:!bg-white !flex items-center 2xl:!shadow-sm 2xl:!px-4 px-0 2xl:min-w-[230px] py-[.2rem] justify-center !bg-transparent 2xl:!bg-white"
         [ngClass]="{
           'steps__step--active': progressbarValue >= 50
         }"
       >
-        <div class="steps__step-icon hidden xl:inline-flex">
+        <div class="steps__step-icon hidden 2xl:inline-flex">
           <img
             class="ltr:me-2 rtl:me-2"
             height="21"
@@ -89,18 +89,18 @@
             alt="Icon"
           />
         </div>
-        <span class="xl:text-[.9rem] text-xs lg:text-[0.9rem]  fw-500">{{
+        <span class="2xl:text-[.9rem] text-xs lg:text-[0.9rem]  fw-500">{{
           "checkout.shipping-payment" | translate
         }}</span>
       </mat-card>
 
       <mat-card
-        class="steps__step bg-transparent xl:!bg-white !flex items-center xl:!shadow-sm xl:!px-4 px-0 xl:min-w-[230px] py-[.2rem] justify-center xl:ltr:translate-x-[50%] xl:rtl:translate-x-[-50%]"
+        class="steps__step bg-transparent 2xl:!bg-white !flex items-center 2xl:!shadow-sm 2xl:!px-4 px-0 2xl:min-w-[230px] py-[.2rem] justify-center 2xl:ltr:translate-x-[50%] 2xl:rtl:translate-x-[-50%]"
         [ngClass]="{
           'steps__step--active': progressbarValue > 50
         }"
       >
-        <div class="steps__step-icon hidden xl:inline-flex">
+        <div class="steps__step-icon hidden 2xl:inline-flex">
           <img
             class="ltr:me-2 rtl:me-2"
             height="21"
@@ -114,7 +114,7 @@
             alt="Icon"
           />
         </div>
-        <span class="xl:text-[.9rem] text-xs lg:text-[0.9rem]  fw-500">{{
+        <span class="2xl:text-[.9rem] text-xs lg:text-[0.9rem]  fw-500">{{
           "checkout.confirmation" | translate
         }}</span>
       </mat-card>

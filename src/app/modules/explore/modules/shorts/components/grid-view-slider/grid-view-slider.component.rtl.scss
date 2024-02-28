@@ -3,7 +3,7 @@
     ::ng-deep {
       .swiper {
         &__controllers {
-          @media screen and (width <= theme("screens.lg")) {
+          @media screen and (width < theme("screens.2xl")) {
             transform: rotate(180deg);
             bottom: 17px;
             inset-inline-start: 1rem;

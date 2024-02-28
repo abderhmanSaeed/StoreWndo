@@ -8,7 +8,7 @@
     // Structure Block
     max-width: calc(100% - 215px);
 
-    @media screen and (width < theme("screens.xl")) {
+    @media screen and (width < theme("screens.2xl")) {
       max-width: 100%;
     }
   }

@@ -1,4 +1,4 @@
-<main class="flash-sales-page py-4 mt-[8rem] xl:mt-0">
+<main class="flash-sales-page py-4 mt-[8rem] 2xl:mt-0">
   <div class="container">
     <!-- begin:: breadcrumb -->
     <breadcrumb class="d-block mb-4"></breadcrumb>
@@ -7,7 +7,7 @@
       <!-- begin:: flash-sales  -->
       <ng-container *ngIf="exploreProducts.length; else noContent">
         <div
-          class="flash-sales-wrapper grid grid-cols-1 lg:grid-cols-2 gap-4 bg-white main-rounded--force xl:ltr:ml-24 xl:rtl:mr-24 xl:w-3/5 p-6"
+          class="flash-sales-wrapper grid grid-cols-1 lg:grid-cols-2 gap-4 bg-white main-rounded--force 2xl:ltr:ml-24 2xl:rtl:mr-24 2xl:w-3/5 p-6"
         >
           <ng-container *ngFor="let item of exploreProducts">
             <ng-container *ngFor="let item of item?.flashSales">

@@ -1,12 +1,12 @@
 <section class="cd-cards mb-3">
-  <div class="filter xl:flex xl:justify-end mb-4">
+  <div class="filter 2xl:flex 2xl:justify-end mb-4">
     <auk-select
       bindLabel="name"
       bindValue=""
       [items]="monthWithYearListArr"
       [wndoStyle]="true"
       [clearable]="true"
-      panelclass="rounded w-full xl:w-[250px]"
+      panelclass="rounded w-full 2xl:w-[250px]"
       (onChange)="onDateChange($event)"
       [placeholder]="'wallet.date' | translate"
     ></auk-select>

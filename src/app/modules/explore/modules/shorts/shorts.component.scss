@@ -11,7 +11,7 @@
     align-items: center;
   }
 
-  @media screen and (width <= theme('screens.lg')) {
+  @media screen and (width < theme('screens.2xl')) {
     margin-top: 8rem;
   }
 }

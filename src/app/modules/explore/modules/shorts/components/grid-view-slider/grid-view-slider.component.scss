@@ -15,7 +15,7 @@
         margin-inline-start: auto;
         margin-top: 1.8rem;
 
-        @media screen and (width <= theme("screens.lg")) {
+        @media screen and (width < theme("screens.2xl")) {
           margin-inline-end: auto;
           margin-inline-start: 0;
         }
@@ -43,7 +43,7 @@
         // Positioing Block
         position: absolute;
 
-        @media screen and (width <= theme('screens.lg')) {
+        @media screen and (width <= theme('screens.xl')) {
           inset-inline-end: 1rem;
         }
       }
@@ -58,7 +58,7 @@
   }
 
   &:hover {
-    @media screen and (width >= theme("screens.xl")) {
+    @media screen and (width >= theme("screens.2xl")) {
       grid-view-card {
         // Structure Block
         width: calc(200% + 1rem);
@@ -73,7 +73,7 @@
   &:nth-of-type(10),
   &:nth-of-type(5) {
     &:hover {
-      @media screen and (width >= theme("screens.xl")) {
+      @media screen and (width >= theme("screens.2xl")) {
         grid-view-card {
           // Positioning Block
           left: calc(-100% - 1rem);
@@ -84,7 +84,7 @@
 
   &--bottom {
     &:hover {
-      @media screen and (width >= theme("screens.xl")) {
+      @media screen and (width >= theme("screens.2xl")) {
         grid-view-card {
           // Positioning Block
           top: calc(-100% - 1rem);

@@ -7,7 +7,7 @@
 
   <!-- begin:: store  -->
   <mat-card
-    class="main-rounded--force !flex justify-between border-l-4 mt-[3rem] flex-col xl:flex-row"
+    class="main-rounded--force !flex justify-between border-l-4 mt-[3rem] flex-col 2xl:flex-row"
     [ngClass]="{
       'border-[#4EA3F8]':
         data.stateOfSellerOrder == orderItemStatsObject.ordered.key,
@@ -23,8 +23,8 @@
     }"
   >
     <div class="start flex-grow-1">
-      <div class="xl:grid xl:grid-cols-12">
-        <div class="xl:col-span-4 prod-info flex flex-col">
+      <div class="2xl:grid 2xl:grid-cols-12">
+        <div class="2xl:col-span-4 prod-info flex flex-col">
           <div
             class="text-blue mb-2 order-info__txt flex flex-col text-truncate"
           >
@@ -45,13 +45,13 @@
           </div>
         </div>
 
-        <div class="xl:col-span-8">
+        <div class="2xl:col-span-8">
           <div class="text-blue order-items flex flex-col text-truncate">
-            <span class="fw-600 text-[.87rem] mb-2 mt-4 xl:mt-0">
+            <span class="fw-600 text-[.87rem] mb-2 mt-4 2xl:mt-0">
               {{ "my-orders.items" | translate }}:{{ data?.products?.length }}
             </span>
 
-            <div class="items bg-[#eeeff4] p-2 xl:w-max rounded">
+            <div class="items bg-[#eeeff4] p-2 2xl:w-max rounded">
               <ul>
                 <ng-container
                   *ngFor="let item of data?.products; let index = index"
@@ -137,7 +137,7 @@
     </div>
 
     <!-- begin:: end content  -->
-    <div class="end flex xl:flex-col items-end justify-between xl:w-[150px] mt-4 xl:mt-0">
+    <div class="end flex 2xl:flex-col items-end justify-between 2xl:w-[150px] mt-4 2xl:mt-0">
       <small
         class="badge px-2 fw-400 lh-normal"
         [ngClass]="{

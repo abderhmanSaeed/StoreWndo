@@ -1,10 +1,10 @@
 <section class="profile-form animate__animated animate__fadeIn pb-3">
-  <mat-card class="main-rounded--force !p-2 xl:!p-4 mb-4">
+  <mat-card class="main-rounded--force !p-2 2xl:!p-4 mb-4">
     <form class="form" [formGroup]="form" (ngSubmit)="submit()">
-      <div class="flex flex-col xl:flex-row">
-        <div class="xl:w-[115px]">
+      <div class="flex flex-col 2xl:flex-row">
+        <div class="2xl:w-[115px]">
           <div
-            class="profile-photo relative w-[73px] h-[73px] mx-auto xl:mx-0 mb-4 xl:mb-0"
+            class="profile-photo relative w-[73px] h-[73px] mx-auto 2xl:mx-0 mb-4 2xl:mb-0"
           >
             <img
               (error)="onImgError($event)"
@@ -76,7 +76,7 @@
             </div>
           </div>
 
-          <div class="row xl:mb-4">
+          <div class="row 2xl:mb-4">
             <div class="col-lg-5 mb-4">
               <auk-select
                 [static]="true"
@@ -114,7 +114,7 @@
         <button
           mat-stroked-button
           type="button"
-          class="border-primary text-primary max-w-100 px-5 lh-normal !py-[.6rem] main-rounded--force w-full xl:w-auto"
+          class="border-primary text-primary max-w-100 px-5 lh-normal !py-[.6rem] main-rounded--force w-full 2xl:w-auto"
         >
           {{ "actions.save" | translate }}
         </button>

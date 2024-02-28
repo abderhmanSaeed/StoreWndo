@@ -17,13 +17,13 @@
     &.active {
       // Structure Block
       background-color: var(--third);
-      @media screen and (width<= theme("screens.lg")) {
+      @media screen and (width<= theme("screens.xl")) {
         @apply bg-transparent;
         // border: 1px solid theme("colors.purple.600") !important;
       }
 
       .wallet-icon {
-        @media screen and (width<= theme("screens.lg")) {
+        @media screen and (width<= theme("screens.xl")) {
           @apply border border-purple-600 rounded-lg;
         }
       }
@@ -31,7 +31,7 @@
       span {
         // Typography Block
         color: #fff;
-        @media screen and (width<= theme("screens.lg")) {
+        @media screen and (width<= theme("screens.xl")) {
           @apply text-gray-700;
         }
       }

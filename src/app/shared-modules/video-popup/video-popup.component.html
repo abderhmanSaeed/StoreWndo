@@ -11,7 +11,7 @@
             <!-- end:: closer  -->
 
             <div mat-dialog-content class="mx-0 p-0">
-                <div class="w-full xl:w-[400px] max-w-100 main-rounded video-col h-auto flex items-center mx-auto">
+                <div class="w-full 2xl:w-[400px] max-w-100 main-rounded video-col h-auto flex items-center mx-auto">
                     <div class="video-wrapper relative w-100 h-1000">
                         <wndo-loader bdColor="transparent" *ngIf="isVideoLoading" class="block h-100 w-100 main-rounded--force absolute z-[2]"></wndo-loader>
                         <vg-player [hidden]="isVideoLoading" class="h-auto bg-transparent" *ngIf="source" (onPlayerReady)="onPlayerReady($event)">
