@@ -9,6 +9,7 @@ import { ComponentBase } from '../shared/helpers/component-base.directive';
 import { ResponsiveUCComponent } from '../shared/components/responsive-uc/responsive-uc.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ResponsiveService } from '../shared/services/responsive/responsive.service';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -48,11 +49,41 @@ export class LayoutComponent extends ComponentBase implements OnInit {
     this.onLangChange();
     this.checkRoute();
 
+    if (this.isWeb) {
+      console.log('Accessed via web browser on a non-mobile device');
+      // Perform actions for web access here, if necessary
+    } else {
+      this.redirectToAppStore();
+    }
     this.subscriptionMobile = this.responsiveService.isMobile$.subscribe(isMobile => {
       this.isMobile = isMobile;
     });
   }
 
+
+  redirectToAppStore(): void {
+    if (this.isIOS) {
+      window.location.href = environment.mobileAppIosUrl;
+    } else if (this.isAndroid) {
+      window.location.href = environment.mobileAppGooglePlayUrl;
+    } else {
+      console.log('Non-mobile device detected');
+      // Optional: Handle other devices or show a message
+    }
+  }
+
+  get isIOS(): boolean {
+    return /iPad|iPhone|iPod/.test(navigator.userAgent);
+  }
+
+  get isAndroid(): boolean {
+    return /android/i.test(navigator.userAgent);
+  }
+
+  get isWeb(): boolean {
+    // Assume web if not iOS or Android. Consider adding more checks for other devices if needed.
+    return !this.isIOS && !this.isAndroid;
+  }
 
   override ngOnDestroy(): void {
     this.subscription.unsubscribe();
