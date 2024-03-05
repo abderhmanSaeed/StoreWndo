@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "cross-env NODE_ENV=development ng serve",
     "build": "cross-env NODE_ENV=production ng build",
+    "build:prod": "ng build --configuration production",
     "deploy": "ng deploy --base-href=./",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
