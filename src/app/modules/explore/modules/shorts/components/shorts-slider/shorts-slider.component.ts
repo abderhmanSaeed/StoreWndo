@@ -1,6 +1,7 @@
 import {
   ChangeDetectorRef,
   Component,
+  ElementRef,
   OnDestroy,
   OnInit,
   ViewChild,
@@ -30,6 +31,15 @@ import { AukVideoService } from 'src/app/shared-modules/auk-video/services/auk-v
 import { BrowserService } from 'src/app/shared/services/browser-db/browser.service';
 import { Constant } from 'src/app/core/config/constant';
 import { ResponsiveService } from 'src/app/shared/services/responsive/responsive.service';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { MatDialog } from '@angular/material/dialog';
+import { MobileProductDetailsDialogComponent } from 'src/app/shared-modules/product-details-dialog/components/responsive/mobile-product-details-dialog/mobile-product-details-dialog.component';
+import { Languages } from 'src/app/shared/enums/languages/languages';
+import { MatIconRegistry } from '@angular/material/icon';
+import { DomSanitizer } from '@angular/platform-browser';
+import { MessagesService } from 'src/app/shared/services/messages/messages.service';
+import { TranslateService } from '@ngx-translate/core';
+import { environment } from 'src/environments/environment';
 
 // install Swiper modules
 SwiperCore.use([Mousewheel, Pagination, Autoplay, Keyboard]);
@@ -65,6 +75,12 @@ export class ShortsSliderComponent implements OnInit, OnDestroy {
   };
   vgEndedSubscription: Subscription = new Subscription();
 
+  faPlus = faPlus;
+  lang: Languages = Languages.AR;
+
+  @ViewChild('media', { static: false }) mediaElementRef!: ElementRef;
+  toggleVideoPlay: string = 'shared.auto';
+
   constructor(
     private _HttpService: HttpService,
     private _ShortsService: ShortsService,
@@ -73,8 +89,15 @@ export class ShortsSliderComponent implements OnInit, OnDestroy {
     private _ChangeDetectorRef: ChangeDetectorRef,
     private _AukVideoService: AukVideoService,
     private _HelperFunctionsService: HelperFunctionsService,
-    private _ResponsiveService: ResponsiveService
-  ) { }
+    private _ResponsiveService: ResponsiveService,
+    private _MatDialog: MatDialog,
+    private matIconRegistry: MatIconRegistry,
+    private domSanitizer: DomSanitizer,
+    private _MessagesService: MessagesService,
+    private _TranslateService: TranslateService,
+  ) {
+    this.initializeIcons();
+  }
 
   ngOnInit(): void {
     this.setSwiperConfig();
@@ -83,6 +106,56 @@ export class ShortsSliderComponent implements OnInit, OnDestroy {
     this._ResponsiveService.isMobile$.subscribe((isMobile) => {
       this.isMobile = isMobile;
     });
+  }
+
+  initializeIcons() {
+    this.matIconRegistry.addSvgIcon(
+      'open-box',
+      this.domSanitizer.bypassSecurityTrustResourceUrl(
+        './assets/media/svg/open-box.svg'
+      )
+    );
+
+    this.matIconRegistry.addSvgIcon(
+      'pause',
+      this.domSanitizer.bypassSecurityTrustResourceUrl(
+        './assets/media/svg/pause.svg'
+      )
+    );
+    this.matIconRegistry.addSvgIcon(
+      'offers',
+      this.domSanitizer.bypassSecurityTrustResourceUrl(
+        './assets/media/svg/discount.svg'
+      )
+    );
+
+    this.matIconRegistry.addSvgIcon(
+      'like',
+      this.domSanitizer.bypassSecurityTrustResourceUrl(
+        './assets/media/svg/like_2.svg'
+      )
+    );
+
+    this.matIconRegistry.addSvgIcon(
+      'comment',
+      this.domSanitizer.bypassSecurityTrustResourceUrl(
+        './assets/media/svg/comment_3.svg'
+      )
+    );
+
+    this.matIconRegistry.addSvgIcon(
+      'feather-heart',
+      this.domSanitizer.bypassSecurityTrustResourceUrl(
+        './assets/media/svg/heart_2.svg'
+      )
+    );
+
+    this.matIconRegistry.addSvgIcon(
+      'share',
+      this.domSanitizer.bypassSecurityTrustResourceUrl(
+        './assets/media/svg/share.svg'
+      )
+    );
   }
 
 
@@ -326,5 +399,59 @@ export class ShortsSliderComponent implements OnInit, OnDestroy {
   // Method to handle the 'onProductWishCountChange' event
   onProductWishCountChange(item: any, $event: number) {
     item.wishListData.wishListCount = $event;
+  }
+
+  onImgError(event: any){
+    event.target.src = 'assets/media/logos/smile.svg'
+  }
+
+  openGridCardPerviewDialog(data: any): void {
+    this._MatDialog.open(MobileProductDetailsDialogComponent, {
+      width: '100%',
+      // maxWidth: '100%',
+      data,
+      direction: this.lang == Languages.AR ? 'rtl' : 'ltr',
+      panelClass: 'product-details-dialog',
+    });
+  }
+
+  getProductDetails(productId: any): void {
+    this.subscription.add(
+      this._HttpService
+        .get(`${APIs.getProductDetails}/${productId}`)
+        .subscribe((res: HResponse) => {
+          this.openGridCardPerviewDialog(res.responseData);
+        })
+    );
+  }
+
+  onExpandClick(productId: any): void {
+    if (productId) {
+      this.getProductDetails(productId);
+    }
+  }
+
+  toggleVideoPlayback(): void {
+    const video: HTMLVideoElement = this.mediaElementRef.nativeElement;
+    if (video.paused) {
+      video.play();
+      this.toggleVideoPlay = 'shared.pause';
+    } else {
+      video.pause();
+      console.log('stop');
+      this.toggleVideoPlay = 'shared.auto';
+    }
+  }
+
+  copyProductDetailsLink(id: any): void {
+    console.log('share');
+    this._HelperFunctionsService
+      .copy(environment.routes.productDetails + id)
+      .then(() => {
+        this._MessagesService.openSuccessSnackBar(
+          this._TranslateService.instant('shared.copied'),
+          3000
+        );
+      });
   }
 }

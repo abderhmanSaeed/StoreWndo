@@ -48,15 +48,17 @@
         class="d-block h-100"
         [data]="productDetails"
       ></product-details-dialog-main-info>
-      <div
-      class="col flex-grow-1 product-features-col"
-      *ngIf="showSizesColors"
-    >
-      <app-product-features
-        [isInPopup]="true"
-        class="flex h-100"
-        (onSave)="onProductFeaturesSave($event)"
-      ></app-product-features>
-  </div>
+
 </div>
+</div>
+
+<div
+class="col flex-grow-1 product-features-col shadow-2xl rounded-lg col flex-grow-1 product-features-col absolute !end-[10px] !start-[10px] !top-[56px] !bottom-[56px]"
+*ngIf="showSizesColors"
+>
+<app-product-features
+  [isInPopup]="true"
+  class="flex h-100"
+  (onSave)="onProductFeaturesSave($event)"
+></app-product-features>
 </div>

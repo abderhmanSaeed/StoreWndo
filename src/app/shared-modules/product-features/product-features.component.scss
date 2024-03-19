@@ -2,37 +2,41 @@
     .address__content {
 
         .mat-dialog-content {
-    
-            // Modifire Block 
+
+            // Modifire Block
             overflow: visible;
-    
+
         }
     }
-    
-    
+
+
     .cdk-overlay-dark-backdrop {
-        // Structure Block 
+        // Structure Block
         background: rgba(0, 0, 0, 0.91);
     }
-    
+
     .mat-dialog-container {
-        // Structure Block 
+        // Structure Block
         background: transparent !important;
         padding: 5rem 0px 1rem 0;
-    
-        // Positioning Block 
+
+        // Positioning Block
         position: relative;
-    
-        // Modifire Block 
+
+        // Modifire Block
         overflow: visible;
-    
+
+        @media screen and (width <= theme("screens.xl")) {
+          background: #fff !important;
+        }
+
     }
-    
+
     .mat-dialog-actions {
-        // Structure Block 
+        // Structure Block
         margin-bottom: 0;
     }
-            
+
 }
 
 
@@ -43,15 +47,15 @@ input[type="radio"] {
 
     &:checked {
         & ~ label {
-         
-    
-            // Structure Block 
+
+
+            // Structure Block
             background-color: var(--product-color);
             border-color: var(--product-color);
-    
-            // Typography Block 
+
+            // Typography Block
             // color: #fff;
-    
+
         }
     }
 
@@ -60,7 +64,7 @@ input[type="radio"] {
     &:not(:checked) {
         & ~ label {
 
-            // Typography Block 
+            // Typography Block
             color: #000 !important;
         }
     }
