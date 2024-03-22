@@ -1,122 +1,159 @@
-<div 
-class="d-flex p-0 align-items-start justify-content-start mb-[.7rem]"
-     >
-     <div class="start ltr:me-3 rtl:me-3">
-         <div class="owner__img-box rounded-circle d-flex flex-center w-[40px] h-[40px]">
-             <img
-                [src]="comment?.user?.imagePath" alt="User Image"
-                class="img-fluid rounded-circle fit-img w-100 h-100"
-                (error)="onImgError($event)" *ngIf="comment?.user?.imagePath else imgPlaceholder"
-            >
-         </div>
-     </div>
+<div class="d-flex p-0 align-items-start justify-content-start mb-[.7rem]">
+  <div class="start ltr:me-3 rtl:me-3">
+    <div
+      class="owner__img-box rounded-circle d-flex flex-center w-[40px] h-[40px]"
+    >
+      <img
+        [src]="comment?.user?.imagePath"
+        alt="User Image"
+        class="img-fluid rounded-circle fit-img w-100 h-100"
+        (error)="onImgError($event)"
+        *ngIf="comment?.user?.imagePath; else imgPlaceholder"
+      />
+    </div>
+  </div>
 
-     <div class="end ltr:pe-2 rtl:pe-2 leading-[17px] flex-grow-1">
+  <div class="end ltr:pe-2 rtl:pe-2 leading-[17px] flex-grow-1">
+    <div class="content flex items-start">
+      <div class="start">
+        <h4 class="title text-black mb-1 !text-[.88rem] fw-600 text-capitalize">
+          {{ comment?.user?.name }}
+        </h4>
 
-        <div class="content flex items-start">
-            <div class="start">
-                <h4 class="title text-black mb-1 !text-[.88rem] fw-600 text-capitalize">
-                    {{ comment?.user?.name }}
-                </h4>
-    
-                <small class="message inline-block mb-2 text-clamp text-clamp--2">
-                    {{ comment?.message }}
+        <small class="message inline-block mb-2 text-clamp text-clamp--2">
+          {{ comment?.message }}
+        </small>
+        <div class="flex items-center justify-between">
+          <div
+            class="start flex items-baseline 2xl:items-center gap-y-3 2xl:gap-y-0 flex-grow-1 flex-col lg:flex-row"
+          >
+            <small class="ltr:me-4 rtl:me-4 lh-normal">{{
+              comment?.creationTime
+            }}</small>
+            <div class="flex items-center gap-2">
+
+              <button
+                (click)="updateCommentLike(comment?.id)"
+                class="btn flex lh-normal ltr:me-2 rtl:me-2 text-[#97979d] p-0 text-[.85rem] hover:text-[#003b6d]"
+              >
+                <small>
+                  {{
+                    comment?.isLike
+                      ? ("actions.dislike" | translate)
+                      : ("actions.like" | translate)
+                  }}
                 </small>
-                <div class="flex items-center justify-between">
-                    <div class="start flex items-center flex-grow-1">
-                        <small class="ltr:me-4 rtl:me-4 lh-normal">{{ comment?.creationTime }}</small>
-                        <button (click)="updateCommentLike(comment?.id)" class="btn flex lh-normal ltr:me-2 rtl:me-2 text-[#97979d] p-0 text-[.85rem] hover:text-[#003b6d]">
-                            <small>
-                                {{ comment?.isLike ? ('actions.dislike' | translate)  :  ('actions.like' | translate) }}
-                            </small>
-                        </button>
-                        <button 
-                            (click)="collapse.toggle()"
-                            [attr.aria-expanded]="!isCollapsed"
-                            aria-controls="collapseExample"
-                            (click)="isAuthenticated()"
-                            class="btn flex lh-normal ltr:me-2 rtl:me-2 text-[#97979d] p-0 text-[.85rem] hover:text-[#003b6d]"
-                        >
-                            <small>{{ 'actions.reply' | translate }}</small>
-                        </button>
-                        <button (click)="isAuthenticated()" class="btn flex lh-normal ltr:me-2 rtl:me-2 text-[#97979d] p-0 text-[.85rem] hover:text-[#003b6d]">
-                            <small>{{ 'actions.report' | translate }}</small>
-                        </button>
-                    </div>
-    
-                    <div class="end flex items-center">
-                        <div *ngIf="comment?.likes" class="likes-count flex items-center">
-                            <small class="fw-500">
-                                {{ comment?.likes }}
-                            </small>
-                            <span class="icon ltr:ms-1 rtl:ms-1">
-                                <img class="h-[18px]" src="assets/media/svg/likes.svg" alt="Likes">
-                            </span>
-                        </div>
-                        <button 
-                            (click)="repliesCollapse.toggle()"
-                            [attr.aria-expanded]="!isRepliesCollapsed"
-                            aria-controls="collapseExample"
-                            *ngIf="comment?.commentReplies?.length" class="btn p-0 replies-count flex items-center ltr:ms-3 rtl:ms-3">
-                            <small class="fw-500 !text-[.85rem]">
-                                {{ comment?.commentReplies?.length }}
-                            </small>
-                            <span class="icon ltr:ms-1 rtl:ms-1">
-                                <img class="h-[15px]" src="assets/media/svg/replies.svg" alt="Replies">
-                            </span>
-                        </button>
-                    </div>
-    
-                </div>
-    
-                <div 
-                    class="replies mb-0"
-                    #repliesCollapse="ngbCollapse"
-                    [(ngbCollapse)]="isRepliesCollapsed"
-                    >
-                    <div class="pt-2">
-                        <reply *ngFor="let reply of comment?.commentReplies; let index = index" (onAction)="onAction($event, commentTypesEnum.Reply,  index)" [reply]="reply"></reply>
-                    </div>
-                </div>
+              </button>
+              <button
+                (click)="collapse.toggle()"
+                [attr.aria-expanded]="!isCollapsed"
+                aria-controls="collapseExample"
+                (click)="isAuthenticated()"
+                class="btn flex lh-normal ltr:me-2 rtl:me-2 text-[#97979d] p-0 text-[.85rem] hover:text-[#003b6d]"
+              >
+                <small>{{ "actions.reply" | translate }}</small>
+              </button>
+              <button
+                (click)="isAuthenticated()"
+                class="btn flex lh-normal ltr:me-2 rtl:me-2 text-[#97979d] p-0 text-[.85rem] hover:text-[#003b6d]"
+              >
+                <small>{{ "actions.report" | translate }}</small>
+              </button>
             </div>
-            <div *ngIf="comment?.isMine" class="end ms-auto">
-                <dropdown
-                    class="mb-1 block"
-                    [items]="commentActions"
-                    (onClick)="onCommentAction.emit({action: $event, comment})"
-                ></dropdown>
+          </div>
+
+          <div class="end flex items-center">
+            <div *ngIf="comment?.likes" class="likes-count flex items-center">
+              <small class="fw-500">
+                {{ comment?.likes }}
+              </small>
+              <span class="icon ltr:ms-1 rtl:ms-1">
+                <img
+                  class="h-[25px] 2xl:h-[18px]"
+                  src="assets/media/svg/likes.svg"
+                  alt="Likes"
+                />
+              </span>
             </div>
+            <button
+              (click)="repliesCollapse.toggle()"
+              [attr.aria-expanded]="!isRepliesCollapsed"
+              aria-controls="collapseExample"
+              *ngIf="comment?.commentReplies?.length"
+              class="btn p-0 replies-count flex items-center ltr:ms-3 rtl:ms-3"
+            >
+              <small class="fw-500 !text-[.85rem]">
+                {{ comment?.commentReplies?.length }}
+              </small>
+              <span class="icon ltr:ms-1 rtl:ms-1">
+                <img
+                  class="h-[25px] 2xl:h-[15px]"
+                  src="assets/media/svg/replies.svg"
+                  alt="Replies"
+                />
+              </span>
+            </button>
+          </div>
         </div>
 
-        <div 
-            class="replier" 
-            #collapse="ngbCollapse"
-            [(ngbCollapse)]="isCollapsed"
-            (shown)="ngbCollapseChange('shown')"
-            (hidden)="ngbCollapseChange('hidden')"
+        <div
+          class="replies mb-0"
+          #repliesCollapse="ngbCollapse"
+          [(ngbCollapse)]="isRepliesCollapsed"
         >
-            <div class="flex items-center mb-[.3rem] pt-2">
-                <small class="text-blue">{{ 'product-details.replying-to' | translate }} <span class="fw-bold text-capitalize">{{ comment?.user?.name }}</span> .</small>
-                <button (click)="collapse.toggle()" class="btn p-0 kh-normal text-[#97979d] text-[.85rem] flex items-center">
-                    <small>{{ 'actions.cancel' | translate }}</small>
-                </button>
-            </div>
-            <app-add-comment
-                size="sm"
-                class="block"
-                [autofocus]="autofocus"
-                [initComment]="currentReplyMessage"
-                (addComment)="addReply($event, comment.id)"
-            ></app-add-comment>
+          <div class="pt-2">
+            <reply
+              *ngFor="let reply of comment?.commentReplies; let index = index"
+              (onAction)="onAction($event, commentTypesEnum.Reply, index)"
+              [reply]="reply"
+            ></reply>
+          </div>
         </div>
+      </div>
+      <div *ngIf="comment?.isMine" class="end ms-auto">
+        <dropdown
+          class="mb-1 block"
+          [items]="commentActions"
+          (onClick)="onCommentAction.emit({ action: $event, comment })"
+        ></dropdown>
+      </div>
+    </div>
 
-
-     </div>
+    <div
+      class="replier"
+      #collapse="ngbCollapse"
+      [(ngbCollapse)]="isCollapsed"
+      (shown)="ngbCollapseChange('shown')"
+      (hidden)="ngbCollapseChange('hidden')"
+    >
+      <div class="flex items-center mb-[.3rem] pt-2">
+        <small class="text-blue"
+          >{{ "product-details.replying-to" | translate }}
+          <span class="fw-bold text-capitalize">{{ comment?.user?.name }}</span>
+          .</small
+        >
+        <button
+          (click)="collapse.toggle()"
+          class="btn p-0 kh-normal text-[#97979d] text-[.85rem] flex items-center"
+        >
+          <small>{{ "actions.cancel" | translate }}</small>
+        </button>
+      </div>
+      <app-add-comment
+        size="sm"
+        class="block"
+        [autofocus]="autofocus"
+        [initComment]="currentReplyMessage"
+        (addComment)="addReply($event, comment.id)"
+      ></app-add-comment>
+    </div>
+  </div>
 </div>
 
-
-
-
 <ng-template #imgPlaceholder>
-    <img class="img-fluid rounded-circle fit-img w-100 h-100" src="assets/media/users/user-placeholder.png" alt="User Image">
+  <img
+    class="img-fluid rounded-circle fit-img w-100 h-100"
+    src="assets/media/users/user-placeholder.png"
+    alt="User Image"
+  />
 </ng-template>

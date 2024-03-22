@@ -1,18 +1,18 @@
 <section class="prof-base-info flex items-center">
     <div class="start me-3">
         <div class="user-img w-[98px] h-[85px]">
-            <img 
+            <img
                 (error)="onImgError($event)"
                 [src]="profileData?.profile ? profileData?.profile : 'assets/media/profile/profile.png'"
                 alt="Profile image">
         </div>
     </div>
     <div class="end flex-grow-1 flex flex-col text-truncate">
-        <h4 class="user-title mb-0 fw-600 text-[.95rem] text-truncate">{{ profileData?.name }}</h4>
-        <span class="text-gray mb-1">{{ profileData?.bio }}</span>
+        <h4 class="user-title mb-0 fw-600 text-[.95rem] whitespace-pre-line">{{ profileData?.name }}</h4>
+        <span class="text-gray mb-1 whitespace-pre-line">{{ profileData?.bio }}</span>
         <ng-container *ngIf="profileData?.rate != null">
             <bar-rating [readOnly]="true" [(rate)]="profileData.rate" [max]="5"></bar-rating>
         </ng-container>
-        
+
     </div>
 </section>

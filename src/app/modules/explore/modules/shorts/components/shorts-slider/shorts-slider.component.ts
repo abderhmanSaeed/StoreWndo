@@ -40,6 +40,8 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { MessagesService } from 'src/app/shared/services/messages/messages.service';
 import { TranslateService } from '@ngx-translate/core';
 import { environment } from 'src/environments/environment';
+import { AuthService } from 'src/app/modules/auth/services/auth/auth.service';
+import { AuthComponent } from 'src/app/modules/auth/auth.component';
 
 // install Swiper modules
 SwiperCore.use([Mousewheel, Pagination, Autoplay, Keyboard]);
@@ -60,6 +62,7 @@ export class ShortsSliderComponent implements OnInit, OnDestroy {
   slideChanged: boolean = false;
   isVideoLoading: boolean = true;
   isMobile: boolean = false;
+  languagesEnum = Languages;
 
   totalCount: number = 0;
   vgApiService!: VgApiService;
@@ -81,6 +84,8 @@ export class ShortsSliderComponent implements OnInit, OnDestroy {
   @ViewChild('media', { static: false }) mediaElementRef!: ElementRef;
   toggleVideoPlay: string = 'shared.auto';
 
+  isRequestSent: boolean = false;
+
   constructor(
     private _HttpService: HttpService,
     private _ShortsService: ShortsService,
@@ -95,6 +100,7 @@ export class ShortsSliderComponent implements OnInit, OnDestroy {
     private domSanitizer: DomSanitizer,
     private _MessagesService: MessagesService,
     private _TranslateService: TranslateService,
+    public authService: AuthService,
   ) {
     this.initializeIcons();
   }
@@ -156,6 +162,13 @@ export class ShortsSliderComponent implements OnInit, OnDestroy {
         './assets/media/svg/share.svg'
       )
     );
+  }
+  openAuthDialog() {
+    this._MatDialog.open(AuthComponent, {
+      width: '550px',
+      panelClass: 'auth-dialog',
+      direction: this.lang ==  this.languagesEnum.EN ? 'ltr' : 'rtl',
+    });
   }
 
 
@@ -453,5 +466,25 @@ export class ShortsSliderComponent implements OnInit, OnDestroy {
           3000
         );
       });
+  }
+
+  shareToSeller(e: Event, productId: any): void {
+
+    e.stopPropagation();
+    if (!this.authService.isAuthenticated) {
+      this.openAuthDialog();
+      return
+    }
+
+    const payload = {
+      productId,
+    }
+    this.subscription.add(this._HttpService.post(APIs.sendSellerRequest, payload)
+    .subscribe((res: HResponse) => {
+      this.isRequestSent = true;
+      this._MessagesService.openSuccessSnackBar(
+        this._TranslateService.instant('meassges.share-request-with-seller')
+      , 3000)
+    }));
   }
 }

@@ -1,4 +1,37 @@
 <aside [class.aside]="!isMobile">
+  <div
+    [dir]="lang == LanguagesEnum.AR ? 'rtl' : 'ltr'"
+    *ngIf="isMobile; else desktopView"
+    class="flex justify-end mt-1 mb-4"
+  >
+    <button
+      [matMenuTriggerFor]="menu"
+      type="button"
+      class="flex items-center"
+      (click)="changeIcon()"
+      #menuTrigger="matMenuTrigger"
+    >
+      <!-- <mat-icon
+      [svgIcon]="'my-profile-menu'"
+      class="text-blue-700/60 !w-8 !h-5"
+    ></mat-icon> -->
+
+      <span class="font-bold text-sm text-blue-700/60 mx-1">
+        {{ "buyer-profile.sidemenu.my-profile" | translate }}
+      </span>
+
+      <mat-icon class="text-2xl text-blue-700/70 !flex items-center">
+        {{ icon }}
+      </mat-icon>
+    </button>
+    <mat-menu
+      #menu="matMenu"
+      backdropClass="my-profile__menu"
+      class="px-2 pt-2 !min-w-full !max-w-full !rounded-tr-xl !rounded-tl-xl !rounded-br-none !rounded-bl-none"
+    >
+      <profile-aside-nav></profile-aside-nav>
+    </mat-menu>
+  </div>
   <mat-card
     class="px-0 2xl:px-4 main-rounded--force 2xl:h-full 2xl:rtl:border-l 2xl:ltr:border-r justify-between 2xl:border-[#ffedca] !flex items-center gap-3 2xl:!block"
   >
@@ -7,38 +40,6 @@
     <!-- end:: user main info card  -->
 
     <!-- begin:: aside nav  -->
-    <div
-      [dir]="lang == LanguagesEnum.AR ? 'rtl' : 'ltr'"
-      *ngIf="isMobile; else desktopView"
-    >
-      <button
-        [matMenuTriggerFor]="menu"
-        type="button"
-        class="flex items-center"
-        (click)="changeIcon()"
-        #menuTrigger="matMenuTrigger"
-      >
-        <!-- <mat-icon
-          [svgIcon]="'my-profile-menu'"
-          class="text-blue-700/60 !w-8 !h-5"
-        ></mat-icon> -->
-
-        <span class="font-bold text-sm text-blue-700/60 mx-1">
-          {{ "buyer-profile.sidemenu.my-profile" | translate }}
-        </span>
-
-        <mat-icon class="text-2xl text-blue-700/70 !flex items-center">
-          {{ icon }}
-        </mat-icon>
-      </button>
-      <mat-menu
-        #menu="matMenu"
-        backdropClass="my-profile__menu"
-        class="px-2 pt-2 !min-w-full !max-w-full !rounded-tr-xl !rounded-tl-xl !rounded-br-none !rounded-bl-none"
-      >
-        <profile-aside-nav></profile-aside-nav>
-      </mat-menu>
-    </div>
 
     <ng-template #desktopView>
       <!-- begin:: separator  -->

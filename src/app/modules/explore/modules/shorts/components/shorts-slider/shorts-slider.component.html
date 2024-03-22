@@ -132,7 +132,7 @@
                               onProductLikesCountChange(item, $event)
                             "
                             [isliked]="item?.isLiked"
-                            panelClass="!flex !w-full !h-auto dropdown-item !leading-9 justify-start text-xs !text-blueGray-300 !bg-white !rounded-md border !border-gray-350 py-1 px-2"
+                            panelClass="!flex !w-full items-center mb-2 !h-auto dropdown-item !leading-9 justify-start text-xs !text-blueGray-300 !bg-white !rounded-md border !border-gray-350 py-1 px-2"
                             [isDefaultIcon]="false"
                           >
                             <mat-icon
@@ -153,6 +153,17 @@
                               {{ "shared.like" | translate }}
                             </span>
                           </like>
+
+                          <button
+                          type="button"
+                          class="!flex !w-full !h-auto dropdown-item !leading-9 justify-start text-xs !text-blueGray-300 !bg-white !rounded-md border !border-gray-350 py-1 px-2"
+                          (click)="copyProductDetailsLink(item?.id)"
+                        >
+                          <mat-icon class="text-blueGray-200 text-base lh-0"
+                            >share</mat-icon
+                          >
+                          {{ item?.shareCount | shortNumbers }}
+                        </button>
                         </div>
                       </div>
                     </div>
@@ -222,7 +233,7 @@
 
                 <!-- Product Info -->
                 <div
-                  class="flex gap-4 bg-gradient-to-r from-black/0 to-black/40 absolute bottom-10 landscape:bottom-[29px] landscape:lg:bottom-10 w-full z-10 py-3 px-4 landscape:!py-[5px] landscape:!px-2.5 landscape:lg:!py-3 landscape:lg:!px-4 !pb-8"
+                  class="flex gap-4 bg-gradient-to-r from-black/0 to-black/40 absolute bottom-[4.5rem] landscape:bottom-[29px] landscape:lg:bottom-[4.5rem] w-full z-10 py-3 px-4 landscape:!py-[5px] landscape:!px-2.5 landscape:lg:!py-3 landscape:lg:!px-4 !pb-8"
                 >
                   <div
                     class="p-1 flex flex-center bg-black/30 py-1 px-2 relative rounded-lg h-[100px] landscape:h-[70px] landscape:lg:h-[100px] w-[70px]"
@@ -267,8 +278,15 @@
                       {{ "shared.out-of-stock" | translate }}
                     </p>
 
-                    <div class="my-2">
+                    <button
+                    *ngIf="!isRequestSent && item?.isOutOfStock"
+                    (click)="shareToSeller($event, item?.id)"
+                    class="text-primary fw-500 p-0 underline text-start"
+                  >
+                    {{ "shared.share-your-request-seller" | translate }}
+                  </button>
 
+                    <div class="my-2">
                       <add-to-cart
                       [productId]="item.id"
                       [isInCart]="item.isInCart"
@@ -291,7 +309,7 @@
                          (onProductWishCountChange)="
                            onProductWishCountChange(item, $event)
                          "
-                         iconClass="{{item?.wishListData?.isInWishList ? 'text-primary': 'text-white'}} !w-4 !h-4 text-lg"
+                         iconClass="{{item?.wishListData?.isInWishList ? 'text-primary': 'text-white'}} !w-4 !h-4 !text-[1.3rem] !pt-4"
                        >
                        </add-to-fav>
 
@@ -332,7 +350,7 @@
 
                 <!-- Actions Section -->
                 <div
-                  class="bg-gray-50 rounded-tr-lg rounded-tl-lg absolute bottom-0 w-full z-10 portrait:pt-4 portrait:pb-6 portrait:px-4.5 py-[3px] px-2.5 landscape:lg:py-4 landscape:lg:px-4.5"
+                  class="bg-gray-50 rounded-tr-lg rounded-tl-lg absolute bottom-[14px] w-full z-10 portrait:pt-4 portrait:pb-6 portrait:px-4.5 py-[3px] px-2.5 landscape:lg:py-4 landscape:lg:px-4.5"
                 >
                   <div class="">
                     <ul class="flex items-center justify-between">

@@ -1,86 +1,104 @@
-<footer [class.footer--float]="showFloatingFooter" class="footer py-1 hidden 2xl:flex position-relative flex-center">
+<footer
+  [class.footer--float]="showFloatingFooter"
+  class="footer py-1 position-relative flex-center"
+>
+  <button
+    type="button"
+    (mouseover)="showFloatingFooter = true"
+    class="rounded-circle p-0 btn expand-footer-btn d-flex border flex-column flex-center main-transition"
+  >
+    <fa-icon class="d-flex" [icon]="faChevronUp"></fa-icon>
+  </button>
 
-    <button (mouseover)="showFloatingFooter = true" class="rounded-circle p-0 btn expand-footer-btn d-flex border flex-column flex-center main-transition">
-        <fa-icon class="d-flex" [icon]="faChevronUp"></fa-icon>
-    </button>
+  <div class="w-100 py-1 footer__cont">
+    <!-- <ng-container *ngIf="showFloatingFooter"> -->
+    <div
+      (mouseover)="showFloatingFooter = true"
+      (mouseout)="showFloatingFooter = false"
+      class="footer__top border-start border-top d-flex align-items-center justify-content-between px-lg-4 main-transition"
+    >
+      <!-- begin:: footer links  -->
+      <div class="footer__top__start">
+        <!-- list 1  -->
+        <ul class="list-unstyled d-flex footer__links-list mb-3 flex-wrap">
+          <ng-container *ngFor="let item of footerLinks">
+            <li class="footer__links-list__item">
+              <a class="lh-normal" [href]="item?.url" target="_blank">
+                <span>{{ "footer." + item?.title | translate }}</span>
+              </a>
+            </li>
+          </ng-container>
+        </ul>
 
-    <div class="w-100 py-1 footer__cont">
+        <!-- list 2 -->
+        <ul class="list-unstyled d-flex footer__links-list mb-0 flex-wrap">
+          <ng-container *ngFor="let item of footerLinksL2">
+            <li class="footer__links-list__item">
+              <a class="lh-normal" [href]="item?.url" target="_blank">
+                <span>{{ "footer." + item?.title | translate }}</span>
+              </a>
+            </li>
+          </ng-container>
+        </ul>
+      </div>
+      <!-- end:: footer links  -->
 
-        <!-- <ng-container *ngIf="showFloatingFooter"> -->
-            <div (mouseover)="showFloatingFooter = true" (mouseout)="showFloatingFooter = false" class="footer__top border-start border-top d-flex align-items-center justify-content-between px-lg-4 main-transition">
-
-                <!-- begin:: footer links  -->
-                <div class="footer__top__start">
-
-                    <!-- list 1  -->
-                    <ul class="list-unstyled d-flex footer__links-list mb-3 flex-wrap">
-                        <ng-container *ngFor="let item of footerLinks">
-                            <li class="footer__links-list__item">
-                                <a class="lh-normal" [href]="item?.url" target="_blank">
-                                    <span>{{ 'footer.'+item?.title | translate }}</span>
-                                </a>
-                        </li>
-                        </ng-container>
-                    </ul>
-
-                    <!-- list 2 -->
-                    <ul class="list-unstyled d-flex footer__links-list mb-0 flex-wrap">
-                        <ng-container *ngFor="let item of footerLinksL2">
-                            <li class="footer__links-list__item">
-                                <a class="lh-normal" [href]="item?.url" target="_blank">
-                                    <span>{{ 'footer.'+item?.title | translate }}</span>
-                                </a>
-                            </li>
-                        </ng-container>
-                    </ul>
-
-                </div>
-                <!-- end:: footer links  -->
-
-                <!-- begin:: app list  -->
-                <div class="footer__top__end">
-                    <small class="mb-2 d-block">{{ 'footer.download-now' | translate }}</small>
-                    <ul class="list-unstyled d-flex apps-list mb-0 flex-wrap">
-                        <ng-container *ngFor="let item of apps">
-                            <li class="apps-list__item">
-                                <a [href]="item?.url" target="_blank" rel="noopener">
-                                    <img class="img-fluid" [src]="item?.imagePath" [alt]="item?.imageAlt">
-                                </a>
-                            </li>
-                        </ng-container>
-                    </ul>
-                </div>
-                <!-- end:: app list  -->
-
-            </div>
-        <!-- </ng-container> -->
-
-
-        <div class="footer__bottom d-flex justify-content-between px-lg-4 align-items-center py-1 row w-100">
-
-            <!-- begin:: copyright -->
-            <div class="start col-lg-4">
-                <small class="text-muted">&copy; {{ currentYear }} {{ 'footer.copyright' | translate }}</small>
-            </div>
-            <!-- end:: copyright -->
-
-            <div class="center col-lg-4 d-flex justify-content-center">
-                <social-list></social-list>
-            </div>
-
-            <!-- begin:: accepted payment items -->
-            <div class="end col-lg-4 d-flex justify-content-end">
-                <ul class="list-unstyled d-flex payment-list mb-0 flex-wrap items-center">
-                    <ng-container *ngFor="let item of paymentItems">
-                        <li class="ltr:ms-4 rtl:ms-4">
-                            <img height="8" class="img-fluid" [src]="item?.imagePath" [alt]="item?.imageAlt">
-                        </li>
-                    </ng-container>
-                </ul>
-            </div>
-            <!-- end:: accepted payment items -->
-
-        </div>
-
+      <!-- begin:: app list  -->
+      <div class="footer__top__end">
+        <small class="mb-2 d-block">{{
+          "footer.download-now" | translate
+        }}</small>
+        <ul class="list-unstyled d-flex apps-list mb-0 flex-wrap">
+          <ng-container *ngFor="let item of apps">
+            <li class="apps-list__item">
+              <a [href]="item?.url" target="_blank" rel="noopener">
+                <img
+                  class="img-fluid"
+                  [src]="item?.imagePath"
+                  [alt]="item?.imageAlt"
+                />
+              </a>
+            </li>
+          </ng-container>
+        </ul>
+      </div>
+      <!-- end:: app list  -->
     </div>
+    <!-- </ng-container> -->
+
+    <div
+      class="footer__bottom text-center lg:text-start grid grid-cols-1 gap-y-3 lg:gap-y-0 lg:grid-cols-3 justify-content-between px-lg-4 align-items-center py-1 row w-100"
+    >
+      <!-- begin:: copyright -->
+      <div class="">
+        <small class="text-muted"
+          >&copy; {{ currentYear }} {{ "footer.copyright" | translate }}</small
+        >
+      </div>
+      <!-- end:: copyright -->
+
+      <div class="text-center">
+        <social-list></social-list>
+      </div>
+
+      <!-- begin:: accepted payment items -->
+      <div class="text-end">
+        <ul
+          class="list-unstyled flex payment-list mb-0 flex-wrap items-center justify-center lg:justify-end"
+        >
+          <ng-container *ngFor="let item of paymentItems">
+            <li class="ltr:ms-4 rtl:ms-4">
+              <img
+                height="8"
+                class="img-fluid"
+                [src]="item?.imagePath"
+                [alt]="item?.imageAlt"
+              />
+            </li>
+          </ng-container>
+        </ul>
+      </div>
+      <!-- end:: accepted payment items -->
+    </div>
+  </div>
 </footer>
