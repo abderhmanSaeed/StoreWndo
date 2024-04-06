@@ -40,6 +40,8 @@ import { AukPlayIconComponent } from './components/auk-play-icon/auk-play-icon.c
 import { ResponsiveUCComponent } from './components/responsive-uc/responsive-uc.component';
 import { NgPipesModule } from 'ngx-pipes';
 import { MobileSidebarComponent } from '../layout/components/responsive/mobile-sidebar/mobile-sidebar.component';
+import { DownloadAppDialogComponent } from './components/download-app-dialog/download-app-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 
@@ -63,6 +65,7 @@ import { MobileSidebarComponent } from '../layout/components/responsive/mobile-s
     AukSlideToggleComponent,
     AukPlayIconComponent,
     ResponsiveUCComponent,
+    DownloadAppDialogComponent,
   ],
   imports: [
     NgbModule,
@@ -82,6 +85,7 @@ import { MobileSidebarComponent } from '../layout/components/responsive/mobile-s
     ReactiveFormsModule,
     MatSlideToggleModule,
     ConfirmationDialogModule,
+    MatDialogModule,
     TranslateModule.forRoot({
       defaultLanguage: environment.defaultLanguage,
       loader: {
