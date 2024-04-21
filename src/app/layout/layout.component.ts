@@ -10,6 +10,7 @@ import { ResponsiveUCComponent } from '../shared/components/responsive-uc/respon
 import { MatDialog } from '@angular/material/dialog';
 import { ResponsiveService } from '../shared/services/responsive/responsive.service';
 import { environment } from 'src/environments/environment';
+import { DownloadAppDialogComponent } from '../shared/components/download-app-dialog/download-app-dialog.component';
 
 
 @Component({
@@ -37,11 +38,13 @@ export class LayoutComponent extends ComponentBase implements OnInit {
     public routerService: RouterService,
     TranslateService: TranslateService,
     LocalizationService: LocalizationService,
-    private responsiveService: ResponsiveService
+    private responsiveService: ResponsiveService,
+    private translateService: TranslateService
+
     //  private _BreakpointsService: BreakpointsService,
 
   ) {
-    super( LocalizationService, TranslateService );
+    super(LocalizationService, TranslateService);
   }
 
   ngOnInit(): void {
@@ -53,7 +56,25 @@ export class LayoutComponent extends ComponentBase implements OnInit {
       console.log('Accessed via web browser on a non-mobile device');
       // Perform actions for web access here, if necessary
     } else {
-      this.redirectToAppStore();
+      // Show popup to prompt user to download the app
+      const dialogRef = this._MatDialog.open(DownloadAppDialogComponent, {
+        width: '250px',
+        data: {
+          message:
+            this.lang == this.LanguagesEnum.EN ? 'Download our official app to enjoy mobile shopping better, Click here to download the app Now'
+              : 'قم بتحميل تطبيقنا الرسمي للإستمتاع بتجربة التسوق عبر الهاتف المحمول بشكل أفضل، انقر هنا لتنزيل التطبيق الآن'
+        }
+      });
+
+      dialogRef.afterClosed().subscribe(result => {
+        if (result === 'ok') {
+          // Redirect to app store
+          this.redirectToAppStore();
+        } else if (result === 'cancel') {
+          // Close the dialog
+          dialogRef.close();
+        }
+      });
     }
     this.subscriptionMobile = this.responsiveService.isMobile$.subscribe(isMobile => {
       this.isMobile = isMobile;
@@ -91,7 +112,7 @@ export class LayoutComponent extends ComponentBase implements OnInit {
 
 
   onLangChange(): void {
-    this.subscription.add( this._TranslateService.onLangChange.subscribe(({lang}: any) => {
+    this.subscription.add(this._TranslateService.onLangChange.subscribe(({ lang }: any) => {
       this.lang = (lang as Languages);
     }));
   }
@@ -101,7 +122,7 @@ export class LayoutComponent extends ComponentBase implements OnInit {
     this._MatDialog.open(ResponsiveUCComponent, {
       width: '92%',
       disableClose: true,
-      direction: this.lang ==  this.LanguagesEnum.EN ? 'ltr' : 'rtl',
+      direction: this.lang == this.LanguagesEnum.EN ? 'ltr' : 'rtl',
       panelClass: 'gradient-dialog',
     });
   }
@@ -127,8 +148,8 @@ export class LayoutComponent extends ComponentBase implements OnInit {
   // }
 
   checkRoute(): void {
-    if (this.routerService.hasRoute('buyer-profile') || this.routerService.hasRoute('seller') ) {
-      this.draweState =  false;
+    if (this.routerService.hasRoute('buyer-profile') || this.routerService.hasRoute('seller')) {
+      this.draweState = false;
       this.isOpening = false;
     }
   }
