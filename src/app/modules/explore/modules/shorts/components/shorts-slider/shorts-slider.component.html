@@ -1,30 +1,43 @@
 <div *ngIf="isMobile; else desktopView">
-  <div class="products mt-2" #scrollableElement>
-    <swiper
-      *ngIf="exploreProducts.length"
-      (swiper)="onSwiper($event)"
-      [config]="swiperConfig"
-      class="mySwiper w-full h-full"
-      (slideChange)="onSlideChange()"
-      #swiper
+  <swiper
+    *ngIf="exploreProducts.length"
+    (swiper)="onSwiper($event)"
+    [config]="swiperConfig"
+    class="mySwiper w-full h-screen space-y-4"
+    (slideChange)="onSlideChange()"
+    #swiper
+  >
+    <ng-container
+      *ngFor="let item of exploreProducts; let i = index; let first = first"
     >
-      <ng-container
-        *ngFor="let item of exploreProducts; let i = index; let first = first"
+      <ng-template
+        swiperSlide
+        let-data
+        style="background-color: brown"
+        class="!p-0"
       >
-        <ng-template swiperSlide let-data>
-          <div
-            class="2xl:my-3 shorts__item main-rounded flex align-items-center w-full gap-y-4"
+        <div class="w-full relative">
+          <wndo-loader
+            *ngIf="isVideoLoading"
+            class="block h-full w-full border !border-[#fff] absolute z-[2]"
+          ></wndo-loader>
+          <vg-player
+            class="max-h-full h-auto bg-transparent relative"
+            *ngIf="data.isActive && item.video?.urlPreview"
+            (onPlayerReady)="onPlayerReady($event)"
           >
-            <mat-card class="shorts__item__content w-full p-0 main-rounded--force">
-              <div class="relative">
+            <div>
+              <div
+                class="flex justify-between items-start absolute top-4 z-10 start-4 end-4"
+              >
+                <!-- Seller details -->
                 <div
-                  class="flex justify-between items-start absolute top-4 z-10 start-4 end-4 hols"
+                  class="inline-flex items-center bg-black/30 rounded-full ltr:pe-4 rtl:pe-4"
                 >
-                  <!-- Seller detilas -->
-                  <div
-                    class="inline-flex items-center bg-black/30 rounded-full mt-4 ltr:pe-4 rtl:pe-4"
+                  <a
+                    [routerLink]="['/seller', item?.seller?.id]"
+                    class="d-flex"
                   >
-                  <a [routerLink]="['/seller', item?.seller?.id]" class="d-flex">
                     <img
                       [src]="item?.seller?.imagePath"
                       alt="{{ item?.seller?.name }}"
@@ -48,367 +61,238 @@
                         }}</span>
                       </span>
                     </div>
-                    </a>
+                  </a>
 
-                    <follow
-                      [isLabel]="false"
-                      panelclass="absolute -right-6 !min-w-[2rem] rtl:-left-6 rtl:right-auto !w-8 !h-8 bg-primary flex items-center justify-center !rounded-full text-white !p-0"
-                      [isFollowed]="item?.seller?.isFollowed"
-                      [userId]="item?.seller?.id"
-                    >
-                      <fa-icon
-                        follow-content
-                        [icon]="faPlus"
-                        class="!lh-0 font-bold text-lg"
-                      ></fa-icon>
-                      <mat-icon
-                        unfollow-content
-                        class="!lh-0 font-bold text-lg !flex !items-center !justify-center"
-                      >
-                        person_remove
-                      </mat-icon>
-                    </follow>
-                  </div>
-
-                  <!-- More Details -->
-                  <div
-                    class="flex flex-col landscape:flex-row landscape:lg:flex-col items-center justify-center gap-2"
+                  <follow
+                    [isLabel]="false"
+                    panelclass="absolute -right-6 !min-w-[2rem] rtl:-left-6 rtl:right-auto !w-8 !h-8 bg-primary flex items-center justify-center !rounded-full text-white !p-0"
+                    [isFollowed]="item?.seller?.isFollowed"
+                    [userId]="item?.seller?.id"
                   >
-                    <div class="">
-                      <div
-                        class=""
-                        ngbDropdown
-                        display="dynamic"
-                        class="d-inline-block"
-                      >
-                        <button
-                          mat-stroked-button
-                          type="button"
-                          class="btn flex items-center mt-4 justify-center arrow-none px-2 border-0 !p-0 text-2xl"
-                          id="moreDetails"
-                          ngbDropdownToggle
-                        >
-                          <div class="icon">
-                            <mat-icon class="text-white w-5">
-                              more_vert
-                            </mat-icon>
-                          </div>
-                        </button>
-                        <div
-                          ngbDropdownMenu
-                          aria-labelledby="moreDetails"
-                          class="border-0 shadow mt-2 dropdown--arrow p-2 min-w-[200px] landscape:h-[100px] landscape:overflow-y-auto landscape:lg:h-auto landscape:overflow-visible"
-                        >
-                          <button
-                            type="button"
-                            mat-raised-button
-                            class="dropdown-item !text-start text-xs !text-blueGray-300 !bg-white !rounded-md border border-gray-350 py-1 px-2"
-                            ngbDropdownItem
-                            (click)="onExpandClick(item?.id)"
-                          >
-                            <mat-icon>fullscreen</mat-icon>
-                            <span> {{ "shared.maximize" | translate }} </span>
-                          </button>
-                          <button
-                            type="button"
-                            mat-raised-button
-                            class="dropdown-item mb-2 !text-start text-xs !text-blueGray-300 !bg-white !rounded-md border border-gray-350 py-1 px-2"
-                            ngbDropdownItem
-                          >
-                            <mat-icon>person</mat-icon>
-                            <span>
-                              {{ item?.followersCount }}
-                              {{ "shared.followers" | translate }}
-                            </span>
-                          </button>
+                    <fa-icon
+                      follow-content
+                      [icon]="faPlus"
+                      class="!lh-0 font-bold text-lg"
+                    ></fa-icon>
+                    <mat-icon
+                      unfollow-content
+                      class="!lh-0 font-bold text-lg !flex !items-center !justify-center"
+                    >
+                      person_remove
+                    </mat-icon>
+                  </follow>
+                </div>
 
-                          <like
-                            [productId]="item?.id"
-                            [LikesCount]="item?.likes"
-                            (onProductLikeChange)="
-                              onProductLikeChange($event, item)
-                            "
-                            (onProductLikesCountChange)="
-                              onProductLikesCountChange(item, $event)
-                            "
-                            [isliked]="item?.isLiked"
-                            panelClass="!flex !w-full items-center mb-2 !h-auto dropdown-item !leading-9 justify-start text-xs !text-blueGray-300 !bg-white !rounded-md border !border-gray-350 py-1 px-2"
-                            [isDefaultIcon]="false"
-                          >
-                            <mat-icon
-                              class="{{
-                                item?.isLiked
-                                  ? 'text-blue-200'
-                                  : 'text-blueGray-200'
-                              }} !w-4 !h-4 rtl:me-1 ltr:me-1"
-                              svgIcon="like"
-                            ></mat-icon>
-                            <span
-                              class="{{
-                                item?.isLiked
-                                  ? 'text-blue-200'
-                                  : 'text-blueGray-200'
-                              }}"
-                            >
-                              {{ "shared.like" | translate }}
-                            </span>
-                          </like>
+                <!-- More Details -->
+                <div>
+                  <button
+                    type="button"
+                    class="dropdown-item text-xl text-white p-0 w-[39px] mb-2 flex justify-center items-center"
+                    ngbDropdownItem
+                    (click)="onExpandClick(item?.id)"
+                  >
+                    <mat-icon class="text-3xl !w-7 !h-7">fullscreen</mat-icon>
+                    <span class="sr-only">
+                      {{ "shared.maximize" | translate }}
+                    </span>
+                  </button>
 
-                          <button
-                          type="button"
-                          class="!flex !w-full !h-auto dropdown-item !leading-9 justify-start text-xs !text-blueGray-300 !bg-white !rounded-md border !border-gray-350 py-1 px-2"
-                          (click)="copyProductDetailsLink(item?.id)"
-                        >
-                          <mat-icon class="text-blueGray-200 text-base lh-0"
-                            >share</mat-icon
-                          >
-                          {{ item?.shareCount | shortNumbers }}
-                        </button>
-                        </div>
-                      </div>
-                    </div>
-
+                  <div>
                     <button
                       type="button"
-                      class="flex flex-col justify-center gap-1 px-2 py-1 bg-black/30 items-center rounded-lg"
+                      class="flex flex-col justify-center bg-black/30 items-center rounded-lg w-[39px] h-[42px]"
                       (click)="toggleVideoPlayback()"
                     >
                       <mat-icon
                         svgIcon="pause"
-                        class="text-white w-5"
+                        class="text-white !w-5 !-h-5 leading-0"
                       ></mat-icon>
-                      <span class="text-white">
+                      <span class="text-white text-[9px]">
                         {{ toggleVideoPlay | translate }}
                       </span>
                     </button>
                   </div>
                 </div>
+              </div>
+            </div>
 
-                <!-- video Section -->
-                <div class="d-flex relative">
-                  <div class="video-wrapper h-full flex relative flex-grow-1">
-                    <wndo-loader
-                      *ngIf="isVideoLoading"
-                      class="block h-full w-full border !border-[#fff] absolute z-[2]"
-                    ></wndo-loader>
-                    <div
-                      class="h-fit w-full m-auto video position-relative main-rounded overflow-hidden d-flex flex-center"
-                    >
-                      <mat-icon *ngIf="!data.isActive" class="fs-1"
-                        >missed_video_call</mat-icon
-                      >
-                      <!-- <auk-play-icon
-                        (click)="playVideo()"
-                        [hidden]="isPlaying || isVideoLoading"
-                        class="absolute z-10 cursor-pointer w-full bg-[#975f5f7a]"
-                      ></auk-play-icon> -->
-                      <vg-player
-                        class="max-h-full flex items-center h-auto bg-transparent"
-                        *ngIf="data.isActive && item.video?.urlPreview"
-                        (onPlayerReady)="onPlayerReady($event)"
-                      >
-                        <!-- oncanplay="" -->
-                        <video
-                          controlslist="nodownload noplaybackrate noremoteplayback"
-                          disablepictureinpicture
-                          [loop]="isloop"
-                          oncanplay=""
-                          width="100%"
-                          class="max-h-[565px] bg-white main-rounded--force object-cover"
-                          [vgMedia]="$any(media)"
-                          [vgMaster]="true"
-                          preload="metadata"
-                          #media
-                          [controls]="false"
-                        >
-                          <source
-                            [src]="item.video?.urlPreview"
-                            type="video/mp4"
-                          />
-                        </video>
-                      </vg-player>
-                    </div>
-                  </div>
-                </div>
+            <video
+              controlslist="nodownload noplaybackrate noremoteplayback"
+              disablepictureinpicture
+              [loop]="isloop"
+              oncanplay=""
+              width="100%"
+              class="max-h-full bg-white object-cover h-[84vh]"
+              [vgMedia]="$any(media)"
+              [vgMaster]="true"
+              preload="metadata"
+              #media
+              [controls]="false"
+            >
+              <source [src]="item.video?.urlPreview" type="video/mp4" />
+            </video>
 
-                <!-- Product Info -->
-                <div
-                  class="flex gap-4 bg-gradient-to-r from-black/0 to-black/40 absolute bottom-[4.5rem] landscape:bottom-[29px] landscape:lg:bottom-[4.5rem] w-full z-10 py-3 px-4 landscape:!py-[5px] landscape:!px-2.5 landscape:lg:!py-3 landscape:lg:!px-4 !pb-8"
+            <!-- Product Info -->
+            <div
+              class="flex gap-4 bg-gradient-to-r from-black/0 to-black/40 absolute bottom-[2.5rem] landscape:bottom-[29px] landscape:lg:bottom-[4.5rem] w-full z-10 py-3 px-4 landscape:!py-[5px] landscape:!px-2.5 landscape:lg:!py-3 landscape:lg:!px-4 !pb-8"
+            >
+              <div
+                class="p-1 flex flex-center bg-black/30 py-1 px-2 relative rounded-lg h-[100px] landscape:h-[70px] landscape:lg:h-[100px] w-[70px]"
+              >
+                <ng-container *ngIf="item?.discount">
+                  <small
+                    class="absolute badge bg-[#fe4b46] px-2 fw-400 top-0 ltr:right-0 rtl:left-0 rtl:right-auto"
+                    >{{ item?.discount }} %</small
+                  >
+                </ng-container>
+                <img
+                  (error)="onImgError($event)"
+                  *ngIf="item?.image?.urlPreview; else imgPlaceholder"
+                  class="rounded object-contain"
+                  [src]="item?.image?.urlPreview"
+                  alt="Product Photo"
+                />
+              </div>
+
+              <div
+                class="flex-grow flex portrait:flex-col landscape:lg:flex-col landscape:lg:items-start landscape:items-center justify-between"
+              >
+                <h4 class="mb-0 text-white text-base">{{ item?.name }}</h4>
+                <p class="mb-0 text-white text-xs">
+                  {{ item?.category?.name }}
+                </p>
+                <p class="flex items-center gap-2 mb-0">
+                  <span class="text-xs text-gray-400"
+                    >{{ item?.price }} {{ "shared.EGP" | translate }}</span
+                  >
+                  <span
+                    *ngIf="item?.priceAfterOffer"
+                    class="text-primary-500 text-lg"
+                    >{{ item?.priceAfterOffer }}
+                    {{ "shared.EGP" | translate }}</span
+                  >
+                </p>
+                <p
+                  *ngIf="item?.isOutOfStock"
+                  class="mb-0 text-[#FFA90A] fw-500"
                 >
-                  <div
-                    class="p-1 flex flex-center bg-black/30 py-1 px-2 relative rounded-lg h-[100px] landscape:h-[70px] landscape:lg:h-[100px] w-[70px]"
-                  >
-                    <ng-container *ngIf="item?.discount">
-                      <small
-                        class="absolute badge bg-[#fe4b46] px-2 fw-400 top-0 ltr:right-0 rtl:left-0 rtl:right-auto"
-                        >{{ item?.discount }} %</small
-                      >
-                    </ng-container>
-                    <img
-                      (error)="onImgError($event)"
-                      *ngIf="item?.image?.urlPreview; else imgPlaceholder"
-                      class="rounded object-contain"
-                      [src]="item?.image?.urlPreview"
-                      alt="Product Photo"
-                    />
-                  </div>
+                  {{ "shared.out-of-stock" | translate }}
+                </p>
 
-                  <div
-                    class="flex-grow flex portrait:flex-col landscape:lg:flex-col landscape:lg:items-start landscape:items-center justify-between"
-                  >
-                    <h4 class="mb-0 text-white text-base">{{ item?.name }}</h4>
-                    <p class="mb-0 text-white text-xs">
-                      {{ item?.category?.name }}
-                    </p>
-                    <p class="flex items-center gap-2 mb-0">
-                      <span class="text-xs text-gray-400"
-                        >{{ item?.price }} {{ "shared.EGP" | translate }}</span
-                      >
-                      <span
-                        *ngIf="item?.priceAfterOffer"
-                        class="text-primary-500 text-lg"
-                        >{{ item?.priceAfterOffer }}
-                        {{ "shared.EGP" | translate }}</span
-                      >
-                    </p>
-                    <p
-                      *ngIf="item?.isOutOfStock"
-                      class="mb-0 text-[#FFA90A] fw-500"
-                    >
-                      {{ "shared.out-of-stock" | translate }}
-                    </p>
+                <button
+                  *ngIf="!isRequestSent && item?.isOutOfStock"
+                  (click)="shareToSeller($event, item?.id)"
+                  class="text-primary fw-500 p-0 underline text-start"
+                >
+                  {{ "shared.share-your-request-seller" | translate }}
+                </button>
 
-                    <button
-                    *ngIf="!isRequestSent && item?.isOutOfStock"
-                    (click)="shareToSeller($event, item?.id)"
-                    class="text-primary fw-500 p-0 underline text-start"
-                  >
-                    {{ "shared.share-your-request-seller" | translate }}
-                  </button>
-
-                    <div class="my-2">
-                      <add-to-cart
-                      [productId]="item.id"
-                      [isInCart]="item.isInCart"
-                      *ngIf="!item?.isOutOfStock"
-                      (addedToCart)="onAddedToCart(item, $event)"
+                <div class="my-2">
+                  <add-to-cart
+                    [productId]="item.id"
+                    [isInCart]="item.isInCart"
+                    *ngIf="!item?.isOutOfStock"
+                    (addedToCart)="onAddedToCart(item, $event)"
                   ></add-to-cart>
-                    </div>
-
-                    <div class="flex items-center gap-1 justify-between">
-                      <div class="flex items-center gap-2">
-
-                        <add-to-fav
-                         panelClass="border-0"
-                         [productId]="item?.id"
-                         [isFavorite]="item?.wishListData?.isInWishList"
-                         [wishListCount]="item?.wishListData?.wishListCount"
-                         (onProductWishChange)="
-                           onProductWishChange($event, item)
-                         "
-                         (onProductWishCountChange)="
-                           onProductWishCountChange(item, $event)
-                         "
-                         iconClass="{{item?.wishListData?.isInWishList ? 'text-primary': 'text-white'}} !w-4 !h-4 !text-[1.3rem] !pt-4"
-                       >
-                       </add-to-fav>
-
-                       <like
-                       [productId]="item?.id"
-                       [LikesCount]="item?.likes"
-                       (onProductLikeChange)="
-                         onProductLikeChange($event, item)
-                       "
-                       (onProductLikesCountChange)="
-                         onProductLikesCountChange(item, $event)
-                       "
-                       [isliked]="item?.isLiked"
-                       panelClass="!flex !w-full !h-auto !bg-transparent !border-0 dropdown-item !leading-0 justify-start py-0 px-0"
-                       [isDefaultIcon]="false"
-                     >
-                       <mat-icon
-                         class="{{
-                           item?.isLiked
-                             ? 'text-blue-200'
-                             : 'text-white'
-                         }} !w-4 !h-4 rtl:me-1 ltr:me-1"
-                         svgIcon="like"
-                       ></mat-icon>
-
-                     </like>
-                      </div>
-
-                      <auk-rating
-                        iconClass="rtl:!me-0 ltr:!me-0"
-                        panelClass="gap-1"
-                        [data]="item?.rate"
-                        textPanelClass="text-white text-[10px]"
-                      ></auk-rating>
-                    </div>
-                  </div>
                 </div>
 
-                <!-- Actions Section -->
-                <div
-                  class="bg-gray-50 rounded-tr-lg rounded-tl-lg absolute bottom-[14px] w-full z-10 portrait:pt-4 portrait:pb-6 portrait:px-4.5 py-[3px] px-2.5 landscape:lg:py-4 landscape:lg:px-4.5"
-                >
-                  <div class="">
-                    <ul class="flex items-center justify-between">
-                      <li
-                        class="flex items-center gap-2 text-blueGray-200 font-bold"
-                      >
-                        <mat-icon
-                          class="text-blueGray-200 !w-4 !h-4"
-                          svgIcon="like"
-                        ></mat-icon>
-                        {{ item?.likes | shortNumbers }}
-                      </li>
+                <div class="flex items-center gap-1 justify-between">
+                  <div class="flex items-center gap-2">
+                    <add-to-fav
+                      panelClass="border-0"
+                      [productId]="item?.id"
+                      [isFavorite]="item?.wishListData?.isInWishList"
+                      [wishListCount]="item?.wishListData?.wishListCount"
+                      (onProductWishChange)="onProductWishChange($event, item)"
+                      (onProductWishCountChange)="
+                        onProductWishCountChange(item, $event)
+                      "
+                      iconClass="{{
+                        item?.wishListData?.isInWishList
+                          ? 'text-primary'
+                          : 'text-white'
+                      }} !w-4 !h-4 !text-[1.3rem] !pt-4"
+                    >
+                    </add-to-fav>
 
-                      <li
-                        class="flex items-center gap-2 font-bold text-blueGray-200"
-                      >
-                        <mat-icon
-                          class="text-blueGray-200 !w-4 !h-4"
-                          svgIcon="comment"
-                        ></mat-icon>
-                        {{ item?.commentsCount | shortNumbers }}
-                      </li>
-
-                      <li class="">
-                        <button
-                          type="button"
-                          class="flex items-center gap-2 font-bold text-blueGray-200"
-                          (click)="copyProductDetailsLink(item?.id)"
-                        >
-                          <mat-icon class="text-blueGray-200 text-base lh-0"
-                            >share</mat-icon
-                          >
-                          {{ item?.shareCount | shortNumbers }}
-                        </button>
-                      </li>
-
-                      <li
-                        class="flex items-center gap-2 font-bold text-blueGray-200"
-                      >
-                        <mat-icon
-                          class="text-blueGray-200 !w-4 !h-4 text-base lh-0"
-                          svgIcon="feather-heart"
-                        >
-                        </mat-icon>
-                        {{
-                          item?.wishListData?.wishListCount | shortNumbers
-                        }}
-                      </li>
-                    </ul>
+                    <like
+                      [productId]="item?.id"
+                      [LikesCount]="item?.likes"
+                      (onProductLikeChange)="onProductLikeChange($event, item)"
+                      (onProductLikesCountChange)="
+                        onProductLikesCountChange(item, $event)
+                      "
+                      [isliked]="item?.isLiked"
+                      panelClass="!flex !w-full !h-auto !bg-transparent !border-0 dropdown-item !leading-0 justify-start py-0 px-0"
+                      [isDefaultIcon]="false"
+                    >
+                      <mat-icon
+                        class="{{
+                          item?.isLiked ? 'text-blue-200' : 'text-white'
+                        }} !w-4 !h-4 rtl:me-1 ltr:me-1"
+                        svgIcon="like"
+                      ></mat-icon>
+                    </like>
                   </div>
+
+                  <auk-rating
+                    iconClass="rtl:!me-0 ltr:!me-0"
+                    panelClass="gap-1"
+                    [data]="item?.rate"
+                    textPanelClass="text-white text-[10px]"
+                  ></auk-rating>
                 </div>
               </div>
-            </mat-card>
+            </div>
+          </vg-player>
+          <!-- Actions Section -->
+          <div
+            class="bg-gray-50 rounded-tr-lg rounded-tl-lg absolute bottom-0 w-full z-10 portrait:pt-[1.1rem] portrait:pb-[1.1rem] portrait:px-4.5 py-[3px] px-2.5 landscape:lg:py-4 landscape:lg:px-4.5"
+          >
+            <div class="">
+              <ul class="flex items-center justify-between">
+                <li class="flex items-center gap-2 text-blueGray-200 font-bold">
+                  <mat-icon
+                    class="text-blueGray-200 !w-4 !h-4"
+                    svgIcon="like"
+                  ></mat-icon>
+                  {{ item?.likes | shortNumbers }}
+                </li>
+
+                <li class="flex items-center gap-2 font-bold text-blueGray-200">
+                  <mat-icon
+                    class="text-blueGray-200 !w-4 !h-4"
+                    svgIcon="comment"
+                  ></mat-icon>
+                  {{ item?.commentsCount | shortNumbers }}
+                </li>
+
+                <li
+                  class="flex items-center gap-2 font-bold text-blueGray-200"
+                  (click)="copyProductDetailsLink(item?.id)"
+                >
+                  <mat-icon
+                    class="text-blueGray-200 !w-4 !h-4 text-[1rem] !lh-[18px]"
+                    >share</mat-icon
+                  >
+                  {{ item?.shareCount | shortNumbers }}
+                </li>
+
+                <li class="flex items-center gap-2 font-bold text-blueGray-200">
+                  <mat-icon
+                    class="text-blueGray-200 !w-4 !h-4 text-base lh-0"
+                    svgIcon="feather-heart"
+                  >
+                  </mat-icon>
+                  {{ item?.wishListData?.wishListCount | shortNumbers }}
+                </li>
+              </ul>
+            </div>
           </div>
-        </ng-template>
-      </ng-container>
-    </swiper>
-  </div>
+        </div>
+      </ng-template>
+    </ng-container>
+  </swiper>
 </div>
 
 <!-- begin:: swiper  -->
@@ -486,7 +370,7 @@
                         [vgMaster]="true"
                         preload="metadata"
                         #media
-                        controls="true"
+                        controls="false"
                       >
                         <source
                           [src]="item.video?.urlPreview"

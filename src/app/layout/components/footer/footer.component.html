@@ -1,12 +1,15 @@
 <footer
   [class.footer--float]="showFloatingFooter"
-  class="footer py-1 position-relative flex-center"
+  class="footer py-1 position-relative flex-center {{
+    isMobile && !showFooter ? 'hidden' : 'flex'
+  }}"
 >
   <button
     type="button"
     (mouseover)="showFloatingFooter = true"
     class="rounded-circle p-0 btn expand-footer-btn d-flex border flex-column flex-center main-transition"
   >
+    <span class="sr-only"> faChevronUp</span>
     <fa-icon class="d-flex" [icon]="faChevronUp"></fa-icon>
   </button>
 
@@ -55,7 +58,7 @@
                 <img
                   class="img-fluid"
                   [src]="item?.imagePath"
-                  [alt]="item?.imageAlt"
+                  alt="{{ item?.imageAlt }}"
                 />
               </a>
             </li>
@@ -92,7 +95,7 @@
                 height="8"
                 class="img-fluid"
                 [src]="item?.imagePath"
-                [alt]="item?.imageAlt"
+                alt="{{ item?.imageAlt }}"
               />
             </li>
           </ng-container>
